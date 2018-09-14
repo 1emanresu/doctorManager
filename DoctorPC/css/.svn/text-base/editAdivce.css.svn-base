@@ -1,0 +1,36 @@
+
+ul li{
+	list-style: none;
+}
+a{
+	text-decoration: none;
+}
+#classify_ul{
+	border: 1px solid #D4D4D4;
+	border-left: none;
+	height: 130px;
+	/*border-radius: 10px;*/
+}
+#show_div{
+	border: 1px solid #D4D4D4;
+	height: 300px;
+	width:auto;
+	margin: 10px 0;
+	overflow: auto;
+}
+#keyword_div div span{
+	cursor: pointer;
+	line-height: 25px;
+	margin: 5px 10px;
+}
+#show_div p{
+	cursor: pointer;	
+}
+#postMsgArea{
+	background-color: white;
+	width: 100%;
+	height: 46.5vh;
+	overflow: auto;
+	padding: 15px 0;
+	overflow-x: hidden;
+}

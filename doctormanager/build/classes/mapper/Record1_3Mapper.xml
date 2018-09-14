@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.yunji.doctormanager.dao.Record1_3Mapper" >
+  <resultMap id="BaseResultMap" type="cn.yunji.doctormanager.entity.Record1_3" >
+    <id column="rid13" property="rid13" jdbcType="INTEGER" />
+    <result column="mId" property="mid" jdbcType="CHAR" />
+    <result column="weeks" property="weeks" jdbcType="INTEGER" />
+    <result column="colporrhagia" property="colporrhagia" jdbcType="INTEGER" />
+    <result column="colporrhagiaDate" property="colporrhagiadate" jdbcType="DATE" />
+    <result column="colporrhagiaCon" property="colporrhagiacon" jdbcType="VARCHAR" />
+    <result column="bellyache" property="bellyache" jdbcType="INTEGER" />
+    <result column="bellyacheDate" property="bellyachedate" jdbcType="DATE" />
+    <result column="bellyacheCon" property="bellyachecon" jdbcType="VARCHAR" />
+    <result column="fever" property="fever" jdbcType="INTEGER" />
+    <result column="feverDate" property="feverdate" jdbcType="DATE" />
+    <result column="feverCon" property="fevercon" jdbcType="VARCHAR" />
+    <result column="emesis" property="emesis" jdbcType="INTEGER" />
+    <result column="emesisDate" property="emesisdate" jdbcType="DATE" />
+    <result column="emesisNoeatCon" property="emesisnoeatcon" jdbcType="VARCHAR" />
+    <result column="havaHighRisk" property="havahighrisk" jdbcType="INTEGER" />
+    <result column="havaHighRiskDate" property="havahighriskdate" jdbcType="DATE" />
+    <result column="havaHighRiskCon" property="havahighriskcon" jdbcType="VARCHAR" />
+    <result column="recordDate" property="recorddate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    rid13, mId, weeks, colporrhagia, bellyache, fever, emesis, havaHighRisk, recordDate
+  </sql>
+  <!-- luoyc 根据孕周查询孕期记录 -->
+  <select id="findByWeeks" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from record1_3
+    where weeks = #{0} and mid=#{1}
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from record1_3
+    where rid13 = #{rid13,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from record1_3
+    where rid13 = #{rid13,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.yunji.doctormanager.entity.Record1_3" >
+    insert into record1_3 (rid13, mId, weeks, 
+      colporrhagia, colporrhagiaDate, colporrhagiaCon, 
+      bellyache, bellyacheDate, bellyacheCon, 
+      fever, feverDate, feverCon, 
+      emesis, emesisDate, emesisNoeatCon, 
+      havaHighRisk, havaHighRiskDate, havaHighRiskCon, 
+      recordDate)
+    values (#{rid13,jdbcType=INTEGER}, #{mid,jdbcType=CHAR}, #{weeks,jdbcType=INTEGER}, 
+      #{colporrhagia,jdbcType=INTEGER}, #{colporrhagiadate,jdbcType=DATE}, #{colporrhagiacon,jdbcType=VARCHAR}, 
+      #{bellyache,jdbcType=INTEGER}, #{bellyachedate,jdbcType=DATE}, #{bellyachecon,jdbcType=VARCHAR}, 
+      #{fever,jdbcType=INTEGER}, #{feverdate,jdbcType=DATE}, #{fevercon,jdbcType=VARCHAR}, 
+      #{emesis,jdbcType=INTEGER}, #{emesisdate,jdbcType=DATE}, #{emesisnoeatcon,jdbcType=VARCHAR}, 
+      #{havahighrisk,jdbcType=INTEGER}, #{havahighriskdate,jdbcType=DATE}, #{havahighriskcon,jdbcType=VARCHAR}, 
+      #{recorddate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.yunji.doctormanager.entity.Record1_3" >
+    insert into record1_3
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="rid13 != null" >
+        rid13,
+      </if>
+      <if test="mid != null" >
+        mId,
+      </if>
+      <if test="weeks != null" >
+        weeks,
+      </if>
+      <if test="colporrhagia != null" >
+        colporrhagia,
+      </if>
+      <if test="colporrhagiadate != null" >
+        colporrhagiaDate,
+      </if>
+      <if test="colporrhagiacon != null" >
+        colporrhagiaCon,
+      </if>
+      <if test="bellyache != null" >
+        bellyache,
+      </if>
+      <if test="bellyachedate != null" >
+        bellyacheDate,
+      </if>
+      <if test="bellyachecon != null" >
+        bellyacheCon,
+      </if>
+      <if test="fever != null" >
+        fever,
+      </if>
+      <if test="feverdate != null" >
+        feverDate,
+      </if>
+      <if test="fevercon != null" >
+        feverCon,
+      </if>
+      <if test="emesis != null" >
+        emesis,
+      </if>
+      <if test="emesisdate != null" >
+        emesisDate,
+      </if>
+      <if test="emesisnoeatcon != null" >
+        emesisNoeatCon,
+      </if>
+      <if test="havahighrisk != null" >
+        havaHighRisk,
+      </if>
+      <if test="havahighriskdate != null" >
+        havaHighRiskDate,
+      </if>
+      <if test="havahighriskcon != null" >
+        havaHighRiskCon,
+      </if>
+      <if test="recorddate != null" >
+        recordDate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="rid13 != null" >
+        #{rid13,jdbcType=INTEGER},
+      </if>
+      <if test="mid != null" >
+        #{mid,jdbcType=CHAR},
+      </if>
+      <if test="weeks != null" >
+        #{weeks,jdbcType=INTEGER},
+      </if>
+      <if test="colporrhagia != null" >
+        #{colporrhagia,jdbcType=INTEGER},
+      </if>
+      <if test="colporrhagiadate != null" >
+        #{colporrhagiadate,jdbcType=DATE},
+      </if>
+      <if test="colporrhagiacon != null" >
+        #{colporrhagiacon,jdbcType=VARCHAR},
+      </if>
+      <if test="bellyache != null" >
+        #{bellyache,jdbcType=INTEGER},
+      </if>
+      <if test="bellyachedate != null" >
+        #{bellyachedate,jdbcType=DATE},
+      </if>
+      <if test="bellyachecon != null" >
+        #{bellyachecon,jdbcType=VARCHAR},
+      </if>
+      <if test="fever != null" >
+        #{fever,jdbcType=INTEGER},
+      </if>
+      <if test="feverdate != null" >
+        #{feverdate,jdbcType=DATE},
+      </if>
+      <if test="fevercon != null" >
+        #{fevercon,jdbcType=VARCHAR},
+      </if>
+      <if test="emesis != null" >
+        #{emesis,jdbcType=INTEGER},
+      </if>
+      <if test="emesisdate != null" >
+        #{emesisdate,jdbcType=DATE},
+      </if>
+      <if test="emesisnoeatcon != null" >
+        #{emesisnoeatcon,jdbcType=VARCHAR},
+      </if>
+      <if test="havahighrisk != null" >
+        #{havahighrisk,jdbcType=INTEGER},
+      </if>
+      <if test="havahighriskdate != null" >
+        #{havahighriskdate,jdbcType=DATE},
+      </if>
+      <if test="havahighriskcon != null" >
+        #{havahighriskcon,jdbcType=VARCHAR},
+      </if>
+      <if test="recorddate != null" >
+        #{recorddate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.yunji.doctormanager.entity.Record1_3" >
+    update record1_3
+    <set >
+      <if test="mid != null" >
+        mId = #{mid,jdbcType=CHAR},
+      </if>
+      <if test="weeks != null" >
+        weeks = #{weeks,jdbcType=INTEGER},
+      </if>
+      <if test="colporrhagia != null" >
+        colporrhagia = #{colporrhagia,jdbcType=INTEGER},
+      </if>
+      <if test="colporrhagiadate != null" >
+        colporrhagiaDate = #{colporrhagiadate,jdbcType=DATE},
+      </if>
+      <if test="colporrhagiacon != null" >
+        colporrhagiaCon = #{colporrhagiacon,jdbcType=VARCHAR},
+      </if>
+      <if test="bellyache != null" >
+        bellyache = #{bellyache,jdbcType=INTEGER},
+      </if>
+      <if test="bellyachedate != null" >
+        bellyacheDate = #{bellyachedate,jdbcType=DATE},
+      </if>
+      <if test="bellyachecon != null" >
+        bellyacheCon = #{bellyachecon,jdbcType=VARCHAR},
+      </if>
+      <if test="fever != null" >
+        fever = #{fever,jdbcType=INTEGER},
+      </if>
+      <if test="feverdate != null" >
+        feverDate = #{feverdate,jdbcType=DATE},
+      </if>
+      <if test="fevercon != null" >
+        feverCon = #{fevercon,jdbcType=VARCHAR},
+      </if>
+      <if test="emesis != null" >
+        emesis = #{emesis,jdbcType=INTEGER},
+      </if>
+      <if test="emesisdate != null" >
+        emesisDate = #{emesisdate,jdbcType=DATE},
+      </if>
+      <if test="emesisnoeatcon != null" >
+        emesisNoeatCon = #{emesisnoeatcon,jdbcType=VARCHAR},
+      </if>
+      <if test="havahighrisk != null" >
+        havaHighRisk = #{havahighrisk,jdbcType=INTEGER},
+      </if>
+      <if test="havahighriskdate != null" >
+        havaHighRiskDate = #{havahighriskdate,jdbcType=DATE},
+      </if>
+      <if test="havahighriskcon != null" >
+        havaHighRiskCon = #{havahighriskcon,jdbcType=VARCHAR},
+      </if>
+      <if test="recorddate != null" >
+        recordDate = #{recorddate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where rid13 = #{rid13,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.yunji.doctormanager.entity.Record1_3" >
+    update record1_3
+    set mId = #{mid,jdbcType=CHAR},
+      weeks = #{weeks,jdbcType=INTEGER},
+      colporrhagia = #{colporrhagia,jdbcType=INTEGER},
+      colporrhagiaDate = #{colporrhagiadate,jdbcType=DATE},
+      colporrhagiaCon = #{colporrhagiacon,jdbcType=VARCHAR},
+      bellyache = #{bellyache,jdbcType=INTEGER},
+      bellyacheDate = #{bellyachedate,jdbcType=DATE},
+      bellyacheCon = #{bellyachecon,jdbcType=VARCHAR},
+      fever = #{fever,jdbcType=INTEGER},
+      feverDate = #{feverdate,jdbcType=DATE},
+      feverCon = #{fevercon,jdbcType=VARCHAR},
+      emesis = #{emesis,jdbcType=INTEGER},
+      emesisDate = #{emesisdate,jdbcType=DATE},
+      emesisNoeatCon = #{emesisnoeatcon,jdbcType=VARCHAR},
+      havaHighRisk = #{havahighrisk,jdbcType=INTEGER},
+      havaHighRiskDate = #{havahighriskdate,jdbcType=DATE},
+      havaHighRiskCon = #{havahighriskcon,jdbcType=VARCHAR},
+      recordDate = #{recorddate,jdbcType=TIMESTAMP}
+    where rid13 = #{rid13,jdbcType=INTEGER}
+  </update>
+</mapper>

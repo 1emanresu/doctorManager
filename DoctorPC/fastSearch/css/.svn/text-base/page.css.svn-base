@@ -1,0 +1,82 @@
+
+
+
+/*分页*/
+
+
+.class_bottom_container {
+	overflow: hidden;
+	margin-top: 15px;
+}
+
+.class_left_float {
+	margin-left: 15px;
+	float: left;
+	width: 45%;
+}
+
+.class_right_float {
+	float: right;
+	width: 35%;
+	display: flex;
+}
+
+.class_right_float div {
+	margin-left: 15px;
+}
+
+.class_right_float div button {
+	width: 85px;
+	height: 23px;
+	background: white;
+	border: 1px solid #BBBBBB;
+	border-radius: 5px;
+}
+
+.class_data {
+	width: 21px;
+	height: 23px;
+	text-align: center;
+	background: white;
+	border: 1px solid #BBBBBB;
+	border-radius: 5px;
+	line-height: 23px;
+}
+#ui-page div,#ui-page2 div{
+	width: 100%;
+	text-align: right;
+}
+.ui-page{
+  margin: 0 auto;
+  margin-top: 0px;
+  width: 415px;
+  text-align: center;
+  font-size: 14px;
+  color:#666666;
+}
+.ui-page span{
+  margin-right: 5px;
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  line-height: 30px;
+  border: gainsboro solid 1px;
+  font-size: 14px;
+  color: #666666;
+  cursor: pointer;
+}
+.ui-page span:last-child{
+  margin-right: 0;
+}
+.ui-page span.current,.ui-page span:hover{
+  background: #5794E7;
+  color: #ffffff;
+}
+.ui-page #home,#pre,#end,#next{
+  width: 60px;
+}
+
+.ui-page .home-page{
+  display: none;
+}

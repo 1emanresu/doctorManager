@@ -1,0 +1,123 @@
+/**
+ * @author wangzw
+ * 封装的快速索检的css
+ * 词条相关的内容样式
+ */
+
+.info_show_container{
+	padding-bottom:0px;
+}
+.segmentation {
+  position: relative;
+  width: 100%;
+  padding: 15px 0px 15px 0px;
+}
+
+.wire_border {
+  width: 15px;
+  height: 25px;
+  background: #007AFF;
+}
+
+.title_info {
+  margin-left: 20px;
+  margin-top: -23px;
+}
+
+.line_style {
+  border: 1px solid #EBEBEB;
+  margin-top: -10px;
+  margin-left: 137px;
+  width: 83%;
+}
+
+.content_show {
+  clear: both;
+  margin: 22px 0px 11px 0px;
+}
+
+.content_show .content_title {
+  padding: 9px 0px 9px 0px;
+}
+
+
+/**
+ * -------------------代码分割线----------------------------------
+ * 词条相关资料文件的样式
+ */
+
+.file_name {
+  margin-top: 15px;
+  text-align: center;
+  width: 65px;
+  height: 25px;
+  color: white;
+  line-height: 25px;
+  background: #007AFF;
+}
+
+.video_show {
+  float: left;
+  width: 30%;
+  overflow: hidden;
+  cursor: pointer;
+  margin: 22px 0px 11px 0px;
+}
+
+.left_content {
+  float: left;
+  width: 105px;
+}
+
+.file_img {
+  width: 105px;
+  height: 98px;
+}
+
+.video_img {
+  width: 94px;
+  height: 82px;
+}
+
+.rigth_content {
+  float: left;
+  padding-top: 23px;
+}
+
+.file_typeName {
+  padding-bottom: 15px;
+}
+
+
+/**
+ * 修改词条内容和视频内容的边距
+ */
+
+#container {
+  padding-left: 23px;
+}
+
+#container2 {
+  padding-left: 23px;
+}
+
+.ui-page #home2,
+#pre2,
+#end2,
+#next2 {
+  width: 60px;
+}
+/**
+ * ------------------------------代码分割线-----------------
+ * 没有索检出内容显示的css样式
+ */
+.noSearch {
+  width: 100%;
+  background: #F5F5F5;
+  padding: 5px;
+  text-align: center;
+  height: 36px;
+  line-height: 29px;
+  clear: both;
+  margin: 9px 0px 9px 0px;
+}

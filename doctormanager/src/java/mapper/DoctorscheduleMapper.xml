@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.yunji.doctormanager.dao.DoctorscheduleMapper" >
+  <resultMap id="BaseResultMap" type="cn.yunji.doctormanager.entity.Doctorschedule" >
+    <id column="scheduleId" property="scheduleid" jdbcType="INTEGER" />
+    <result column="doctorId" property="doctorid" jdbcType="INTEGER" />
+    <result column="dName" property="dname" jdbcType="CHAR" />
+    <result column="dutyDate" property="dutydate" jdbcType="DATE" />
+    <result column="dutyBeginTime" property="dutybegintime" jdbcType="TIME" />
+    <result column="dutyEndTime" property="dutyendtime" jdbcType="TIME" />
+    <result column="regNumResouce" property="regnumresouce" jdbcType="INTEGER" />
+    <result column="dutyFrame" property="dutyframe" jdbcType="VARCHAR" />
+     <result column="dutyWeek" property="dutyWeek" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    scheduleId, doctorId, dName, dutyDate, dutyBeginTime, dutyEndTime, regNumResouce, 
+    dutyFrame,dutyWeek
+  </sql>
+  
+  <!--@author wangzw 查询所有本周的值班信息    where dutyDate >= #{mindutyDate,jdbcType=DATE} and dutyDate&lt;=#{maxdutyDate,jdbcType=DATE}-->
+  <select id="findAlldoctorschedule" resultType="java.util.HashMap" >
+   select d.dName, oi.*,ds.* from  doctor d
+	inner join officeItem oi on oi.offID=d.offID
+	inner join doctorschedule ds on ds.doctorid=d.doctorid
+	where dutyDate>=#{0} and dutyDate&lt;=#{1} and oi.offid=#{2}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from doctorschedule
+    where scheduleId = #{scheduleid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.yunji.doctormanager.entity.Doctorschedule" >
+    insert into doctorschedule (scheduleId, doctorId, dName, 
+      dutyDate, dutyBeginTime, dutyEndTime, 
+      regNumResouce, dutyFrame)
+    values (#{scheduleid,jdbcType=INTEGER}, #{doctorid,jdbcType=INTEGER}, #{dname,jdbcType=CHAR}, 
+      #{dutydate,jdbcType=DATE}, #{dutybegintime,jdbcType=TIME}, #{dutyendtime,jdbcType=TIME}, 
+      #{regnumresouce,jdbcType=INTEGER}, #{dutyframe,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.yunji.doctormanager.entity.Doctorschedule" >
+    insert into doctorschedule
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="scheduleid != null" >
+        scheduleId,
+      </if>
+      <if test="doctorid != null" >
+        doctorId,
+      </if>
+      <if test="dname != null" >
+        dName,
+      </if>
+      <if test="dutydate != null" >
+        dutyDate,
+      </if>
+      <if test="dutybegintime != null" >
+        dutyBeginTime,
+      </if>
+      <if test="dutyendtime != null" >
+        dutyEndTime,
+      </if>
+      <if test="regnumresouce != null" >
+        regNumResouce,
+      </if>
+      <if test="dutyframe != null" >
+        dutyFrame,
+      </if>
+      <if test="dutyWeek != null" >
+        dutyWeek,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="scheduleid != null" >
+        #{scheduleid,jdbcType=INTEGER},
+      </if>
+      <if test="doctorid != null" >
+        #{doctorid,jdbcType=INTEGER},
+      </if>
+      <if test="dname != null" >
+        #{dname,jdbcType=CHAR},
+      </if>
+      <if test="dutydate != null" >
+        #{dutydate,jdbcType=DATE},
+      </if>
+      <if test="dutybegintime != null" >
+        #{dutybegintime,jdbcType=TIME},
+      </if>
+      <if test="dutyendtime != null" >
+        #{dutyendtime,jdbcType=TIME},
+      </if>
+      <if test="regnumresouce != null" >
+        #{regnumresouce,jdbcType=INTEGER},
+      </if>
+      <if test="dutyframe != null" >
+        #{dutyframe,jdbcType=VARCHAR},
+      </if>
+      <if test="dutyWeek != null" >
+          #{dutyWeek,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.yunji.doctormanager.entity.Doctorschedule" >
+    update doctorschedule
+    <set >
+      <if test="doctorid != null" >
+        doctorId = #{doctorid,jdbcType=INTEGER},
+      </if>
+      <if test="dname != null" >
+        dName = #{dname,jdbcType=CHAR},
+      </if>
+      <if test="dutydate != null" >
+        dutyDate = #{dutydate,jdbcType=DATE},
+      </if>
+      <if test="dutybegintime != null" >
+        dutyBeginTime = #{dutybegintime,jdbcType=TIME},
+      </if>
+      <if test="dutyendtime != null" >
+        dutyEndTime = #{dutyendtime,jdbcType=TIME},
+      </if>
+      <if test="regnumresouce != null" >
+        regNumResouce = #{regnumresouce,jdbcType=INTEGER},
+      </if>
+      <if test="dutyframe != null" >
+        dutyFrame = #{dutyframe,jdbcType=VARCHAR},
+      </if>
+       <if test="dutyWeek != null" >
+       dutyWeek= #{dutyWeek,jdbcType=INTEGER},
+      </if>
+    </set>
+    where scheduleId = #{scheduleid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.yunji.doctormanager.entity.Doctorschedule" >
+    update doctorschedule
+    set doctorId = #{doctorid,jdbcType=INTEGER},
+      dName = #{dname,jdbcType=CHAR},
+      dutyDate = #{dutydate,jdbcType=DATE},
+      dutyBeginTime = #{dutybegintime,jdbcType=TIME},
+      dutyEndTime = #{dutyendtime,jdbcType=TIME},
+      regNumResouce = #{regnumresouce,jdbcType=INTEGER},
+      dutyWeek= #{dutyWeek,jdbcType=INTEGER},
+      dutyFrame = #{dutyframe,jdbcType=VARCHAR}
+    where scheduleId = #{scheduleid,jdbcType=INTEGER}
+  </update>
+</mapper>

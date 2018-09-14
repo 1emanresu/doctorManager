@@ -1,0 +1,48 @@
+.nav>li>a {
+	cursor: pointer;
+	border-radius: inherit;
+}
+
+.pull-right input {
+	height: 34px!important;
+}
+
+.flexs {
+	clear: both;
+}
+
+.flexs input,.flexs select{
+	width: 265px;
+	/*margin-top: 10px;*/
+}
+
+.lab {
+	float: left;
+	margin-top: 25px;
+	width: 80px;
+}
+
+.inp {
+	float: left;
+	margin-top: 20px;
+	width: 250px;
+}
+
+.div_add_popup_input {}
+
+
+
+#addDoctorBox {
+	width: 420px;
+	height: auto;
+	/*border: 1px solid #E4E4E4;*/
+	padding: 20px;
+	line-height: 20px;
+	position: absolute;
+	top: 23%;
+	left: 15%;
+	background-color: white;
+	border-radius: 5px;
+	/*border: gainsboro solid 1px;*/
+	display: block;
+}

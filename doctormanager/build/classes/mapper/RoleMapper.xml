@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.yunji.doctormanager.dao.RoleMapper" >
+  <resultMap id="BaseResultMap" type="cn.yunji.doctormanager.entity.Role" >
+    <id column="roleID" property="roleid" jdbcType="INTEGER" />
+    <result column="rType" property="rtype" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    roleID, rType
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from role
+    where roleID = #{roleid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from role
+    where roleID = #{roleid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.yunji.doctormanager.entity.Role" >
+    insert into role (roleID, rType)
+    values (#{roleid,jdbcType=INTEGER}, #{rtype,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.yunji.doctormanager.entity.Role" >
+    insert into role
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="roleid != null" >
+        roleID,
+      </if>
+      <if test="rtype != null" >
+        rType,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="roleid != null" >
+        #{roleid,jdbcType=INTEGER},
+      </if>
+      <if test="rtype != null" >
+        #{rtype,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.yunji.doctormanager.entity.Role" >
+    update role
+    <set >
+      <if test="rtype != null" >
+        rType = #{rtype,jdbcType=CHAR},
+      </if>
+    </set>
+    where roleID = #{roleid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.yunji.doctormanager.entity.Role" >
+    update role
+    set rType = #{rtype,jdbcType=CHAR}
+    where roleID = #{roleid,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.yunji.doctormanager.dao.CommentReplyMapper" >
+  <resultMap id="BaseResultMap" type="cn.yunji.doctormanager.entity.CommentReply" >
+    <id column="crid" property="crid" jdbcType="INTEGER" />
+    <result column="pid" property="pid" jdbcType="INTEGER" />
+    <result column="userID" property="userid" jdbcType="INTEGER" />
+    <result column="ReplyContent" property="replycontent" jdbcType="VARCHAR" />
+    <result column="ReplyDate" property="replydate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    crid, pid, userID, ReplyContent, ReplyDate
+  </sql>
+  
+  <select id="queryByPid" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from commentreply
+    where pid = #{pid,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from commentreply
+    where crid = #{crid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from commentreply
+    where crid = #{crid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.yunji.doctormanager.entity.CommentReply" >
+    insert into commentreply (crid, pid, userID, 
+      ReplyContent, ReplyDate)
+    values (#{crid,jdbcType=INTEGER}, #{pid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, 
+      #{replycontent,jdbcType=VARCHAR}, #{replydate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.yunji.doctormanager.entity.CommentReply" >
+    insert into commentreply
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="crid != null" >
+        crid,
+      </if>
+      <if test="pid != null" >
+        pid,
+      </if>
+      <if test="userid != null" >
+        userID,
+      </if>
+      <if test="replycontent != null" >
+        ReplyContent,
+      </if>
+      <if test="replydate != null" >
+        ReplyDate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="crid != null" >
+        #{crid,jdbcType=INTEGER},
+      </if>
+      <if test="pid != null" >
+        #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="replycontent != null" >
+        #{replycontent,jdbcType=VARCHAR},
+      </if>
+      <if test="replydate != null" >
+        #{replydate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.yunji.doctormanager.entity.CommentReply" >
+    update commentreply
+    <set >
+      <if test="pid != null" >
+        pid = #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        userID = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="replycontent != null" >
+        ReplyContent = #{replycontent,jdbcType=VARCHAR},
+      </if>
+      <if test="replydate != null" >
+        ReplyDate = #{replydate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where crid = #{crid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.yunji.doctormanager.entity.CommentReply" >
+    update commentreply
+    set pid = #{pid,jdbcType=INTEGER},
+      userID = #{userid,jdbcType=INTEGER},
+      ReplyContent = #{replycontent,jdbcType=VARCHAR},
+      ReplyDate = #{replydate,jdbcType=TIMESTAMP}
+    where crid = #{crid,jdbcType=INTEGER}
+  </update>
+</mapper>

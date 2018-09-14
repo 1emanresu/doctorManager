@@ -1,0 +1,74 @@
+/* 医嘱管理-通用模板css @author yinzx*/
+
+* {
+
+	font-size: 12px;
+	color: #696969;
+}
+
+
+
+
+/*主div*/
+
+
+
+
+/*头部路径*/
+
+
+
+
+
+
+
+
+/* 选项卡*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#view_by_weeks {
+	border-top-left-radius: 18px;
+	border-bottom-left-radius: 18px;
+}
+
+#view_by_project {
+	border-top-right-radius: 18px;
+	border-bottom-right-radius: 18px;
+}
+
+.right-Tab-Control {
+	width: 98%;
+	margin: 0 auto;
+	border-radius: 5px;
+	margin: 10px auto;
+	margin-top: 50px;
+}
+
+
+
+
+
+.top{width: 100%;padding-top: 20px;}
+		#arrows{width: 950px;margin: 0 auto; background: url(images/u5669.png) no-repeat center center;height: 70px;}
+	    #arrows button{border-radius: 50%;height: 30px; width: 30px; border: none;position: relative;}
+	    #btn1{background-color: #8CB6EF;left: 5%;}
+	    #btn2{left: 20%;}
+	    #btn3{left: 33%;}
+	    #btn4{left: 46%;}
+	    #btn5{left: 59%;} 
+	    #btn6{left: 72%;} 
+	    .note{width: 70px;height: 20px;color: #333;position: relative;top: 7%;left: 3%; }
+	    .note2{width: 90px;height: 35px; padding-left: 7px;color: #333;position: relative;top: 6%;left: 3%; }

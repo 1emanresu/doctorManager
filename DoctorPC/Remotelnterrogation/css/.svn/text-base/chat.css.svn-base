@@ -1,0 +1,1058 @@
+html,
+body {
+	height: 100%;
+	font-size: 13px;
+	color: #696969;
+	background: white;
+	moz-user-select: -moz-none;
+	-moz-user-select: none;
+	-o-user-select: none;
+	-khtml-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+
+/*背景图*/
+
+.background_img {
+	width: 100%;
+	height: 100%;
+	min-width: 1450px;
+	min-height: 860px;
+	background: url(../images/ChatBackground.jpg);
+}
+
+body::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+}
+
+#content {
+	/*主div*/
+	margin-top: 30px;
+	min-width: 1000px;
+	display: flex;
+	height: auto;
+	max-height: 685px;
+}
+
+#ContentTop {
+	background: #5794E7;
+	color: white;
+	height: 40px;
+}
+
+#logo {
+	float: left;
+	width: 250px;
+	/*padding-top: 5px;*/
+	padding-left: 25px;
+	font-size: 18px;
+	line-height: 40px;
+	color: white;
+}
+
+#right_item ul li {
+	float: left;
+	list-style: none;
+	margin-right: 20px;
+	line-height: 40px;
+	color: white !important;
+	cursor: pointer;
+}
+
+#right_item ul li img {
+	margin-bottom: 4px;
+}
+
+
+/*头部路径*/
+
+.top_Nav {
+	padding: 5px 10px 5px 10px;
+	margin-left: 60px;
+	margin-top: 10px;
+}
+
+.top_Nav .Nav_img {
+	margin-right: 10px;
+	float: left;
+}
+
+.top_Nav .Nav_content img {
+	margin: 0px 5px;
+}
+
+.top_font_weight {
+	font-weight: bold;
+	font-size: 16px;
+}
+
+
+/*整个聊天框中间内容*/
+
+#content_middle {
+	float: left;
+	flex: 11;
+	margin: 0 15px;
+	border-radius: 5px;
+}
+
+
+/*左边内容*/
+
+#left_content {
+	flex: 1;
+	float: left;
+	border-radius: 5px;
+	min-width: 220px;
+	height: auto;
+}
+
+#nr1 {
+	background-color: white;
+}
+
+
+/*右边内容*/
+
+#toolContent {
+	display: flex;
+	min-width: 278px;
+	flex: 1;
+}
+
+.toolClass {
+	width: 35px !important;
+	margin-right: 6px;
+}
+
+#symptom {
+	border-left: gainsboro solid 1px;
+	border-bottom: gainsboro solid 1px;
+}
+
+#chatBox {
+	/*float: left; */
+	border: gainsboro solid 1px;
+	border-radius: 5px;
+	font-size: 16px;
+	width: 100%;
+	background-color: white;
+}
+
+#tool_item {
+	position: relative;
+	min-width: 230px;
+}
+
+#tool {
+	width: 45px;
+	min-width: 45px;
+	background: gainsboro;
+	text-align: center;
+	/*height: 2000px;*/
+	position: relative;
+	float: left;
+}
+
+.tool_content {
+	line-height: 40px;
+	color: #169BD5;
+	font-size: 15px;
+	background: white;
+	padding: 5px 20px;
+}
+
+.tool_content table tr {
+	cursor: pointer;
+}
+
+#tool img {
+	margin-top: 15px;
+	cursor: pointer;
+}
+
+#chat_top {
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	background-color: white;
+	height: 35px;
+	line-height: 35px;
+	padding: 0 15px;
+	border-bottom: gainsboro solid 1px;
+	clear: both;
+	overflow: hidden;
+}
+
+.top_name {
+	float: left;
+}
+
+.top_img {
+	float: right;
+	margin-top: 3px;
+}
+
+
+/*聊天框*/
+
+#chat_content {
+	background-color: white;
+	width: 100%;
+	height: 46.5vh;
+	overflow: auto;
+	padding: 15px 0;
+	overflow-x: hidden;
+}
+
+
+/*设置滚动条样式*/
+
+::-webkit-scrollbar {
+	width: 8px;
+}
+
+
+/*总长样式*/
+
+::-webkit-scrollbar-track {
+	background-color: #E5E5E5;
+	border-radius: 10px;
+}
+
+
+/*下拉条样式*/
+
+::-webkit-scrollbar-thumb {
+	background-color: #9D9D9D;
+	border-radius: 10px;
+}
+
+
+/*鼠标指向的颜色*/
+
+::-webkit-scrollbar-thumb:hover {
+	background-color: gray
+}
+
+
+/*点击后的颜色*/
+
+::-webkit-scrollbar-thumb:active {
+	background-color: gray
+}
+
+
+/*结束*/
+
+#chat_tool {
+	background-color: white;
+	height: 35px;
+	border-top: gainsboro solid 1px;
+}
+
+
+/*输入聊天信息框*/
+
+#sendMessageTextArea {
+	background: white;
+	width: 70%;
+	height: 186px;
+	outline: none;
+	padding: 5px 10px;
+	word-break: break-all;
+}
+
+
+/*发送按钮*/
+
+#input_content_box {
+	background-color: white;
+}
+
+#input_content_box button {
+	background: #76b0ff;
+	border: none;
+	padding: 4px 18px;
+	border-radius: 5px;
+	color: white;
+	float: right;
+	margin-right: 10px;
+	margin-top: -30px;
+}
+
+
+/*医嘱搜索*/
+
+.search {
+	background-color: white;
+	float: right;
+	border-left: gainsboro solid 1px;
+	height: 221px;
+	line-height: 30px;
+	width: 150px;
+	padding-left: 15px;
+}
+
+.search div {
+	cursor: pointer;
+	color: #169BD5;
+}
+
+
+/*医嘱搜索字体鼠标悬停样式*/
+
+.search div:hover {
+	color: #006DCC;
+}
+
+
+/*自己发送的信息样式*/
+
+#box2 {
+	margin: 5px 5px 0px 0;
+	background: #E7F1F6;
+	position: relative;
+	border-radius: 4px;
+	padding: 5px 10px;
+	color: #727E8E;
+	top: -5px;
+	right: 35px;
+	float: right;
+}
+
+#boxImg {
+	margin: 5px 5px 0px 0;
+	background: #8CB6EF;
+	position: relative;
+	border-radius: 4px;
+	padding: 3px;
+	padding-bottom: 0px;
+	top: -5px;
+	float: right;
+}
+
+#boxImg2 {
+	margin: 5px 5px 0px 0;
+	background: #BBBBBB;
+	position: relative;
+	border-radius: 4px;
+	padding: 3px;
+	padding-bottom: 0px;
+	float: left;
+	top: -5px;
+}
+
+
+/*自己发送的报告  样式*/
+
+#sendReportDIV {
+	background-color: white;
+	border-radius: 4px;
+	border: 1px solid #E4E4E4;
+	/*min-width: 500px;*/
+	margin: 2px;
+	margin-bottom: 3px;
+	clear: both;
+}
+
+#sendReportDIV #sendName {
+	font-size: 14px;
+	font-weight: 700;
+	margin-top: 3px;
+	padding: 5px 10px;
+}
+
+#sendReportDIV #sendTable {
+	font-size: 12px;
+	width: 460px;
+	margin: 5px 10px;
+	border-collapse: collapse;
+	margin-bottom: 10px;
+	position: ;
+}
+
+#sendReportDIV #sendTable td {
+	border: 1px solid #EDEBE9;
+	text-align: center;
+	line-height: 20px;
+}
+
+#sendReportDIV .main_cont {
+	background-color: white;
+	clear: both;
+}
+
+
+/*别人发送的信息样式*/
+
+#box1 {
+	margin: 5px 5px 0px 0;
+	background: #BBBBBB;
+	position: relative;
+	border-radius: 4px;
+	padding: 5px 10px;
+	padding-bottom: 5px;
+	color: #727E8E;
+	float: left;
+	left: 5px;
+	top: -5px;
+}
+
+.content2 {
+	width: 70%;
+	display: flex;
+	float: right;
+	margin: 5px 15px;
+	position: relative;
+	left: 20px;
+	word-break: break-all;
+	/*解决英文数字不换行的问题*/
+}
+
+.content1 {
+	width: 70%;
+	display: flex;
+	float: left;
+	margin: 5px 15px;
+	word-break: break-all;
+	/*解决英文数字不换行的问题*/
+}
+
+.conR {
+	flex: 5;
+	position: relative;
+	left: 18px;
+}
+
+
+/*增加信息指向箭头*/
+
+.arrowyou {
+	border: 6px solid transparent;
+	border-top: 8px solid #E7F1F6;
+	position: absolute;
+	right: -12px;
+	top: 5px;
+	transform: rotate(270deg);
+	-ms-transform: rotate(270deg);
+	/* IE 9 */
+	-moz-transform: rotate(270deg);
+	/* Firefox */
+	-webkit-transform: rotate(270deg);
+	/* Safari 和 Chrome */
+	-o-transform: rotate(270deg);
+}
+
+
+/*增加信息指向箭头*/
+
+.arrowzuo {
+	border: 6px solid transparent;
+	border-top: 8px solid #BBBBBB;
+	position: absolute;
+	left: -3px;
+	top: 5px;
+	margin-left: -9px;
+	transform: rotate(90deg);
+	-ms-transform: rotate(90deg);
+	/* IE 9 */
+	-moz-transform: rotate(90deg);
+	/* Firefox */
+	-webkit-transform: rotate(90deg);
+	/* Safari 和 Chrome */
+	-o-transform: rotate(90deg);
+}
+
+#prompt {
+	background: #E7F1F6;
+	width: 50%;
+	border-radius: 5px;
+	padding: 5px;
+	clear: both;
+	color: gray;
+	margin: 10px auto;
+	font-size: 13px;
+	text-align: center;
+}
+
+#Rash input,
+#Rash label {
+	vertical-align: middle;
+	margin: 6px 0 6px 10px;
+}
+
+#Rash {
+	width: 200px;
+	border: darkgray solid 1px;
+	height: 190px;
+}
+
+
+/*产科信息*/
+
+.left_top {
+	height: 35px;
+	line-height: 35px;
+	background: gainsboro;
+	color: black;
+	padding-left: 10px;
+	border-top-right-radius: 5px;
+}
+
+.left_TopImg {
+	height: 50px;
+	border-bottom: #F2F2F2 solid 5px;
+	background-color: white;
+}
+
+.left_title {
+	height: 35px;
+	padding-left: 15px;
+	line-height: 35px;
+	background-color: gainsboro;
+	color: black;
+	border-top-left-radius: 5px;
+}
+
+
+/*医检报告*/
+
+#checkreport_schedule label {
+	width: 19px;
+	margin-top: 7px;
+}
+
+#checkreport_schedule .schedule_all {
+	float: left;
+	width: 70px;
+	margin: 5px;
+	margin-top: 12px;
+	height: 10px;
+	border-radius: 5px;
+	background-color: #EAEEF1;
+}
+
+#checkreport_schedule .schedule_num {
+	color: #FF9900;
+}
+
+#checkreport_schedule .schedule_bar {
+	width: 80%;
+	height: 10px;
+	border-radius: 5px;
+	background-color: #FF9900;
+}
+
+.blood_report {
+	color: red;
+	padding-left: 15px;
+}
+
+.left_middle {
+	height: auto;
+	border-bottom: #F2F2F2 solid 5px;
+	background-color: white;
+}
+
+.left_botton {
+	height: 250px;
+}
+
+.check_project {
+	line-height: 35px;
+	padding-left: 25px;
+	margin-top: 10px;
+	clear: both;
+	cursor: pointer;
+}
+
+.check_project div {
+	float: left;
+}
+
+.check_project img {
+	width: 25px;
+}
+
+.null-report {
+	opacity: 0.3;
+	cursor: default;
+}
+
+.check_project .nr_tips {
+	margin-left: 10px;
+	color: #666666;
+}
+
+
+/*左侧导航栏  */
+
+.tb {
+	height: 30px;
+	padding-left: 15px;
+	line-height: 30px;
+}
+
+.tb .ri {
+	position: relative;
+	left: 70%;
+	margin-right: 12px;
+	-webkit-transform: rotate(270deg);
+}
+
+.tb #ri3 {
+	left: 64.5%;
+}
+
+.nr {
+	padding-bottom: 45px;
+	border-bottom: 3px solid #F2F2F2;
+}
+
+.xhPc {
+	-webkit-transform: rotate(180deg);
+	margin-top: 3px;
+	margin-left: 40px;
+	width: 15px;
+}
+
+.xhApp {
+	margin-top: 3px;
+	margin-right: 40px;
+	width: 15px;
+}
+
+.chat_img {
+	width: 30px;
+	height: 28px;
+}
+
+.tool {
+	border-right: none;
+	display: none;
+	min-width: 220px;
+}
+
+
+/*个人基础信息*/
+
+#div_baseMsg {
+	display: none;
+	width: 900px;
+	padding: 20px;
+	padding-bottom: 10px;
+	padding-left: 0;
+	border: none;
+	box-shadow: gray;
+	box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.349019);
+	border-radius: 10px;
+	position: absolute;
+	top: 25%;
+	left: 25%;
+	background-color: white;
+	z-index: 5;
+}
+
+#div_baseMsg .baseMsg_close {
+	float: right;
+	position: relative;
+	top: -25px;
+	right: 35px;
+}
+
+.baseMsg_close img {
+	position: relative;
+	left: 40px;
+	top: 16px;
+}
+
+.baseMsg_close img:hover {
+	opacity: 0.5;
+}
+
+#div_baseMsg label {
+	font-weight: normal;
+}
+
+#div_baseMsg .baseMsg_main {
+	width: 100%;
+	display: flex;
+}
+
+.baseMsg_left {
+	float: left;
+	margin: 0 20px;
+	max-width: 200px;
+	text-align: right;
+}
+
+.baseMsg_right {
+	float: right;
+	line-height: 20px;
+}
+
+.baseMsg_cont {
+	display: flex;
+}
+
+.baseMsg_cont1,
+.baseMsg_cont2 {
+	flex: 1;
+	margin-bottom: 5px;
+}
+
+.baseMsg_right table {
+	width: 100%;
+	margin: 5px auto;
+}
+
+.baseMsg_right table td {
+	height: 30px;
+	border: 1px solid #D5D5D5;
+	padding: 5px;
+}
+
+
+/*医检报告 弹出报告的详情*/
+
+#div_report {
+	display: none;
+	width: 55%;
+	padding: 20px;
+	padding-bottom: 5px;
+	border: none;
+	box-shadow: gray;
+	box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.349019);
+	border-radius: 10px;
+	position: absolute;
+	z-index: 2;
+	top: 25%;
+	left: 40%;
+	background-color: white;
+}
+
+#div_report .report_close {
+	float: right;
+	position: relative;
+	top: -10px;
+	right: -4px;
+	cursor: pointer;
+	opacity: 0.6;
+}
+
+.report_close:hover {
+	opacity: 0.9 !important;
+}
+
+#div_report #report_name {
+	font-size: 17px;
+	font-weight: 800;
+	color: #666666;
+}
+
+#report_table {
+	width: 100%;
+	border-collapse: collapse;
+	margin: 10px 0px;
+}
+
+#report_table input {
+	width: 20px;
+	height: 15px;
+}
+
+#tr_tittle {
+	background-color: #F7F7F7;
+}
+
+#report_table td {
+	border: 1px solid #EDEBE9;
+	text-align: center;
+	line-height: 25px;
+}
+
+.report_bottom {
+	clear: both;
+	display: flex;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.report_bottom .left {
+	flex: 1;
+}
+
+.report_bottom .left img {
+	width: 60px;
+}
+
+.report_bottom .report_buttons {
+	flex: 7;
+	text-align: center;
+	padding-top: 15px;
+}
+
+.report_buttons button {
+	width: 150px;
+	height: 35px;
+	line-height: 35px;
+	border-radius: 5px;
+	border: none;
+	margin-right: 30px;
+}
+
+.report_buttons #mark {
+	background-color: white;
+	border: 1px solid #d7d7d7;
+}
+
+#mark img {
+	width: 20px;
+	vertical-align: text-bottom;
+}
+
+#mark label {
+	/*width: 50px;*/
+}
+
+.report_buttons #send {
+	background-color: #169BD5;
+	color: white;
+}
+
+#report_main .main_cont {
+	clear: both;
+	min-height: 250px;
+}
+
+.main_cont label {
+	font-weight: normal;
+}
+
+.main_cont .main_left {
+	float: left;
+	width: 20%;
+	text-align: right;
+	margin-bottom: 10px;
+}
+
+.main_cont .main_right {
+	float: left;
+	width: 80%;
+	text-align: left;
+	margin-bottom: 10px;
+}
+
+
+/* 圆圈标记的画板*/
+
+#report_main {
+	position: relative;
+}
+
+#readReport {
+	width: 100%;
+	clear: both;
+}
+
+#readReport div {
+	padding-right: 10px;
+	text-align: right;
+	color: dodgerblue;
+}
+
+
+/*标记 圆圈*/
+
+.circle {
+	border: 1px red solid;
+	position: absolute;
+}
+
+
+/* 弹出 的心电报告 样式*/
+
+.report_Ecg {
+	width: 100%;
+	min-width: 500px;
+	min-height: 200px;
+}
+
+.report_Ecg .left_ecg {
+	width: 16%;
+	float: left;
+	line-height: 28px;
+	flex: 1;
+	margin-bottom: 20px;
+	text-align: right;
+}
+
+.report_Ecg .ecg_table {
+	width: 32%;
+	min-width: 170px;
+	line-height: 25px;
+	float: left;
+	margin-left: 5%;
+	margin-bottom: 20px;
+}
+
+.report_Ecg .ecg_table table {
+	width: 100%;
+}
+
+.report_Ecg .right_ecg {
+	width: 70%;
+	float: left;
+	line-height: 28px;
+	margin-left: 5%;
+}
+
+.report_Ecg .right_ecg label {
+	vertical-align: top;
+}
+
+
+/* 弹出 的超声报告 样式*/
+
+.main_cont .imglist {
+	width: 100%;
+}
+
+.main_cont .imglist img {
+	width: 20%;
+	margin: 5px 1% 5px 3%;
+}
+
+.main_cont .bscan_main {
+	padding: 5px 25px;
+	line-height: 20px;
+}
+
+.main_cont .bscan_main table {
+	width: 100%;
+	min_width: 600px;
+	line-height: 25px;
+	border: none;
+	margin: 0;
+	padding: 0;
+}
+
+.main_cont .bscan_main table td {
+	border: none;
+}
+
+
+/* 弹出 的NST报告 样式*/
+
+.NST_cont {
+	padding: 10px;
+	min-width: 500px;
+}
+
+.NST_cont label {
+	font-weight: normal;
+	width: 45%;
+	margin-left: 10px;
+}
+
+.NST_cont table {
+	width: 95%;
+	margin: 5px auto;
+}
+
+.NST_cont table td {
+	border: 1px solid #D4D4D4;
+	text-align: center;
+	line-height: 25px;
+}
+
+.report-modal-content {
+	width: 700px;
+}
+
+.report_modal_div {
+	max-width: 700px;
+}
+
+#report_charts {
+	padding: 30px;
+	width: 700px;
+	height: 500px;
+	background-color: white;
+}
+
+#ech_mark {
+	background-color: white;
+	border: 1px solid #d7d7d7;
+}
+
+.report-modal-content .report_buttons {
+	text-align: center;
+	margin: 0 auto;
+}
+
+.report_buttons #ech_send {
+	background-color: #169BD5;
+	color: white;
+}
+
+#report_tips {
+	font-weight: normal;
+}
+
+body {
+	/*overflow: hidden*/
+}
+
+
+/*---------------------膳食习惯弹出框--------------------------*/
+
+.h_left {
+	float: left;
+	width: 49%;
+	border-right: 1px solid darkgray;
+}
+
+.h_right {
+	float: right;
+	width: 49%;
+}
+
+.h_img {
+	float: left;
+	width: 10%;
+}
+
+.h_span {
+	float: left;
+	width: 90%;
+	margin-bottom: 10px;
+}
+
+.h_left span,
+.h_right span {
+	font-family: "微软雅黑";
+	font-size: 13px;
+}
+
+.h_left img,
+.h_right img {
+	float: left;
+	margin-top: 4px;
+}
+
+.h_line {
+	width: 100%;
+	padding: 0 15px;
+}
+.fvideo{
+	display: none;
+}
+.vod{
+	margin-left: 30px;
+}
+/*------------------------------------------------------------*/

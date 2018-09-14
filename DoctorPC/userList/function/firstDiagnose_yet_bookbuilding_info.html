@@ -1,0 +1,2547 @@
+<!--@author wangzw-->
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>产科电子信息管理平台——首诊建档</title>
+		<link rel="stylesheet" href="css/bootstrap.css" />
+		<link rel="stylesheet" href="css/patient_template.css" />
+		<link rel="stylesheet" href="css/antenatal_pregnancy_details.css" />
+		<link rel="stylesheet" type="text/css" href="css/firstDiagnose_yet_bookbuilding_info.css" />
+		<link rel="stylesheet" href="css/highriskassessment.css" />
+		<link rel="stylesheet" type="text/css" href="css/sendWeekly.css" />
+		<link rel="stylesheet" type="text/css" href="css/comm.css" />
+		<link rel="stylesheet" href="css/edit_advice.css" />
+		<style>
+			.bt button{
+				width: 90px;
+				height: 28px;
+				background-color: #5794E7;
+			}
+			/*添加小手指*/
+			.back{
+				cursor: pointer;
+			}
+			.back:hover{
+				text-decoration: none;
+				color: cornflowerblue;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="class_firstDiagnose_main" style="min-width: 1024px;">
+			<!--top-->
+			<div class="class_firstDiagnose_top_content">
+				<div class="class_firstDiagnose_left_home_img"><img src="images/header_home.png" /></div>
+				<div class="class_firstDiagnose_right_title">您当前的位置：<span onclick="turnBack()" class="back">首诊建档</span>&nbsp;&nbsp;<img src="images/u2929.png" />&nbsp;&nbsp;<span onclick="turnBack()" class="back">已建档</span>&nbsp;&nbsp;<img src="images/u2929.png" />&nbsp;&nbsp;<span id="pathSpan2">产前备孕检查详情</span></div>
+			</div>
+			<div class="class_firstDiagnose_distance"></div>
+			<!--begin Tab-Control-->
+			<div class="right-Tab-Control">
+				<ul class="nav nav-tabs nva-tabs-ul">
+					<li class="active" id="div_firstDiagnose_one" onclick="beforeBirthBuild()">
+						<div class="class_li_line "></div>
+						<a href="#panel-978065" data-toggle="tab">产前建档详情</a>
+					</li>
+					<li id="div_firstDiagnose_tow" onclick="gravidaCheckDetail()">
+						<div class="class_li_line d_firstDiagnose_defalt"></div>
+						<a href="#panel-978066" data-toggle="tab">孕妇首诊详情</a>
+					</li>
+
+				</ul>
+				<div class="tab-content contents">
+					<div class="tab-pane active  data-show" id="panel-978065" style="margin-left: -10px;">
+						<!--个人基本信息 -->
+						<div class="div_pregnancyManage_color"></div>
+						<!--begin first-->
+						<div class="class_firstDiagnose_tab_personage_info" style="min-height: 400px;">
+							<div class="class_firstDiagnose_personage_titile"> 个人基本信息 </div>
+							<!--begin content-->
+							<div class="class_firstDiagnose_personage_info_show">
+								<div class="class_firstDiagnose_table_width">
+									<table>
+										<tr class="class_firstDiagnose_tr_height">
+											<td class="class_firstDiagnose_td_width">卡号：</td>
+											<td class="class_firstDiagnose_font_color g_recordno"></td>
+										</tr>
+										<tr class="class_firstDiagnose_tr_height">
+											<td class="class_firstDiagnose_td_width">发卡人：</td>
+											<td class="class_firstDiagnose_font_color g_carduser"></td>
+										</tr>
+										<tr class="class_firstDiagnose_tr_height">
+											<td class="class_firstDiagnose_td_width">国籍：</td>
+											<td class="class_firstDiagnose_font_color g_nationality"></td>
+										</tr>
+										<tr class="class_firstDiagnose_tr_height">
+											<td class="class_firstDiagnose_td_width">紧急联系人电话：</td>
+											<td class="class_firstDiagnose_font_color relation_tel"></td>
+										</tr>
+										<tr class="class_firstDiagnose_tr_height">
+											<td class="class_firstDiagnose_td_width">工种：</td>
+											<td class="class_firstDiagnose_font_color g_work"></td>
+										</tr>
+										<tr class="class_firstDiagnose_tr_height">
+											<td class="class_firstDiagnose_td_width">身份证类型：</td>
+											<td class="class_firstDiagnose_font_color g_idcard_type"></td>
+										</tr>
+										<tr class="class_firstDiagnose_tr_height">
+											<td class="class_firstDiagnose_td_width">邮政编码：</td>
+											<td class="class_firstDiagnose_font_color g_postalcode"></td>
+										</tr>
+										<tr class="class_firstDiagnose_tr_height">
+											<td class="class_firstDiagnose_td_width">户口属地：</td>
+											<td class="class_firstDiagnose_font_color g_attribution"></td>
+										</tr>
+										<tr class="class_firstDiagnose_tr_height">
+											<td class="class_firstDiagnose_td_width">户口所在地：</td>
+											<td class="class_firstDiagnose_font_color g_monthPResidenceAddress"></td>
+										</tr>
+										<tr class="class_firstDiagnose_tr_height">
+											<td class="class_firstDiagnose_td_width">现住址：</td>
+											<td class="class_firstDiagnose_font_color g_monthPresentAddress"></td>
+										</tr>
+										<tr class="class_firstDiagnose_tr_height">
+											<td class="class_firstDiagnose_td_width">户口类型：</td>
+											<td class="class_firstDiagnose_font_color g_registerType"></td>
+										</tr>
+										<tr class="class_firstDiagnose_tr_height">
+											<td class="class_firstDiagnose_td_width">其他说明：</td>
+											<td class="class_firstDiagnose_font_color g_other"></td>
+										</tr>
+									</table>
+								</div>
+							</div>
+							<!--end content-->
+							<!--begin content-->
+							<div class="class_firstDiagnose_personage_info_show">
+								<div class="class_firstDiagnose_table_width">
+									<table>
+										<tr class="class_firstDiagnose_tr_height">
+											<td class="class_firstDiagnose_td_width">卡类型：</td>
+											<td class="class_firstDiagnose_font_color g_cardtype"></td>
+										</tr>
+										<tr class="class_firstDiagnose_tr_height">
+											<td class="class_firstDiagnose_td_width">母亲姓名：</td>
+											<td class="class_firstDiagnose_font_color g_name"></td>
+										</tr>
+										<tr class="class_firstDiagnose_tr_height">
+											<td class="class_firstDiagnose_td_width">民族：</td>
+											<td class="class_firstDiagnose_font_color g_nation"></td>
+										</tr>
+										<tr class="class_firstDiagnose_tr_height">
+											<td class="class_firstDiagnose_td_width">关系：</td>
+											<td class="class_firstDiagnose_font_color g_relations"></td>
+										</tr>
+										<tr class="class_firstDiagnose_tr_height">
+											<td class="class_firstDiagnose_td_width">婚姻状况：</td>
+											<td class="class_firstDiagnose_font_color g_wedlock"></td>
+										</tr>
+										<tr class="class_firstDiagnose_tr_height">
+											<td class="class_firstDiagnose_td_width">身份证号码：</td>
+											<td class="class_firstDiagnose_font_color g_idcard"></td>
+										</tr>
+										<tr class="class_firstDiagnose_tr_height">
+											<td class="class_firstDiagnose_td_width">就医路程(小时)：</td>
+											<td class="class_firstDiagnose_font_color g_distance"></td>
+										</tr>
+										<tr class="class_firstDiagnose_tr_height">
+											<td class="class_firstDiagnose_td_width">&nbsp;</td>
+										</tr>
+										<tr class="class_firstDiagnose_tr_height">
+											<td class="class_firstDiagnose_td_width">&nbsp;</td>
+										</tr>
+										<tr class="class_firstDiagnose_tr_height">
+											<td class="class_firstDiagnose_td_width">&nbsp;</td>
+										</tr>
+										<tr class="class_firstDiagnose_tr_height">
+											<td class="class_firstDiagnose_td_width">城乡分类</td>
+											<td class="class_firstDiagnose_font_color g_town"></td>
+										</tr>
+									</table>
+								</div>
+							</div>
+							<!--end content-->
+							<!--begin content-->
+							<div class="class_firstDiagnose_personage_info_show">
+								<div class="class_firstDiagnose_table_width">
+									<table>
+										<tr class="class_firstDiagnose_tr_height">
+											<td class="class_firstDiagnose_td_width">发卡日期：</td>
+											<td class="class_firstDiagnose_font_color g_recorddate"></td>
+										</tr>
+										<tr class="class_firstDiagnose_tr_height">
+											<td class="class_firstDiagnose_td_width">出生日期：</td>
+											<td class="class_firstDiagnose_font_color g_date"></td>
+										</tr>
+										<tr class="class_firstDiagnose_tr_height">
+											<td class="class_firstDiagnose_td_width">联系电话：</td>
+											<td class="class_firstDiagnose_font_color g_tel"></td>
+										</tr>
+										<tr class="class_firstDiagnose_tr_height">
+											<td class="class_firstDiagnose_td_width">文化程度：</td>
+											<td class="class_firstDiagnose_font_color g_education"></td>
+										</tr>
+										<tr class="class_firstDiagnose_tr_height">
+											<td class="class_firstDiagnose_td_width">婚龄(年)：</td>
+											<td class="class_firstDiagnose_font_color g_marryage"></td>
+										</tr>
+										<tr class="class_firstDiagnose_tr_height">
+											<td class="class_firstDiagnose_td_width">医保号：</td>
+											<td class="class_firstDiagnose_font_color g_medical_insurance"></td>
+										</tr>
+										<tr class="class_firstDiagnose_tr_height">
+											<td class="class_firstDiagnose_td_width">贫困孕妇：</td>
+											<td class="class_firstDiagnose_font_color g_poor"></td>
+										</tr>
+									</table>
+								</div>
+							</div>
+							<!--end content-->
+							<!--begin content-->
+							<div class="class_firstDiagnose_personage_info_show">
+								<div class="class_firstDiagnose_table_width">
+									<table>
+										<tr class="class_firstDiagnose_tr_height">
+											<td class="class_firstDiagnose_td_width">发卡单位：</td>
+											<td class="class_firstDiagnose_font_color g_hospital"></td>
+										</tr>
+										<tr class="class_firstDiagnose_tr_height">
+											<td class="class_firstDiagnose_td_width">紧急联系人：</td>
+											<td class="class_firstDiagnose_font_color g_relation"></td>
+										</tr>
+										<tr class="class_firstDiagnose_tr_height">
+											<td class="class_firstDiagnose_td_width">职业：</td>
+											<td class="class_firstDiagnose_font_color g_profession"></td>
+										</tr>
+										<tr class="class_firstDiagnose_tr_height">
+											<td class="class_firstDiagnose_td_width">年龄：</td>
+											<td class="class_firstDiagnose_font_color g_age"></td>
+										</tr>
+										<tr class="class_firstDiagnose_tr_height">
+											<td class="class_firstDiagnose_td_width">血型（ABO/Rh)：</td>
+											<td class="class_firstDiagnose_font_color g_blood"></td>
+										</tr>
+										<tr class="class_firstDiagnose_tr_height">
+											<td class="class_firstDiagnose_td_width">农合号：</td>
+											<td class="class_firstDiagnose_font_color g_agricultural"></td>
+										</tr>
+										<tr class="class_firstDiagnose_tr_height">
+											<td class="class_firstDiagnose_td_width">家庭人均年收入：</td>
+											<td class="class_firstDiagnose_font_color g_family_gdp"></td>
+										</tr>
+										<tr class="class_firstDiagnose_tr_height">
+											<td class="class_firstDiagnose_td_width"></td>
+										</tr>
+										<tr class="class_firstDiagnose_tr_height">
+											<td class="class_firstDiagnose_td_width"></td>
+										</tr>
+										<tr class="class_firstDiagnose_tr_height">
+											<td class="class_firstDiagnose_td_width">户籍类型：</td>
+											<td class="class_firstDiagnose_font_color g_household_register"></td>
+										</tr>
+										<tr class="class_firstDiagnose_tr_height">
+											<td class="class_firstDiagnose_td_width">居住地分类：</td>
+											<td class="class_firstDiagnose_font_color g_domicile"></td>
+										</tr>
+									</table>
+								</div>
+							</div>
+							<!--end content-->
+						</div>
+						<!--end first-->
+						<!--begin tow-->
+						<div class="class_firstDiagnose_tab_husband_info">
+							<div class="class_firstDiagnose_husband_titile"> 丈夫信息 </div>
+							<!--begin content-->
+							<div class="class_firstDiagnose_husband_info_show">
+								<div class="class_firstDiagnose_table_width">
+									<table>
+										<tr class="class_firstDiagnose_tr_height">
+											<td class="class_firstDiagnose_td_width">父亲姓名：</td>
+											<td class="class_firstDiagnose_font_color h_name"></td>
+										</tr>
+										<tr class="class_firstDiagnose_tr_height">
+											<td class="class_firstDiagnose_td_width">民族：</td>
+											<td class="class_firstDiagnose_font_color h_nation"></td>
+										</tr>
+										<tr class="class_firstDiagnose_tr_height">
+											<td class="class_firstDiagnose_td_width">血型（ABO/Rh)：</td>
+											<td class="class_firstDiagnose_font_color h_blood"></td>
+										</tr>
+										<tr class="class_firstDiagnose_tr_height">
+											<td class="class_firstDiagnose_td_width">其他：</td>
+											<td class="class_firstDiagnose_font_color h_other"></td>
+										</tr>
+									</table>
+								</div>
+							</div>
+							<!--end content-->
+							<!--begin content-->
+							<div class="class_firstDiagnose_personage_info_show">
+								<div class="class_firstDiagnose_table_width">
+									<table>
+										<tr class="class_firstDiagnose_tr_height">
+											<td class="class_firstDiagnose_td_width">出生日期：</td>
+											<td class="class_firstDiagnose_font_color h_date"></td>
+										</tr>
+										<tr class="class_firstDiagnose_tr_height">
+											<td class="class_firstDiagnose_td_width">职业：</td>
+											<td class="class_firstDiagnose_font_color h_profession"></td>
+										</tr>
+										<tr class="class_firstDiagnose_tr_height">
+											<td class="class_firstDiagnose_td_width">长期不在家：</td>
+											<td class="class_firstDiagnose_font_color h_home"></td>
+										</tr>
+									</table>
+								</div>
+							</div>
+							<!--end content-->
+							<!--begin content-->
+							<div class="class_firstDiagnose_personage_info_show">
+								<div class="class_firstDiagnose_table_width">
+									<table>
+										<tr class="class_firstDiagnose_tr_height">
+											<td class="class_firstDiagnose_td_width">年龄：</td>
+											<td class="class_firstDiagnose_font_color h_age"></td>
+										</tr>
+										<tr class="class_firstDiagnose_tr_height">
+											<td class="class_firstDiagnose_td_width">工种：</td>
+											<td class="class_firstDiagnose_font_color h_work"></td>
+										</tr>
+									</table>
+								</div>
+							</div>
+							<!--end content-->
+							<!--begin content-->
+							<div class="class_firstDiagnose_personage_info_show">
+								<div class="class_firstDiagnose_table_width">
+									<table>
+										<tr class="class_firstDiagnose_tr_height">
+											<td class="class_firstDiagnose_td_width">国籍：</td>
+											<td class="class_firstDiagnose_font_color h_nationality"></td>
+										</tr>
+										<tr class="class_firstDiagnose_tr_height">
+											<td class="class_firstDiagnose_td_width">文化程度：</td>
+											<td class="class_firstDiagnose_font_color h_education"></td>
+										</tr>
+										<!--<tr class="class_firstDiagnose_tr_height">
+											<td class="class_firstDiagnose_td_width">职业：</td>
+											<td class="class_firstDiagnose_font_color ">设计师</td>
+										</tr>
+										<tr class="class_firstDiagnose_tr_height">
+											<td class="class_firstDiagnose_td_width">年龄：</td>
+											<td class="class_firstDiagnose_font_color ">34</td>
+										</tr>
+										<tr class="class_firstDiagnose_tr_height">
+											<td class="class_firstDiagnose_td_width">血型（ABO/Rh)：</td>
+											<td class="class_firstDiagnose_font_color ">A/ 阴性</td>
+										</tr>-->
+										<!--<tr class="class_firstDiagnose_tr_height">
+											<td class="class_firstDiagnose_td_width">农合号：</td>
+											<td class="class_firstDiagnose_font_color g_agricultural">无</td>
+										</tr>
+										<tr class="class_firstDiagnose_tr_height">
+											<td class="class_firstDiagnose_td_width">家庭人均年收入：</td>
+											<td class="class_firstDiagnose_font_color g_family_gdp">20000</td>
+										</tr>-->
+										<!--<tr class="class_firstDiagnose_tr_height">
+											<td class="class_firstDiagnose_td_width"></td>
+										</tr>
+										<tr class="class_firstDiagnose_tr_height">
+											<td class="class_firstDiagnose_td_width"></td>
+										</tr>
+										<tr class="class_firstDiagnose_tr_height">
+											<td class="class_firstDiagnose_td_width">户籍类型：</td>
+											<td class="class_firstDiagnose_font_color">户籍</td>
+										</tr>
+										<tr class="class_firstDiagnose_tr_height">
+											<td class="class_firstDiagnose_td_width">居住地分类：</td>
+											<td class="class_firstDiagnose_font_color">平原</td>
+										</tr>-->
+									</table>
+								</div>
+							</div>
+							<!--end content-->
+						</div>
+						<!--end tow-->
+						<!--begin three-->
+						<div class="class_firstDiagnose_tab_perinatal_info">
+							<div class="class_firstDiagnose_perinatal_titile"> 围产期信息 </div>
+							<!--begin content-->
+							<div class="class_firstDiagnose_perinatal_info_show">
+								<div class="class_firstDiagnose_table_width">
+									<table>
+										<tr class="class_firstDiagnose_tr_height">
+											<td class="class_firstDiagnose_td_width">门诊号：</td>
+											<td class="class_firstDiagnose_font_color g_hospitalId"></td>
+										</tr>
+										<tr class="class_firstDiagnose_tr_height">
+											<td class="class_firstDiagnose_td_width">末次月经：</td>
+											<td class="class_firstDiagnose_font_color g_endDate"></td>
+										</tr>
+										<tr class="class_firstDiagnose_tr_height">
+											<td class="class_firstDiagnose_td_width">建档孕周：</td>
+											<td class="class_firstDiagnose_font_color g_recordweek"></td>
+										</tr>
+									</table>
+								</div>
+							</div>
+							<!--end content-->
+							<!--begin content-->
+							<div class="class_firstDiagnose_personage_info_show">
+								<div class="class_firstDiagnose_table_width">
+									<table>
+										<tr class="class_firstDiagnose_tr_height">
+											<td class="class_firstDiagnose_td_width">孕产妇编号：</td>
+											<td class="class_firstDiagnose_font_color g_gravidaId"></td>
+										</tr>
+										<tr class="class_firstDiagnose_tr_height">
+											<td class="class_firstDiagnose_td_width">预产期：</td>
+											<td class="class_firstDiagnose_font_color g_expectedConfinement"></td>
+										</tr>
+										<tr class="class_firstDiagnose_tr_height">
+											<td class="class_firstDiagnose_td_width">建档医生：</td>
+											<td class="class_firstDiagnose_font_color g_doctor"></td>
+										</tr>
+									</table>
+								</div>
+							</div>
+							<!--end content-->
+							<!--begin content-->
+							<div class="class_firstDiagnose_personage_info_show">
+								<div class="class_firstDiagnose_table_width">
+									<table>
+										<tr class="class_firstDiagnose_tr_height">
+											<td class="class_firstDiagnose_td_width">孕育史：</td>
+											<td class="class_firstDiagnose_font_color g_history"></td>
+										</tr>
+										<tr class="class_firstDiagnose_tr_height">
+											<td class="class_firstDiagnose_td_width">建档日期：</td>
+											<td class="class_firstDiagnose_font_color g_recordDate"></td>
+										</tr>
+										<tr class="class_firstDiagnose_tr_height">
+											<td class="class_firstDiagnose_td_width">建档医院：</td>
+											<td class="class_firstDiagnose_font_color g_hospital"></td>
+										</tr>
+									</table>
+								</div>
+							</div>
+							<!--end content-->
+						</div>
+						<!--end three-->
+						<!-- end 选项卡 panel-978065  -->
+					</div>
+					<div class="tab-pane examine " id="panel-978066" style="margin-left: -10px;">
+						<!--孕妇首诊详情-->
+						<div class="class_firstDiagnos_main" >
+							<div class="div_pregnancyManage_color"></div>
+							<!--begin first-->
+							<div class="class_firstDiagnose_tab_perinatalPeriod_info">
+								<div class="class_firstDiagnose_perinatalPeriod_titile"> 围产信息 </div>
+								<!--begin content-->
+								<div class="class_firstDiagnose_perinatalPeriod_info_show">
+									<div class="class_firstDiagnose_table_width">
+										<table>
+											<tr class="class_firstDiagnose_tr_height">
+												<td class="class_firstDiagnose_td_width">检查日期：</td>
+												<td class="class_firstDiagnose_font_color" id="gfc_checkDate"></td>
+											</tr>
+											<tr class="class_firstDiagnose_tr_height">
+												<td class="class_firstDiagnose_td_width">年龄：</td>
+												<td class="class_firstDiagnose_font_color" id="gfc_age"></td>
+											</tr>
+										</table>
+									</div>
+								</div>
+								<!--end content-->
+								<!--begin content-->
+								<div class="class_firstDiagnose_personage_info_show">
+									<div class="class_firstDiagnose_table_width">
+										<table>
+											<tr class="class_firstDiagnose_tr_height">
+												<td class="class_firstDiagnose_td_width">预产期：</td>
+												<td class="class_firstDiagnose_font_color" id="gfc_eDate"></td>
+											</tr>
+										</table>
+									</div>
+								</div>
+								<!--end content-->
+								<!--begin content-->
+								<div class="class_firstDiagnose_personage_info_show">
+									<div class="class_firstDiagnose_table_width">
+										<table>
+											<tr class="class_firstDiagnose_tr_height">
+												<td class="class_firstDiagnose_td_width">孕周：</td>
+												<td class="class_firstDiagnose_font_color" id="gfc_weeks"> </td>
+											</tr>
+										</table>
+									</div>
+								</div>
+								<!--end content-->
+								<!--begin content-->
+								<div class="class_firstDiagnose_personage_info_show">
+									<div class="class_firstDiagnose_table_width">
+										<table>
+											<tr class="class_firstDiagnose_tr_height">
+												<td class="class_firstDiagnose_td_width">出生日期：</td>
+												<td class="class_firstDiagnose_font_color" id="gfc_bornDate"></td>
+											</tr>
+										</table>
+									</div>
+								</div>
+								<!--end content-->
+							</div>
+							<!--end first-->
+							<!--begin tow-->
+							<div class="class_firstDiagnose_tab_physique_info">
+								<div class="class_firstDiagnose_physique_titile"> 体格检查 </div>
+								<!--begin content-->
+								<div class="class_firstDiagnose_physique_info_show">
+									<div class="class_firstDiagnose_table_width">
+										<table>
+											<tr class="class_firstDiagnose_tr_height">
+												<td class="class_firstDiagnose_td_width">身高（cm)：</td>
+												<td class="class_firstDiagnose_font_color" id="gfc_high"></td>
+											</tr>
+											<tr class="class_firstDiagnose_tr_height">
+												<td class="class_firstDiagnose_td_width">心脏：</td>
+												<td class="class_firstDiagnose_font_color" id="gfc_heart"></td>
+											</tr>
+											<tr class="class_firstDiagnose_tr_height">
+												<td class="class_firstDiagnose_td_width">子宫：</td>
+												<td class="class_firstDiagnose_font_color" id="gfc_uterus"></td>
+											</tr>
+										</table>
+									</div>
+								</div>
+								<!--end content-->
+								<!--begin content-->
+								<div class="class_firstDiagnose_personage_info_show">
+									<div class="class_firstDiagnose_table_width">
+										<table>
+											<tr class="class_firstDiagnose_tr_height">
+												<td class="class_firstDiagnose_td_width" style="color:#5794E7;">体重（kg)：</td>
+												<td class="class_firstDiagnose_font_color" id="gfc_weight"></td>
+											</tr>
+											<tr class="class_firstDiagnose_tr_height">
+												<td class="class_firstDiagnose_td_width">肺部：</td>
+												<td class="class_firstDiagnose_font_color" id="gfc_lung"></td>
+											</tr>
+											<tr class="class_firstDiagnose_tr_height">
+												<td class="class_firstDiagnose_td_width">阴道：</td>
+												<td class="class_firstDiagnose_font_color" id="gfc_vagina"></td>
+											</tr>
+										</table>
+									</div>
+								</div>
+								<!--end content-->
+								<!--begin content-->
+								<div class="class_firstDiagnose_personage_info_show">
+									<div class="class_firstDiagnose_table_width">
+										<table>
+											<tr class="class_firstDiagnose_tr_height">
+												<td class="class_firstDiagnose_td_width">BMI：</td>
+												<td class="class_firstDiagnose_font_color" id="gfc_BMI"></td>
+											</tr>
+											<tr class="class_firstDiagnose_tr_height">
+												<td class="class_firstDiagnose_td_width">外阴：</td>
+												<td class="class_firstDiagnose_font_color" id="gfc_vulva"></td>
+											</tr>
+										</table>
+									</div>
+								</div>
+								<!--end content-->
+								<!--begin content-->
+								<div class="class_firstDiagnose_personage_info_show">
+									<div class="class_firstDiagnose_table_width">
+										<table>
+											<tr class="class_firstDiagnose_tr_height">
+												<td class="class_firstDiagnose_td_width" style="color:#5794E7;">血压（mmHg)：</td>
+												<td class="class_firstDiagnose_font_color" id="gfc_pressure"></td>
+											</tr>
+											<tr class="class_firstDiagnose_tr_height">
+												<td class="class_firstDiagnose_td_width">宫颈：</td>
+												<td class="class_firstDiagnose_font_color" id="gfc_cervixUteri"></td>
+											</tr>
+										</table>
+									</div>
+								</div>
+								<!--end content-->
+							</div>
+							<!--end tow-->
+							<!--begin three-->
+							<div class="class_firstDiagnose_tab_perinatalPeriod_info">
+								<div class="class_firstDiagnose_perinatalPeriod_titile"> 病史 </div>
+								<!--begin content-->
+								<div class="class_firstDiagnose_perinatalPeriod_info_show">
+									<div class="class_firstDiagnose_table_width">
+										<table>
+											<tr class="class_firstDiagnose_tr_height">
+												<td class="class_firstDiagnose_td_width">孕妇既往史：</td>
+												<td class="class_firstDiagnose_font_color" id="gfc_history"></td>
+											</tr>
+											<tr class="class_firstDiagnose_tr_height">
+												<td class="class_firstDiagnose_td_width">孕产史：</td>
+												<td class="class_firstDiagnose_font_color" id="gfc_phistory"></td>
+											</tr>
+											<!--<tr class="class_firstDiagnose_tr_height">
+												<td class="class_firstDiagnose_td_width">女方个人史：</td>
+												<td class="class_firstDiagnose_font_color" id="gfc_mhistory"></td>
+											</tr>-->
+										</table>
+									</div>
+								</div>
+								<!--end content-->
+								<!--begin content-->
+								<div class="class_firstDiagnose_personage_info_show">
+									<div class="class_firstDiagnose_table_width">
+										<table>
+											<tr class="class_firstDiagnose_tr_height">
+												<td class="class_firstDiagnose_td_width">男方血型(ABO)：</td>
+												<td class="class_firstDiagnose_font_color" id="gfc_blood"></td>
+											</tr>
+											<!--<tr class="class_firstDiagnose_tr_height">
+												<td class="class_firstDiagnose_td_width">男方个人史：</td>
+												<td class="class_firstDiagnose_font_color" id="gfc_fhistory"></td>
+											</tr>-->
+										</table>
+									</div>
+								</div>
+								<!--end content-->
+								<!--begin content-->
+								<div class="class_firstDiagnose_personage_info_show">
+									<div class="class_firstDiagnose_table_width">
+										<table>
+											<tr class="class_firstDiagnose_tr_height">
+												<td class="class_firstDiagnose_td_width">女方家族史：</td>
+												<td class="class_firstDiagnose_font_color" id="gfc_mfhistory"></td>
+											</tr>
+											<!--<tr class="class_firstDiagnose_tr_height">
+												<td class="class_firstDiagnose_td_width">孕产史：</td>
+												<td class="class_firstDiagnose_font_color" id="gfc_phistory"></td>
+											</tr>-->
+										</table>
+									</div>
+								</div>
+								<!--end content-->
+								<!--begin content-->
+								<div class="class_firstDiagnose_personage_info_show">
+									<div class="class_firstDiagnose_table_width">
+										<table>
+											<tr class="class_firstDiagnose_tr_height">
+												<td class="class_firstDiagnose_td_width">男方家族史：</td>
+												<td class="class_firstDiagnose_font_color" id="gfc_ffhistory"></td>
+											</tr>
+										</table>
+									</div>
+								</div>
+								<!--end content-->
+							</div>
+							<!--end three-->
+							<!--begin four-->
+							<div class="class_firstDiagnose_tab_complaint_info">
+								<div class="class_firstDiagnose_complaint_titile"> 主诉 </div>
+								<!--begin content-->
+								<div class="class_firstDiagnose_complaint_info_show">
+									<div class="class_firstDiagnose_table_width">
+										<table>
+											<tr class="class_firstDiagnose_tr_height">
+												<td class="class_firstDiagnose_td_width" id="gfc_complaint"></td>
+											</tr>
+										</table>
+									</div>
+								</div>
+								<!--end content-->
+							</div>
+							<!--end four-->
+							<div class="" style="margin-top: 20px;"></div>
+							<div class="class_firstDiagnose_tab_examineProject_info">
+								<div class="class_firstDiagnose_project_title">必查项目</div>
+								<div id="checkProjectHaveDone"></div>
+							</div>
+						</div>
+						<!-- 按钮触发模态框 -->
+						<!-- 模态框（Modal） -->
+						<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+							<div style="width: 100%; height: auto;margin-top:15%;">
+								<div class="" style="width: 80%; height: a; margin: 0 auto;">
+									<div class="modal-header" style="border: none;">
+										<div class="class_firstDiagnose_popup">
+											<div class="class_firstDiagnose_popup_left">
+												<a href="#carousel-345482" class="a_firstDiagnose_href" data-slide="prev"><span class="glyphicon" style="line-height:300px;"><img src="images/right_arrows.png"></span></a>
+											</div>
+											<div class="class_firstDiagnose_popup_middle" id="div_firstDiagnose_container" style="display: block;">
+												<div class="carousel slide" id="carousel-345482">
+													<div class="carousel-inner div_firstDiagnose_show1">
+														<div class="item">
+															<!--bloodRoutineExamination-->
+															<div class="class_firstDiagnose_bloodRoutineExamination">
+																<div style="clear: both;">
+																	<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><img src="images/close.png"/></button>
+																</div>
+																<div class="class_firstDiagnose_theme">
+																	东莞市妇幼保健院
+																</div>
+																<div class="class_firstDiagnose_table_width">
+																	<!--begin content-->
+																	<div class="class_firstDiagnose_blood_info_show">
+																		<div class="class_firstDiagnose_table_width">
+																			<table>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">姓名：</td>
+																					<td class="class_firstDiagnose_font_color"></td>
+																				</tr>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">年龄：</td>
+																					<td class="class_firstDiagnose_font_color">24</td>
+																				</tr>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">床号：</td>
+																					<td class="class_firstDiagnose_font_color"></td>
+																				</tr>
+																			</table>
+																		</div>
+																	</div>
+																	<!--end content-->
+																	<!--begin content-->
+																	<div class="class_firstDiagnose_blood_info_show">
+																		<div class="class_firstDiagnose_table_width">
+																			<table>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">病案：</td>
+																					<td class="class_firstDiagnose_font_color"></td>
+																				</tr>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">申请科室：</td>
+																					<td class="class_firstDiagnose_font_color"></td>
+																				</tr>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">标本种类：</td>
+																					<td class="class_firstDiagnose_font_color"></td>
+																				</tr>
+																			</table>
+																		</div>
+																	</div>
+																	<!--end content-->
+																	<!--begin content-->
+																	<div class="class_firstDiagnose_blood_info_show">
+																		<div class="class_firstDiagnose_table_width">
+																			<table>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">费别：</td>
+																					<td class="class_firstDiagnose_font_color"></td>
+																				</tr>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">送检医师：</td>
+																					<td class="class_firstDiagnose_font_color"></td>
+																				</tr>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">临床诊断：</td>
+																					<td class="class_firstDiagnose_font_color"></td>
+																				</tr>
+																			</table>
+																		</div>
+																	</div>
+																	<!--end content-->
+																	<!--begin content-->
+																	<div class="class_firstDiagnose_blood_info_show">
+																		<div class="class_firstDiagnose_table_width">
+																			<table>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">标本编号：</td>
+																					<td class="class_firstDiagnose_font_color"></td>
+																				</tr>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">条码编号：</td>
+																					<td class="class_firstDiagnose_font_color"></td>
+																				</tr>
+																			</table>
+																		</div>
+																	</div>
+																	<!--end content-->
+																</div>
+																<div>
+																	<!--begin bloodrule-->
+																	<div class="class_firstDiagnose_project_container">
+																		<!--left-->
+																		<div class="class_firstDiagnose_theme_content">
+																			<div style="height:5px; clear: both;"></div>
+																			<div class="class_firstDiagnose_table_container">
+																				<table>
+																					<tr class="tr_firstDiagnose_width tr_firstDiagnose_color">
+																						<td>名称</td>
+																						<td>简称</td>
+																						<td>结果</td>
+																						<td>单位</td>
+																						<td>参考值</td>
+																					</tr>
+																					<tr class="tr_firstDiagnose_width">
+																						<td>白细胞</td>
+																						<td>WBC</td>
+																						<td>10.0↑</td>
+																						<td>*10^9/L</td>
+																						<td>3.5-3.9</td>
+																					</tr>
+																					<tr class="tr_firstDiagnose_width">
+																						<td>红细胞</td>
+																						<td>RBC</td>
+																						<td>3.78↓</td>
+																						<td>*10^12/L</td>
+																						<td>3.8-5.1</td>
+																					</tr>
+																					<tr class="tr_firstDiagnose_width">
+																						<td>血红蛋白</td>
+																						<td>RBC</td>
+																						<td>112↓</td>
+																						<td>g/L</td>
+																						<td>115-150</td>
+																					</tr>
+																					<tr class="tr_firstDiagnose_width">
+																						<td>红细胞压积</td>
+																						<td>HCT</td>
+																						<td>34.1↓</td>
+																						<td>%</td>
+																						<td>35-45</td>
+																					</tr>
+																					<tr class="tr_firstDiagnose_width">
+																						<td>平均红细胞体积</td>
+																						<td>MCV</td>
+																						<td>90.2</td>
+																						<td>fL</td>
+																						<td>82-100</td>
+																					</tr>
+																					<tr class="tr_firstDiagnose_width">
+																						<td>平均红细胞血红蛋白量</td>
+																						<td>MCH</td>
+																						<td>29.6</td>
+																						<td>pg</td>
+																						<td>27-34</td>
+																					</tr>
+																					<tr class="tr_firstDiagnose_width">
+																						<td>平均红细胞血红蛋白浓度</td>
+																						<td>MCHC</td>
+																						<td>328</td>
+																						<td>g/L</td>
+																						<td>316-354</td>
+																					</tr>
+																					<tr class="tr_firstDiagnose_width">
+																						<td>血小板计数</td>
+																						<td>PLT</td>
+																						<td>202</td>
+																						<td>*10^9/L</td>
+																						<td>125-350</td>
+																					</tr>
+																					<tr class="tr_firstDiagnose_width">
+																						<td></td>
+																						<td></td>
+																						<td></td>
+																						<td></td>
+																						<td>
+																							<div class="class_color_tow" onclick="showMore(0)">点击查看原始报告单</div>
+																						</td>
+																					</tr>
+																				</table>
+																			</div>
+																		</div>
+																	</div>
+																	<!--end bloodrule-->
+																	<div style="height: 15px; clear: both;"></div>
+																	<div>
+																		<!--begin content-->
+																		<div class="class_firstDiagnose_perinatalPeriod_info_show">
+																			<div class="class_firstDiagnose_table_width">
+																				<table>
+																					<tr class="class_firstDiagnose_tr_height">
+																						<td class="class_firstDiagnose_td_width">核收时间：</td>
+																						<td class="class_firstDiagnose_font_color">2017/1/1</td>
+																					</tr>
+																				</table>
+																			</div>
+																		</div>
+																		<!--end content-->
+																		<!--begin content-->
+																		<div class="class_firstDiagnose_perinatalPeriod_info_show">
+																			<div class="class_firstDiagnose_table_width">
+																				<table>
+																					<tr class="class_firstDiagnose_tr_height">
+																						<td class="class_firstDiagnose_td_width">报告时间：</td>
+																						<td class="class_firstDiagnose_font_color">2017/1/1</td>
+																					</tr>
+																				</table>
+																			</div>
+																		</div>
+																		<!--end content-->
+																		<!--begin content-->
+																		<div class="class_firstDiagnose_perinatalPeriod_info_show">
+																			<div class="class_firstDiagnose_table_width">
+																				<table>
+																					<tr class="class_firstDiagnose_tr_height">
+																						<td class="class_firstDiagnose_td_width">检查者：</td>
+																						<td class="class_firstDiagnose_font_color">F553</td>
+																					</tr>
+																				</table>
+																			</div>
+																		</div>
+																		<!--end content-->
+																		<!--begin content-->
+																		<div class="class_firstDiagnose_perinatalPeriod_info_show">
+																			<div class="class_firstDiagnose_table_width">
+																				<table>
+																					<tr class="class_firstDiagnose_tr_height">
+																						<td class="class_firstDiagnose_td_width">审核者：</td>
+																						<td class="class_firstDiagnose_font_color">刘彩燕</td>
+																					</tr>
+																				</table>
+																			</div>
+																		</div>
+																		<!--end content-->
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div class="item">
+															<!--BModeUltrasound-->
+															<div class="class_firstDiagnose_bloodRoutineExamination">
+																<div style="clear: both;">
+																	<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><img src="images/close.png"/></button>
+																</div>
+																<div class="class_firstDiagnose_theme">
+																	东莞市妇幼保健院
+																</div>
+																<div class="class_firstDiagnose_table_width">
+																	<!--begin content-->
+																	<div class="class_firstDiagnose_blood_info_show">
+																		<div class="class_firstDiagnose_table_width">
+																			<table>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">姓名：</td>
+																					<td class="class_firstDiagnose_font_color">张小花</td>
+																				</tr>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">年龄：</td>
+																					<td class="class_firstDiagnose_font_color">24</td>
+																				</tr>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">床号：</td>
+																					<td class="class_firstDiagnose_font_color"></td>
+																				</tr>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">检查途径：</td>
+																					<td class="class_firstDiagnose_font_color"></td>
+																				</tr>
+																			</table>
+																		</div>
+																	</div>
+																	<!--end content-->
+																	<!--begin content-->
+																	<div class="class_firstDiagnose_blood_info_show">
+																		<div class="class_firstDiagnose_table_width">
+																			<table>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">病案：</td>
+																					<td class="class_firstDiagnose_font_color">无</td>
+																				</tr>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">申请科室：</td>
+																					<td class="class_firstDiagnose_font_color">妇产科</td>
+																				</tr>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">探头频率：</td>
+																					<td class="class_firstDiagnose_font_color">2-5Hz</td>
+																				</tr>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">膀胱充盈度：</td>
+																					<td class="class_firstDiagnose_font_color">无</td>
+																				</tr>
+																			</table>
+																		</div>
+																	</div>
+																	<!--end content-->
+																	<!--begin content-->
+																	<div class="class_firstDiagnose_blood_info_show">
+																		<div class="class_firstDiagnose_table_width">
+																			<table>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">费别：</td>
+																					<td class="class_firstDiagnose_font_color">自费</td>
+																				</tr>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">送检医师：</td>
+																					<td class="class_firstDiagnose_font_color">黄某某</td>
+																				</tr>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">临床诊断：</td>
+																					<td class="class_firstDiagnose_font_color">孕14周</td>
+																				</tr>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">图像等级：</td>
+																					<td class="class_firstDiagnose_font_color">乙</td>
+																				</tr>
+																			</table>
+																		</div>
+																	</div>
+																	<!--end content-->
+																	<!--begin content-->
+																	<div class="class_firstDiagnose_blood_info_show">
+																		<div class="class_firstDiagnose_table_width">
+																			<table>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">超声号：</td>
+																					<td class="class_firstDiagnose_font_color">123456</td>
+																				</tr>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">条码编号：</td>
+																					<td class="class_firstDiagnose_font_color">654321</td>
+																				</tr>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">检查部位：</td>
+																					<td class="class_firstDiagnose_font_color">常规+9项筛查</td>
+																				</tr>
+																			</table>
+																		</div>
+																	</div>
+																	<!--end content-->
+																</div>
+																<div>
+																	<!--begin bloodrule-->
+																	<div class="class_firstDiagnose_project_container">
+																		<!--left-->
+																		<div class="class_firstDiagnose_theme_content">
+																			<div style="height:5px; clear: both;"></div>
+																			<div class="class_firstDiagnose_bModeUltrasound_container">
+																				<div class="class_firstDiagnos_bModeUltrasound_left">
+																					<div class="class_firstDiagnos_bModeUltrasound_record">观察记录<br /><img src="images/b_record.png" /></div>
+																				</div>
+																				<div class="class_firstDiagnos_bModeUltrasound_right">
+																					<table class="class_firstDiagnos_bModeUltrasound_table">
+																						<tr class="class_firstDiagnose_bModeUltrasound_tr_height">
+																							<td style="width: 85px;">双顶径(mm):</td>
+																							<td>20</td>
+																						</tr>
+																						<tr class="class_firstDiagnose_bModeUltrasound_tr_height">
+																							<td>胎心率(次/分):</td>
+																							<td>20</td>
+																						</tr>
+																						<tr class="class_firstDiagnose_bModeUltrasound_tr_height">
+																							<td>羊水(深mm):</td>
+																							<td>20</td>
+																						</tr>
+																						<tr class="class_firstDiagnose_bModeUltrasound_tr_height">
+																							<td>右侧卵巢:</td>
+																							<td>正常大小</td>
+																						</tr>
+																					</table>
+																					<table class="class_firstDiagnos_bModeUltrasound_table">
+																						<tr class="class_firstDiagnose_bModeUltrasound_tr_height">
+																							<td style="width: 85px;">顶臀长(mm):</td>
+																							<td>60</td>
+																						</tr>
+																						<tr class="class_firstDiagnose_bModeUltrasound_tr_height">
+																							<td>胎心率:</td>
+																							<td>齐</td>
+																						</tr>
+																						<tr class="class_firstDiagnose_bModeUltrasound_tr_height">
+																							<td>胎盘位置:</td>
+																							<td>前壁</td>
+																						</tr>
+																					</table>
+																					<table class="class_firstDiagnos_bModeUltrasound_table">
+																						<tr class="class_firstDiagnose_bModeUltrasound_tr_height">
+																							<td style="width: 85px;">股骨长度(mm):</td>
+																							<td>66</td>
+																						</tr>
+																						<tr class="class_firstDiagnose_bModeUltrasound_tr_height">
+																							<td>胎动:</td>
+																							<td>见</td>
+																						</tr>
+																						<tr class="class_firstDiagnose_bModeUltrasound_tr_height">
+																							<td>胎盘厚度(mm):</td>
+																							<td>17</td>
+																						</tr>
+																					</table>
+																					<table class="class_firstDiagnos_bModeUltrasound_table">
+																						<tr class="class_firstDiagnose_bModeUltrasound_tr_height">
+																							<td style="width: 85px;">双顶径(mm):</td>
+																							<td>20</td>
+																						</tr>
+																						<tr class="class_firstDiagnose_bModeUltrasound_tr_height">
+																							<td>肱骨长度(mm):</td>
+																							<td>7</td>
+																						</tr>
+																						<tr class="class_firstDiagnose_bModeUltrasound_tr_height">
+																							<td>胎心:</td>
+																							<td>见</td>
+																						</tr>
+																						<tr class="class_firstDiagnose_bModeUltrasound_tr_height">
+																							<td>左侧卵巢:</td>
+																							<td>正常大小</td>
+																						</tr>
+																					</table>
+																				</div>
+																			</div>
+																			<div class="class_firstDiagnose_bModeUltrasound_detalis_container">
+																				<div class="class_firstDiagnos_bModeUltrasound_left">
+																					<div class="class_firstDiagnos_bModeUltrasound_detalis_record"> 超声描述</div>
+																				</div>
+																				<div class="class_firstDiagnos_bModeUltrasound_right">
+																					<table class="class_firstDiagnos_bModeUltrasound_detalis_table">
+																						<tr class="class_firstDiagnose_bModeUltrasound_tr_height">
+																							<td style="width: 85px;"> NT(mm):</td>
+																							<td>1.5</td>
+																						</tr>
+																					</table>
+																					<table class="class_firstDiagnos_bModeUltrasound_detalis_table">
+																						<tr class="class_firstDiagnose_bModeUltrasound_tr_height">
+																							<td style="width:122px;"> NF(颈部软组织厚度):</td>
+																							<td>1.5</td>
+																						</tr>
+																					</table>
+																					<table class="class_firstDiagnos_bModeUltrasound_detalis_table">
+																						<tr class="class_firstDiagnose_bModeUltrasound_tr_height">
+																							<td style="width: 85px;"> 鼻骨:</td>
+																							<td>显示</td>
+																						</tr>
+																					</table>
+																				</div>
+																			</div>
+																			<div class="class_firstDiagnose_bModeUltrasound_detalis_container">
+																				<div class="class_firstDiagnos_bModeUltrasound_left">
+																					<div class="class_firstDiagnos_bModeUltrasound_detalis_record"> 超声提示</div>
+																				</div>
+																				<div class="class_firstDiagnos_bModeUltrasound_right">
+																					<table class="class_firstDiagnos_bModeUltrasound_detalis_table">
+																						<tr class="class_firstDiagnose_bModeUltrasound_tr_height">
+																							<td style="width: 85px;">胎数:</td>
+																							<td>单胎</td>
+																						</tr>
+																					</table>
+																					<table class="class_firstDiagnos_bModeUltrasound_detalis_table">
+																						<tr class="class_firstDiagnose_bModeUltrasound_tr_height">
+																							<td style="width:85px;"> 估计孕周:</td>
+																							<td>13周+5</td>
+																						</tr>
+																					</table>
+																				</div>
+																			</div>
+
+																		</div>
+																	</div>
+																	<!--end bloodrule-->
+																	<div style="height: 15px; clear: both;"></div>
+																	<div>
+																		<!--begin content-->
+																		<div class="class_firstDiagnose_perinatalPeriod_info_show">
+																			<div class="class_firstDiagnose_table_width">
+																				<table>
+																					<tr class="class_firstDiagnose_tr_height">
+																						<td class="class_firstDiagnose_td_width">核收时间：</td>
+																						<td class="class_firstDiagnose_font_color">2017/1/1</td>
+																					</tr>
+																				</table>
+																			</div>
+																		</div>
+																		<!--end content-->
+																		<!--begin content-->
+																		<div class="class_firstDiagnose_perinatalPeriod_info_show">
+																			<div class="class_firstDiagnose_table_width">
+																				<table>
+																					<tr class="class_firstDiagnose_tr_height">
+																						<td class="class_firstDiagnose_td_width">报告时间：</td>
+																						<td class="class_firstDiagnose_font_color">2017/1/1</td>
+																					</tr>
+																				</table>
+																			</div>
+																		</div>
+																		<!--end content-->
+																		<!--begin content-->
+																		<div class="class_firstDiagnose_perinatalPeriod_info_show">
+																			<div class="class_firstDiagnose_table_width">
+																				<table>
+																					<tr class="class_firstDiagnose_tr_height">
+																						<td class="class_firstDiagnose_td_width">检查者：</td>
+																						<td class="class_firstDiagnose_font_color">F553</td>
+																					</tr>
+																				</table>
+																			</div>
+																		</div>
+																		<!--end content-->
+																		<!--begin content-->
+																		<div class="class_firstDiagnose_perinatalPeriod_info_show">
+																			<div class="class_firstDiagnose_table_width">
+																				<table>
+																					<tr class="class_firstDiagnose_tr_height">
+																						<td class="class_firstDiagnose_td_width">审核者：</td>
+																						<td class="class_firstDiagnose_font_color">刘彩燕</td>
+																					</tr>
+																				</table>
+																			</div>
+																		</div>
+																		<!--end content-->
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div class="item">
+															<!--routineUrineTest-->
+															<div class="class_firstDiagnose_bloodRoutineExamination">
+																<div style="clear: both;">
+																	<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><img src="images/close.png"/></button>
+																</div>
+																<div class="class_firstDiagnose_theme">
+																	东莞市妇幼保健院
+																</div>
+																<div class="class_firstDiagnose_table_width">
+																	<!--begin content-->
+																	<div class="class_firstDiagnose_blood_info_show">
+																		<div class="class_firstDiagnose_table_width">
+																			<table>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">姓名：</td>
+																					<td class="class_firstDiagnose_font_color">阮芳</td>
+																				</tr>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">年龄：</td>
+																					<td class="class_firstDiagnose_font_color">24</td>
+																				</tr>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">床号：</td>
+																					<td class="class_firstDiagnose_font_color"></td>
+																				</tr>
+																			</table>
+																		</div>
+																	</div>
+																	<!--end content-->
+																	<!--begin content-->
+																	<div class="class_firstDiagnose_blood_info_show">
+																		<div class="class_firstDiagnose_table_width">
+																			<table>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">病案：</td>
+																					<td class="class_firstDiagnose_font_color">无</td>
+																				</tr>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">申请科室：</td>
+																					<td class="class_firstDiagnose_font_color">妇产科</td>
+																				</tr>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">标本种类：</td>
+																					<td class="class_firstDiagnose_font_color">血清</td>
+																				</tr>
+																			</table>
+																		</div>
+																	</div>
+																	<!--end content-->
+																	<!--begin content-->
+																	<div class="class_firstDiagnose_blood_info_show">
+																		<div class="class_firstDiagnose_table_width">
+																			<table>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">费别：</td>
+																					<td class="class_firstDiagnose_font_color">自费</td>
+																				</tr>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">送检医师：</td>
+																					<td class="class_firstDiagnose_font_color">黄某某</td>
+																				</tr>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">临床诊断：</td>
+																					<td class="class_firstDiagnose_font_color">无</td>
+																				</tr>
+																			</table>
+																		</div>
+																	</div>
+																	<!--end content-->
+																	<!--begin content-->
+																	<div class="class_firstDiagnose_blood_info_show">
+																		<div class="class_firstDiagnose_table_width">
+																			<table>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">标本编号：</td>
+																					<td class="class_firstDiagnose_font_color">123456</td>
+																				</tr>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">条码编号：</td>
+																					<td class="class_firstDiagnose_font_color">654321</td>
+																				</tr>
+																			</table>
+																		</div>
+																	</div>
+																	<!--end content-->
+																</div>
+																<div>
+																	<!--begin bloodrule-->
+																	<div class="class_firstDiagnose_project_container">
+																		<!--left-->
+																		<div class="class_firstDiagnose_theme_content">
+																			<div style="height:5px; clear: both;"></div>
+																			<div class="class_firstDiagnose_table_container">
+																				<table>
+																					<tr class="tr_firstDiagnose_width tr_firstDiagnose_color">
+																						<td>名称</td>
+																						<td>结果</td>
+																						<td>参考值</td>
+																						<td>名称</td>
+																						<td>结果</td>
+																						<td>参考值</td>
+																					</tr>
+																					<tr class="tr_firstDiagnose_width">
+																						<td>亚硝酸盐</td>
+																						<td>-</td>
+																						<td>阴性</td>
+																						<td>酮体</td>
+																						<td>-</td>
+																						<td>阴性 umol/L</td>
+																					</tr>
+																					<tr class="tr_firstDiagnose_width">
+																						<td>尿胆原</td>
+																						<td>-</td>
+																						<td>阴性</td>
+																						<td>葡萄糖</td>
+																						<td>-</td>
+																						<td>umol/L</td>
+																					</tr>
+																					<tr class="tr_firstDiagnose_width">
+																						<td>蛋白质</td>
+																						<td>-</td>
+																						<td>阴性g/L</td>
+																						<td>白细胞</td>
+																						<td>-</td>
+																						<td>阴性</td>
+																					</tr>
+																					<tr class="tr_firstDiagnose_width">
+																						<td>酸碱度</td>
+																						<td>8.0</td>
+																						<td>4.5-8.0</td>
+																						<td>尿微量白蛋白</td>
+																						<td>5</td>
+																						<td>0-20ug/L</td>
+																					</tr>
+																					<tr class="tr_firstDiagnose_width">
+																						<td>隐血</td>
+																						<td>1+</td>
+																						<td>阴性</td>
+																						<td>颜色</td>
+																						<td>黄</td>
+																						<td></td>
+																					</tr>
+																					<tr class="tr_firstDiagnose_width">
+																						<td>尿比重</td>
+																						<td>1.015</td>
+																						<td>1.003-1.030</td>
+																						<td>浑浊度</td>
+																						<td>清</td>
+																						<td></td>
+																					</tr>
+																					<tr class="tr_firstDiagnose_width">
+																						<td>胆红素</td>
+																						<td>-</td>
+																						<td>阴性 umol/</td>
+																						<td>红细胞(镜检)</td>
+																						<td>++</td>
+																						<td>0-3/HP</td>
+																					</tr>
+																					<tr class="tr_firstDiagnose_width">
+																						<td>维生素C</td>
+																						<td>-</td>
+																						<td>阴性 umol/</td>
+																						<td>白细胞(镜检)</td>
+																						<td>3-4</td>
+																						<td>0-5/HP</td>
+																					</tr>
+																					<tr class="tr_firstDiagnose_width">
+																						<td></td>
+																						<td></td>
+																						<td></td>
+																						<td></td>
+																						<td></td>
+																						<td>
+																							<div class="class_color_tow" onclick="showMore(2)">点击查看原始报告单</div>
+																						</td>
+																					</tr>
+																				</table>
+																			</div>
+																		</div>
+																	</div>
+																	<!--end bloodrule-->
+																	<div style="height: 15px; clear: both;"></div>
+																	<div>
+																		<!--begin content-->
+																		<div class="class_firstDiagnose_perinatalPeriod_info_show">
+																			<div class="class_firstDiagnose_table_width">
+																				<table>
+																					<tr class="class_firstDiagnose_tr_height">
+																						<td class="class_firstDiagnose_td_width">核收时间：</td>
+																						<td class="class_firstDiagnose_font_color">2017/1/1</td>
+																					</tr>
+																				</table>
+																			</div>
+																		</div>
+																		<!--end content-->
+																		<!--begin content-->
+																		<div class="class_firstDiagnose_perinatalPeriod_info_show">
+																			<div class="class_firstDiagnose_table_width">
+																				<table>
+																					<tr class="class_firstDiagnose_tr_height">
+																						<td class="class_firstDiagnose_td_width">报告时间：</td>
+																						<td class="class_firstDiagnose_font_color">2017/1/1</td>
+																					</tr>
+																				</table>
+																			</div>
+																		</div>
+																		<!--end content-->
+																		<!--begin content-->
+																		<div class="class_firstDiagnose_perinatalPeriod_info_show">
+																			<div class="class_firstDiagnose_table_width">
+																				<table>
+																					<tr class="class_firstDiagnose_tr_height">
+																						<td class="class_firstDiagnose_td_width">检查者：</td>
+																						<td class="class_firstDiagnose_font_color">F553</td>
+																					</tr>
+																				</table>
+																			</div>
+																		</div>
+																		<!--end content-->
+																		<!--begin content-->
+																		<div class="class_firstDiagnose_perinatalPeriod_info_show">
+																			<div class="class_firstDiagnose_table_width">
+																				<table>
+																					<tr class="class_firstDiagnose_tr_height">
+																						<td class="class_firstDiagnose_td_width">审核者：</td>
+																						<td class="class_firstDiagnose_font_color">刘彩燕</td>
+																					</tr>
+																				</table>
+																			</div>
+																		</div>
+																		<!--end content-->
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div class="item">
+															<!--liverAndKidney-->
+															<div class="class_firstDiagnose_bloodRoutineExamination">
+																<div style="clear: both;">
+																	<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><img src="images/close.png"/></button>
+																</div>
+																<div class="class_firstDiagnose_theme">
+																	东莞市妇幼保健院
+																</div>
+																<div class="class_firstDiagnose_table_width">
+																	<!--begin content-->
+																	<div class="class_firstDiagnose_blood_info_show">
+																		<div class="class_firstDiagnose_table_width">
+																			<table>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">姓名：</td>
+																					<td class="class_firstDiagnose_font_color">阮芳</td>
+																				</tr>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">年龄：</td>
+																					<td class="class_firstDiagnose_font_color">24</td>
+																				</tr>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">床号：</td>
+																					<td class="class_firstDiagnose_font_color"></td>
+																				</tr>
+																			</table>
+																		</div>
+																	</div>
+																	<!--end content-->
+																	<!--begin content-->
+																	<div class="class_firstDiagnose_blood_info_show">
+																		<div class="class_firstDiagnose_table_width">
+																			<table>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">病案：</td>
+																					<td class="class_firstDiagnose_font_color">无</td>
+																				</tr>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">申请科室：</td>
+																					<td class="class_firstDiagnose_font_color">妇产科</td>
+																				</tr>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">标本种类：</td>
+																					<td class="class_firstDiagnose_font_color">血清</td>
+																				</tr>
+																			</table>
+																		</div>
+																	</div>
+																	<!--end content-->
+																	<!--begin content-->
+																	<div class="class_firstDiagnose_blood_info_show">
+																		<div class="class_firstDiagnose_table_width">
+																			<table>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">费别：</td>
+																					<td class="class_firstDiagnose_font_color">自费</td>
+																				</tr>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">送检医师：</td>
+																					<td class="class_firstDiagnose_font_color">黄某某</td>
+																				</tr>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">临床诊断：</td>
+																					<td class="class_firstDiagnose_font_color">无</td>
+																				</tr>
+																			</table>
+																		</div>
+																	</div>
+																	<!--end content-->
+																	<!--begin content-->
+																	<div class="class_firstDiagnose_blood_info_show">
+																		<div class="class_firstDiagnose_table_width">
+																			<table>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">标本编号：</td>
+																					<td class="class_firstDiagnose_font_color">123456</td>
+																				</tr>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">条码编号：</td>
+																					<td class="class_firstDiagnose_font_color">654321</td>
+																				</tr>
+																			</table>
+																		</div>
+																	</div>
+																	<!--end content-->
+																</div>
+																<div>
+																	<!--begin bloodrule-->
+																	<div class="class_firstDiagnose_project_container">
+																		<!--left-->
+																		<div class="class_firstDiagnose_theme_content">
+																			<div style="height:5px; clear: both;"></div>
+																			<div class="class_firstDiagnose_table_container">
+																				<table>
+																					<tr class="tr_firstDiagnose_width tr_firstDiagnose_color">
+																						<td>名称</td>
+																						<td>结果</td>
+																						<td>单位</td>
+																						<td>参考值</td>
+																					</tr>
+																					<tr class="tr_firstDiagnose_width">
+																						<td>谷丙转氨酶</td>
+																						<td>31.8</td>
+																						<td>U/L</td>
+																						<td>7-40</td>
+																					</tr>
+																					<tr class="tr_firstDiagnose_width">
+																						<td>肌酐</td>
+																						<td>122.0</td>
+																						<td>umol/L</td>
+																						<td>53-132.6</td>
+																					</tr>
+																					<tr class="tr_firstDiagnose_width">
+																						<td>总蛋白</td>
+																						<td>63.4↓</td>
+																						<td>g/L</td>
+																						<td>65-85</td>
+																					</tr>
+																					<tr class="tr_firstDiagnose_width">
+																						<td>总胆红素</td>
+																						<td>5.8</td>
+																						<td>umol/L</td>
+																						<td>1.7-17.1</td>
+																					</tr>
+																					<tr class="tr_firstDiagnose_width">
+																						<td>总胆汁酸</td>
+																						<td>4.1</td>
+																						<td>umol/L</td>
+																						<td>0-12</td>
+																					</tr>
+
+																					<tr class="tr_firstDiagnose_width">
+																						<td></td>
+																						<td></td>
+																						<td></td>
+																						<td>
+																							<div class="class_color_tow" onclick="showMore(3)">点击查看原始报告单</div>
+																						</td>
+																					</tr>
+																				</table>
+																			</div>
+																		</div>
+																	</div>
+																	<!--end bloodrule-->
+																	<div style="height:95px; clear: both;"></div>
+																	<div>
+																		<!--begin content-->
+																		<div class="class_firstDiagnose_perinatalPeriod_info_show">
+																			<div class="class_firstDiagnose_table_width">
+																				<table>
+																					<tr class="class_firstDiagnose_tr_height">
+																						<td class="class_firstDiagnose_td_width">核收时间：</td>
+																						<td class="class_firstDiagnose_font_color">2017/1/1</td>
+																					</tr>
+																				</table>
+																			</div>
+																		</div>
+																		<!--end content-->
+																		<!--begin content-->
+																		<div class="class_firstDiagnose_perinatalPeriod_info_show">
+																			<div class="class_firstDiagnose_table_width">
+																				<table>
+																					<tr class="class_firstDiagnose_tr_height">
+																						<td class="class_firstDiagnose_td_width">报告时间：</td>
+																						<td class="class_firstDiagnose_font_color">2017/1/1</td>
+																					</tr>
+																				</table>
+																			</div>
+																		</div>
+																		<!--end content-->
+																		<!--begin content-->
+																		<div class="class_firstDiagnose_perinatalPeriod_info_show">
+																			<div class="class_firstDiagnose_table_width">
+																				<table>
+																					<tr class="class_firstDiagnose_tr_height">
+																						<td class="class_firstDiagnose_td_width">检查者：</td>
+																						<td class="class_firstDiagnose_font_color">F553</td>
+																					</tr>
+																				</table>
+																			</div>
+																		</div>
+																		<!--end content-->
+																		<!--begin content-->
+																		<div class="class_firstDiagnose_perinatalPeriod_info_show">
+																			<div class="class_firstDiagnose_table_width">
+																				<table>
+																					<tr class="class_firstDiagnose_tr_height">
+																						<td class="class_firstDiagnose_td_width">审核者：</td>
+																						<td class="class_firstDiagnose_font_color">刘彩燕</td>
+																					</tr>
+																				</table>
+																			</div>
+																		</div>
+																		<!--end content-->
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div class="item">
+															<!-- bloodTransfusion-->
+															<div class="class_firstDiagnose_bloodRoutineExamination">
+																<div style="clear: both;">
+																	<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><img src="images/close.png"/></button>
+																</div>
+																<div class="class_firstDiagnose_theme">
+																	东莞市妇幼保健院
+																</div>
+																<div class="class_firstDiagnose_table_width">
+																	<!--begin content-->
+																	<div class="class_firstDiagnose_blood_info_show">
+																		<div class="class_firstDiagnose_table_width">
+																			<table>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">姓名：</td>
+																					<td class="class_firstDiagnose_font_color">阮芳</td>
+																				</tr>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">年龄：</td>
+																					<td class="class_firstDiagnose_font_color">24</td>
+																				</tr>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">床号：</td>
+																					<td class="class_firstDiagnose_font_color"></td>
+																				</tr>
+																			</table>
+																		</div>
+																	</div>
+																	<!--end content-->
+																	<!--begin content-->
+																	<div class="class_firstDiagnose_blood_info_show">
+																		<div class="class_firstDiagnose_table_width">
+																			<table>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">病案：</td>
+																					<td class="class_firstDiagnose_font_color">无</td>
+																				</tr>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">申请科室：</td>
+																					<td class="class_firstDiagnose_font_color">妇产科</td>
+																				</tr>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">标本种类：</td>
+																					<td class="class_firstDiagnose_font_color">血清</td>
+																				</tr>
+																			</table>
+																		</div>
+																	</div>
+																	<!--end content-->
+																	<!--begin content-->
+																	<div class="class_firstDiagnose_blood_info_show">
+																		<div class="class_firstDiagnose_table_width">
+																			<table>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">费别：</td>
+																					<td class="class_firstDiagnose_font_color">自费</td>
+																				</tr>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">送检医师：</td>
+																					<td class="class_firstDiagnose_font_color">黄某某</td>
+																				</tr>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">临床诊断：</td>
+																					<td class="class_firstDiagnose_font_color">无</td>
+																				</tr>
+																			</table>
+																		</div>
+																	</div>
+																	<!--end content-->
+																	<!--begin content-->
+																	<div class="class_firstDiagnose_blood_info_show">
+																		<div class="class_firstDiagnose_table_width">
+																			<table>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">标本编号：</td>
+																					<td class="class_firstDiagnose_font_color">123456</td>
+																				</tr>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">条码编号：</td>
+																					<td class="class_firstDiagnose_font_color">654321</td>
+																				</tr>
+																			</table>
+																		</div>
+																	</div>
+																	<!--end content-->
+																</div>
+																<div>
+																	<!--begin bloodrule-->
+																	<div class="class_firstDiagnose_project_container">
+																		<!--left-->
+																		<div class="class_firstDiagnose_theme_content">
+																			<div style="height:5px; clear: both;"></div>
+																			<div class="class_firstDiagnose_table_container">
+																				<table>
+																					<tr class="tr_firstDiagnose_width tr_firstDiagnose_color">
+																						<td>名称</td>
+																						<td>简称</td>
+																						<td>单位</td>
+																						<td>参考值</td>
+																					</tr>
+																					<tr class="tr_firstDiagnose_width">
+																						<td>人免疫缺陷病毒</td>
+																						<td>HIV1/2</td>
+																						<td>阴性</td>
+																						<td></td>
+																					</tr>
+																					<tr class="tr_firstDiagnose_width">
+																						<td>梅毒螺旋体抗体测定</td>
+																						<td>TP-Ab</td>
+																						<td>阴性</td>
+																						<td></td>
+																					</tr>
+																					<tr class="tr_firstDiagnose_width">
+																						<td>丙型肝炎抗体</td>
+																						<td>HCV-Ab</td>
+																						<td>阴性</td>
+																						<td></td>
+																					</tr>
+																					<tr class="tr_firstDiagnose_width">
+																						<td>乙型肝炎表面抗原</td>
+																						<td>HBsAg</td>
+																						<td>阴性</td>
+																						<td></td>
+																					</tr>
+																					<tr class="tr_firstDiagnose_width">
+																						<td>乙型肝炎表面抗体</td>
+																						<td>HBsAb</td>
+																						<td>阴性</td>
+																						<td></td>
+																					</tr>
+
+																					<tr class="tr_firstDiagnose_width">
+																						<td></td>
+																						<td></td>
+																						<td></td>
+																						<td>
+																							<div class="class_color_tow" onclick="showMore(4)">点击查看原始报告单</div>
+																						</td>
+																					</tr>
+																				</table>
+																			</div>
+																		</div>
+																	</div>
+																	<!--end bloodrule-->
+																	<div style="height:95px; clear: both;"></div>
+																	<div>
+																		<!--begin content-->
+																		<div class="class_firstDiagnose_perinatalPeriod_info_show">
+																			<div class="class_firstDiagnose_table_width">
+																				<table>
+																					<tr class="class_firstDiagnose_tr_height">
+																						<td class="class_firstDiagnose_td_width">核收时间：</td>
+																						<td class="class_firstDiagnose_font_color">2017/1/1</td>
+																					</tr>
+																				</table>
+																			</div>
+																		</div>
+																		<!--end content-->
+																		<!--begin content-->
+																		<div class="class_firstDiagnose_perinatalPeriod_info_show">
+																			<div class="class_firstDiagnose_table_width">
+																				<table>
+																					<tr class="class_firstDiagnose_tr_height">
+																						<td class="class_firstDiagnose_td_width">报告时间：</td>
+																						<td class="class_firstDiagnose_font_color">2017/1/1</td>
+																					</tr>
+																				</table>
+																			</div>
+																		</div>
+																		<!--end content-->
+																		<!--begin content-->
+																		<div class="class_firstDiagnose_perinatalPeriod_info_show">
+																			<div class="class_firstDiagnose_table_width">
+																				<table>
+																					<tr class="class_firstDiagnose_tr_height">
+																						<td class="class_firstDiagnose_td_width">检查者：</td>
+																						<td class="class_firstDiagnose_font_color">F553</td>
+																					</tr>
+																				</table>
+																			</div>
+																		</div>
+																		<!--end content-->
+																		<!--begin content-->
+																		<div class="class_firstDiagnose_perinatalPeriod_info_show">
+																			<div class="class_firstDiagnose_table_width">
+																				<table>
+																					<tr class="class_firstDiagnose_tr_height">
+																						<td class="class_firstDiagnose_td_width">审核者：</td>
+																						<td class="class_firstDiagnose_font_color">刘彩燕</td>
+																					</tr>
+																				</table>
+																			</div>
+																		</div>
+																		<!--end content-->
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div class="item">
+															<!-- eugenicsFive-->
+															<div class="div_firstDiagnose_eugenicsFive">
+																<div style="clear: both;">
+																	<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><img src="images/close.png"/></button>
+																</div>
+																<div class="class_firstDiagnose_theme">
+																	东莞市妇幼保健院
+																</div>
+																<div class="class_firstDiagnose_table_width">
+																	<!--begin content-->
+																	<div class="class_firstDiagnose_blood_info_show">
+																		<div class="class_firstDiagnose_table_width">
+																			<table>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">姓名：</td>
+																					<td class="class_firstDiagnose_font_color">阮芳</td>
+																				</tr>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">年龄：</td>
+																					<td class="class_firstDiagnose_font_color">24</td>
+																				</tr>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">床号：</td>
+																					<td class="class_firstDiagnose_font_color"></td>
+																				</tr>
+																			</table>
+																		</div>
+																	</div>
+																	<!--end content-->
+																	<!--begin content-->
+																	<div class="class_firstDiagnose_blood_info_show">
+																		<div class="class_firstDiagnose_table_width">
+																			<table>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">病案：</td>
+																					<td class="class_firstDiagnose_font_color">无</td>
+																				</tr>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">申请科室：</td>
+																					<td class="class_firstDiagnose_font_color">妇产科</td>
+																				</tr>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">标本种类：</td>
+																					<td class="class_firstDiagnose_font_color">血清</td>
+																				</tr>
+																			</table>
+																		</div>
+																	</div>
+																	<!--end content-->
+																	<!--begin content-->
+																	<div class="class_firstDiagnose_blood_info_show">
+																		<div class="class_firstDiagnose_table_width">
+																			<table>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">费别：</td>
+																					<td class="class_firstDiagnose_font_color">自费</td>
+																				</tr>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">送检医师：</td>
+																					<td class="class_firstDiagnose_font_color">黄某某</td>
+																				</tr>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">临床诊断：</td>
+																					<td class="class_firstDiagnose_font_color">无</td>
+																				</tr>
+																			</table>
+																		</div>
+																	</div>
+																	<!--end content-->
+																	<!--begin content-->
+																	<div class="class_firstDiagnose_blood_info_show">
+																		<div class="class_firstDiagnose_table_width">
+																			<table>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">标本编号：</td>
+																					<td class="class_firstDiagnose_font_color">123456</td>
+																				</tr>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">条码编号：</td>
+																					<td class="class_firstDiagnose_font_color">654321</td>
+																				</tr>
+																			</table>
+																		</div>
+																	</div>
+																	<!--end content-->
+																</div>
+																<div>
+																	<!--begin bloodrule-->
+																	<div class="class_firstDiagnose_project_container">
+																		<!--left-->
+																		<div class="class_firstDiagnose_theme_content">
+																			<div style="height:5px; clear: both;"></div>
+																			<div class="class_firstDiagnose_table_container">
+																				<table>
+																					<tr class="tr_firstDiagnose_width tr_firstDiagnose_color">
+																						<td>名称</td>
+																						<td>结果</td>
+																						<td>单位</td>
+																						<td>参考值</td>
+																					</tr>
+																					<tr class="tr_firstDiagnose_width">
+																						<td>弓形体IgM</td>
+																						<td>＜0.130</td>
+																						<td>IU/ml</td>
+																						<td>＜3</td>
+																					</tr>
+																					<tr class="tr_firstDiagnose_width">
+																						<td>弓形体IgG</td>
+																						<td>0.189</td>
+																						<td>COI</td>
+																						<td>＜1</td>
+																					</tr>
+																					<tr class="tr_firstDiagnose_width">
+																						<td>风疹病毒IgG抗体</td>
+																						<td>＜0.170</td>
+																						<td>IU/ml</td>
+																						<td>＜10</td>
+																					</tr>
+																					<tr class="tr_firstDiagnose_width">
+																						<td>巨细胞病毒IgM抗体</td>
+																						<td>0.207</td>
+																						<td>U/ml</td>
+																						<td>＜1</td>
+																					</tr>
+																					<tr class="tr_firstDiagnose_width">
+																						<td>巨细胞病毒IgG抗体</td>
+																						<td>＞500.0</td>
+																						<td>COI</td>
+																						<td>＜1</td>
+																					</tr>
+
+																					<tr class="tr_firstDiagnose_width">
+																						<td></td>
+																						<td></td>
+																						<td></td>
+																						<td>
+																							<div class="class_color_tow" onclick="showMore(5)">点击查看原始报告单</div>
+																						</td>
+																					</tr>
+																				</table>
+																			</div>
+																		</div>
+																	</div>
+																	<!--end bloodrule-->
+																	<div style="height:95px; clear: both;"></div>
+																	<div>
+																		<!--begin content-->
+																		<div class="class_firstDiagnose_perinatalPeriod_info_show">
+																			<div class="class_firstDiagnose_table_width">
+																				<table>
+																					<tr class="class_firstDiagnose_tr_height">
+																						<td class="class_firstDiagnose_td_width">核收时间：</td>
+																						<td class="class_firstDiagnose_font_color">2017/1/1</td>
+																					</tr>
+																				</table>
+																			</div>
+																		</div>
+																		<!--end content-->
+																		<!--begin content-->
+																		<div class="class_firstDiagnose_perinatalPeriod_info_show">
+																			<div class="class_firstDiagnose_table_width">
+																				<table>
+																					<tr class="class_firstDiagnose_tr_height">
+																						<td class="class_firstDiagnose_td_width">报告时间：</td>
+																						<td class="class_firstDiagnose_font_color">2017/1/1</td>
+																					</tr>
+																				</table>
+																			</div>
+																		</div>
+																		<!--end content-->
+																		<!--begin content-->
+																		<div class="class_firstDiagnose_perinatalPeriod_info_show">
+																			<div class="class_firstDiagnose_table_width">
+																				<table>
+																					<tr class="class_firstDiagnose_tr_height">
+																						<td class="class_firstDiagnose_td_width">检查者：</td>
+																						<td class="class_firstDiagnose_font_color">F553</td>
+																					</tr>
+																				</table>
+																			</div>
+																		</div>
+																		<!--end content-->
+																		<!--begin content-->
+																		<div class="class_firstDiagnose_perinatalPeriod_info_show">
+																			<div class="class_firstDiagnose_table_width">
+																				<table>
+																					<tr class="class_firstDiagnose_tr_height">
+																						<td class="class_firstDiagnose_td_width">审核者：</td>
+																						<td class="class_firstDiagnose_font_color">刘彩燕</td>
+																					</tr>
+																				</table>
+																			</div>
+																		</div>
+																		<!--end content-->
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div class="item">
+															<!-- bloodTypeScreening-->
+															<div class="div_firstDiagnose_bloodTypeScreening">
+																<div style="clear: both;">
+																	<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><img src="images/close.png"/></button>
+																</div>
+																<div class="class_firstDiagnose_theme">
+																	东莞市妇幼保健院
+																</div>
+																<div class="class_firstDiagnose_table_width">
+																	<!--begin content-->
+																	<div class="class_firstDiagnose_blood_info_show">
+																		<div class="class_firstDiagnose_table_width">
+																			<table>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">姓名：</td>
+																					<td class="class_firstDiagnose_font_color">阮芳</td>
+																				</tr>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">年龄：</td>
+																					<td class="class_firstDiagnose_font_color">24</td>
+																				</tr>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">床号：</td>
+																					<td class="class_firstDiagnose_font_color"></td>
+																				</tr>
+																			</table>
+																		</div>
+																	</div>
+																	<!--end content-->
+																	<!--begin content-->
+																	<div class="class_firstDiagnose_blood_info_show">
+																		<div class="class_firstDiagnose_table_width">
+																			<table>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">病案：</td>
+																					<td class="class_firstDiagnose_font_color">无</td>
+																				</tr>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">申请科室：</td>
+																					<td class="class_firstDiagnose_font_color">妇产科</td>
+																				</tr>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">标本种类：</td>
+																					<td class="class_firstDiagnose_font_color">血清</td>
+																				</tr>
+																			</table>
+																		</div>
+																	</div>
+																	<!--end content-->
+																	<!--begin content-->
+																	<div class="class_firstDiagnose_blood_info_show">
+																		<div class="class_firstDiagnose_table_width">
+																			<table>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">费别：</td>
+																					<td class="class_firstDiagnose_font_color">自费</td>
+																				</tr>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">送检医师：</td>
+																					<td class="class_firstDiagnose_font_color">黄某某</td>
+																				</tr>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">临床诊断：</td>
+																					<td class="class_firstDiagnose_font_color">无</td>
+																				</tr>
+																			</table>
+																		</div>
+																	</div>
+																	<!--end content-->
+																	<!--begin content-->
+																	<div class="class_firstDiagnose_blood_info_show">
+																		<div class="class_firstDiagnose_table_width">
+																			<table>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">标本编号：</td>
+																					<td class="class_firstDiagnose_font_color">123456</td>
+																				</tr>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">条码编号：</td>
+																					<td class="class_firstDiagnose_font_color">654321</td>
+																				</tr>
+																			</table>
+																		</div>
+																	</div>
+																	<!--end content-->
+																</div>
+																<div>
+																	<!--begin bloodrule-->
+																	<div class="class_firstDiagnose_project_container">
+																		<!--left-->
+																		<div class="class_firstDiagnose_theme_content">
+																			<div style="height:5px; clear: both;"></div>
+																			<div class="class_firstDiagnose_table_container">
+																				<table>
+																					<tr class="tr_firstDiagnose_width tr_firstDiagnose_color">
+																						<td>名称</td>
+																						<td>结果</td>
+																						<td>单位</td>
+																						<td>参考值</td>
+																					</tr>
+																					<tr class="tr_firstDiagnose_width">
+																						<td>孕妇ABO血型</td>
+																						<td>O型</td>
+																						<td></td>
+																						<td></td>
+																					</tr>
+																					<tr class="tr_firstDiagnose_width">
+																						<td>孕妇Rh血型</td>
+																						<td>阳性（+）</td>
+																						<td></td>
+																						<td></td>
+																					</tr>
+																					<tr class="tr_firstDiagnose_width">
+																						<td>丈夫ABO血型</td>
+																						<td>B型</td>
+																						<td></td>
+																						<td></td>
+																					</tr>
+																					<tr class="tr_firstDiagnose_width">
+																						<td>丈夫Rh血型</td>
+																						<td>阴性（-）</td>
+																						<td></td>
+																						<td></td>
+																					</tr>
+																					<tr class="tr_firstDiagnose_width">
+																						<td>母胎血清抗A（IgG）效价</td>
+																						<td>＜1:64</td>
+																						<td></td>
+																						<td>＜1:64</td>
+																					</tr>
+																					<tr class="tr_firstDiagnose_width">
+																						<td></td>
+																						<td></td>
+																						<td></td>
+																						<td></td>
+																					</tr>
+																					<tr class="tr_firstDiagnose_width">
+																						<td></td>
+																						<td></td>
+																						<td></td>
+																						<td></td>
+																					</tr>
+																					<tr class="tr_firstDiagnose_width">
+																						<td></td>
+																						<td></td>
+																						<td></td>
+																						<td>
+																							<div class="class_color_tow" onclick="showMore(6)">点击查看原始报告单</div>
+																						</td>
+																					</tr>
+																				</table>
+																			</div>
+																		</div>
+																	</div>
+																	<!--end bloodrule-->
+																	<div style="height:95px; clear: both;"></div>
+																	<div>
+																		<!--begin content-->
+																		<div class="class_firstDiagnose_perinatalPeriod_info_show">
+																			<div class="class_firstDiagnose_table_width">
+																				<table>
+																					<tr class="class_firstDiagnose_tr_height">
+																						<td class="class_firstDiagnose_td_width">核收时间：</td>
+																						<td class="class_firstDiagnose_font_color">2017/1/1</td>
+																					</tr>
+																				</table>
+																			</div>
+																		</div>
+																		<!--end content-->
+																		<!--begin content-->
+																		<div class="class_firstDiagnose_perinatalPeriod_info_show">
+																			<div class="class_firstDiagnose_table_width">
+																				<table>
+																					<tr class="class_firstDiagnose_tr_height">
+																						<td class="class_firstDiagnose_td_width">报告时间：</td>
+																						<td class="class_firstDiagnose_font_color">2017/1/1</td>
+																					</tr>
+																				</table>
+																			</div>
+																		</div>
+																		<!--end content-->
+																		<!--begin content-->
+																		<div class="class_firstDiagnose_perinatalPeriod_info_show">
+																			<div class="class_firstDiagnose_table_width">
+																				<table>
+																					<tr class="class_firstDiagnose_tr_height">
+																						<td class="class_firstDiagnose_td_width">检查者：</td>
+																						<td class="class_firstDiagnose_font_color">F553</td>
+																					</tr>
+																				</table>
+																			</div>
+																		</div>
+																		<!--end content-->
+																		<!--begin content-->
+																		<div class="class_firstDiagnose_perinatalPeriod_info_show">
+																			<div class="class_firstDiagnose_table_width">
+																				<table>
+																					<tr class="class_firstDiagnose_tr_height">
+																						<td class="class_firstDiagnose_td_width">审核者：</td>
+																						<td class="class_firstDiagnose_font_color">刘彩燕</td>
+																					</tr>
+																				</table>
+																			</div>
+																		</div>
+																		<!--end content-->
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div class="item">
+															<!--electrocardio-->
+															<div class="class_firstDiagnose_electrocardio">
+																<div style="clear: both;">
+																	<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><img src="images/close.png"/></button>
+																</div>
+																<div class="class_firstDiagnose_theme">
+																	东莞市妇幼保健院
+																</div>
+																<div class="class_firstDiagnose_table_width">
+																	<!--begin content-->
+																	<div class="class_firstDiagnose_blood_info_show">
+																		<div class="class_firstDiagnose_table_width">
+																			<table>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">姓名：</td>
+																					<td class="class_firstDiagnose_font_color">阮芳</td>
+																				</tr>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">年龄：</td>
+																					<td class="class_firstDiagnose_font_color">24</td>
+																				</tr>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">床号：</td>
+																					<td class="class_firstDiagnose_font_color"></td>
+																				</tr>
+																			</table>
+																		</div>
+																	</div>
+																	<!--end content-->
+																	<!--begin content-->
+																	<div class="class_firstDiagnose_blood_info_show">
+																		<div class="class_firstDiagnose_table_width">
+																			<table>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">病案：</td>
+																					<td class="class_firstDiagnose_font_color">无</td>
+																				</tr>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">申请科室：</td>
+																					<td class="class_firstDiagnose_font_color">妇产科</td>
+																				</tr>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">标本种类：</td>
+																					<td class="class_firstDiagnose_font_color">血清</td>
+																				</tr>
+																			</table>
+																		</div>
+																	</div>
+																	<!--end content-->
+																	<!--begin content-->
+																	<div class="class_firstDiagnose_blood_info_show">
+																		<div class="class_firstDiagnose_table_width">
+																			<table>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">费别：</td>
+																					<td class="class_firstDiagnose_font_color">自费</td>
+																				</tr>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">送检医师：</td>
+																					<td class="class_firstDiagnose_font_color">黄某某</td>
+																				</tr>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">临床诊断：</td>
+																					<td class="class_firstDiagnose_font_color">无</td>
+																				</tr>
+																			</table>
+																		</div>
+																	</div>
+																	<!--end content-->
+																	<!--begin content-->
+																	<div class="class_firstDiagnose_blood_info_show">
+																		<div class="class_firstDiagnose_table_width">
+																			<table>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">标本编号：</td>
+																					<td class="class_firstDiagnose_font_color">123456</td>
+																				</tr>
+																				<tr class="class_firstDiagnose_tr_height">
+																					<td class="class_firstDiagnose_td_width">条码编号：</td>
+																					<td class="class_firstDiagnose_font_color">654321</td>
+																				</tr>
+																			</table>
+																		</div>
+																	</div>
+																	<!--end content-->
+																</div>
+																<div>
+																	<!--begin bloodrule-->
+																	<div class="class_firstDiagnose_project_container">
+																		<!--left-->
+																		<div class="class_firstDiagnose_theme_content">
+																			<div style="height:5px; clear: both;"></div>
+																			<div class="class_firstDiagnose_bModeUltrasound_container">
+																				<div class="left_firstDiagnos_electrocardio">
+																					<div class="record_firstDiagnos_electrocardio">心电检查结果<br /><img src="images/b_record.png" /></div>
+																				</div>
+																				<div class="class_firstDiagnos_bModeUltrasound_right">
+																					<table class="table_firstDiagnos_electrocardio">
+																						<tr class="class_firstDiagnose_bModeUltrasound_tr_height">
+																							<td class="td_firstDiagnos_width">心律:</td>
+																							<td class="td_firstDiagnose_color">84</td>
+																							<td>bpm</td>
+																						</tr>
+																						<tr class="class_firstDiagnose_bModeUltrasound_tr_height">
+																							<td s>PR间期:</td>
+																							<td class="td_firstDiagnose_color">162</td>
+																							<td>ms</td>
+																						</tr>
+																						<tr class="class_firstDiagnose_bModeUltrasound_tr_height">
+																							<td>QRS宽度:</td>
+																							<td class="td_firstDiagnose_color">94</td>
+																							<td>ms</td>
+																						</tr>
+																					</table>
+																					<table class="table_firstDiagnos_electrocardio">
+																						<tr class="class_firstDiagnose_bModeUltrasound_tr_height">
+																							<td class="td_firstDiagnos_width">QT/QTC间期:</td>
+																							<td class="td_firstDiagnose_color">362/403</td>
+																							<td>ms</td>
+																						</tr>
+																						<tr class="class_firstDiagnose_bModeUltrasound_tr_height">
+																							<td>RV5/SVI幅度:</td>
+																							<td class="td_firstDiagnose_color">0.69/0.24</td>
+																							<td>mV</td>
+																						</tr>
+																						<tr class="class_firstDiagnose_bModeUltrasound_tr_height">
+																							<td>RV5+SVI幅度:</td>
+																							<td class="td_firstDiagnose_color">0.94</td>
+																							<td>mV</td>
+																						</tr>
+																					</table>
+																				</div>
+																			</div>
+																			<div class="result_firstDiagnose_analyze">
+																				<div class="charater_firstDiagnose_analyze">分析结果</div>
+																				<div class="charater_firstDiagnose_analyze">诊断: </div>
+																				<div>
+																					1.窦性心律 <br /> 2.心电轴右偏
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																	<!--end bloodrule-->
+																	<div style="height: 15px; clear: both;"></div>
+																	<div>
+																		<!--begin content-->
+																		<div class="class_firstDiagnose_perinatalPeriod_info_show">
+																			<div class="class_firstDiagnose_table_width">
+																				<table>
+																					<tr class="class_firstDiagnose_tr_height">
+																						<td class="class_firstDiagnose_td_width">核收时间：</td>
+																						<td class="class_firstDiagnose_font_color"></td>
+																					</tr>
+																				</table>
+																			</div>
+																		</div>
+																		<!--end content-->
+																		<!--begin content-->
+																		<div class="class_firstDiagnose_perinatalPeriod_info_show">
+																			<div class="class_firstDiagnose_table_width">
+																				<table>
+																					<tr class="class_firstDiagnose_tr_height">
+																						<td class="class_firstDiagnose_td_width">报告时间：</td>
+																						<td class="class_firstDiagnose_font_color"></td>
+																					</tr>
+																				</table>
+																			</div>
+																		</div>
+																		<!--end content-->
+																		<!--begin content-->
+																		<div class="class_firstDiagnose_perinatalPeriod_info_show">
+																			<div class="class_firstDiagnose_table_width">
+																				<table>
+																					<tr class="class_firstDiagnose_tr_height">
+																						<td class="class_firstDiagnose_td_width">检查者：</td>
+																						<td class="class_firstDiagnose_font_color">F553</td>
+																					</tr>
+																				</table>
+																			</div>
+																		</div>
+																		<!--end content-->
+																		<!--begin content-->
+																		<div class="class_firstDiagnose_perinatalPeriod_info_show">
+																			<div class="class_firstDiagnose_table_width">
+																				<table>
+																					<tr class="class_firstDiagnose_tr_height">
+																						<td class="class_firstDiagnose_td_width">审核者：</td>
+																						<td class="class_firstDiagnose_font_color">刘彩燕</td>
+																					</tr>
+																				</table>
+																			</div>
+																		</div>
+																		<!--end content-->
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+
+											<div class="img_firstDiagnose_popup_middle" style="display: none;">
+												<div class="carousel slide" id="carousel-345483">
+													<div class="carousel-inner div_firstDiagnose_show2">
+														<div class="item">
+															<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><img src="images/img_close.png" class="img_firstDiagnose_position"/></button>
+															<img src="images/blood_img.jpg" width="100%" height="100%" />
+														</div>
+														<div class="item ">
+															<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><img src="images/img_close.png" class="img_firstDiagnose_position"/></button>
+															<img src="images/Bultrasound_img.jpg" width="100%" height="100%" />
+														</div>
+														<div class="item ">
+															<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><img src="images/img_close.png" class="img_firstDiagnose_position"/></button>
+															<img src="images/routine_test.JPG" width="100%" height="100%" />
+														</div>
+														<div class="item ">
+															<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><img src="images/img_close.png" class="img_firstDiagnose_position"/></button>
+															<img src="images/liver_and_kidney.jpg" width="100%" height="100%" />
+														</div>
+														<div class="item ">
+															<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><img src="images/img_close.png" class="img_firstDiagnose_position"/></button>
+															<img src="images/blood_transfusion.jpg" width="100%" height="100%" />
+														</div>
+														<div class="item ">
+															<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><img src="images/img_close.png" class="img_firstDiagnose_position"/></button>
+															<img src="images/eugenics_five.jpg" width="100%" height="100%" />
+														</div>
+														<div class="item ">
+															<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><img src="images/img_close.png" class="img_firstDiagnose_position"/></button>
+															<img src="images/blood_type_screening.jpg" width="100%" height="100%" />
+														</div>
+														<div class="item ">
+															<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><img src="images/img_close.png" class="img_firstDiagnose_position"/></button>
+															<img src="images/electrocardio_show.jpg" width="100%" height="100%" />
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="class_firstDiagnose_popup_right">
+												<a href="#carousel-345482" class="a_firstDiagnose_href" data-slide="next"><span class="glyphicon" style="line-height:300px;"><img src="images/left_arrows.png"></span></a>
+											</div>
+										</div>
+									</div>
+
+								</div>
+								<!-- /.modal-content -->
+							</div>
+							<!-- /.modal -->
+						</div>
+
+						<!-- end 选项卡 panel-978066  -->
+					</div>
+
+				</div>
+
+				<!--end Tab-Control-->
+			</div>
+		</div>
+
+		<div id="myAdviceModal" class="modal fade" tabindex="-1" role="dialog">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="moreAdvice-modal-content moreAdvice-modal-content2">
+						<div class="modal-content-left">
+							<textarea id="myModal1_textarea" style="resize: none;" rows="" cols="">
+夜间休息时请注意按左侧卧位休息；密切监测母儿状态：每日测体重、血压、尿蛋白，注意主观症状，如主观症状持续严重，请及时到医院进行进一步检查。在饮食上减少动物脂肪的摄入，炒菜最好以植物油为主，每日20～25克。饱和脂肪酸(如猪油、牛羊油、椰子油，棕榈油等)的供热能应低于10%。经常散步、游泳或森林浴，增强抗病力，但同时要注意掌握以运动后感到舒适为原则。
+																</textarea>
+						</div>
+						<div class="modal-content-right">
+							<input id="search_keyword" type="text" style="margin: 0px;" />
+							<button class="common-color" type="button" onclick="searchKnowledge()">搜索</button>
+							<table class="advice-table1">
+								<tr>
+									<td>血糖</td>
+									<td>饮食</td>
+									<td>少盐</td>
+									<td>运动</td>
+									<td>左侧卧</td>
+									<td>血压监测</td>
+								</tr>
+							</table>
+							<div class="table2-div">
+								<table class="advice-table2">
+
+								</table>
+							</div>
+							<div class="addAdvice_warmTip">双击指定医嘱可快速添加</div>
+						</div>
+					</div>
+					<div class="button-div">
+						<input id="" class="advice-color-change advice-color-change2" type="button" value="确定修改" onclick="changeDoctorAdvice()" />
+						<input id="" class="advice-color-no-change" type="button" value="取消" onclick="myModal1Hide()" />
+						<input id="" class="advice-color-no-change" type="button" value="保存至医嘱库" onclick="saveMyAdvice1()" />
+					</div>
+				</div>
+				<!-- /.modal-content -->
+			</div>
+			<!-- /.modal-dialog -->
+		</div>
+		<div class="bt" style="display: none;height: 38px;margin-bottom: 20px;">
+			<button id="return" class="btn-primary btn-sm">返回</button>
+			<button id="primary" class="btn-primary btn-sm">确认审核</button>
+		</div>
+		<script type="text/javascript" src="js/jquery-3.js"></script>
+		<script type="text/javascript" src="../../js/getLogin.js"></script>
+		<script type="text/javascript" src="js/bootstrap.js"></script>
+		<script type="text/javascript" src="../../js/Util.js"></script>
+		<script type="text/jscript" src="js/firstDiagnose_yet_bookbuilding_info.js"></script>
+		<script type="text/javascript" src="js/GravidaFirstCheck.js"></script>
+		<script type="text/jscript" src="js/changePath.js"></script>
+		<script type="text/jscript" src="js/firstDiagnose_yet_bookbuilding_info978065.js"></script>
+		<script type="text/javascript" src="js/Message.js"></script>
+		<script type="text/jscript" src="js/pushMsg.js"></script>
+		<script type="text/javascript" src="js/sendWeekly.js"></script>		
+	</body>
+
+</html>

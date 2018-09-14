@@ -1,0 +1,42 @@
+body{
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.active5 {
+	margin: 0px;
+	width: 10%;
+}
+.nav>li>a {
+	cursor: pointer;
+	border-radius: inherit;
+}
+
+.search input {
+	height: 34px!important;
+}
+
+.btn11 {
+	margin-left: 0px;
+}
+.btn22{
+	position: absolute;
+	left: 70px;
+	top: 229px;
+}
+.btn22 button{
+	width: 100px;
+}
+
+/*.active5 .neiceng{
+	width:80px;
+}*/
+.content_search {
+	padding: 0 0 0px 0;
+	height:20px;
+}
+/**
+ * 服务套餐弹框
+ */
+

@@ -1,0 +1,62 @@
+body{
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.nav>li>a {
+	cursor: pointer;
+	border-radius: inherit;
+}
+
+.search input {
+	height: 34px!important;
+}
+
+.content_search select {
+	width: 110px;
+}
+
+.content_search input {
+	width: 110px;
+}
+
+.active5 {
+	margin: 0px;
+	width: 16%;
+}
+
+.btn11 {
+	margin-left: 0px;
+}
+
+#queryInfo,
+#queryReset {
+	width: 80px;
+	background-color: #5794E7;
+	border: none;
+}
+
+#queryReset {
+	float: right;
+}
+
+.btn11 {
+	float: right;
+}
+/**
+ * 搜索框
+ */
+.content_search {
+	padding: 0 0 20px 0;
+}
+/**
+ * 查询按钮
+ */
+.btn-class{
+	padding-top: 50px;
+	width: 100%;
+}
+/*.active5 .neiceng{
+	width:80px;
+}*/

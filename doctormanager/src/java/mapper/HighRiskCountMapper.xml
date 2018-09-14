@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.yunji.doctormanager.dao.HighRiskCountMapper" >
+  <resultMap id="BaseResultMap" type="cn.yunji.doctormanager.entity.HighRiskCount" >
+    <id column="highRiskCountId" property="highriskcountid" jdbcType="INTEGER" />
+    <result column="cid" property="cid" jdbcType="INTEGER" />
+    <result column="highRiskName" property="highriskname" jdbcType="VARCHAR" />
+    <result column="cbegin" property="cbegin" jdbcType="DECIMAL" />
+    <result column="highRiskScore" property="highriskscore" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    highRiskCountId, cid, highRiskName, cbegin, highRiskScore
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from highriskcount
+    where highRiskCountId = #{highriskcountid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from highriskcount
+    where highRiskCountId = #{highriskcountid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.yunji.doctormanager.entity.HighRiskCount" >
+    insert into highriskcount (highRiskCountId, cid, highRiskName, 
+      cbegin, highRiskScore)
+    values (#{highriskcountid,jdbcType=INTEGER}, #{cid,jdbcType=INTEGER}, #{highriskname,jdbcType=VARCHAR}, 
+      #{cbegin,jdbcType=DECIMAL}, #{highriskscore,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.yunji.doctormanager.entity.HighRiskCount" >
+    insert into highriskcount
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="highriskcountid != null" >
+        highRiskCountId,
+      </if>
+      <if test="cid != null" >
+        cid,
+      </if>
+      <if test="highriskname != null" >
+        highRiskName,
+      </if>
+      <if test="cbegin != null" >
+        cbegin,
+      </if>
+      <if test="highriskscore != null" >
+        highRiskScore,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="highriskcountid != null" >
+        #{highriskcountid,jdbcType=INTEGER},
+      </if>
+      <if test="cid != null" >
+        #{cid,jdbcType=INTEGER},
+      </if>
+      <if test="highriskname != null" >
+        #{highriskname,jdbcType=VARCHAR},
+      </if>
+      <if test="cbegin != null" >
+        #{cbegin,jdbcType=DECIMAL},
+      </if>
+      <if test="highriskscore != null" >
+        #{highriskscore,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.yunji.doctormanager.entity.HighRiskCount" >
+    update highriskcount
+    <set >
+      <if test="cid != null" >
+        cid = #{cid,jdbcType=INTEGER},
+      </if>
+      <if test="highriskname != null" >
+        highRiskName = #{highriskname,jdbcType=VARCHAR},
+      </if>
+      <if test="cbegin != null" >
+        cbegin = #{cbegin,jdbcType=DECIMAL},
+      </if>
+      <if test="highriskscore != null" >
+        highRiskScore = #{highriskscore,jdbcType=INTEGER},
+      </if>
+    </set>
+    where highRiskCountId = #{highriskcountid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.yunji.doctormanager.entity.HighRiskCount" >
+    update highriskcount
+    set cid = #{cid,jdbcType=INTEGER},
+      highRiskName = #{highriskname,jdbcType=VARCHAR},
+      cbegin = #{cbegin,jdbcType=DECIMAL},
+      highRiskScore = #{highriskscore,jdbcType=INTEGER}
+    where highRiskCountId = #{highriskcountid,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.yunji.doctormanager.dao.HelpRecordsMapper" >
+  <resultMap id="BaseResultMap" type="cn.yunji.doctormanager.entity.HelpRecords" >
+    <id column="logid" property="logid" jdbcType="INTEGER" />
+    <result column="senderid" property="senderid" jdbcType="CHAR" />
+    <result column="receiverid" property="receiverid" jdbcType="CHAR" />
+    <result column="log_stuta" property="logStuta" jdbcType="INTEGER" />
+    <result column="sendcontent" property="sendcontent" jdbcType="VARCHAR" />
+    <result column="fileType" property="filetype" jdbcType="INTEGER" />
+    <result column="sendDate" property="senddate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    logid, senderid, receiverid, log_stuta, sendcontent, fileType, sendDate
+  </sql>
+  
+   <!-- 以发送人id与接收人id查询 author zhangqt -->
+   <select id="queryById" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from helprecords
+    where senderid = #{0} or senderid = #{1} and receiverid = #{0} or receiverid = #{0}
+  </select>
+  
+   <!-- 以发送人id与接收人id查询未读信息 author zhangqt -->
+   <select id="queryByStatu" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from helprecords
+    where senderid = #{1} and receiverid = #{0}  and  log_stuta = 0
+  </select>
+  
+  <!-- 改变updateStatu为已读  -->
+  <update id="updateStatu" parameterType="java.lang.String" >
+    update helprecords
+    set log_stuta = 1
+    where senderid = #{1} and receiverid = #{0}  and  log_stuta = 0
+  </update>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from helprecords
+    where logid = #{logid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from helprecords
+    where logid = #{logid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.yunji.doctormanager.entity.HelpRecords" >
+    insert into helprecords (logid, senderid, receiverid, 
+      log_stuta, sendcontent, fileType, 
+      sendDate)
+    values (#{logid,jdbcType=INTEGER}, #{senderid,jdbcType=CHAR}, #{receiverid,jdbcType=CHAR}, 
+      #{logStuta,jdbcType=INTEGER}, #{sendcontent,jdbcType=VARCHAR}, #{filetype,jdbcType=INTEGER}, 
+      #{senddate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.yunji.doctormanager.entity.HelpRecords" >
+    insert into helprecords
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="logid != null" >
+        logid,
+      </if>
+      <if test="senderid != null" >
+        senderid,
+      </if>
+      <if test="receiverid != null" >
+        receiverid,
+      </if>
+      <if test="logStuta != null" >
+        log_stuta,
+      </if>
+      <if test="sendcontent != null" >
+        sendcontent,
+      </if>
+      <if test="filetype != null" >
+        fileType,
+      </if>
+      <if test="senddate != null" >
+        sendDate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="logid != null" >
+        #{logid,jdbcType=INTEGER},
+      </if>
+      <if test="senderid != null" >
+        #{senderid,jdbcType=CHAR},
+      </if>
+      <if test="receiverid != null" >
+        #{receiverid,jdbcType=CHAR},
+      </if>
+      <if test="logStuta != null" >
+        #{logStuta,jdbcType=INTEGER},
+      </if>
+      <if test="sendcontent != null" >
+        #{sendcontent,jdbcType=VARCHAR},
+      </if>
+      <if test="filetype != null" >
+        #{filetype,jdbcType=INTEGER},
+      </if>
+      <if test="senddate != null" >
+        #{senddate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.yunji.doctormanager.entity.HelpRecords" >
+    update helprecords
+    <set >
+      <if test="senderid != null" >
+        senderid = #{senderid,jdbcType=CHAR},
+      </if>
+      <if test="receiverid != null" >
+        receiverid = #{receiverid,jdbcType=CHAR},
+      </if>
+      <if test="logStuta != null" >
+        log_stuta = #{logStuta,jdbcType=INTEGER},
+      </if>
+      <if test="sendcontent != null" >
+        sendcontent = #{sendcontent,jdbcType=VARCHAR},
+      </if>
+      <if test="filetype != null" >
+        fileType = #{filetype,jdbcType=INTEGER},
+      </if>
+      <if test="senddate != null" >
+        sendDate = #{senddate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where logid = #{logid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.yunji.doctormanager.entity.HelpRecords" >
+    update helprecords
+    set senderid = #{senderid,jdbcType=CHAR},
+      receiverid = #{receiverid,jdbcType=CHAR},
+      log_stuta = #{logStuta,jdbcType=INTEGER},
+      sendcontent = #{sendcontent,jdbcType=VARCHAR},
+      fileType = #{filetype,jdbcType=INTEGER},
+      sendDate = #{senddate,jdbcType=TIMESTAMP}
+    where logid = #{logid,jdbcType=INTEGER}
+  </update>
+</mapper>

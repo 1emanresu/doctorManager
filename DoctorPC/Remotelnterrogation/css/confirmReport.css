@@ -1,0 +1,284 @@
+*{
+	font-size: 12px;
+	color: #696969;
+	font-family: "微软雅黑";
+	outline: none;
+}
+.all_content{
+	margin-left: 120px;
+}
+.top-left-img{
+	position: absolute;
+	top: 0px;
+	left: 20px;
+}
+.doctor-advice-title{
+	font-size: 16px;
+	margin-top: 17px;
+	font-weight: 700;
+}
+.second-class-title{
+	margin-top: 20px;
+	font-size: 14px;
+	color: #1F6ACF;
+	font-weight: bold;
+}
+.third_class_titile{
+	color: rgb(255,153,0);
+	font-size: 13px;
+	font-weight: 700;
+	margin-bottom: 10px;
+}
+.abnormal_index{
+	margin-bottom: -14px;
+}
+.self_description_table{
+	line-height: 25px;
+}
+.tables_div{
+	display: flex;
+	margin-right: 120px;
+	margin-top: 20px;
+}
+.div-left{
+	flex: 1;
+}
+.div-right{
+	flex: 1;
+}
+.table-for-usual tr td{
+	font-size: 12px;
+	color: #696969;
+	border: 1px solid #333333;
+	text-align: center;
+	padding: 0 20px;
+	line-height: 28px;
+}
+.self_test_table{
+	width: 88%;
+	margin-top: 20px;
+	text-align: center;
+}
+.secondLineRed tr td:nth-child(2){
+	color:red;
+}
+.secondLineRed tr:first-child td:nth-child(2){
+	color:#696969;
+}
+.thirdLineRed tr td:nth-child(3){
+	color:red;
+}
+.thirdLineRed tr:first-child td:nth-child(3){
+	color:#696969;
+}
+.moreAdvice-modal-content {
+	display: flex;
+	margin-right: 110px;
+}
+
+.modal-content-left {
+	flex: 1;
+}
+
+.modal-content-right input {
+	width: 24vw;
+	border: 1px solid rgb(119,191,230);
+	border-right-color: white;
+	height: 40px;
+	font-size: 14px;
+	padding-left: 10px;
+}
+
+.modal-content-right button {
+	width: 12.5vw;
+	margin-left: -4px;
+	height: 40px;
+}
+
+.modal-content-right {
+	flex: 1;
+}
+
+.modal-content-left textarea {
+	width: 90%;
+	border: none;
+	height: 340px;
+	font-size: 14px;
+	background-color: rgba(255,255,255,0);
+	border: 1px solid #333333;
+	border-radius: 5px;
+	margin-top: 15px;
+	color: rgb(22,155,213);
+}
+#search_keyword{
+	margin-top: 15px;
+}
+.modal-content {
+	padding-bottom: 10px;
+	padding-top: 0px;
+	width: 40vw;
+	position: fixed;
+	margin-top: 90px;
+	left: -8vw;
+	background-color: #76b0ff;
+}
+
+.advice-color-change {
+	background-color: #76b0ff;
+	color: white;
+	height: 30px;
+	border-radius: 5px;
+	font-size: 14px;
+	width: 150px;
+	border: none;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	outline: none;
+}
+.advice-color-no-change {
+	border: 1px solid #666666;
+	color: #666666;
+	height: 30px;
+	border-radius: 5px;
+	font-size: 14px;
+	width: 150px;
+	background-color: rgba(255,255,255,0);
+	margin-top: 10px;
+	margin-left: 20px;
+	outline: none;
+}
+
+.button-div {
+	margin-right:120px ;
+}
+.button-center{
+	width: 325px;
+	margin: 0 auto;
+}
+.common-color {
+	background-color: rgb(122,159,209);
+	color: white;
+	font-size: 14px;
+	border: none;
+}
+
+.advice-table1 {	
+	margin: 15px;
+}
+
+.advice-table1 td {
+	border-right: 1px solid rgb(204, 204, 204);
+	padding: 0 10px;
+	color: rgb(204, 204, 204);
+	
+}
+
+#search_keyword{
+	margin-left: 15px;
+	float: left;
+	margin-top: 0px;
+}
+.advice-table1 td:last-child {
+	border: none;
+	padding-right: 0px;
+}
+
+.advice-table1 td:first-child {
+	padding-left: 0px;
+}
+
+.table2-div {
+	margin:5px 15px;
+	border: 1px solid rgb(169, 169, 169);
+	border-right:none ;
+	background-color: white;
+	padding: 5px;
+	height: 255px;
+	overflow-y: scroll;
+}
+.bottom-button{
+	float: right;
+	border-radius: 15px;
+	height: 25px;
+	width: 120px;
+	background-color: #76b0ff;
+	border: none;
+	color: white;
+	margin-right: 10px;
+	margin-top: 10px;
+	margin-bottom: 20px;
+	outline: none;
+}
+.bottom-button:hover{
+	background-color: #3189FB!important;
+}
+body {
+	overflow: auto;
+}
+
+/*增加鼠标悬停变色事件*/
+.advice-color-change:hover{
+	background-color: #3189FB;
+}
+.advice-color-no-change:hover{
+	border: 1px solid #404D5B;
+}
+/*异常指标分析*/
+.abnormal-analysis{
+	margin-top: 10px;
+	width: 88%
+}
+#abnormal-analysis{
+	margin: 20px 0;
+	min-height: 130px;
+	width:100%; 
+	border: 1px solid gainsboro;
+	border-radius: 5px;
+}
+/*医嘱建议*/
+.advice-input{
+	width: 88%;
+}
+#search_box{
+	width: 100%;
+}
+.doctorAdvice-input{
+	margin-left: 0px;
+}
+/*预览新CSS*/
+.top_Nav_forView{
+	margin-left: 70px;
+	margin-top: 15px;
+}
+#doctor_advice_forview{
+	width: 88%;
+	min-height: 130px;
+	border: 1px solid gainsboro;
+	border-radius: 5px;
+	margin: 20px 0;
+}
+.viewTitle{
+	font-size: 20px;
+	text-align: center;
+	margin-right: 120px;
+	margin-bottom: 50px;
+	margin-top: 30px;
+}
+.basicInfo-container{
+	line-height: 50px;
+	display: flex;
+}
+
+.div-basicInfo{
+	flex: 1;
+}
+.viewTitle span{
+	font-size: 20px;
+	font-weight: bold;
+}
+#abnormal-analysis,#doctor_advice_forview{
+	padding: 10px;
+}
+.second-class-title2{
+	color: #696969;
+}

@@ -1,0 +1,105 @@
+/*初始化*/
+a{ 
+	text-decoration:none; 
+	outline:none;
+}
+img{
+	border:none;
+}
+ul{
+	list-style:none;
+}
+.clearfix:after{
+	content:"."; 
+	display:block; 
+	height:0; 
+	clear:both; 
+	overflow:hidden;
+}
+.clearfix{
+	zoom:1;
+}
+/*日历*/
+.calendar-container{
+	width:100%;
+	margin: 10px 0px; 
+}
+.calendar-title{
+	width:100%; 
+	height:40px;
+	color:#fff;
+	background-color:whitesmoke;
+}
+.calendar-month{
+	float:left;
+	width:20%;
+	height:40px;
+	text-align:center;
+	cursor:pointer;
+	line-height:40px;
+}
+.calendar-year{
+	float:left;
+	width:20%;
+	height:40px;
+	text-align:center;
+	cursor:pointer;
+	line-height:40px;
+}
+.calendar-prevyear,
+.calendar-prevmonth,
+.calendar-nextyear,
+.calendar-nextmonth{
+	float:left;
+	width:15%; 
+	height:40px;
+	text-align:center;
+	cursor:pointer;
+	line-height:40px;
+}
+.calendar-week{
+	width:100%;
+	height:35px;
+}
+.calendar-week div{
+	float:left; 
+	width:14.28%; 
+	height:35px; 
+	color:#313131; 
+	text-align:center; 
+	line-height:40px; 
+	cursor:pointer;
+}
+.calendar-content{
+	width:100%;
+	background-color:white; 
+	padding: 5px;
+} 
+.calendar-content div{
+	float:left; 
+	width:14.28%; 
+	height: 35px;
+	line-height: 35px;
+	background-color:white; 
+	color:#333;  
+	text-align:center; 
+	cursor:pointer;
+}
+.calendar-content .canChoose{
+	background-color:white;
+}
+.calendar-content .canChoose:hover{
+	color: #fff;
+	background-color:#40A9A2;
+	text-align: center;
+	line-height:35px;
+}
+.calendar-content div.today{
+	color:#09F;
+}
+.calendar-content .chose{
+    color: #fff;
+   	background-color:#40A9A2;
+	text-align: center;
+	line-height:35px;
+}

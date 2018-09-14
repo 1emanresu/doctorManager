@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.yunji.doctormanager.dao.HighRiskResultTypeMapper" >
+  <resultMap id="BaseResultMap" type="cn.yunji.doctormanager.entity.HighRiskResultType" >
+    <id column="highRiskResultTypeId" property="highriskresulttypeid" jdbcType="INTEGER" />
+    <result column="highRiskResultType" property="highriskresulttype" jdbcType="CHAR" />
+    <result column="highRiskScore" property="highriskscore" jdbcType="INTEGER" />
+    <result column="stratValue" property="stratValue" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    highRiskResultTypeId, highRiskResultType, highRiskScore,stratValue
+  </sql>
+  <select id="findAll" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from highriskresulttype
+  </select>
+  <select id="queryByType" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from highriskresulttype
+    where highRiskScore &gt;= #{0} and stratValue &lt;= #{0}
+  </select>
+  
+   <select id="queryAll" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from highriskresulttype
+  </select>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from highriskresulttype
+    where highRiskResultTypeId = #{highriskresulttypeid,jdbcType=INTEGER}
+  </select>
+  <select id="selectByScore" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from highriskresulttype
+    where highRiskScore = #{score,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from highriskresulttype
+    where highRiskResultTypeId = #{highriskresulttypeid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.yunji.doctormanager.entity.HighRiskResultType" >
+    insert into highriskresulttype (highRiskResultTypeId, highRiskResultType, 
+      highRiskScore)
+    values (#{highriskresulttypeid,jdbcType=INTEGER}, #{highriskresulttype,jdbcType=CHAR}, 
+      #{highriskscore,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.yunji.doctormanager.entity.HighRiskResultType" >
+    insert into highriskresulttype
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="highriskresulttypeid != null" >
+        highRiskResultTypeId,
+      </if>
+      <if test="highriskresulttype != null" >
+        highRiskResultType,
+      </if>
+      <if test="highriskscore != null" >
+        highRiskScore,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="highriskresulttypeid != null" >
+        #{highriskresulttypeid,jdbcType=INTEGER},
+      </if>
+      <if test="highriskresulttype != null" >
+        #{highriskresulttype,jdbcType=CHAR},
+      </if>
+      <if test="highriskscore != null" >
+        #{highriskscore,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.yunji.doctormanager.entity.HighRiskResultType" >
+    update highriskresulttype
+    <set >
+      <if test="highriskresulttype != null" >
+        highRiskResultType = #{highriskresulttype,jdbcType=CHAR},
+      </if>
+      <if test="highriskscore != null" >
+        highRiskScore = #{highriskscore,jdbcType=INTEGER},
+      </if>
+    </set>
+    where highRiskResultTypeId = #{highriskresulttypeid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.yunji.doctormanager.entity.HighRiskResultType" >
+    update highriskresulttype
+    set highRiskResultType = #{highriskresulttype,jdbcType=CHAR},
+      highRiskScore = #{highriskscore,jdbcType=INTEGER}
+    where highRiskResultTypeId = #{highriskresulttypeid,jdbcType=INTEGER}
+  </update>
+</mapper>

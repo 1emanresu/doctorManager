@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.yunji.doctormanager.dao.SymptomProblemMapper" >
+  <resultMap id="BaseResultMap" type="cn.yunji.doctormanager.entity.SymptomProblem" >
+    <id column="spid" property="spid" jdbcType="INTEGER" />
+    <result column="sweeks" property="sweeks" jdbcType="INTEGER" />
+    <result column="eweeks" property="eweeks" jdbcType="INTEGER" />
+    <result column="problem" property="problem" jdbcType="CHAR" />
+    <result column="answer" property="answer" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    spid, sweeks, eweeks, problem, answer
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from symptomproblem
+    where spid = #{spid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from symptomproblem
+    where spid = #{spid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.yunji.doctormanager.entity.SymptomProblem" >
+    insert into symptomproblem (spid, sweeks, eweeks, 
+      problem, answer)
+    values (#{spid,jdbcType=INTEGER}, #{sweeks,jdbcType=INTEGER}, #{eweeks,jdbcType=INTEGER}, 
+      #{problem,jdbcType=CHAR}, #{answer,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.yunji.doctormanager.entity.SymptomProblem" >
+    insert into symptomproblem
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="spid != null" >
+        spid,
+      </if>
+      <if test="sweeks != null" >
+        sweeks,
+      </if>
+      <if test="eweeks != null" >
+        eweeks,
+      </if>
+      <if test="problem != null" >
+        problem,
+      </if>
+      <if test="answer != null" >
+        answer,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="spid != null" >
+        #{spid,jdbcType=INTEGER},
+      </if>
+      <if test="sweeks != null" >
+        #{sweeks,jdbcType=INTEGER},
+      </if>
+      <if test="eweeks != null" >
+        #{eweeks,jdbcType=INTEGER},
+      </if>
+      <if test="problem != null" >
+        #{problem,jdbcType=CHAR},
+      </if>
+      <if test="answer != null" >
+        #{answer,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.yunji.doctormanager.entity.SymptomProblem" >
+    update symptomproblem
+    <set >
+      <if test="sweeks != null" >
+        sweeks = #{sweeks,jdbcType=INTEGER},
+      </if>
+      <if test="eweeks != null" >
+        eweeks = #{eweeks,jdbcType=INTEGER},
+      </if>
+      <if test="problem != null" >
+        problem = #{problem,jdbcType=CHAR},
+      </if>
+      <if test="answer != null" >
+        answer = #{answer,jdbcType=CHAR},
+      </if>
+    </set>
+    where spid = #{spid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.yunji.doctormanager.entity.SymptomProblem" >
+    update symptomproblem
+    set sweeks = #{sweeks,jdbcType=INTEGER},
+      eweeks = #{eweeks,jdbcType=INTEGER},
+      problem = #{problem,jdbcType=CHAR},
+      answer = #{answer,jdbcType=CHAR}
+    where spid = #{spid,jdbcType=INTEGER}
+  </update>
+</mapper>

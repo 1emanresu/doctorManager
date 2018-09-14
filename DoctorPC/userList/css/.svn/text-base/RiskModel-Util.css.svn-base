@@ -1,0 +1,50 @@
+.main_cont{
+	width: 100%;
+	position: relative;
+	top: -40px;
+}
+.div_RiskModel{
+	width: 100%;
+	
+	padding-top: 20px;
+}
+/*echarts图表*/
+#div-modelChart{
+	display: flex;
+	height: 350px;
+}
+/*线图*/
+#riskChart,
+#modelChart{ 
+	width: 400px !important;
+}
+#riskChart{
+	height: 350px;
+	min-width: 400px;
+	/*border: 1px green solid;*/
+}
+#modelChart{
+	height: 350px;
+/*	max-width: 1080px;*/
+	min-width: 400px;
+	/*border: 1px blue solid;*/
+}
+
+#risk_result{
+	padding:0 20px;
+		
+}
+#riskfactor-table{
+	width: 750px;
+	text-align: center;
+}
+#riskfactor-table td{
+	border: 1px solid #D4D4D4;
+	line-height: 30px;
+}
+.riskfactor-Msg,.riskfactor-Advice{
+	padding-left: 20px;
+}
+.riskfactor-Advice{
+	padding-top: 20px;
+}

@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.yunji.doctormanager.dao.NurseMapper" >
+  <resultMap id="BaseResultMap" type="cn.yunji.doctormanager.entity.Nurse" >
+    <id column="nurseId" property="nurseid" jdbcType="INTEGER" />
+    <result column="hospitalId" property="hospitalid" jdbcType="CHAR" />
+    <result column="userID" property="userid" jdbcType="INTEGER" />
+    <result column="officeId" property="officeid" jdbcType="INTEGER" />
+    <result column="nName" property="nname" jdbcType="CHAR" />
+    <result column="sex" property="sex" jdbcType="INTEGER" />
+    <result column="duty" property="duty" jdbcType="CHAR" />
+    <result column="goodat" property="goodat" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="nPhone" property="nphone" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    nurseId, hospitalId, userID, officeId, nName, sex, duty, goodat, address, email, 
+    nPhone
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from nurse
+    where nurseId = #{nurseid,jdbcType=INTEGER}
+  </select>
+  <!-- 通过userid来查找对应的护士  mcally.ly-->
+  <select id="findByUserid" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from nurse
+    where userid= #{0}
+  
+  </select>
+  
+  
+  <!--查询护士的信息-->
+  <select id="queryByNurseId" resultType="java.util.HashMap"
+   parameterType="cn.yunji.doctormanager.entity.Nurse" >
+     select n.nName,n.duty,h.hospitalName,o.officeName from nurse n
+ inner join hospital h on n.hospitalId=h.hospitalId
+ inner join usertb u on u.userID=n.userID
+ inner join office o on o.officeId=n.officeId
+ where n.nurseId=#{0};
+  </select>
+ 
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from nurse
+    where nurseId = #{nurseid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.yunji.doctormanager.entity.Nurse" >
+    insert into nurse (nurseId, hospitalId, userID, 
+      officeId, nName, sex, 
+      duty, goodat, address, 
+      email, nPhone)
+    values (#{nurseid,jdbcType=INTEGER}, #{hospitalid,jdbcType=CHAR}, #{userid,jdbcType=INTEGER}, 
+      #{officeid,jdbcType=INTEGER}, #{nname,jdbcType=CHAR}, #{sex,jdbcType=INTEGER}, 
+      #{duty,jdbcType=CHAR}, #{goodat,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{nphone,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.yunji.doctormanager.entity.Nurse" >
+    insert into nurse
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="nurseid != null" >
+        nurseId,
+      </if>
+      <if test="hospitalid != null" >
+        hospitalId,
+      </if>
+      <if test="userid != null" >
+        userID,
+      </if>
+      <if test="officeid != null" >
+        officeId,
+      </if>
+      <if test="nname != null" >
+        nName,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="duty != null" >
+        duty,
+      </if>
+      <if test="goodat != null" >
+        goodat,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="nphone != null" >
+        nPhone,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="nurseid != null" >
+        #{nurseid,jdbcType=INTEGER},
+      </if>
+      <if test="hospitalid != null" >
+        #{hospitalid,jdbcType=CHAR},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="officeid != null" >
+        #{officeid,jdbcType=INTEGER},
+      </if>
+      <if test="nname != null" >
+        #{nname,jdbcType=CHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="duty != null" >
+        #{duty,jdbcType=CHAR},
+      </if>
+      <if test="goodat != null" >
+        #{goodat,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="nphone != null" >
+        #{nphone,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.yunji.doctormanager.entity.Nurse" >
+    update nurse
+    <set >
+      <if test="hospitalid != null" >
+        hospitalId = #{hospitalid,jdbcType=CHAR},
+      </if>
+      <if test="userid != null" >
+        userID = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="officeid != null" >
+        officeId = #{officeid,jdbcType=INTEGER},
+      </if>
+      <if test="nname != null" >
+        nName = #{nname,jdbcType=CHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="duty != null" >
+        duty = #{duty,jdbcType=CHAR},
+      </if>
+      <if test="goodat != null" >
+        introduce = #{introduce,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="nphone != null" >
+        nPhone = #{nphone,jdbcType=CHAR},
+      </if>
+    </set>
+    where nurseId = #{nurseid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.yunji.doctormanager.entity.Nurse" >
+    update nurse
+    set hospitalId = #{hospitalid,jdbcType=CHAR},
+      userID = #{userid,jdbcType=INTEGER},
+      officeId = #{officeid,jdbcType=INTEGER},
+      nName = #{nname,jdbcType=CHAR},
+      sex = #{sex,jdbcType=INTEGER},
+      duty = #{duty,jdbcType=CHAR},
+      goodat = #{goodat,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      nPhone = #{nphone,jdbcType=CHAR}
+    where nurseId = #{nurseid,jdbcType=INTEGER}
+  </update>
+</mapper>

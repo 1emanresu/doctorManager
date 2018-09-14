@@ -1,0 +1,273 @@
+.advice-input{
+	height: 280px;
+	width: 100%;
+	border: 1px solid #DDDDDD;
+	border-top: none;
+	margin-top: -10px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+.inputs{
+	width: 60%;
+	height: 250px;
+	border-right: 1px solid #DDDDDD;
+	position: relative;
+	float: left;
+}
+.thisAdvice_content{
+	width: 100%;
+	height: 250px;
+	padding: 15px 12px;
+	overflow: auto;
+}
+.input-img{
+	width: 97%;
+	height: 30px;
+	line-height: 30px;
+	position: absolute;
+	bottom: 10px;
+	text-align: right;
+}
+.input-img a{
+	color: #B8BFC8;
+	text-decoration: none;
+	cursor: pointer;
+}
+.input-img a:hover{
+	color: #82aeed;
+}
+.inputs-right{
+	height:280px ;
+	width: 40%;
+	float: right;
+
+}
+.row{
+	margin-top: 10px;
+	margin-left: 1%;
+	margin-right: 1%;
+}
+#search_box{
+	border-radius: 1px;
+	border: 1px solid #98bff2;
+}
+#search{
+	background: #78a9ed;
+	border: 1px solid #78A9ED;
+	border-radius: 0px;
+}
+#search:hover{
+	background: #3166ff;
+	border: 1px solid #3166ff;
+	color: white;
+}
+.right-span{
+	width: 92%;
+	height: 55%;
+	border:none;
+	border-top: 1px solid #D8D8D8;
+	margin-left: 4%;
+	margin-top: 8px;
+	padding: 12px 0 12px 0;
+	overflow: auto;
+	position: relative;
+}
+#dbclick{
+	position: absolute;
+	bottom: 0;
+	float: right;
+	right: 0;
+	margin-right: 1%;
+}
+
+/**/
+#tips{
+	position: relative;
+	top: -50px;
+	left: 10%;
+	padding: 3px;
+	border: 1px solid #D4D4D4;
+	display: none;
+	border-radius:5px;
+}
+.worditem{
+	padding-left: 20px;
+}
+ .tips_selected{  
+      background-color: whitesmoke; 
+  }
+  
+.kekeyboard_notice{
+	position: absolute;
+	top: 150px;
+	left: 1350px;
+}
+.item{
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+ul li{
+	list-style: none;
+}
+a{
+	text-decoration: none;
+}
+#classify_ul{
+	border: 1px solid #D4D4D4;
+	border-left: none;
+	height: 130px;
+	/*border-radius: 10px;*/
+}
+#show_div{
+	border: 1px solid #D4D4D4;
+	height: 300px!important;
+	width:auto;
+	margin: 10px 0;
+	overflow: auto;
+}
+/*span{
+	cursor: pointer;
+	line-height: 25px;
+	margin: 5px 10px;
+}*/
+#show_div p{
+	cursor: pointer;	
+}
+.teo{
+	margin-left: -20px!important;
+}
+
+.btn-primary:hover{
+	background-color: #0099FF!important;
+	border: 1px solid #0099FF!important;
+}
+
+.modal-body4{
+	padding-top: 0px!important;
+	width: 35vw!important;
+	background-color: white!important;
+}
+/*后增加的医嘱样式*/
+#tools_bar img{
+	margin: 10px;
+	cursor: pointer;
+}
+.kangaroo_ask_div{
+	width: 850px;
+	margin:0 auto;
+	left: 25%;
+	top: 10%;
+	height: 714px;
+	overflow:auto;
+	border-radius: 5px;
+	box-shadow: gray;
+	box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.349019);
+	z-index: 9;
+	display: none;
+
+}
+
+.div_border {
+	/*margin-left: 35px;*/
+	/*box-shadow: inset 0 0 6px #D9D9D9;*/
+
+}
+.hh{
+	transform: rotateY(180deg);	
+}
+.x{
+	width: 100%;
+	transition: width 2s;
+	z-index: 10;
+	border-bottom-right-radius: 5px;
+}
+.y{
+	display: none;
+}
+.z{
+	display: none;
+}
+#inputs-right{
+	overflow: hidden;
+}
+/*工具栏*/
+
+.toolbar_input_tips{
+	margin-left: 40px;
+	margin-top: 20px;
+	line-height: 25px;
+	/*font-weight: bold;*/	
+}
+#tools_bar img{
+	margin: 10px;
+	cursor: pointer;
+}
+#gravida_ask_div{
+	margin: 15px;
+	line-height: 20px;
+}
+.class_serious_risk{
+	display: none;
+	position:fixed;
+	z-index: 2;
+	background-color: white;
+	overflow-x: hidden;
+}
+.changeMari{
+	margin-left: 10px;
+	padding-top: 10px;
+	width: 15%;
+}
+.img_close2{
+	width: auto;
+	width: 30px;
+	float: right!important;
+}
+.img_close2 img{
+	cursor: pointer;
+	position: absolute;
+	top:-20px;
+	z-index: 999;
+}
+#btn_search{
+	height: 28px!important;
+}
+.message-div{
+	width: 650px;
+	top: 25%;
+	left: 30%;
+	border-radius: 5px;
+	box-shadow: gray;
+	position: fixed;
+	box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.349019);
+	z-index: 9;
+	
+}
+
+.onlythis{
+	width: auto!important;
+	width: 30px!important;
+	float: right!important;
+}
+.onlythis img{
+	cursor: pointer!important;
+	position: absolute!important;
+	top:20px!important;
+	z-index: 999!important;
+}
+.classthis{
+	width: 850px!important;
+}
+.div_container{
+	position: relative;
+}
+.modelChart{
+	margin-right: -180px;
+}
+.riskfactor-table{
+	width: 160%!important;
+}
+#advice-table1 td{
+	cursor: pointer;
+}

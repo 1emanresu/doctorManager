@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.yunji.doctormanager.dao.PreviousHistoryMapper" >
+  <resultMap id="BaseResultMap" type="cn.yunji.doctormanager.entity.PreviousHistory" >
+    <id column="previousId" property="previousid" jdbcType="INTEGER" />
+    <result column="mId" property="mid" jdbcType="CHAR" />
+    <result column="heartDisease" property="heartdisease" jdbcType="INTEGER" />
+    <result column="TB" property="tb" jdbcType="INTEGER" />
+    <result column="hepatopathy" property="hepatopathy" jdbcType="INTEGER" />
+    <result column="urogenitalDiseases" property="urogenitaldiseases" jdbcType="INTEGER" />
+    <result column="diabetes" property="diabetes" jdbcType="INTEGER" />
+    <result column="hypertension" property="hypertension" jdbcType="INTEGER" />
+    <result column="psychosis" property="psychosis" jdbcType="INTEGER" />
+    <result column="umpire" property="umpire" jdbcType="INTEGER" />
+    <result column="epilepsy" property="epilepsy" jdbcType="INTEGER" />
+    <result column="HEENT" property="heent" jdbcType="INTEGER" />
+    <result column="thyroidDisease" property="thyroiddisease" jdbcType="INTEGER" />
+    <result column="hereditaryDisease" property="hereditarydisease" jdbcType="INTEGER" />
+    <result column="other" property="other" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    previousId, mId, heartDisease, TB, hepatopathy, urogenitalDiseases, diabetes, hypertension, 
+    psychosis, umpire, epilepsy, HEENT, thyroidDisease, hereditaryDisease, other
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from previoushistory
+    where previousId = #{previousid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from previoushistory
+    where previousId = #{previousid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.yunji.doctormanager.entity.PreviousHistory" >
+    insert into previoushistory (previousId, mId, heartDisease, 
+      TB, hepatopathy, urogenitalDiseases, 
+      diabetes, hypertension, psychosis, 
+      umpire, epilepsy, HEENT, 
+      thyroidDisease, hereditaryDisease, other
+      )
+    values (#{previousid,jdbcType=INTEGER}, #{mid,jdbcType=CHAR}, #{heartdisease,jdbcType=INTEGER}, 
+      #{tb,jdbcType=INTEGER}, #{hepatopathy,jdbcType=INTEGER}, #{urogenitaldiseases,jdbcType=INTEGER}, 
+      #{diabetes,jdbcType=INTEGER}, #{hypertension,jdbcType=INTEGER}, #{psychosis,jdbcType=INTEGER}, 
+      #{umpire,jdbcType=INTEGER}, #{epilepsy,jdbcType=INTEGER}, #{heent,jdbcType=INTEGER}, 
+      #{thyroiddisease,jdbcType=INTEGER}, #{hereditarydisease,jdbcType=INTEGER}, #{other,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.yunji.doctormanager.entity.PreviousHistory" >
+    insert into previoushistory
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="previousid != null" >
+        previousId,
+      </if>
+      <if test="mid != null" >
+        mId,
+      </if>
+      <if test="heartdisease != null" >
+        heartDisease,
+      </if>
+      <if test="tb != null" >
+        TB,
+      </if>
+      <if test="hepatopathy != null" >
+        hepatopathy,
+      </if>
+      <if test="urogenitaldiseases != null" >
+        urogenitalDiseases,
+      </if>
+      <if test="diabetes != null" >
+        diabetes,
+      </if>
+      <if test="hypertension != null" >
+        hypertension,
+      </if>
+      <if test="psychosis != null" >
+        psychosis,
+      </if>
+      <if test="umpire != null" >
+        umpire,
+      </if>
+      <if test="epilepsy != null" >
+        epilepsy,
+      </if>
+      <if test="heent != null" >
+        HEENT,
+      </if>
+      <if test="thyroiddisease != null" >
+        thyroidDisease,
+      </if>
+      <if test="hereditarydisease != null" >
+        hereditaryDisease,
+      </if>
+      <if test="other != null" >
+        other,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="previousid != null" >
+        #{previousid,jdbcType=INTEGER},
+      </if>
+      <if test="mid != null" >
+        #{mid,jdbcType=CHAR},
+      </if>
+      <if test="heartdisease != null" >
+        #{heartdisease,jdbcType=INTEGER},
+      </if>
+      <if test="tb != null" >
+        #{tb,jdbcType=INTEGER},
+      </if>
+      <if test="hepatopathy != null" >
+        #{hepatopathy,jdbcType=INTEGER},
+      </if>
+      <if test="urogenitaldiseases != null" >
+        #{urogenitaldiseases,jdbcType=INTEGER},
+      </if>
+      <if test="diabetes != null" >
+        #{diabetes,jdbcType=INTEGER},
+      </if>
+      <if test="hypertension != null" >
+        #{hypertension,jdbcType=INTEGER},
+      </if>
+      <if test="psychosis != null" >
+        #{psychosis,jdbcType=INTEGER},
+      </if>
+      <if test="umpire != null" >
+        #{umpire,jdbcType=INTEGER},
+      </if>
+      <if test="epilepsy != null" >
+        #{epilepsy,jdbcType=INTEGER},
+      </if>
+      <if test="heent != null" >
+        #{heent,jdbcType=INTEGER},
+      </if>
+      <if test="thyroiddisease != null" >
+        #{thyroiddisease,jdbcType=INTEGER},
+      </if>
+      <if test="hereditarydisease != null" >
+        #{hereditarydisease,jdbcType=INTEGER},
+      </if>
+      <if test="other != null" >
+        #{other,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.yunji.doctormanager.entity.PreviousHistory" >
+    update previoushistory
+    <set >
+      <if test="mid != null" >
+        mId = #{mid,jdbcType=CHAR},
+      </if>
+      <if test="heartdisease != null" >
+        heartDisease = #{heartdisease,jdbcType=INTEGER},
+      </if>
+      <if test="tb != null" >
+        TB = #{tb,jdbcType=INTEGER},
+      </if>
+      <if test="hepatopathy != null" >
+        hepatopathy = #{hepatopathy,jdbcType=INTEGER},
+      </if>
+      <if test="urogenitaldiseases != null" >
+        urogenitalDiseases = #{urogenitaldiseases,jdbcType=INTEGER},
+      </if>
+      <if test="diabetes != null" >
+        diabetes = #{diabetes,jdbcType=INTEGER},
+      </if>
+      <if test="hypertension != null" >
+        hypertension = #{hypertension,jdbcType=INTEGER},
+      </if>
+      <if test="psychosis != null" >
+        psychosis = #{psychosis,jdbcType=INTEGER},
+      </if>
+      <if test="umpire != null" >
+        umpire = #{umpire,jdbcType=INTEGER},
+      </if>
+      <if test="epilepsy != null" >
+        epilepsy = #{epilepsy,jdbcType=INTEGER},
+      </if>
+      <if test="heent != null" >
+        HEENT = #{heent,jdbcType=INTEGER},
+      </if>
+      <if test="thyroiddisease != null" >
+        thyroidDisease = #{thyroiddisease,jdbcType=INTEGER},
+      </if>
+      <if test="hereditarydisease != null" >
+        hereditaryDisease = #{hereditarydisease,jdbcType=INTEGER},
+      </if>
+      <if test="other != null" >
+        other = #{other,jdbcType=CHAR},
+      </if>
+    </set>
+    where previousId = #{previousid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.yunji.doctormanager.entity.PreviousHistory" >
+    update previoushistory
+    set mId = #{mid,jdbcType=CHAR},
+      heartDisease = #{heartdisease,jdbcType=INTEGER},
+      TB = #{tb,jdbcType=INTEGER},
+      hepatopathy = #{hepatopathy,jdbcType=INTEGER},
+      urogenitalDiseases = #{urogenitaldiseases,jdbcType=INTEGER},
+      diabetes = #{diabetes,jdbcType=INTEGER},
+      hypertension = #{hypertension,jdbcType=INTEGER},
+      psychosis = #{psychosis,jdbcType=INTEGER},
+      umpire = #{umpire,jdbcType=INTEGER},
+      epilepsy = #{epilepsy,jdbcType=INTEGER},
+      HEENT = #{heent,jdbcType=INTEGER},
+      thyroidDisease = #{thyroiddisease,jdbcType=INTEGER},
+      hereditaryDisease = #{hereditarydisease,jdbcType=INTEGER},
+      other = #{other,jdbcType=CHAR}
+    where previousId = #{previousid,jdbcType=INTEGER}
+  </update>
+   <select id="findByMid" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from previoushistory
+    where mId = #{mid,jdbcType=CHAR} limit 1
+  </select>
+</mapper>

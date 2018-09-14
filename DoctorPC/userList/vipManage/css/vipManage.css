@@ -1,0 +1,176 @@
+.nav-tabs>li>a,
+.nav-tabs>li>a:hover{
+	background-color: #eee;
+	border: none;
+}
+.navigation{
+	width: 100%;
+	height: 47px;
+	/*border-bottom: 2px solid #5794E7;*/
+	background-color: #EEEEEE;
+}
+.navigation li{
+	width: 150px;
+	height: 40px;
+	text-align: center;
+}
+.navigation a{
+	font-family: "微软雅黑";
+	font-size: 14px;
+}
+.nav-tabs>li.active>a,
+.nav-tabs>li.active>a:focus, 
+.nav-tabs>li.active>a:hover{
+	background-color: #white!important;
+	border-radius: initial;
+	color: white;
+}
+
+.content_body{
+	width: 100%;
+	height: auto;
+}
+.headline{
+	width: 100%;
+	height: 40px;
+	padding-left: 1%;
+	border-bottom: 1px solid lightgray;
+	font-size: 14px;
+	line-height: 40px;
+}
+#font{
+	font-size: 14px;
+}
+.bodyline{
+	width: 100%;
+	line-height: 30px;
+	padding: 4% 8%;
+}
+.bodyline input,select{
+	width: 300px;
+	height: 30px!important;
+	/*margin-left: -80px;*/
+	border: 1px solid #ccc;
+	outline: none;
+}
+.bodyline textarea{
+	width: 600px;
+	height: 100px!important;
+	/*margin-left: -80px;*/
+	border: 1px solid #ccc;
+	resize: none;
+}
+.row{
+	margin-top: 20px;
+}
+.upload{
+	width: 120px;
+	height: 32px;
+	margin-left: 480px;
+	background-color: cornflowerblue;
+	border: 1px solid cornflowerblue;
+	border-radius: 5px;
+	color: white;
+}
+.save_btn{
+	width: 100%;
+	margin-top: 25px;
+	text-align: center;
+}
+.save_btn button{
+	width: 120px;
+	height: 32px;
+	background-color: #76b0ff;
+	border: 1px solid #76b0ff;
+	border-radius: 5px;
+	color: white;
+}
+.save_btn button:hover{
+	background-color: #3189FB;
+	border: 1px solid #3189FB;
+}
+
+.list_title{
+	width: 100%;
+	height: 40px;
+	margin-top: 30px;
+	border-radius: 5px 5px 0 0;
+	background-color: rgba(233,236,236,1);
+	line-height: 40px;
+	text-align: center;
+}
+.list_name,
+.list_operation{
+	float: left;
+	width: 15%;
+	font-size: 14px;
+}
+.list_content{
+	float: left;
+	width: 70%;
+	font-size: 14px;
+}
+.list_operation a{
+	cursor: pointer;
+}
+.list_body{
+	width: 100%;
+	height: auto;
+	line-height: 55px;
+	text-align: center;
+}
+.body_content{
+	height: 55px;
+	border-bottom: 1px solid lightgray;
+}
+
+/*----------------------------------删除弹出框--------------------------------*/
+.modal-dialog{
+	width: 500px;
+	margin: 250px auto;
+}
+.alert_frame{
+	border: 1px solid gainsboro;
+	border-radius: 5px;
+	font-family: "微软雅黑";
+}
+.modal_content {
+	border-radius: 5px;
+	background-color: rgb(242, 242, 242);
+}
+
+.title11{
+	height: 30px;
+	background-color: gainsboro;
+	border-top-right-radius:5px;
+	border-top-left-radius:5px ;
+}
+.content11{
+	height: 200px;
+	background-color: rgba(250,250,240,1);
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+.warning_div{
+	height: 130px;
+	padding: 20px;
+	text-align: center;
+}
+.btn_div{
+	text-align: center;
+}
+
+.btn_div button{
+	width: 100px;
+	height: 30px;
+	background-color: #5794E7;
+	border: none;
+	font-family: "微软雅黑";
+	border-radius: 5px;
+	color: white;
+	cursor: pointer;
+}
+.btn_div button:hover{
+	background-color: dodgerblue;
+}
+/*--------------------------------------------------------------------------------*/

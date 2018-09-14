@@ -1,0 +1,146 @@
+/*author:luoyc*/
+.all{
+	height: 100%;
+	display: flex;
+}
+.div-right{
+	flex: 8;
+	width: 70%;
+	height: 80%;
+	float: left;
+	margin-left: 10px;
+	padding-left: 20px;
+}
+.light-risk{
+	position: absolute;
+	width: 56px;
+	height: 20px;
+	color: rgb(255,229,0);
+	margin-top: 191px;
+	font-size: 14px;
+}
+.hight-risk{
+	position: absolute;
+	width: 56px;
+	height: 20px;
+	left: 330px;
+	color: rgb(255,106,0);
+	padding-top: 35px;
+	font-size: 14px;
+}
+.very-risk{
+	position: absolute;
+	width: 56px;
+	height: 20px;
+	left: 423px;
+	color: rgb(255,50,14);
+	font-size: 14px;
+	margin-top: -80px;
+}
+.point-table{
+	float: left;
+	margin-top: -35px;
+}
+#chart{
+	height: 360px;
+	margin-left: 15px;
+	margin-top: 30px;
+	margin-bottom: -120px;
+}
+.risk_firstDiagnose_table{
+	border: none;
+	line-height: 21px;
+	color: #555555;
+	margin: 0 auto;
+	font-size: 14px;
+}
+.risk_firstDiagnose_table tr:nth-child(1) td:nth-child(1){
+	width: 120px;
+}
+.risk_firstDiagnose_table tr:nth-child(1) td:nth-child(2){
+	width: 140px;
+	text-align: right;
+}
+.risk_firstDiagnose_table tr:nth-child(1) td:nth-child(3){
+	width: 130px;
+	text-align: right;
+}
+.risk_firstDiagnose_table tr:nth-child(2){
+	text-align: center;
+	line-height: 40px;
+}
+.risk_firstDiagnose_table tr:nth-child(2) td:nth-child(1){
+	padding-right: 40px;
+}
+.risk_firstDiagnose_table  tr:nth-child(2) td:nth-child(2){
+	padding-right: 20px;
+}
+.risk_firstDiagnose_table  tr:nth-child(2) td:nth-child(3){
+	padding-left: 25px;
+}
+
+#standard_left{
+	font-size: 15px;
+	float: left;
+	height: 120px;
+	line-height: 120px;
+	font-weight: bold;
+}
+#standard_middle{
+	margin-left: 130px;
+	line-height: 20px;
+}
+#standard_right{
+	color: rgb(116,164,229);
+	float: right;
+	margin-top: -15px;
+	margin-right: 20px;
+}
+#div_top{
+	border:1px solid gainsboro ;
+	border-radius: 5px;
+	margin-right: 10px;
+	padding-top: 20px;
+	padding-left: 20px;
+	margin-top: 10px;
+	margin-left: -20px;
+	padding-bottom: 20px;
+}
+#div_chart{
+	flex: 1;
+}
+.div_left{
+	flex: 1;
+	font-size: 14px;
+	color: #333333;
+	margin-top: 20px;
+}
+.div_bottom{
+	display: flex;
+	position: relative;
+}
+.textarea_firstDiagnose_width textarea{
+	margin-top: 20px;
+	width: 400px;
+	height: 150px!important;
+}
+#save{
+	color: white;
+	height: 30px;
+	border-radius: 5px;
+	font-size: 14px;
+	width: 120px;
+	background-color: rgb(87,148,231);
+	border: none;
+	float: right;
+	margin-right: 30px;
+}
+#div4{
+	margin-left: 50px;
+}
+
+/*微调备孕风险模型->风险因素->textarea文本框样式 @Author hongwx*/
+.textarea_firstDiagnose_width textarea:focus{
+	border: 1px solid #006DCC!important;
+	
+}

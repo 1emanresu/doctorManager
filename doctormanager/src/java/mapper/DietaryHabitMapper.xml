@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.yunji.doctormanager.dao.DietaryHabitMapper" >
+  <resultMap id="BaseResultMap" type="cn.yunji.doctormanager.entity.DietaryHabit" >
+    <id column="hId" property="hid" jdbcType="INTEGER" />
+    <result column="mId" property="mid" jdbcType="CHAR" />
+    <result column="badHabit" property="badhabit" jdbcType="VARCHAR" />
+    <result column="goodHabit" property="goodhabit" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    hId, mId, badHabit, goodHabit
+  </sql>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from dietaryhabit
+    where hId = #{hid,jdbcType=INTEGER}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from dietaryhabit
+    where hId = #{hid,jdbcType=INTEGER}
+  </delete>
+  
+  <insert id="insert" parameterType="cn.yunji.doctormanager.entity.DietaryHabit" >
+    insert into dietaryhabit (hId, mId, badHabit, 
+      goodHabit)
+    values (#{hid,jdbcType=INTEGER}, #{mid,jdbcType=CHAR}, #{badhabit,jdbcType=VARCHAR}, 
+      #{goodhabit,jdbcType=VARCHAR})
+  </insert>
+  
+  <insert id="insertSelective" parameterType="cn.yunji.doctormanager.entity.DietaryHabit" >
+  
+  	<!-- 先查询，如果有数据就执行更新，没数据就执行插入 -->
+  	<selectKey keyProperty="count" order="BEFORE" resultType="int">
+  		select count(*) as count from dietaryhabit where mId = #{mid,jdbcType=CHAR}
+  	</selectKey>
+  
+  	<if test="count == 0">
+	    insert into dietaryhabit
+	    <trim prefix="(" suffix=")" suffixOverrides="," >
+	      <if test="hid != null" >
+	        hId,
+	      </if>
+	      <if test="mid != null" >
+	        mId,
+	      </if>
+	      <if test="badhabit != null" >
+	        badHabit,
+	      </if>
+	      <if test="goodhabit != null" >
+	        goodHabit,
+	      </if>
+	    </trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides="," >
+	      <if test="hid != null" >
+	        #{hid,jdbcType=INTEGER},
+	      </if>
+	      <if test="mid != null" >
+	        #{mid,jdbcType=CHAR},
+	      </if>
+	      <if test="badhabit != null" >
+	        #{badhabit,jdbcType=VARCHAR},
+	      </if>
+	      <if test="goodhabit != null" >
+	        #{goodhabit,jdbcType=VARCHAR},
+	      </if>
+	    </trim>
+    </if>
+    
+    <if test="count>0">
+	    update dietaryhabit
+	    <set >
+	      <if test="mid != null" >
+	        mId = #{mid,jdbcType=CHAR},
+	      </if>
+	      <if test="badhabit != null" >
+	        badHabit = #{badhabit,jdbcType=VARCHAR},
+	      </if>
+	      <if test="goodhabit != null" >
+	        goodHabit = #{goodhabit,jdbcType=VARCHAR},
+	      </if>
+	    </set>
+	    where mId = #{mid,jdbcType=CHAR}
+    </if>
+    
+  </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="cn.yunji.doctormanager.entity.DietaryHabit" >
+    update dietaryhabit
+    <set >
+      <if test="mid != null" >
+        mId = #{mid,jdbcType=CHAR},
+      </if>
+      <if test="badhabit != null" >
+        badHabit = #{badhabit,jdbcType=VARCHAR},
+      </if>
+      <if test="goodhabit != null" >
+        goodHabit = #{goodhabit,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where hId = #{hid,jdbcType=INTEGER}
+  </update>
+  
+  <update id="updateByPrimaryKey" parameterType="cn.yunji.doctormanager.entity.DietaryHabit" >
+    update dietaryhabit
+    set mId = #{mid,jdbcType=CHAR},
+      badHabit = #{badhabit,jdbcType=VARCHAR},
+      goodHabit = #{goodhabit,jdbcType=VARCHAR}
+    where hId = #{hid,jdbcType=INTEGER}
+  </update>
+  
+  <!-- 根据mid查出所有   -->
+  <select id="findByMid" parameterType="java.lang.String" resultType="cn.yunji.doctormanager.entity.DietaryHabit">
+  	select
+  	<include refid="Base_Column_List"></include>
+  	from dietaryhabit
+  	where mId = #{mid,jdbcType=CHAR}
+  </select>
+</mapper>

@@ -1,0 +1,296 @@
+/*通用样式---zhangqt*/
+
+
+/*头部路径*/
+
+.top_Nav {
+	width: 100%;
+	padding: 5px 10px 5px 10px;
+	border-bottom: 1px solid #D7D7D7;
+}
+
+.top_Nav .Nav_img {
+	margin-right: 10px;
+	float: left;
+}
+
+.top_Nav .Nav_content img {
+	margin: 0px 5px;
+}
+/*end*/
+
+
+/*选项卡的样式*/
+
+.class_li_line {
+	width: 99%;
+	height: 5px;
+	margin: 0 auto;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	background-color: #E6E9ED;
+}
+
+li.active .class_li_line {
+	background: linear-gradient(to right, #1f67fa, #2dd7c6);
+}
+
+.nva-tabs-ul li {
+	width: 200px;
+	text-align: center;
+}
+
+
+/*end*/
+
+
+/*每页显示数据 以及按钮样式*/
+
+.left_option_container {
+	display: inline;
+}
+
+.left_option_container p {
+	color: #5794e7;
+	display: inline;
+}
+
+.left_option_container select {
+	/*width: 75px;
+	height: 25px;*/
+	/*margin: 7px;*/
+}
+
+/*.left_option_container button {
+	border-radius: 2px;
+	background: #5794e7;
+	color: white;
+	width: 87px;
+	height: 25px;
+	margin-left: 5px;
+	border: 1px solid #5794e7;
+}*/
+
+
+/*end*/
+
+.class_firstDiagnose_tab_content {
+	margin: 10px auto;
+	width: 99%;
+	height: 5px;
+	background: linear-gradient(to right, #1f67fa, #2dd7c6);
+	border-radius: 5px 5px 5px 5px;
+	position: relative;
+}
+
+.div_pregnancyManage_color {
+	margin: 12px 9px 9px 9px;
+	width: 99%;
+	height: 5px;
+	background: linear-gradient(to right, #1f67fa, #2dd7c6);
+	border-radius: 10px;
+	position: relative;
+}
+
+/*@Author  hongwx*/
+/* 列表搜索栏*/
+.div-weeks .col-md-2{
+	line-height: 30px;
+	padding: 0px 0 !important;
+	padding-left: 0px!important;
+}
+.div-search8{
+	padding: 0px 0 !important;
+}
+.div-search3,.div-search4{
+	line-height: 30px;
+	padding: 0px 0 !important;
+}
+.div-search4{
+	padding-right: 5px!important;
+}
+.div-font{
+	line-height: 30px;
+	height:31px;
+}
+.div-recodecard{
+	line-height: 30px;
+	padding: 0px !important;
+	margin-right: -25px;
+}
+.form-control{
+	height: 28px !important;
+}
+#queryInfo,#queryReset{
+	height: 28px!important;
+}
+.close{
+	padding-right: 0px!important;
+}
+.hiskGrade2{
+	padding-left: 0px !important;
+	padding-right: 0px !important;
+	margin-right: 25px!important;
+}
+.div-weeks{
+	padding-left: 0px!important;
+	padding-right: 0px !important;
+}
+.recodecard4{
+	padding-left: 0px!important;
+}
+.health-title2{
+	padding-left: 0px !important;
+	padding-right: 0px !important;
+	margin-right: 20px!important;
+}
+#queryInfo:hover,#queryReset:hover{
+	background-color:#006DCC!important ;
+	border-color:#006DCC!important;
+	color: #fff!important;
+}
+select{
+	height: 28px!important;
+	padding: 1px 6px;
+}
+select:focus {
+	border-color:#006DCC!important;
+}
+input:focus {
+	border-color:#006DCC!important;
+}
+.selectcon1{
+	height: 28px!important;
+}
+.selecter.open 
+.selecter-selected{
+	border: 1px solid #006DCC !important;
+}
+.selecter .selecter-item.selected:hover{
+	background-color: #006DCC !important;
+}
+.selecter .selecter-item.selected{
+	color: #fff;
+	background-color: #006DCC!important;;
+	border-bottom-color: #006DCC!important;;
+}
+.content_search{
+	
+}
+/*所有的按钮去padding*/
+.btn{
+	padding: 0px!important;
+}
+
+/*每页显示数据*/
+.everyp{
+	padding-left: 0px !important;
+	padding-right: 0px !important;
+	line-height: 30px!important;
+}
+
+.changepadding{
+	padding-left: 0px !important;
+	padding-right: 0px !important;
+}
+.controller1{
+	padding-left: 0px !important;
+	padding-right: 0px !important;
+	margin-right: -50px!important;
+}
+.changebtn{
+	height:28px!important;	
+}
+.btn-padding{
+	padding-left: 0px !important;
+	padding-right: 0px !important;
+	margin-right: -35px!important;
+}
+.btn-padding2{
+	padding-right: 0px !important;
+}
+.otherpadding{
+	padding-left: 0px !important;
+}
+.otherpadding2{
+	padding-left: 0px !important;
+}
+.select-controller{
+	padding-left: 0px !important;
+	margin-right: 15px!important;
+}
+.changebtn:hover{
+	background-color:#006DCC!important ;
+	border-color:#006DCC!important;
+}
+/*搜索框样式*/
+.input-group-btn{
+	padding: 10px 0px 0px 0px !important;
+}
+#searchUser{
+	height: 30px !important;
+}
+#search{
+	background-color:#D4D4D4 ;
+	border: 1px solid #D4D4D4;
+	padding: 0px;
+}
+#search:hover{
+	background-color:#E4E4E4 ;
+	border: 1px solid #E4E4E4;
+	color: #666666;
+	padding: 0px;
+}
+
+/*固定宽度的列表栏样式*/
+.content_search span{
+	font-size: 14px; 
+	width: 30px;
+	margin-right: 10px;
+	line-height: 30px;
+}
+.active5 select,.active5 input{
+	width: 45%;
+}
+.active5{
+	float: left;
+	width: 20%;
+	margin-right: 25px;
+}
+.neiceng,.btn11{
+	float: left;
+}
+.btn11{
+	margin-right: 15px;
+	margin-left: -50px;
+	position: relative;
+	z-index: 2;
+}
+.btn-class button{
+	width: 90px;
+}
+
+/*每页显示数据的select跟button修改后的样式*/
+.float1{
+	float: left;
+}
+.selectcon1{
+	width: 60px;
+	margin-left: 5px;
+}
+.btn-padding2{
+	float: left;
+	width: 70px;
+}
+.otherpadding2{
+	margin-right: 10px;
+}
+.right_firm_container{
+	margin-top: 30px;
+}
+select{
+	font-size: 13px!important;
+}
+.selfTest-box-top{
+	display: flex;
+}

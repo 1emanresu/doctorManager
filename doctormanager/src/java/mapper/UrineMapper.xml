@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.yunji.doctormanager.dao.UrineMapper" >
+  <resultMap id="BaseResultMap" type="cn.yunji.doctormanager.entity.Urine" >
+    <id column="bId" property="bid" jdbcType="INTEGER" />
+    <result column="mId" property="mid" jdbcType="CHAR" />
+    <result column="checkProjectId" property="checkprojectid" jdbcType="INTEGER" />
+    <result column="bDate" property="bdate" jdbcType="TIMESTAMP" />
+    <result column="LEU" property="leu" jdbcType="CHAR" />
+    <result column="NIT" property="nit" jdbcType="CHAR" />
+    <result column="GLU" property="glu" jdbcType="CHAR" />
+    <result column="BIL" property="bil" jdbcType="CHAR" />
+    <result column="VC" property="vc" jdbcType="CHAR" />
+    <result column="PH" property="ph" jdbcType="CHAR" />
+    <result column="BLD" property="bld" jdbcType="CHAR" />
+    <result column="KET" property="ket" jdbcType="CHAR" />
+    <result column="UBG" property="ubg" jdbcType="CHAR" />
+    <result column="PRO" property="pro" jdbcType="CHAR" />
+    <result column="SG" property="sg" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    bId, mId, checkProjectId, bDate, LEU, NIT, GLU, BIL, VC, PH, BLD, KET, UBG, PRO, 
+    SG
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from urine
+    where bId = #{bid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from urine
+    where bId = #{bid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.yunji.doctormanager.entity.Urine" >
+    insert into urine (bId, mId, checkProjectId, 
+      bDate, LEU, NIT, GLU, 
+      BIL, VC, PH, BLD, 
+      KET, UBG, PRO, SG
+      )
+    values (#{bid,jdbcType=INTEGER}, #{mid,jdbcType=CHAR}, #{checkprojectid,jdbcType=INTEGER}, 
+      #{bdate,jdbcType=TIMESTAMP}, #{leu,jdbcType=CHAR}, #{nit,jdbcType=CHAR}, #{glu,jdbcType=CHAR}, 
+      #{bil,jdbcType=CHAR}, #{vc,jdbcType=CHAR}, #{ph,jdbcType=CHAR}, #{bld,jdbcType=CHAR}, 
+      #{ket,jdbcType=CHAR}, #{ubg,jdbcType=CHAR}, #{pro,jdbcType=CHAR}, #{sg,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.yunji.doctormanager.entity.Urine" >
+    insert into urine
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="bid != null" >
+        bId,
+      </if>
+      <if test="mid != null" >
+        mId,
+      </if>
+      <if test="checkprojectid != null" >
+        checkProjectId,
+      </if>
+      <if test="bdate != null" >
+        bDate,
+      </if>
+      <if test="leu != null" >
+        LEU,
+      </if>
+      <if test="nit != null" >
+        NIT,
+      </if>
+      <if test="glu != null" >
+        GLU,
+      </if>
+      <if test="bil != null" >
+        BIL,
+      </if>
+      <if test="vc != null" >
+        VC,
+      </if>
+      <if test="ph != null" >
+        PH,
+      </if>
+      <if test="bld != null" >
+        BLD,
+      </if>
+      <if test="ket != null" >
+        KET,
+      </if>
+      <if test="ubg != null" >
+        UBG,
+      </if>
+      <if test="pro != null" >
+        PRO,
+      </if>
+      <if test="sg != null" >
+        SG,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="bid != null" >
+        #{bid,jdbcType=INTEGER},
+      </if>
+      <if test="mid != null" >
+        #{mid,jdbcType=CHAR},
+      </if>
+      <if test="checkprojectid != null" >
+        #{checkprojectid,jdbcType=INTEGER},
+      </if>
+      <if test="bdate != null" >
+        #{bdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="leu != null" >
+        #{leu,jdbcType=CHAR},
+      </if>
+      <if test="nit != null" >
+        #{nit,jdbcType=CHAR},
+      </if>
+      <if test="glu != null" >
+        #{glu,jdbcType=CHAR},
+      </if>
+      <if test="bil != null" >
+        #{bil,jdbcType=CHAR},
+      </if>
+      <if test="vc != null" >
+        #{vc,jdbcType=CHAR},
+      </if>
+      <if test="ph != null" >
+        #{ph,jdbcType=CHAR},
+      </if>
+      <if test="bld != null" >
+        #{bld,jdbcType=CHAR},
+      </if>
+      <if test="ket != null" >
+        #{ket,jdbcType=CHAR},
+      </if>
+      <if test="ubg != null" >
+        #{ubg,jdbcType=CHAR},
+      </if>
+      <if test="pro != null" >
+        #{pro,jdbcType=CHAR},
+      </if>
+      <if test="sg != null" >
+        #{sg,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.yunji.doctormanager.entity.Urine" >
+    update urine
+    <set >
+      <if test="mid != null" >
+        mId = #{mid,jdbcType=CHAR},
+      </if>
+      <if test="checkprojectid != null" >
+        checkProjectId = #{checkprojectid,jdbcType=INTEGER},
+      </if>
+      <if test="bdate != null" >
+        bDate = #{bdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="leu != null" >
+        LEU = #{leu,jdbcType=CHAR},
+      </if>
+      <if test="nit != null" >
+        NIT = #{nit,jdbcType=CHAR},
+      </if>
+      <if test="glu != null" >
+        GLU = #{glu,jdbcType=CHAR},
+      </if>
+      <if test="bil != null" >
+        BIL = #{bil,jdbcType=CHAR},
+      </if>
+      <if test="vc != null" >
+        VC = #{vc,jdbcType=CHAR},
+      </if>
+      <if test="ph != null" >
+        PH = #{ph,jdbcType=CHAR},
+      </if>
+      <if test="bld != null" >
+        BLD = #{bld,jdbcType=CHAR},
+      </if>
+      <if test="ket != null" >
+        KET = #{ket,jdbcType=CHAR},
+      </if>
+      <if test="ubg != null" >
+        UBG = #{ubg,jdbcType=CHAR},
+      </if>
+      <if test="pro != null" >
+        PRO = #{pro,jdbcType=CHAR},
+      </if>
+      <if test="sg != null" >
+        SG = #{sg,jdbcType=CHAR},
+      </if>
+    </set>
+    where bId = #{bid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.yunji.doctormanager.entity.Urine" >
+    update urine
+    set mId = #{mid,jdbcType=CHAR},
+      checkProjectId = #{checkprojectid,jdbcType=INTEGER},
+      bDate = #{bdate,jdbcType=TIMESTAMP},
+      LEU = #{leu,jdbcType=CHAR},
+      NIT = #{nit,jdbcType=CHAR},
+      GLU = #{glu,jdbcType=CHAR},
+      BIL = #{bil,jdbcType=CHAR},
+      VC = #{vc,jdbcType=CHAR},
+      PH = #{ph,jdbcType=CHAR},
+      BLD = #{bld,jdbcType=CHAR},
+      KET = #{ket,jdbcType=CHAR},
+      UBG = #{ubg,jdbcType=CHAR},
+      PRO = #{pro,jdbcType=CHAR},
+      SG = #{sg,jdbcType=CHAR}
+    where bId = #{bid,jdbcType=INTEGER}
+  </update>
+</mapper>

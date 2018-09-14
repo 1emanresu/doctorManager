@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.yunji.doctormanager.dao.FoodMapper" >
+  <resultMap id="BaseResultMap" type="cn.yunji.doctormanager.entity.Food" >
+    <id column="foodId" property="foodid" jdbcType="INTEGER" />
+    <result column="foodName" property="foodname" jdbcType="CHAR" />
+    <result column="attribute" property="attribute" jdbcType="VARCHAR" />
+    <result column="pyramidLayer" property="pyramidlayer" jdbcType="CHAR" />
+    <result column="effect" property="effect" jdbcType="VARCHAR" />
+    <result column="taboo" property="taboo" jdbcType="VARCHAR" />
+    <result column="picture" property="picture" jdbcType="VARCHAR" />
+    <result column="filterCondition" property="filtercondition" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    foodId, foodName, attribute, pyramidLayer, effect, taboo,picture, filterCondition
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from food
+    where foodId = #{foodid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from food
+    where foodId = #{foodid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.yunji.doctormanager.entity.Food" >
+    insert into food (foodId, foodName, attribute, 
+      pyramidLayer, effect, taboo, picture, 
+      filterCondition)
+    values (#{foodid,jdbcType=INTEGER}, #{foodname,jdbcType=CHAR}, #{attribute,jdbcType=VARCHAR}, 
+      #{pyramidlayer,jdbcType=CHAR}, #{effect,jdbcType=VARCHAR}, #{taboo,jdbcType=VARCHAR}, 
+      #{picture,jdbcType=VARCHAR},  #{filtercondition,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.yunji.doctormanager.entity.Food" >
+    insert into food
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="foodid != null" >
+        foodId,
+      </if>
+      <if test="foodname != null" >
+        foodName,
+      </if>
+      <if test="attribute != null" >
+        attribute,
+      </if>
+      <if test="pyramidlayer != null" >
+        pyramidLayer,
+      </if>
+      <if test="effect != null" >
+        effect,
+      </if>
+      <if test="taboo != null" >
+        taboo,
+      </if>
+      <if test="picture != null" >
+        picture,
+      </if>
+      <if test="filtercondition != null" >
+        filterCondition,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="foodid != null" >
+        #{foodid,jdbcType=INTEGER},
+      </if>
+      <if test="foodname != null" >
+        #{foodname,jdbcType=CHAR},
+      </if>
+      <if test="attribute != null" >
+        #{attribute,jdbcType=VARCHAR},
+      </if>
+      <if test="pyramidlayer != null" >
+        #{pyramidlayer,jdbcType=CHAR},
+      </if>
+      <if test="effect != null" >
+        #{effect,jdbcType=VARCHAR},
+      </if>
+      <if test="taboo != null" >
+        #{taboo,jdbcType=VARCHAR},
+      </if>
+       <if test="picture != null" >
+        #{picture,jdbcType=VARCHAR},
+      </if>
+      <if test="filtercondition != null" >
+        #{filtercondition,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.yunji.doctormanager.entity.Food" >
+    update food
+    <set >
+      <if test="foodname != null" >
+        foodName = #{foodname,jdbcType=CHAR},
+      </if>
+      <if test="attribute != null" >
+        attribute = #{attribute,jdbcType=VARCHAR},
+      </if>
+      <if test="pyramidlayer != null" >
+        pyramidLayer = #{pyramidlayer,jdbcType=CHAR},
+      </if>
+      <if test="effect != null" >
+        effect = #{effect,jdbcType=VARCHAR},
+      </if>
+      <if test="taboo != null" >
+        taboo = #{taboo,jdbcType=VARCHAR},
+      </if>
+       <if test="picture != null" >
+        picture = #{picture,jdbcType=VARCHAR},
+      </if>
+      <if test="filtercondition != null" >
+        filterCondition = #{filtercondition,jdbcType=CHAR},
+      </if>
+    </set>
+    where foodId = #{foodid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.yunji.doctormanager.entity.Food" >
+    update food
+    set foodName = #{foodname,jdbcType=CHAR},
+      attribute = #{attribute,jdbcType=VARCHAR},
+      pyramidLayer = #{pyramidlayer,jdbcType=CHAR},
+      effect = #{effect,jdbcType=VARCHAR},
+      taboo = #{taboo,jdbcType=VARCHAR},
+      picture = #{picture,jdbcType=VARCHAR},
+      filterCondition = #{filtercondition,jdbcType=CHAR}
+    where foodId = #{foodid,jdbcType=INTEGER}
+  </update>
+   <select id="findByAttribute" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from food
+    where attribute  like  concat(concat('%',#{value}),'%')
+  </select> 
+</mapper>

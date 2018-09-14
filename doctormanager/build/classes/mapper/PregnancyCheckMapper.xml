@@ -1,0 +1,427 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.yunji.doctormanager.dao.PregnancyCheckMapper" >
+  <resultMap id="BaseResultMap" type="cn.yunji.doctormanager.entity.PregnancyCheck" >
+    <id column="pcheckid" property="pcheckid" jdbcType="INTEGER" />
+    <result column="pcid" property="pcid" jdbcType="INTEGER" />
+    <result column="dpressure" property="dpressure" jdbcType="INTEGER" />
+    <result column="spressure" property="spressure" jdbcType="INTEGER" />
+    <result column="psychosis" property="psychosis" jdbcType="INTEGER" />
+    <result column="intelligence" property="intelligence" jdbcType="INTEGER" />
+    <result column="facialFeatures" property="facialfeatures" jdbcType="INTEGER" />
+    <result column="specialBody" property="specialbody" jdbcType="INTEGER" />
+    <result column="specialFace" property="specialface" jdbcType="INTEGER" />
+    <result column="skinHair" property="skinhair" jdbcType="INTEGER" />
+    <result column="thyroidDisease" property="thyroiddisease" jdbcType="INTEGER" />
+    <result column="heartRate" property="heartrate" jdbcType="INTEGER" />
+    <result column="rhythmHeart" property="rhythmheart" jdbcType="INTEGER" />
+    <result column="noise" property="noise" jdbcType="INTEGER" />
+    <result column="lung" property="lung" jdbcType="INTEGER" />
+    <result column="liver" property="liver" jdbcType="INTEGER" />
+    <result column="limbsSpine" property="limbsspine" jdbcType="INTEGER" />
+    <result column="otherPhysique" property="otherphysique" jdbcType="VARCHAR" />
+    <result column="pubes" property="pubes" jdbcType="INTEGER" />
+    <result column="breast" property="breast" jdbcType="INTEGER" />
+    <result column="vulva" property="vulva" jdbcType="INTEGER" />
+    <result column="cervixUteri" property="cervixuteri" jdbcType="INTEGER" />
+    <result column="secretion" property="secretion" jdbcType="INTEGER" />
+    <result column="uterus" property="uterus" jdbcType="INTEGER" />
+    <result column="enclosure" property="enclosure" jdbcType="VARCHAR" />
+    <result column="other" property="other" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    pcheckid, pcid, dpressure, spressure, psychosis, intelligence, facialFeatures, specialBody, 
+    specialFace, skinHair, thyroidDisease, heartRate, rhythmHeart, noise, lung, liver, 
+    limbsSpine, otherPhysique, pubes, breast, vulva, cervixUteri, secretion, uterus, 
+    enclosure, other
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from pregnancycheck
+    where pcheckid = #{pcheckid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from pregnancycheck
+    where pcheckid = #{pcheckid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.yunji.doctormanager.entity.PregnancyCheck" >
+    insert into pregnancycheck (pcheckid, pcid, dpressure, 
+      spressure, psychosis, intelligence, 
+      facialFeatures, specialBody, specialFace, 
+      skinHair, thyroidDisease, heartRate, 
+      rhythmHeart, noise, lung, 
+      liver, limbsSpine, otherPhysique, 
+      pubes, breast, vulva, 
+      cervixUteri, secretion, uterus, 
+      enclosure, other)
+    values (#{pcheckid,jdbcType=INTEGER}, #{pcid,jdbcType=INTEGER}, #{dpressure,jdbcType=INTEGER}, 
+      #{spressure,jdbcType=INTEGER}, #{psychosis,jdbcType=INTEGER}, #{intelligence,jdbcType=INTEGER}, 
+      #{facialfeatures,jdbcType=INTEGER}, #{specialbody,jdbcType=INTEGER}, #{specialface,jdbcType=INTEGER}, 
+      #{skinhair,jdbcType=INTEGER}, #{thyroiddisease,jdbcType=INTEGER}, #{heartrate,jdbcType=INTEGER}, 
+      #{rhythmheart,jdbcType=INTEGER}, #{noise,jdbcType=INTEGER}, #{lung,jdbcType=INTEGER}, 
+      #{liver,jdbcType=INTEGER}, #{limbsspine,jdbcType=INTEGER}, #{otherphysique,jdbcType=VARCHAR}, 
+      #{pubes,jdbcType=INTEGER}, #{breast,jdbcType=INTEGER}, #{vulva,jdbcType=INTEGER}, 
+      #{cervixuteri,jdbcType=INTEGER}, #{secretion,jdbcType=INTEGER}, #{uterus,jdbcType=INTEGER}, 
+      #{enclosure,jdbcType=VARCHAR}, #{other,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.yunji.doctormanager.entity.PregnancyCheck" >
+    insert into pregnancycheck
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="pcheckid != null" >
+        pcheckid,
+      </if>
+      <if test="pcid != null" >
+        pcid,
+      </if>
+      <if test="dpressure != null" >
+        dpressure,
+      </if>
+      <if test="spressure != null" >
+        spressure,
+      </if>
+      <if test="psychosis != null" >
+        psychosis,
+      </if>
+      <if test="intelligence != null" >
+        intelligence,
+      </if>
+      <if test="facialfeatures != null" >
+        facialFeatures,
+      </if>
+      <if test="specialbody != null" >
+        specialBody,
+      </if>
+      <if test="specialface != null" >
+        specialFace,
+      </if>
+      <if test="skinhair != null" >
+        skinHair,
+      </if>
+      <if test="thyroiddisease != null" >
+        thyroidDisease,
+      </if>
+      <if test="heartrate != null" >
+        heartRate,
+      </if>
+      <if test="rhythmheart != null" >
+        rhythmHeart,
+      </if>
+      <if test="noise != null" >
+        noise,
+      </if>
+      <if test="lung != null" >
+        lung,
+      </if>
+      <if test="liver != null" >
+        liver,
+      </if>
+      <if test="limbsspine != null" >
+        limbsSpine,
+      </if>
+      <if test="otherphysique != null" >
+        otherPhysique,
+      </if>
+      <if test="pubes != null" >
+        pubes,
+      </if>
+      <if test="breast != null" >
+        breast,
+      </if>
+      <if test="vulva != null" >
+        vulva,
+      </if>
+      <if test="cervixuteri != null" >
+        cervixUteri,
+      </if>
+      <if test="secretion != null" >
+        secretion,
+      </if>
+      <if test="uterus != null" >
+        uterus,
+      </if>
+      <if test="enclosure != null" >
+        enclosure,
+      </if>
+      <if test="other != null" >
+        other,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="pcheckid != null" >
+        #{pcheckid,jdbcType=INTEGER},
+      </if>
+      <if test="pcid != null" >
+        #{pcid,jdbcType=INTEGER},
+      </if>
+      <if test="dpressure != null" >
+        #{dpressure,jdbcType=INTEGER},
+      </if>
+      <if test="spressure != null" >
+        #{spressure,jdbcType=INTEGER},
+      </if>
+      <if test="psychosis != null" >
+        #{psychosis,jdbcType=INTEGER},
+      </if>
+      <if test="intelligence != null" >
+        #{intelligence,jdbcType=INTEGER},
+      </if>
+      <if test="facialfeatures != null" >
+        #{facialfeatures,jdbcType=INTEGER},
+      </if>
+      <if test="specialbody != null" >
+        #{specialbody,jdbcType=INTEGER},
+      </if>
+      <if test="specialface != null" >
+        #{specialface,jdbcType=INTEGER},
+      </if>
+      <if test="skinhair != null" >
+        #{skinhair,jdbcType=INTEGER},
+      </if>
+      <if test="thyroiddisease != null" >
+        #{thyroiddisease,jdbcType=INTEGER},
+      </if>
+      <if test="heartrate != null" >
+        #{heartrate,jdbcType=INTEGER},
+      </if>
+      <if test="rhythmheart != null" >
+        #{rhythmheart,jdbcType=INTEGER},
+      </if>
+      <if test="noise != null" >
+        #{noise,jdbcType=INTEGER},
+      </if>
+      <if test="lung != null" >
+        #{lung,jdbcType=INTEGER},
+      </if>
+      <if test="liver != null" >
+        #{liver,jdbcType=INTEGER},
+      </if>
+      <if test="limbsspine != null" >
+        #{limbsspine,jdbcType=INTEGER},
+      </if>
+      <if test="otherphysique != null" >
+        #{otherphysique,jdbcType=VARCHAR},
+      </if>
+      <if test="pubes != null" >
+        #{pubes,jdbcType=INTEGER},
+      </if>
+      <if test="breast != null" >
+        #{breast,jdbcType=INTEGER},
+      </if>
+      <if test="vulva != null" >
+        #{vulva,jdbcType=INTEGER},
+      </if>
+      <if test="cervixuteri != null" >
+        #{cervixuteri,jdbcType=INTEGER},
+      </if>
+      <if test="secretion != null" >
+        #{secretion,jdbcType=INTEGER},
+      </if>
+      <if test="uterus != null" >
+        #{uterus,jdbcType=INTEGER},
+      </if>
+      <if test="enclosure != null" >
+        #{enclosure,jdbcType=VARCHAR},
+      </if>
+      <if test="other != null" >
+        #{other,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.yunji.doctormanager.entity.PregnancyCheck" >
+    update pregnancycheck
+    <set >
+      <if test="pcid != null" >
+        pcid = #{pcid,jdbcType=INTEGER},
+      </if>
+      <if test="dpressure != null" >
+        dpressure = #{dpressure,jdbcType=INTEGER},
+      </if>
+      <if test="spressure != null" >
+        spressure = #{spressure,jdbcType=INTEGER},
+      </if>
+      <if test="psychosis != null" >
+        psychosis = #{psychosis,jdbcType=INTEGER},
+      </if>
+      <if test="intelligence != null" >
+        intelligence = #{intelligence,jdbcType=INTEGER},
+      </if>
+      <if test="facialfeatures != null" >
+        facialFeatures = #{facialfeatures,jdbcType=INTEGER},
+      </if>
+      <if test="specialbody != null" >
+        specialBody = #{specialbody,jdbcType=INTEGER},
+      </if>
+      <if test="specialface != null" >
+        specialFace = #{specialface,jdbcType=INTEGER},
+      </if>
+      <if test="skinhair != null" >
+        skinHair = #{skinhair,jdbcType=INTEGER},
+      </if>
+      <if test="thyroiddisease != null" >
+        thyroidDisease = #{thyroiddisease,jdbcType=INTEGER},
+      </if>
+      <if test="heartrate != null" >
+        heartRate = #{heartrate,jdbcType=INTEGER},
+      </if>
+      <if test="rhythmheart != null" >
+        rhythmHeart = #{rhythmheart,jdbcType=INTEGER},
+      </if>
+      <if test="noise != null" >
+        noise = #{noise,jdbcType=INTEGER},
+      </if>
+      <if test="lung != null" >
+        lung = #{lung,jdbcType=INTEGER},
+      </if>
+      <if test="liver != null" >
+        liver = #{liver,jdbcType=INTEGER},
+      </if>
+      <if test="limbsspine != null" >
+        limbsSpine = #{limbsspine,jdbcType=INTEGER},
+      </if>
+      <if test="otherphysique != null" >
+        otherPhysique = #{otherphysique,jdbcType=VARCHAR},
+      </if>
+      <if test="pubes != null" >
+        pubes = #{pubes,jdbcType=INTEGER},
+      </if>
+      <if test="breast != null" >
+        breast = #{breast,jdbcType=INTEGER},
+      </if>
+      <if test="vulva != null" >
+        vulva = #{vulva,jdbcType=INTEGER},
+      </if>
+      <if test="cervixuteri != null" >
+        cervixUteri = #{cervixuteri,jdbcType=INTEGER},
+      </if>
+      <if test="secretion != null" >
+        secretion = #{secretion,jdbcType=INTEGER},
+      </if>
+      <if test="uterus != null" >
+        uterus = #{uterus,jdbcType=INTEGER},
+      </if>
+      <if test="enclosure != null" >
+        enclosure = #{enclosure,jdbcType=VARCHAR},
+      </if>
+      <if test="other != null" >
+        other = #{other,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where pcheckid = #{pcheckid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.yunji.doctormanager.entity.PregnancyCheck" >
+    update pregnancycheck
+    set pcid = #{pcid,jdbcType=INTEGER},
+      dpressure = #{dpressure,jdbcType=INTEGER},
+      spressure = #{spressure,jdbcType=INTEGER},
+      psychosis = #{psychosis,jdbcType=INTEGER},
+      intelligence = #{intelligence,jdbcType=INTEGER},
+      facialFeatures = #{facialfeatures,jdbcType=INTEGER},
+      specialBody = #{specialbody,jdbcType=INTEGER},
+      specialFace = #{specialface,jdbcType=INTEGER},
+      skinHair = #{skinhair,jdbcType=INTEGER},
+      thyroidDisease = #{thyroiddisease,jdbcType=INTEGER},
+      heartRate = #{heartrate,jdbcType=INTEGER},
+      rhythmHeart = #{rhythmheart,jdbcType=INTEGER},
+      noise = #{noise,jdbcType=INTEGER},
+      lung = #{lung,jdbcType=INTEGER},
+      liver = #{liver,jdbcType=INTEGER},
+      limbsSpine = #{limbsspine,jdbcType=INTEGER},
+      otherPhysique = #{otherphysique,jdbcType=VARCHAR},
+      pubes = #{pubes,jdbcType=INTEGER},
+      breast = #{breast,jdbcType=INTEGER},
+      vulva = #{vulva,jdbcType=INTEGER},
+      cervixUteri = #{cervixuteri,jdbcType=INTEGER},
+      secretion = #{secretion,jdbcType=INTEGER},
+      uterus = #{uterus,jdbcType=INTEGER},
+      enclosure = #{enclosure,jdbcType=VARCHAR},
+      other = #{other,jdbcType=VARCHAR}
+    where pcheckid = #{pcheckid,jdbcType=INTEGER}
+  </update>
+  <!-- yinzx 根据备孕编号 更新信息 -->
+  <select id="findByPcid" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from pregnancycheck
+    where pcid = #{pcid,jdbcType=INTEGER}
+  </select>
+  <!-- yinzx 根据备孕编号 查询信息 -->
+   <update id="updateByPcid" parameterType="cn.yunji.doctormanager.entity.PregnancyCheck" >
+    update pregnancycheck
+    <set >
+      <if test="dpressure != null" >
+        dpressure = #{dpressure,jdbcType=INTEGER},
+      </if>
+      <if test="spressure != null" >
+        spressure = #{spressure,jdbcType=INTEGER},
+      </if>
+      <if test="psychosis != null" >
+        psychosis = #{psychosis,jdbcType=INTEGER},
+      </if>
+      <if test="intelligence != null" >
+        intelligence = #{intelligence,jdbcType=INTEGER},
+      </if>
+      <if test="facialfeatures != null" >
+        facialFeatures = #{facialfeatures,jdbcType=INTEGER},
+      </if>
+      <if test="specialbody != null" >
+        specialBody = #{specialbody,jdbcType=INTEGER},
+      </if>
+      <if test="specialface != null" >
+        specialFace = #{specialface,jdbcType=INTEGER},
+      </if>
+      <if test="skinhair != null" >
+        skinHair = #{skinhair,jdbcType=INTEGER},
+      </if>
+      <if test="thyroiddisease != null" >
+        thyroidDisease = #{thyroiddisease,jdbcType=INTEGER},
+      </if>
+      <if test="heartrate != null" >
+        heartRate = #{heartrate,jdbcType=INTEGER},
+      </if>
+      <if test="rhythmheart != null" >
+        rhythmHeart = #{rhythmheart,jdbcType=INTEGER},
+      </if>
+      <if test="noise != null" >
+        noise = #{noise,jdbcType=INTEGER},
+      </if>
+      <if test="lung != null" >
+        lung = #{lung,jdbcType=INTEGER},
+      </if>
+      <if test="liver != null" >
+        liver = #{liver,jdbcType=INTEGER},
+      </if>
+      <if test="limbsspine != null" >
+        limbsSpine = #{limbsspine,jdbcType=INTEGER},
+      </if>
+      <if test="otherphysique != null" >
+        otherPhysique = #{otherphysique,jdbcType=VARCHAR},
+      </if>
+      <if test="pubes != null" >
+        pubes = #{pubes,jdbcType=INTEGER},
+      </if>
+      <if test="breast != null" >
+        breast = #{breast,jdbcType=INTEGER},
+      </if>
+      <if test="vulva != null" >
+        vulva = #{vulva,jdbcType=INTEGER},
+      </if>
+      <if test="cervixuteri != null" >
+        cervixUteri = #{cervixuteri,jdbcType=INTEGER},
+      </if>
+      <if test="secretion != null" >
+        secretion = #{secretion,jdbcType=INTEGER},
+      </if>
+      <if test="uterus != null" >
+        uterus = #{uterus,jdbcType=INTEGER},
+      </if>
+      <if test="enclosure != null" >
+        enclosure = #{enclosure,jdbcType=VARCHAR},
+      </if>
+      <if test="other != null" >
+        other = #{other,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where pcid = #{pcid,jdbcType=INTEGER}
+  </update>
+</mapper>

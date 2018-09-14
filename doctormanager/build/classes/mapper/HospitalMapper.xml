@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.yunji.doctormanager.dao.HospitalMapper" >
+  <resultMap id="BaseResultMap" type="cn.yunji.doctormanager.entity.Hospital" >
+    <id column="hospitalId" property="hospitalid" jdbcType="CHAR" />
+    <result column="hospitalName" property="hospitalname" jdbcType="CHAR" />
+    <result column="lelvel" property="lelvel" jdbcType="CHAR" />
+    <result column="hAddress" property="haddress" jdbcType="CHAR" />
+    <result column="hPhone" property="hphone" jdbcType="CHAR" />
+    <result column="superior" property="superior" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    hospitalId, hospitalName, lelvel, hAddress, hPhone, superior
+  </sql>
+  <!-- luoyc 根据医院名字查询医院id -->
+  <select id="findByName" parameterType="java.lang.String" resultType="java.lang.String">
+  	select hospitalId from hospital where hospitalName=#{0}
+  </select>
+   <!-- zhangqt 查询医院名字查询医院id -->
+  <select id="find" resultMap="BaseResultMap">
+  	select * from hospital
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from hospital
+    where hospitalId = #{hospitalid,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from hospital
+    where hospitalId = #{hospitalid,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="cn.yunji.doctormanager.entity.Hospital" >
+    insert into hospital (hospitalId, hospitalName, lelvel, 
+      hAddress, hPhone, superior)
+    values (#{hospitalid,jdbcType=CHAR}, #{hospitalname,jdbcType=CHAR}, #{lelvel,jdbcType=CHAR}, 
+      #{haddress,jdbcType=CHAR}, #{hphone,jdbcType=CHAR}, #{superior,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.yunji.doctormanager.entity.Hospital" >
+    insert into hospital
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="hospitalid != null" >
+        hospitalId,
+      </if>
+      <if test="hospitalname != null" >
+        hospitalName,
+      </if>
+      <if test="lelvel != null" >
+        lelvel,
+      </if>
+      <if test="haddress != null" >
+        hAddress,
+      </if>
+      <if test="hphone != null" >
+        hPhone,
+      </if>
+      <if test="superior != null" >
+        superior,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="hospitalid != null" >
+        #{hospitalid,jdbcType=CHAR},
+      </if>
+      <if test="hospitalname != null" >
+        #{hospitalname,jdbcType=CHAR},
+      </if>
+      <if test="lelvel != null" >
+        #{lelvel,jdbcType=CHAR},
+      </if>
+      <if test="haddress != null" >
+        #{haddress,jdbcType=CHAR},
+      </if>
+      <if test="hphone != null" >
+        #{hphone,jdbcType=CHAR},
+      </if>
+      <if test="superior != null" >
+        #{superior,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.yunji.doctormanager.entity.Hospital" >
+    update hospital
+    <set >
+      <if test="hospitalname != null" >
+        hospitalName = #{hospitalname,jdbcType=CHAR},
+      </if>
+      <if test="lelvel != null" >
+        lelvel = #{lelvel,jdbcType=CHAR},
+      </if>
+      <if test="haddress != null" >
+        hAddress = #{haddress,jdbcType=CHAR},
+      </if>
+      <if test="hphone != null" >
+        hPhone = #{hphone,jdbcType=CHAR},
+      </if>
+      <if test="superior != null" >
+        superior = #{superior,jdbcType=CHAR},
+      </if>
+    </set>
+    where hospitalId = #{hospitalid,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.yunji.doctormanager.entity.Hospital" >
+    update hospital
+    set hospitalName = #{hospitalname,jdbcType=CHAR},
+      lelvel = #{lelvel,jdbcType=CHAR},
+      hAddress = #{haddress,jdbcType=CHAR},
+      hPhone = #{hphone,jdbcType=CHAR},
+      superior = #{superior,jdbcType=CHAR}
+    where hospitalId = #{hospitalid,jdbcType=CHAR}
+  </update>
+</mapper>

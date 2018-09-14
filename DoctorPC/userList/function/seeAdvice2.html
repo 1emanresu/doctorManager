@@ -1,0 +1,90 @@
+<!--发送医嘱@author yinzx-->
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="Pragma" content="no-cache">
+		<meta http-equiv="Window-target" content="_top">
+		<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+		<title>产科电子信息管理平台——查看医嘱</title>
+		<link rel="stylesheet" href="../../css/bootstrap.min.css" />
+		<link rel="stylesheet" href="../css/bootstrap-table.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/comm.css" />
+		<style type="text/css">
+			#queryInfo,
+			#queryReset {
+				background-color: #76b0ff;
+				border: none;
+			}
+			
+			#queryInfo {
+				float: left;
+				margin-right: 25px;
+			}
+			
+			#queryReset {
+				float: right;
+				margin: 0;
+			}
+			.adviceonly{
+				cursor: pointer;
+			}
+			.adviceonly:hover{
+				color: cornflowerblue;
+				text-decoration: none;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="class_main">
+			<!-- 头部 导航路径-->
+			<div class="top_Nav">
+				<div class="Nav_img"><img src="images/header_home.png" /></div>
+				<div class="Nav_content">
+					您当前的位置：<span onclick="turnBack()" class="adviceonly">医嘱管理</span><img src="../../images/u2929.png"/>医嘱记录
+				</div>
+			</div>
+			<!-- 主要内容 -->
+			<div class="main_content">
+				<div class="content_search" style="">
+					<!--孕周-->
+					<div class="active5" style="width: 50%!important;">
+						<div class="neiceng" style="">
+							<span>孕 程：</span>
+						</div>
+						<select name="" class="weeks" id="weeksQuery">
+						</select>
+					</div>
+					<!--关键字-->
+					<div class="active5" style="width: 50%!important;">
+						<div class="neiceng">
+							<span>关键字：</span>
+						</div>
+						<input type="text" class="form-control keyword" placeholder="" id="keyword">
+					</div>
+					<!--button-->
+					<div class="btn-class">
+						<button id="queryInfo" onclick="searchList()" class="btn btn-primary btn-block">查询</button>
+						<button id="queryReset" onclick="resetInput()" class="btn btn-primary btn-block">重置</button>
+					</div>
+				</div>
+				<div id="ls-table" style="width: 100%;">
+					<table id="advice_list" ></table>
+				</div>
+			</div>
+
+		</div>
+		<script type="text/javascript" src="../../js/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="../../js/getLogin.js"></script>
+		<script type="text/javascript" src="../../js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="../../js/bootstrap-table.js"></script>
+		<script type="text/javascript" src="../../js/bootstrap-table-zh-CN.js"></script>
+		<script type="text/javascript" src="../../js/topNavigationSetData.js"></script>
+		<script type="text/javascript" src="../../utils/js/bootstrapTableNoPage.js"></script>
+		<script type="text/javascript" src="../../js/Util.js"></script>
+		<script type="text/javascript" src="js/see-advice.js"></script>
+	</body>
+
+</html>

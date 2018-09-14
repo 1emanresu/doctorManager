@@ -1,0 +1,723 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.yunji.doctormanager.dao.PregnancyMapper">
+	<resultMap id="BaseResultMap" type="cn.yunji.doctormanager.entity.Pregnancy">
+		<id column="PCId" jdbcType="INTEGER" property="pcid" />
+		<result column="mid" jdbcType="CHAR" property="mid" />
+		<result column="mName" jdbcType="CHAR" property="mname" />
+		<result column="mAge" jdbcType="INTEGER" property="mage" />
+		<result column="PCDate" jdbcType="DATE" property="pcdate" />
+		<result column="location" jdbcType="VARCHAR" property="location" />
+		<result column="sibship" jdbcType="INTEGER" property="sibship" />
+		<result column="menstrualCycle" jdbcType="INTEGER" property="menstrualcycle" />
+		<result column="oneAge" jdbcType="INTEGER" property="oneage" />
+		<result column="quantity" jdbcType="INTEGER" property="quantity" />
+		<result column="dysmenorrhea" jdbcType="INTEGER" property="dysmenorrhea" />
+		<result column="holdTime" jdbcType="INTEGER" property="holdtime" />
+		<result column="lifeStyle" jdbcType="CHAR" property="lifestyle" />
+		<result column="favorSport" jdbcType="CHAR" property="favorsport" />
+		<result column="dosport" jdbcType="INTEGER" property="dosport" />
+		<result column="sportTime" jdbcType="CHAR" property="sporttime" />
+		<result column="sportPower" jdbcType="INTEGER" property="sportpower" />
+		<result column="familyRelation" jdbcType="INTEGER" property="familyrelation" />
+		<result column="workship" jdbcType="INTEGER" property="workship" />
+		<result column="friendship" jdbcType="INTEGER" property="friendship" />
+		<result column="ready" jdbcType="INTEGER" property="ready" />
+		<result column="pressure" jdbcType="INTEGER" property="pressure" />
+		<result column="folicAcid" jdbcType="INTEGER" property="folicacid" />
+		<result column="medicine" jdbcType="INTEGER" property="medicine" />
+		<result column="meet" jdbcType="INTEGER" property="meet" />
+		<result column="fruits" jdbcType="INTEGER" property="fruits" />
+		<result column="vegetables" jdbcType="INTEGER" property="vegetables" />
+		<result column="pickyEater" jdbcType="INTEGER" property="pickyeater" />
+		<result column="hostileEenvironment" jdbcType="INTEGER"
+			property="hostileeenvironment" />
+		<result column="vaccinate" jdbcType="CHAR" property="vaccinate" />
+		<result column="familyHistory" jdbcType="INTEGER" property="familyhistory" />
+		<result column="recentMarriage" jdbcType="INTEGER" property="recentmarriage" />
+		<result column="mentalstate" jdbcType="INTEGER" property="mentalstate" />
+	</resultMap>
+
+	<sql id="Base_Column_List"> PCId,mid, mName, mAge, PCDate, location, sibship,
+		menstrualCycle, oneAge, quantity, dysmenorrhea, holdTime, lifeStyle,
+		favorSport, dosport, sportTime, sportPower, familyRelation, workship,
+		friendship, ready, pressure, folicAcid, medicine, meet, fruits,
+		vegetables, pickyEater, hostileEenvironment, vaccinate, familyHistory,
+		recentMarriage, mentalstate
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from pregnancy
+		where PCId = #{pcid,jdbcType=INTEGER}
+	</select>
+	<!-- 查询已孕检备孕者  有异常的-->
+	<select id="findByCheck" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		select py.*,g.medicalrecordno
+		from pregnancy py
+		inner join
+		gravidainfo g
+		where py.mid=g.mid
+		<if test="sage != null">
+		 and py.mAge &gt;= #{sage,jdbcType=INTEGER} 
+		 and py.mAge &lt;= #{eage,jdbcType=INTEGER} 
+		 </if>
+		<if test="dreFoli != null">
+		 and py.folicAcid=#{dreFoli,jdbcType=INTEGER}
+		</if>
+		<if test="medicalrecordno != null">
+		 and g.medicalRecordNo=#{medicalrecordno,jdbcType=CHAR}
+		</if>
+		and py.pcid in (select pcid from pregnancycheck)
+		and py.mid in (select mid from HighrisktestResult where highRiskTestResultId in (select highRiskTestResultId from highrisktest where ifhighRisk=1) order by ResultDate)
+		limit #{pageIndex,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
+	</select>
+	
+	<!-- 查询已孕检备孕者  wu异常的-->
+	<select id="findByCheck2" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		select py.*,g.medicalrecordno
+		from pregnancy py
+		inner join
+		gravidainfo g
+		where py.mid=g.mid
+		<if test="sage != null">
+		 and py.mAge &gt;= #{sage,jdbcType=INTEGER} 
+		 and py.mAge &lt;= #{eage,jdbcType=INTEGER} 
+		 </if>
+		<if test="dreFoli != null">
+		 and py.folicAcid=#{dreFoli,jdbcType=INTEGER}
+		</if>
+		<if test="medicalrecordno != null">
+		 and g.medicalRecordNo=#{medicalrecordno,jdbcType=CHAR}
+		</if>
+		and py.pcid in (select pcid from pregnancycheck)
+		and py.mid not in (select mid from HighrisktestResult where highRiskTestResultId in (select highRiskTestResultId from highrisktest where ifhighRisk=1) order by ResultDate)
+		limit #{pageIndex,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
+	</select>
+
+	<!-- 查询未孕检备孕者 -->
+	<select id="findByNotCheck" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		select py.*,g.medicalrecordno
+		from pregnancy py
+		inner join
+		gravidainfo g
+		where py.mid=g.mid
+		<if test="sage != null">
+		 and py.mAge &gt;= #{sage,jdbcType=INTEGER} 
+		 and py.mAge &lt;= #{eage,jdbcType=INTEGER} 
+		 </if>
+		<if test="dreFoli != null">
+		 and py.folicAcid=#{dreFoli,jdbcType=INTEGER}
+		</if>
+		<if test="medicalrecordno != null">
+		 and g.medicalRecordNo=#{medicalrecordno,jdbcType=CHAR}
+		</if>
+		and py.pcid not in (select pcid from pregnancycheck)
+		limit #{pageIndex,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
+	</select>
+	
+	<!-- 查询未孕检总数 -->
+	<select id="getDateCount1" parameterType="java.util.HashMap"
+		resultType="int">
+		select count(*)
+		from pregnancy py
+		inner join
+		gravidainfo g
+		where py.mid=g.mid
+		<if test="sage != null">
+		 and py.mAge &gt;= #{sage,jdbcType=INTEGER} 
+		 and py.mAge &lt;= #{eage,jdbcType=INTEGER} 
+		 </if>
+		<if test="dreFoli != null">
+		 and py.folicAcid=#{dreFoli,jdbcType=INTEGER}
+		</if>
+		<if test="medicalrecordno != null">
+		 and g.medicalRecordNo=#{medicalrecordno,jdbcType=CHAR}
+		</if>
+		and py.pcid not in (select pcid from pregnancycheck)
+	</select>
+	
+	<!-- 查询已孕检并且有异常总数 -->
+	<select id="getDateCount2" parameterType="java.util.HashMap"
+		resultType="int">
+		select count(*)
+		from pregnancy py
+		inner join
+		gravidainfo g
+		where py.mid=g.mid
+		<if test="sage != null">
+		 and py.mAge &gt;= #{sage,jdbcType=INTEGER} 
+		 and py.mAge &lt;= #{eage,jdbcType=INTEGER} 
+		 </if>
+		<if test="dreFoli != null">
+		 and py.folicAcid=#{dreFoli,jdbcType=INTEGER}
+		</if>
+		<if test="medicalrecordno != null">
+		 and g.medicalRecordNo=#{medicalrecordno,jdbcType=CHAR}
+		</if>
+		 and py.mid in (select mid from HighrisktestResult where highRiskTestResultId in (select highRiskTestResultId from highrisktest where ifhighRisk=1) order by ResultDate)
+		 and py.pcid in (select pcid from pregnancycheck)
+	</select>
+	
+	<!-- 查询已孕检并且无异常总数 -->
+	<select id="getDateCount3" parameterType="java.util.HashMap"
+		resultType="int">
+		select count(*)
+		from pregnancy py
+		inner join
+		gravidainfo g
+		where py.mid=g.mid
+		<if test="sage != null">
+		 and py.mAge &gt;= #{sage,jdbcType=INTEGER} 
+		 and py.mAge &lt;= #{eage,jdbcType=INTEGER} 
+		 </if>
+		<if test="dreFoli != null">
+		 and py.folicAcid=#{dreFoli,jdbcType=INTEGER}
+		</if>
+		<if test="medicalrecordno != null">
+		 and g.medicalRecordNo=#{medicalrecordno,jdbcType=CHAR}
+		</if>
+		 and py.mid not in (select mid from HighrisktestResult where highRiskTestResultId in (select highRiskTestResultId from highrisktest where ifhighRisk=1) order by ResultDate)
+		 and py.pcid in (select pcid from pregnancycheck)
+	</select>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		pregnancy
+		where PCId = #{pcid,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="cn.yunji.doctormanager.entity.Pregnancy">
+		insert into pregnancy (PCId,
+		mid,mName, mAge,
+		PCDate, location, sibship,
+		menstrualCycle, oneAge,
+		quantity,
+		dysmenorrhea, holdTime, lifeStyle,
+		favorSport, dosport,
+		sportTime,
+		sportPower, familyRelation, workship,
+		friendship, ready,
+		pressure,
+		folicAcid, medicine, meet,
+		fruits, vegetables, pickyEater,
+		hostileEenvironment, vaccinate, familyHistory,
+		recentMarriage,
+		mentalstate)
+		values (#{pcid,jdbcType=INTEGER},#{mid,jdbcType=CHAR},
+		#{mname,jdbcType=CHAR}, #{mage,jdbcType=INTEGER},
+		#{pcdate,jdbcType=DATE}, #{location,jdbcType=VARCHAR},
+		#{sibship,jdbcType=INTEGER},
+		#{menstrualcycle,jdbcType=INTEGER},
+		#{oneage,jdbcType=INTEGER}, #{quantity,jdbcType=INTEGER},
+		#{dysmenorrhea,jdbcType=INTEGER}, #{holdtime,jdbcType=INTEGER},
+		#{lifestyle,jdbcType=CHAR},
+		#{favorsport,jdbcType=CHAR},
+		#{dosport,jdbcType=INTEGER}, #{sporttime,jdbcType=CHAR},
+		#{sportpower,jdbcType=INTEGER}, #{familyrelation,jdbcType=INTEGER},
+		#{workship,jdbcType=INTEGER},
+		#{friendship,jdbcType=INTEGER},
+		#{ready,jdbcType=INTEGER}, #{pressure,jdbcType=INTEGER},
+		#{folicacid,jdbcType=INTEGER}, #{medicine,jdbcType=INTEGER},
+		#{meet,jdbcType=INTEGER},
+		#{fruits,jdbcType=INTEGER},
+		#{vegetables,jdbcType=INTEGER}, #{pickyeater,jdbcType=INTEGER},
+		#{hostileeenvironment,jdbcType=INTEGER}, #{vaccinate,jdbcType=CHAR},
+		#{familyhistory,jdbcType=INTEGER},
+		#{recentmarriage,jdbcType=INTEGER},
+		#{mentalstate,jdbcType=INTEGER})
+	</insert>
+	<insert id="insertSelective" parameterType="cn.yunji.doctormanager.entity.Pregnancy">
+		insert into pregnancy
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="pcid != null">
+				PCId,
+			</if>
+			<if test="mid != null">
+				mid,
+			</if>
+			<if test="mname != null">
+				mName,
+			</if>
+			<if test="mage != null">
+				mAge,
+			</if>
+			<if test="pcdate != null">
+				PCDate,
+			</if>
+			<if test="location != null">
+				location,
+			</if>
+			<if test="sibship != null">
+				sibship,
+			</if>
+			<if test="menstrualcycle != null">
+				menstrualCycle,
+			</if>
+			<if test="oneage != null">
+				oneAge,
+			</if>
+			<if test="quantity != null">
+				quantity,
+			</if>
+			<if test="dysmenorrhea != null">
+				dysmenorrhea,
+			</if>
+			<if test="holdtime != null">
+				holdTime,
+			</if>
+			<if test="lifestyle != null">
+				lifeStyle,
+			</if>
+			<if test="favorsport != null">
+				favorSport,
+			</if>
+			<if test="dosport != null">
+				dosport,
+			</if>
+			<if test="sporttime != null">
+				sportTime,
+			</if>
+			<if test="sportpower != null">
+				sportPower,
+			</if>
+			<if test="familyrelation != null">
+				familyRelation,
+			</if>
+			<if test="workship != null">
+				workship,
+			</if>
+			<if test="friendship != null">
+				friendship,
+			</if>
+			<if test="ready != null">
+				ready,
+			</if>
+			<if test="pressure != null">
+				pressure,
+			</if>
+			<if test="folicacid != null">
+				folicAcid,
+			</if>
+			<if test="medicine != null">
+				medicine,
+			</if>
+			<if test="meet != null">
+				meet,
+			</if>
+			<if test="fruits != null">
+				fruits,
+			</if>
+			<if test="vegetables != null">
+				vegetables,
+			</if>
+			<if test="pickyeater != null">
+				pickyEater,
+			</if>
+			<if test="hostileeenvironment != null">
+				hostileEenvironment,
+			</if>
+			<if test="vaccinate != null">
+				vaccinate,
+			</if>
+			<if test="familyhistory != null">
+				familyHistory,
+			</if>
+			<if test="recentmarriage != null">
+				recentMarriage,
+			</if>
+			<if test="mentalstate != null">
+				mentalstate,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="pcid != null">
+				#{pcid,jdbcType=INTEGER},
+			</if>
+			<if test="mid != null">
+				#{mid,jdbcType=CHAR},
+			</if>
+			<if test="mname != null">
+				#{mname,jdbcType=CHAR},
+			</if>
+			<if test="mage != null">
+				#{mage,jdbcType=INTEGER},
+			</if>
+			<if test="pcdate != null">
+				#{pcdate,jdbcType=DATE},
+			</if>
+			<if test="location != null">
+				#{location,jdbcType=VARCHAR},
+			</if>
+			<if test="sibship != null">
+				#{sibship,jdbcType=INTEGER},
+			</if>
+			<if test="menstrualcycle != null">
+				#{menstrualcycle,jdbcType=INTEGER},
+			</if>
+			<if test="oneage != null">
+				#{oneage,jdbcType=INTEGER},
+			</if>
+			<if test="quantity != null">
+				#{quantity,jdbcType=INTEGER},
+			</if>
+			<if test="dysmenorrhea != null">
+				#{dysmenorrhea,jdbcType=INTEGER},
+			</if>
+			<if test="holdtime != null">
+				#{holdtime,jdbcType=INTEGER},
+			</if>
+			<if test="lifestyle != null">
+				#{lifestyle,jdbcType=CHAR},
+			</if>
+			<if test="favorsport != null">
+				#{favorsport,jdbcType=CHAR},
+			</if>
+			<if test="dosport != null">
+				#{dosport,jdbcType=INTEGER},
+			</if>
+			<if test="sporttime != null">
+				#{sporttime,jdbcType=CHAR},
+			</if>
+			<if test="sportpower != null">
+				#{sportpower,jdbcType=INTEGER},
+			</if>
+			<if test="familyrelation != null">
+				#{familyrelation,jdbcType=INTEGER},
+			</if>
+			<if test="workship != null">
+				#{workship,jdbcType=INTEGER},
+			</if>
+			<if test="friendship != null">
+				#{friendship,jdbcType=INTEGER},
+			</if>
+			<if test="ready != null">
+				#{ready,jdbcType=INTEGER},
+			</if>
+			<if test="pressure != null">
+				#{pressure,jdbcType=INTEGER},
+			</if>
+			<if test="folicacid != null">
+				#{folicacid,jdbcType=INTEGER},
+			</if>
+			<if test="medicine != null">
+				#{medicine,jdbcType=INTEGER},
+			</if>
+			<if test="meet != null">
+				#{meet,jdbcType=INTEGER},
+			</if>
+			<if test="fruits != null">
+				#{fruits,jdbcType=INTEGER},
+			</if>
+			<if test="vegetables != null">
+				#{vegetables,jdbcType=INTEGER},
+			</if>
+			<if test="pickyeater != null">
+				#{pickyeater,jdbcType=INTEGER},
+			</if>
+			<if test="hostileeenvironment != null">
+				#{hostileeenvironment,jdbcType=INTEGER},
+			</if>
+			<if test="vaccinate != null">
+				#{vaccinate,jdbcType=CHAR},
+			</if>
+			<if test="familyhistory != null">
+				#{familyhistory,jdbcType=INTEGER},
+			</if>
+			<if test="recentmarriage != null">
+				#{recentmarriage,jdbcType=INTEGER},
+			</if>
+			<if test="mentalstate != null">
+				#{mentalstate,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="cn.yunji.doctormanager.entity.Pregnancy">
+		update pregnancy
+		<set>
+			<if test="mid != null">
+				mid = #{mid,jdbcType=CHAR},
+			</if>
+			<if test="mname != null">
+				mName = #{mname,jdbcType=CHAR},
+			</if>
+			<if test="mage != null">
+				mAge = #{mage,jdbcType=INTEGER},
+			</if>
+			<if test="pcdate != null">
+				PCDate = #{pcdate,jdbcType=DATE},
+			</if>
+			<if test="location != null">
+				location = #{location,jdbcType=VARCHAR},
+			</if>
+			<if test="sibship != null">
+				sibship = #{sibship,jdbcType=INTEGER},
+			</if>
+			<if test="menstrualcycle != null">
+				menstrualCycle = #{menstrualcycle,jdbcType=INTEGER},
+			</if>
+			<if test="oneage != null">
+				oneAge = #{oneage,jdbcType=INTEGER},
+			</if>
+			<if test="quantity != null">
+				quantity = #{quantity,jdbcType=INTEGER},
+			</if>
+			<if test="dysmenorrhea != null">
+				dysmenorrhea = #{dysmenorrhea,jdbcType=INTEGER},
+			</if>
+			<if test="holdtime != null">
+				holdTime = #{holdtime,jdbcType=INTEGER},
+			</if>
+			<if test="lifestyle != null">
+				lifeStyle = #{lifestyle,jdbcType=CHAR},
+			</if>
+			<if test="favorsport != null">
+				favorSport = #{favorsport,jdbcType=CHAR},
+			</if>
+			<if test="dosport != null">
+				dosport = #{dosport,jdbcType=INTEGER},
+			</if>
+			<if test="sporttime != null">
+				sportTime = #{sporttime,jdbcType=CHAR},
+			</if>
+			<if test="sportpower != null">
+				sportPower = #{sportpower,jdbcType=INTEGER},
+			</if>
+			<if test="familyrelation != null">
+				familyRelation = #{familyrelation,jdbcType=INTEGER},
+			</if>
+			<if test="workship != null">
+				workship = #{workship,jdbcType=INTEGER},
+			</if>
+			<if test="friendship != null">
+				friendship = #{friendship,jdbcType=INTEGER},
+			</if>
+			<if test="ready != null">
+				ready = #{ready,jdbcType=INTEGER},
+			</if>
+			<if test="pressure != null">
+				pressure = #{pressure,jdbcType=INTEGER},
+			</if>
+			<if test="folicacid != null">
+				folicAcid = #{folicacid,jdbcType=INTEGER},
+			</if>
+			<if test="medicine != null">
+				medicine = #{medicine,jdbcType=INTEGER},
+			</if>
+			<if test="meet != null">
+				meet = #{meet,jdbcType=INTEGER},
+			</if>
+			<if test="fruits != null">
+				fruits = #{fruits,jdbcType=INTEGER},
+			</if>
+			<if test="vegetables != null">
+				vegetables = #{vegetables,jdbcType=INTEGER},
+			</if>
+			<if test="pickyeater != null">
+				pickyEater = #{pickyeater,jdbcType=INTEGER},
+			</if>
+			<if test="hostileeenvironment != null">
+				hostileEenvironment =
+				#{hostileeenvironment,jdbcType=INTEGER},
+			</if>
+			<if test="vaccinate != null">
+				vaccinate = #{vaccinate,jdbcType=CHAR},
+			</if>
+			<if test="familyhistory != null">
+				familyHistory = #{familyhistory,jdbcType=INTEGER},
+			</if>
+			<if test="recentmarriage != null">
+				recentMarriage = #{recentmarriage,jdbcType=INTEGER},
+			</if>
+			<if test="mentalstate != null">
+				mentalstate = #{mentalstate,jdbcType=INTEGER},
+			</if>
+		</set>
+		where PCId = #{pcid,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="cn.yunji.doctormanager.entity.Pregnancy">
+		update pregnancy
+
+		set mid = #{mid,jdbcType=CHAR},
+		mName = #{mname,jdbcType=CHAR},
+		mAge =
+		#{mage,jdbcType=INTEGER},
+		PCDate = #{pcdate,jdbcType=DATE},
+		location =
+		#{location,jdbcType=VARCHAR},
+		sibship = #{sibship,jdbcType=INTEGER},
+		menstrualCycle = #{menstrualcycle,jdbcType=INTEGER},
+		oneAge =
+		#{oneage,jdbcType=INTEGER},
+		quantity = #{quantity,jdbcType=INTEGER},
+		dysmenorrhea = #{dysmenorrhea,jdbcType=INTEGER},
+		holdTime =
+		#{holdtime,jdbcType=INTEGER},
+		lifeStyle = #{lifestyle,jdbcType=CHAR},
+		favorSport = #{favorsport,jdbcType=CHAR},
+		dosport =
+		#{dosport,jdbcType=INTEGER},
+		sportTime = #{sporttime,jdbcType=CHAR},
+		sportPower = #{sportpower,jdbcType=INTEGER},
+		familyRelation =
+		#{familyrelation,jdbcType=INTEGER},
+		workship =
+		#{workship,jdbcType=INTEGER},
+		friendship =
+		#{friendship,jdbcType=INTEGER},
+		ready = #{ready,jdbcType=INTEGER},
+		pressure = #{pressure,jdbcType=INTEGER},
+		folicAcid =
+		#{folicacid,jdbcType=INTEGER},
+		medicine = #{medicine,jdbcType=INTEGER},
+		meet = #{meet,jdbcType=INTEGER},
+		fruits = #{fruits,jdbcType=INTEGER},
+		vegetables = #{vegetables,jdbcType=INTEGER},
+		pickyEater =
+		#{pickyeater,jdbcType=INTEGER},
+		hostileEenvironment =
+		#{hostileeenvironment,jdbcType=INTEGER},
+		vaccinate =
+		#{vaccinate,jdbcType=CHAR},
+		familyHistory =
+		#{familyhistory,jdbcType=INTEGER},
+		recentMarriage =
+		#{recentmarriage,jdbcType=INTEGER},
+		mentalstate =
+		#{mentalstate,jdbcType=INTEGER}
+		where PCId = #{pcid,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPcid" parameterType="cn.yunji.doctormanager.entity.Pregnancy">
+		update pregnancy
+		set mid
+		= #{mid,jdbcType=CHAR},
+		mName = #{mname,jdbcType=CHAR},
+		mAge =
+		#{mage,jdbcType=INTEGER},
+		PCDate = #{pcdate,jdbcType=DATE},
+		location =
+		#{location,jdbcType=VARCHAR},
+		sibship = #{sibship,jdbcType=INTEGER},
+		menstrualCycle = #{menstrualcycle,jdbcType=INTEGER},
+		quantity =
+		#{quantity,jdbcType=INTEGER},
+		oneAge = #{oneage,jdbcType=INTEGER},
+		familyHistory = #{familyhistory,jdbcType=INTEGER},
+		recentMarriage =
+		#{recentmarriage,jdbcType=INTEGER},
+		mentalstate =
+		#{mentalstate,jdbcType=INTEGER}
+		where PCId = #{pcid,jdbcType=INTEGER}
+	</update>
+	<select id="findByMid" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from pregnancy
+		where mid = #{mid,jdbcType=CHAR}
+	</select>
+	<update id="updateByMid" parameterType="cn.yunji.doctormanager.entity.Pregnancy">
+		update pregnancy
+		<set>
+
+			<if test="mname != null">
+				mName = #{mname,jdbcType=CHAR},
+			</if>
+			<if test="mage != null">
+				mAge = #{mage,jdbcType=INTEGER},
+			</if>
+			<if test="pcdate != null">
+				PCDate = #{pcdate,jdbcType=DATE},
+			</if>
+			<if test="location != null">
+				location = #{location,jdbcType=VARCHAR},
+			</if>
+			<if test="sibship != null">
+				sibship = #{sibship,jdbcType=INTEGER},
+			</if>
+			<if test="menstrualcycle != null">
+				menstrualCycle = #{menstrualcycle,jdbcType=INTEGER},
+			</if>
+			<if test="oneage != null">
+				oneAge = #{oneage,jdbcType=INTEGER},
+			</if>
+			<if test="quantity != null">
+				quantity = #{quantity,jdbcType=INTEGER},
+			</if>
+			<if test="dysmenorrhea != null">
+				dysmenorrhea = #{dysmenorrhea,jdbcType=INTEGER},
+			</if>
+			<if test="holdtime != null">
+				holdTime = #{holdtime,jdbcType=INTEGER},
+			</if>
+			<if test="lifestyle != null">
+				lifeStyle = #{lifestyle,jdbcType=CHAR},
+			</if>
+			<if test="favorsport != null">
+				favorSport = #{favorsport,jdbcType=CHAR},
+			</if>
+			<if test="dosport != null">
+				dosport = #{dosport,jdbcType=INTEGER},
+			</if>
+			<if test="sporttime != null">
+				sportTime = #{sporttime,jdbcType=CHAR},
+			</if>
+			<if test="sportpower != null">
+				sportPower = #{sportpower,jdbcType=INTEGER},
+			</if>
+			<if test="familyrelation != null">
+				familyRelation = #{familyrelation,jdbcType=INTEGER},
+			</if>
+			<if test="workship != null">
+				workship = #{workship,jdbcType=INTEGER},
+			</if>
+			<if test="friendship != null">
+				friendship = #{friendship,jdbcType=INTEGER},
+			</if>
+			<if test="ready != null">
+				ready = #{ready,jdbcType=INTEGER},
+			</if>
+			<if test="pressure != null">
+				pressure = #{pressure,jdbcType=INTEGER},
+			</if>
+			<if test="folicacid != null">
+				folicAcid = #{folicacid,jdbcType=INTEGER},
+			</if>
+			<if test="medicine != null">
+				medicine = #{medicine,jdbcType=INTEGER},
+			</if>
+			<if test="meet != null">
+				meet = #{meet,jdbcType=INTEGER},
+			</if>
+			<if test="fruits != null">
+				fruits = #{fruits,jdbcType=INTEGER},
+			</if>
+			<if test="vegetables != null">
+				vegetables = #{vegetables,jdbcType=INTEGER},
+			</if>
+			<if test="pickyeater != null">
+				pickyEater = #{pickyeater,jdbcType=INTEGER},
+			</if>
+			<if test="hostileeenvironment != null">
+				hostileEenvironment =
+				#{hostileeenvironment,jdbcType=INTEGER},
+			</if>
+			<if test="vaccinate != null">
+				vaccinate = #{vaccinate,jdbcType=CHAR},
+			</if>
+			<if test="familyhistory != null">
+				familyHistory = #{familyhistory,jdbcType=INTEGER},
+			</if>
+			<if test="recentmarriage != null">
+				recentMarriage = #{recentmarriage,jdbcType=INTEGER},
+			</if>
+			<if test="mentalstate != null">
+				mentalstate = #{mentalstate,jdbcType=INTEGER},
+			</if>
+		</set>
+		where mid = #{mid,jdbcType=CHAR}
+	</update>
+</mapper>

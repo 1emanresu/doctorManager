@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.yunji.doctormanager.dao.WeeklyNursingMapper" >
+  <resultMap id="BaseResultMap" type="cn.yunji.doctormanager.entity.WeeklyNursing" >
+    <id column="wId" property="wid" jdbcType="INTEGER" />
+    <result column="week" property="week" jdbcType="INTEGER" />
+    <result column="weeklynursing" property="weeklynursing" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    wId, week, weeklynursing
+  </sql>
+  <!-- luoyc 根据孕周查找数据 -->
+  <select id="findByWeek" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from weeklynursing
+    where week = #{week,jdbcType=INTEGER}
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from weeklynursing
+    where wId = #{wid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from weeklynursing
+    where wId = #{wid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.yunji.doctormanager.entity.WeeklyNursing" >
+    insert into weeklynursing (wId, week, weeklynursing
+      )
+    values (#{wid,jdbcType=INTEGER}, #{week,jdbcType=INTEGER}, #{weeklynursing,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.yunji.doctormanager.entity.WeeklyNursing" >
+    insert into weeklynursing
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="wid != null" >
+        wId,
+      </if>
+      <if test="week != null" >
+        week,
+      </if>
+      <if test="weeklynursing != null" >
+        weeklynursing,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="wid != null" >
+        #{wid,jdbcType=INTEGER},
+      </if>
+      <if test="week != null" >
+        #{week,jdbcType=INTEGER},
+      </if>
+      <if test="weeklynursing != null" >
+        #{weeklynursing,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.yunji.doctormanager.entity.WeeklyNursing" >
+    update weeklynursing
+    <set >
+      <if test="week != null" >
+        week = #{week,jdbcType=INTEGER},
+      </if>
+      <if test="weeklynursing != null" >
+        weeklynursing = #{weeklynursing,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where wId = #{wid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.yunji.doctormanager.entity.WeeklyNursing" >
+    update weeklynursing
+    set week = #{week,jdbcType=INTEGER},
+      weeklynursing = #{weeklynursing,jdbcType=VARCHAR}
+    where wId = #{wid,jdbcType=INTEGER}
+  </update>
+</mapper>

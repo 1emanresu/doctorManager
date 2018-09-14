@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.yunji.doctormanager.dao.DoctorMapper">
+	<resultMap id="BaseResultMap" type="cn.yunji.doctormanager.entity.Doctor">
+		<id column="doctorId" property="doctorid" jdbcType="INTEGER" />
+		<result column="hospitalId" property="hospitalid" jdbcType="CHAR" />
+		<result column="userID" property="userid" jdbcType="INTEGER" />
+		<result column="officeId" property="officeid" jdbcType="INTEGER" />
+		<result column="dName" property="dname" jdbcType="CHAR" />
+		<result column="sex" property="sex" jdbcType="INTEGER" />
+		<result column="introduce" property="introduce" jdbcType="VARCHAR" />
+		<result column="address" property="address" jdbcType="VARCHAR" />
+		<result column="email" property="email" jdbcType="VARCHAR" />
+		<result column="dPhone" property="dphone" jdbcType="CHAR" />
+		<result column="fixedTelephone" property="fixedTelephone" jdbcType="CHAR" />
+		<result column="offID" property="offID" jdbcType="INTEGER" />
+		<!-- 一个医生多个患者检查结果 mcally.ly -->
+		<collection property="checkResult" javaType="ArrayList"
+			ofType="cn.yunji.doctormanager.entity.CheckResult" column="doctorid"
+			select="cn.yunji.doctormanager.dao.CheckResultMapper.selectByDoctorId">
+
+		</collection>
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		doctorId, hospitalId, userID, officeId, dName, sex,
+		introduce, address, email,pid,
+		dPhone,fixedTelephone,offID
+	</sql>
+ 
+	<!--登录结果集 mcally.ly -->
+	<resultMap id="doctorbasic" type="cn.yunji.doctormanager.entity.Doctor">
+		<id column="doctorId" property="doctorid" jdbcType="INTEGER" />
+		<result column="hospitalId" property="hospitalid" jdbcType="CHAR" />
+		<result column="userID" property="userid" jdbcType="INTEGER" />
+		<result column="officeId" property="officeid" jdbcType="INTEGER" />
+		<result column="dName" property="dname" jdbcType="CHAR" />
+		<result column="sex" property="sex" jdbcType="INTEGER" />
+		<result column="introduce" property="introduce" jdbcType="VARCHAR" />
+		<result column="address" property="address" jdbcType="VARCHAR" />
+		<result column="email" property="email" jdbcType="VARCHAR" />
+		<result column="dPhone" property="dphone" jdbcType="CHAR" />
+		<association property="hospital"
+			select="cn.yunji.doctormanager.dao.HospitalMapper.selectByPrimaryKey"
+			column="hospitalId"></association>
+		<association property="office"
+			select="cn.yunji.doctormanager.dao.OfficeMapper.selectByPrimaryKey"
+			column="officeId"></association>
+
+	</resultMap>
+   <!--@author wangzw 查询所有的产科的医生 -->
+	<select id="findByofficeId" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from doctor
+		where officeId=2
+		and offID=#{0}
+	</select>
+	<!--@wangzw 修改医生的子科室id-->
+		<update id="alertOffid"  parameterType="java.lang.Integer">
+		update doctor
+		set
+		offID = #{offID,jdbcType=INTEGER}
+		where doctorId = #{doctorid,jdbcType=INTEGER}
+	</update>
+	
+	<!-- 根据登录的用户编号查找对应的医生信息 mcally.ly -->
+	<select id="selectByPrimaryKey2" resultMap="doctorbasic"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from doctor
+
+		where userid = #{userid,jdbcType=INTEGER}
+	</select>
+
+	<!-- 查找医生的职称 title mcally.ly -->
+	<select id="selectByDname" resultType="map" parameterType="java.lang.String">
+		select d.dname,df.title
+		from doctor d join doctorinfo df
+		on
+		d.dname=df.dname
+	</select>
+
+
+
+
+	<!--查询医生的信息和头像 -->
+	<select id="queryByDoctortId" resultType="java.util.HashMap"
+		parameterType="java.lang.Integer">
+		select d.*,u.avatar from doctor d
+		inner join usertb u on
+		u.userID=d.userID where d.doctorId=#{0};
+	</select>
+
+	<!--查询医生 -->
+	<select id="findDoctor" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from doctor
+		where doctorId = #{doctorid,jdbcType=INTEGER}
+	</select>
+
+
+ 	<!--查询所有医生的账户信息，包括所属医院、科室 author  zhangqt -->
+	<select id="queryInfo" resultType="java.util.HashMap">
+		select d.*,h.hospitalname,o.officename,u.createDate,p.pname from doctor d
+		left join hospital h on d.hospitalId=h.hospitalId
+		left join office o on o.officeid=d.officeid
+		left join userTb u on u.userID=d.userID
+		left join position p on p.pid=d.pid
+		where 1=1
+		<if test="hid != null">
+			and d.hospitalId=#{hid,jdbcType=CHAR}
+		</if>
+		<if test="dname != null">
+			and d.dname=#{dname,jdbcType=CHAR}
+		</if>
+		<if test="pageIndex != null">
+			limit #{pageIndex,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
+		</if>
+	</select>
+	
+		<!--查询所有医生的账户信息，包括所属医院、科室 author  zhangqt -->
+	<select id="queryInfoCount" resultType="java.lang.Integer">
+		select count(*) from doctor d
+		left join hospital h on d.hospitalId=h.hospitalId
+		left join office o on o.officeid=d.officeid
+		where 1=1
+		<if test="hid != null">
+			and d.hospitalId=#{hid,jdbcType=CHAR}
+		</if>
+		<if test="dname != null">
+			and d.dname=#{dname,jdbcType=CHAR}
+		</if>
+	</select>
+
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from doctor
+		where doctorId = #{doctorid,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from doctor
+		where doctorId = #{doctorid,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="cn.yunji.doctormanager.entity.Doctor">
+		insert into doctor (doctorId,
+		hospitalId, userID,
+		officeId, dName, sex,
+		introduce, address, email,
+		dPhone,pid)
+		values (#{doctorid,jdbcType=INTEGER},
+		#{hospitalid,jdbcType=CHAR},
+		#{userid,jdbcType=INTEGER},
+		#{officeid,jdbcType=INTEGER}, #{dname,jdbcType=CHAR},
+		#{sex,jdbcType=INTEGER},
+		#{introduce,jdbcType=VARCHAR},
+		#{address,jdbcType=VARCHAR},
+		#{email,jdbcType=VARCHAR},
+		#{dphone,jdbcType=CHAR},
+		#{pid,jdbcType=INTEGER})
+	</insert>
+	<insert id="insertSelective" parameterType="cn.yunji.doctormanager.entity.Doctor">
+		insert into doctor
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="doctorid != null">
+				doctorId,
+			</if>
+			<if test="hospitalid != null">
+				hospitalId,
+			</if>
+			<if test="userid != null">
+				userID,
+			</if>
+			<if test="officeid != null">
+				officeId,
+			</if>
+			<if test="dname != null">
+				dName,
+			</if>
+			<if test="sex != null">
+				sex,
+			</if>
+			<if test="introduce != null">
+				introduce,
+			</if>
+			<if test="address != null">
+				address,
+			</if>
+			<if test="email != null">
+				email,
+			</if>
+			<if test="dphone != null">
+				dPhone,
+			</if>
+			<if test="pid != null">
+				pid,
+			</if>
+			<if test="fixedTelephone != null">
+				fixedTelephone,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="doctorid != null">
+				#{doctorid,jdbcType=INTEGER},
+			</if>
+			<if test="hospitalid != null">
+				#{hospitalid,jdbcType=CHAR},
+			</if>
+			<if test="userid != null">
+				#{userid,jdbcType=INTEGER},
+			</if>
+			<if test="officeid != null">
+				#{officeid,jdbcType=INTEGER},
+			</if>
+			<if test="dname != null">
+				#{dname,jdbcType=CHAR},
+			</if>
+			<if test="sex != null">
+				#{sex,jdbcType=INTEGER},
+			</if>
+			<if test="introduce != null">
+				#{introduce,jdbcType=VARCHAR},
+			</if>
+			<if test="address != null">
+				#{address,jdbcType=VARCHAR},
+			</if>
+			<if test="email != null">
+				#{email,jdbcType=VARCHAR},
+			</if>
+			<if test="dphone != null">
+				#{dphone,jdbcType=CHAR},
+			</if>
+			<if test="pid != null">
+				#{pid,jdbcType=INTEGER},
+			</if>
+			<if test="fixedTelephone != null">
+				#{fixedTelephone,jdbcType=CHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="cn.yunji.doctormanager.entity.Doctor">
+		update doctor
+		<set>
+			<if test="hospitalid != null">
+				hospitalId = #{hospitalid,jdbcType=CHAR},
+			</if>
+			<if test="userid != null">
+				userID = #{userid,jdbcType=INTEGER},
+			</if>
+			<if test="officeid != null">
+				officeId = #{officeid,jdbcType=INTEGER},
+			</if>
+			<if test="dname != null">
+				dName = #{dname,jdbcType=CHAR},
+			</if>
+			<if test="sex != null">
+				sex = #{sex,jdbcType=INTEGER},
+			</if>
+			<if test="introduce != null">
+				introduce = #{introduce,jdbcType=VARCHAR},
+			</if>
+			<if test="address != null">
+				address = #{address,jdbcType=VARCHAR},
+			</if>
+			<if test="email != null">
+				email = #{email,jdbcType=VARCHAR},
+			</if>
+			<if test="dphone != null">
+				dPhone = #{dphone,jdbcType=CHAR},
+			</if>
+			<if test="fixedTelephone != null">
+				fixedTelephone = #{fixedTelephone,jdbcType=CHAR},
+			</if>
+		</set>
+		where doctorId = #{doctorid,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="cn.yunji.doctormanager.entity.Doctor">
+		update doctor
+		set
+		hospitalId = #{hospitalid,jdbcType=CHAR},
+		userID =
+		#{userid,jdbcType=INTEGER},
+		officeId = #{officeid,jdbcType=INTEGER},
+		dName = #{dname,jdbcType=CHAR},
+		sex = #{sex,jdbcType=INTEGER},
+		introduce = #{introduce,jdbcType=VARCHAR},
+		address =
+		#{address,jdbcType=VARCHAR},
+		email = #{email,jdbcType=VARCHAR},
+		dPhone =
+		#{dphone,jdbcType=CHAR}
+		where doctorId = #{doctorid,jdbcType=INTEGER}
+	</update>
+</mapper>

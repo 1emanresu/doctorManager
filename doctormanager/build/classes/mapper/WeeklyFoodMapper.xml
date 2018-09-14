@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.yunji.doctormanager.dao.WeeklyFoodMapper" >
+  <resultMap id="BaseResultMap" type="cn.yunji.doctormanager.entity.WeeklyFood" >
+    <id column="wId" property="wid" jdbcType="INTEGER" />
+    <result column="week" property="week" jdbcType="INTEGER" />
+    <result column="eatYes" property="eatyes" jdbcType="VARCHAR" />
+    <result column="eatNo" property="eatno" jdbcType="VARCHAR" />
+    <result column="nutritional" property="nutritional" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    wId, week, eatYes, eatNo, nutritional
+  </sql>
+  <!-- luoyc 根据孕周查找数据 -->
+  <select id="findByWeek" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from weeklyfood
+    where week = #{week,jdbcType=INTEGER}
+  </select>
+  <!-- luoyc 根据主键数组查询 -->
+  <select id="selectByPrimaryKeys" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from weeklyfood
+    <if test="ids != null">  
+        where wid in(  
+            <foreach collection="ids" item="wid" index="index" separator="," >    
+                #{wid,jdbcType=INTEGER}   
+            </foreach>  
+        )     
+    </if> 
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from weeklyfood
+    where wId = #{wid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from weeklyfood
+    where wId = #{wid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.yunji.doctormanager.entity.WeeklyFood" >
+    insert into weeklyfood (wId, week, eatYes, 
+      eatNo, nutritional)
+    values (#{wid,jdbcType=INTEGER}, #{week,jdbcType=INTEGER}, #{eatyes,jdbcType=VARCHAR}, 
+      #{eatno,jdbcType=VARCHAR}, #{nutritional,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.yunji.doctormanager.entity.WeeklyFood" >
+    insert into weeklyfood
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="wid != null" >
+        wId,
+      </if>
+      <if test="week != null" >
+        week,
+      </if>
+      <if test="eatyes != null" >
+        eatYes,
+      </if>
+      <if test="eatno != null" >
+        eatNo,
+      </if>
+      <if test="nutritional != null" >
+        nutritional,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="wid != null" >
+        #{wid,jdbcType=INTEGER},
+      </if>
+      <if test="week != null" >
+        #{week,jdbcType=INTEGER},
+      </if>
+      <if test="eatyes != null" >
+        #{eatyes,jdbcType=VARCHAR},
+      </if>
+      <if test="eatno != null" >
+        #{eatno,jdbcType=VARCHAR},
+      </if>
+      <if test="nutritional != null" >
+        #{nutritional,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.yunji.doctormanager.entity.WeeklyFood" >
+    update weeklyfood
+    <set >
+      <if test="week != null" >
+        week = #{week,jdbcType=INTEGER},
+      </if>
+      <if test="eatyes != null" >
+        eatYes = #{eatyes,jdbcType=VARCHAR},
+      </if>
+      <if test="eatno != null" >
+        eatNo = #{eatno,jdbcType=VARCHAR},
+      </if>
+      <if test="nutritional != null" >
+        nutritional = #{nutritional,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where wId = #{wid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.yunji.doctormanager.entity.WeeklyFood" >
+    update weeklyfood
+    set week = #{week,jdbcType=INTEGER},
+      eatYes = #{eatyes,jdbcType=VARCHAR},
+      eatNo = #{eatno,jdbcType=VARCHAR},
+      nutritional = #{nutritional,jdbcType=VARCHAR}
+    where wId = #{wid,jdbcType=INTEGER}
+  </update>
+</mapper>

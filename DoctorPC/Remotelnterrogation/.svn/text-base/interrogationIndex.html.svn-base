@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>产科电子信息管理平台——在线预约</title>
+		<link rel="stylesheet" href="../css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/chat.css" />
+		<link rel="stylesheet" type="text/css" href="css/doctorAdvice_general.css" />
+		<link rel="stylesheet" href="css/interrogationIndex.css" />
+	</head>
+
+	<body>
+		<!-- 头部 导航路径-->
+		<div class="top_Nav">
+			<div class="Nav_content">
+				您当前的位置： <span id="pathSpan1" onclick="turnBack()"></span>
+				<img src="../images/u2929.png" /> <span id="pathSpan2" onclick="turnBack()"></span>
+				<img src="../images/u2929.png" /> <span id="pathSpan3" onclick="turnBack()"></span>
+				<img src="../images/u2929.png" /> 求助问诊
+			</div>
+		</div>
+		<img src="images/woman.png" width="35px" style="position: absolute;top: 0px;left: 20px;">
+		<table class="waitTable">
+			<tr>
+				<td>预约时间</td>
+				<td>患者姓名</td>
+				<td>年龄</td>
+				<td>孕周</td>
+				<td>预产期</td>
+				<td>健康套餐</td>
+				<td>状态</td>
+				<td>操作</td>
+			</tr>
+			<tr>
+				<td>2017/5/28 10:00</td>
+				<td>王大花</td>
+				<td>25</td>
+				<td>20</td>
+				<td>2017/9/28</td>
+				<td>vip3</td>
+				<td>在线&nbsp;&nbsp;<img src="images/online.png"></td>
+				<td><a href="interrogation.html">接诊</a></td>
+			</tr>
+			<tr>
+				<td>2017/5/28 10:30</td>
+				<td>周丽娜</td>
+				<td>28</td>
+				<td>16</td>
+				<td>2017/10/23</td>
+				<td>vip3</td>
+				<td>下线&nbsp;&nbsp;<img src="images/outOfLine.png"></td>
+				<td style="color: #696969;">接诊</td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td>&nbsp;</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>&nbsp;</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td>&nbsp;</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+		</table>
+	</body>
+	<script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="../js/getLogin.js"></script>
+	<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../js/topNavigationSetData.js"></script>
+</html>

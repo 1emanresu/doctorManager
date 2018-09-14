@@ -1,0 +1,621 @@
+/*@author wangzw*/
+* {
+	padding: 0px;
+	margin: 0px;
+	font-size: 12px;
+	color: #333;
+}
+textarea:focus{
+	 outline: none;
+}
+.advice_content a{
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.class_firstDiagnose_main {
+	/*min-width: 1200px;
+	max-width: 1280px;*/
+	width: 100%;
+	margin: 0 auto;
+}
+
+.class_firstDiagnose_top_content {
+	width: 100%;
+	height: 31px;
+	border-bottom: 1px solid #D7D7D7;
+	overflow: hidden;
+}
+
+.class_firstDiagnose_left_home_img {
+	width: 41px;
+	float: left;
+}
+
+.class_firstDiagnose_left_home_img img {
+	margin: 7px 15px 2px 10px;
+}
+
+.class_firstDiagnose_right_title {
+	width: 79%;
+	height: 31px;
+	line-height: 31px;
+	float: left;
+}
+
+.class_firstDiagnose_distance {
+	height: 25px;
+}
+
+.class_firstDiagnose_tab_personage_info {
+	margin: -7px 7px 7px 7px;
+	width: 100%;
+	height: 347px;
+	border: 1px solid #E4E4E4;
+	overflow: hidden;
+}
+
+.class_firstDiagnose_personage_titile {
+	float: left;
+	width: 126px;
+	text-indent: 5px;
+	font-weight: bold;
+	font-size: 16px;
+	line-height: 347px;
+	color: #696969;
+}
+
+.class_firstDiagnose_personage_info_show {
+	margin-top: 3px;
+	float: left;
+	width: 22.37%;
+}
+
+.class_firstDiagnose_table_width {}
+
+.class_firstDiagnose_td_width {
+	width: 96px;
+	color: #696969;
+}
+
+.class_firstDiagnose_font_color {
+	color: #999999;
+}
+
+.class_firstDiagnose_tr_height {
+	height: 27px;
+}
+
+.class_firstDiagnose_tab_husband_info {
+	margin: 13px 7px 7px 7px;
+	width: 100%;
+	height: 119px;
+	border: 1px solid #E4E4E4;
+	overflow: hidden;
+}
+
+.class_firstDiagnose_husband_titile {
+	float: left;
+	width: 126px;
+	text-indent: 5px;
+	font-weight: bold;
+	font-size: 16px;
+	line-height: 119px;
+	color: #696969;
+}
+
+.class_firstDiagnose_husband_info_show {
+	margin-top: 3px;
+	float: left;
+	width: 22.37%;
+}
+
+.class_firstDiagnose_tab_perinatal_info {
+	margin: 13px 7px 7px 7px;
+	width: 100%;
+	height: 95px;
+	border: 1px solid #E4E4E4;
+	overflow: hidden;
+}
+
+.class_firstDiagnose_perinatal_titile {
+	float: left;
+	width: 126px;
+	text-indent: 5px;
+	font-weight: bold;
+	font-size: 16px;
+	line-height: 95px;
+	color: #696969;
+}
+
+.class_firstDiagnose_perinatal_info_show {
+	margin-top: 3px;
+	float: left;
+	width: 22.37%;
+}
+
+.class_firstDiagnose_tab_perinatalPeriod_info {
+	margin: -7px 7px 7px 7px;
+	padding-top: 5px;
+	width: 100%;
+	height: 67px;
+	border: 1px solid #E4E4E4;
+	border-bottom: none;
+	overflow: hidden;
+}
+
+.class_firstDiagnose_perinatalPeriod_titile {
+	float: left;
+	width: 126px;
+	text-indent: 5px;
+	font-size: 15px;
+	line-height: 67px;
+	text-indent: 25px;
+	color: #696969;
+}
+
+.class_firstDiagnose_perinatalPeriod_info_show {
+	margin-top: 3px;
+	float: left;
+	width: 22.37%;
+}
+
+.class_firstDiagnose_tab_physique_info {
+	margin: -7px 7px 7px 7px;
+	padding-top: 5px;
+	width: 100%;
+	height: 95px;
+	border: 1px solid #E4E4E4;
+	border-bottom: none;
+	overflow: hidden;
+}
+
+.class_firstDiagnose_physique_titile {
+	float: left;
+	width: 126px;
+	text-indent: 5px;
+	font-size: 15px;
+	text-indent: 25px;
+	line-height: 95px;
+	color: #696969;
+}
+
+.class_firstDiagnose_physique_info_show {
+	margin-top: 3px;
+	float: left;
+	width: 22.37%;
+}
+
+.class_firstDiagnose_tab_complaint_info {
+	margin: -7px 7px 7px 7px;
+	padding-top: 5px;
+	width: 100%;
+	height: 95px;
+	border: 1px solid #E4E4E4;
+	border-radius: 0px 0px 5px 5px;
+	overflow: hidden;
+}
+
+.class_firstDiagnose_complaint_titile {
+	float: left;
+	width: 126px;
+	text-indent: 5px;
+	font-size: 15px;
+	text-indent: 25px;
+	line-height: 35px;
+	color: #696969;
+}
+
+.class_firstDiagnose_complaint_info_show {
+	margin-top: 3px;
+	float: left;
+	width: 22.37%;
+}
+
+.class_firstDiagnose_tab_examineProject_info {
+	margin: -7px 7px 7px 7px;
+	padding: 7px 17px 17px 17px;
+	width: 100%;
+	height: auto;
+	border: 1px solid #E4E4E4;
+	border-radius: 0px 0px 5px 5px;
+	overflow: hidden;
+}
+
+.class_firstDiagnose_project_title {
+	font-size: 16px;
+	font-weight: bold;
+	color: #696969;
+}
+
+.class_firstDiagnose_project_container {
+	margin-top: 25px;
+}
+
+.class_firstDiagnose_bloodRule_title_info {
+	font-weight: bold;
+	color: #696969;
+	padding-bottom: 5px;
+}
+
+.class_firstDiagnose_bloodRule_content {
+	margin-right: 5%;
+	width: 45%;
+	float: left;
+}
+
+.class_firstDiagnose_table_container table {
+	margin-top: 5px;
+	width: 100%;
+	height: auto;
+	border: 1px solid #E4E4E4;
+}
+
+.tr_firstDiagnose_width td {
+	text-align: center;
+	height: 31px;
+	background: white;
+	border: 1px solid #E4E4E4;
+}
+
+.class_firstDiagnose_div_height {
+	margin-top: 5px;
+	height: auto;
+	border: 1px solid #E4E4E4;
+	overflow: hidden;
+	border-radius: 5px;
+	padding: 17px;
+}
+
+.class_firstDiagnose_detalis {
+	color: #666666;
+	padding-bottom: 5px;
+}
+
+.class_firstDiagnose_result {
+	color: #999999;
+}
+
+.class_firstDiagnose_hint {
+	color: #666666;
+	margin-top: 21px;
+	padding-bottom: 5px;
+}
+
+.class_firstDiagnose_more {
+	float: right;
+	margin-top: 25px;
+	padding-bottom: 7px;
+	margin-right: 3%;
+}
+
+.class_firstDiagnose_popup {
+	width: 80%;
+	height: auto;
+	overflow: hidden;
+	padding-bottom: 5px;
+	position: absolute;
+	top: 15%;
+	left: 14%;
+	z-index: 2;
+}
+
+.class_firstDiagnose_popup_left {
+	float: left;
+	width: 10%;
+	height: auto;
+	text-align: center;
+	line-height: 550px;
+}
+
+.class_firstDiagnose_popup_middle {
+	float: left;
+	width: 80%;
+	height: auto;
+	background-color: #eaeef1;
+	padding: 25px 17px 17px 17px;
+}
+
+.class_firstDiagnose_popup_right {
+	float: left;
+	width: 10%;
+	text-align: center;
+	height: auto;
+	line-height: 550px;
+}
+
+.class_firstDiagnose_blood_info_show {
+	margin-top: 3px;
+	float: left;
+	width: 25%;
+}
+
+.class_firstDiagnose_theme {
+	width: 100%;
+	color: #696969;
+	font-size: 16px;
+	text-align: center;
+	padding-bottom: 9px;
+}
+
+.class_firstDiagnose_table_theme_content {
+	margin-right: 5%;
+	width: 500px;
+	float: left;
+}
+
+.class_firstDiagnose_theme_table_container {
+	margin-right: 5%;
+	width: 600px;
+	float: left;
+}
+
+.class_firstDiagnose_theme_content {
+	width: 100%;
+}
+
+.tr_firstDiagnose_color td {
+	background-color: #F7F7F7;
+}
+
+.class_firstDiagnose_bModeUltrasound_container {
+	padding: 25px 5px 25px 5px;
+	background: white;
+	border: 1px solid #E4E4E4;
+	overflow: hidden;
+	border-radius: 5px;
+}
+
+.class_firstDiagnos_bModeUltrasound_left {
+	width: 75px;
+	float: left;
+}
+
+.class_firstDiagnos_bModeUltrasound_right {
+	width: 84%;
+	float: left;
+}
+
+.class_firstDiagnos_bModeUltrasound_record {
+	font-size: 15px;
+	font-weight: bold;
+	margin-top: 33px;
+}
+
+.class_firstDiagnos_bModeUltrasound_record img {
+	margin-left: 15px;
+}
+
+.class_firstDiagnose_bModeUltrasound_tr_height {
+	height: 27px;
+}
+
+.class_firstDiagnos_bModeUltrasound_table {
+	width: 25%;
+	float: left;
+}
+
+.class_firstDiagnos_bModeUltrasound_detalis_record {
+	font-size: 15px;
+	font-weight: bold;
+	margin-top: 13px;
+}
+
+.class_firstDiagnos_bModeUltrasound_detalis_table {
+	width: 25%;
+	float: left;
+	margin-top: 7px;
+}
+
+.nav-tabs>li {
+	float: left;
+	margin-bottom: -1px;
+	background: #EAEEF1;
+	border-radius: 5px;
+}
+.nav-tabs>li>a {
+	margin-right: 2px;
+	line-height: 1.42857143;
+	border: 1px solid transparent;
+	border-radius: 4px 4px 0 0;
+	color: #BBBBBB;
+}
+ol,
+ul {
+	margin-top: 0;
+	margin-bottom: 10px;
+	background: #EAEEF1;
+}
+
+.d_firstDiagnose_defalt {
+	display: block;
+}
+.table_firstDiagnos_electrocardio {
+	width: 46%;
+	float: left;
+}
+.record_firstDiagnos_electrocardio {
+	font-size: 15px;
+	font-weight: bold;
+	margin-top: 33px;
+}
+.left_firstDiagnos_electrocardio {
+	width:13%;
+	float: left;
+}
+.record_firstDiagnos_electrocardio img{
+	margin-left:25%;
+}
+.td_firstDiagnose_color{
+	color: #A59999;
+}
+.td_firstDiagnos_width{
+	width: 150px;
+}
+.result_firstDiagnose_analyze{
+	padding: 45px 15px 45px 15px;
+	display: flex;
+}
+.charater_firstDiagnose_analyze{
+	padding-right: 25px;
+	font-size: 15px;
+	font-weight: bold;
+}
+.img_firstDiagnose_popup_middle {
+	float: left;
+	width: 80%;
+	height: auto;
+	position: relative;
+}
+ .img_firstDiagnose_position{
+ 	position: absolute;
+ 	top: 9px;
+ 	right:15px;
+	cursor:pointer;
+ }
+
+.img_firstDiagnose_popup_middle2 {
+	float: left;
+	width: 80%;
+	height: auto;
+}
+
+/*添加更多医嘱弹出框*/
+
+.moreAdvice-modal-content {
+	display: flex;
+}
+
+.modal-content-left {
+	flex: 1;
+}
+
+.modal-content-right input {
+	width: 25vw;
+	border: 1px solid gainsboro;
+	border-right-color: white;
+	height: 30px;
+	font-size: 14px;
+}
+
+.modal-content-right button {
+	width: 9vw;
+	margin-left: -4px;
+	height: 30px;
+}
+
+.modal-content-right {
+	flex: 1;
+}
+
+.modal-content-left textarea {
+	width: 90%;
+	border: none;
+	height: 45vh;
+	margin-left: 2vw;
+	font-size: 14px;
+	background-color: rgb(242, 242, 242);
+}
+
+.modal-content {
+	padding-top: 40px;
+	height: auto;
+	width: 70vw;
+	position: fixed;
+	left: -8vw;
+	background-color: rgb(242, 242, 242);
+}
+
+.advice-color-change {
+	FILTER: progid:DXImageTransform.Microsoft.Gradient(gradientType=0, startColorStr=#2dd7c6, endColorStr=#1f67fa);
+	/*IE*/
+	background: -moz-linear-gradient(top, #2dd7c6, #1f67fa));
+	/*火狐*/
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#2dd7c6), to(#1f67fa));
+	/*谷歌*/
+	color: white;
+	height: 30px;
+	border-radius: 5px;
+	font-size: 14px;
+	width: 120px;
+	border: none;
+	margin-right: 40px;
+	margin-top: 5px;
+}
+
+.advice-color-no-change {
+	border: 1px solid #666666;
+	color: #666666;
+	height: 30px;
+	border-radius: 5px;
+	font-size: 14px;
+	width: 120px;
+	margin-right: 40px;
+	background-color: white;
+	margin-top: 5px;
+}
+
+.button-div {
+	margin-top: 20px;
+	margin-left: 15vw;
+}
+
+.common-color {
+	FILTER: progid:DXImageTransform.Microsoft.Gradient(gradientType=0, startColorStr=#2dd7c6, endColorStr=#1f67fa);
+	/*IE*/
+	background: -moz-linear-gradient(top, #2dd7c6, #1f67fa));
+	/*火狐*/
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#2dd7c6), to(#1f67fa));
+	/*谷歌*/
+	color: white;
+	font-size: 14px;
+	border: none;
+}
+
+.advice-table1 {
+	margin-top: 5px;
+}
+.addAdvice_warmTip{
+	color:#6FA0E4 ;
+	float: right;
+	margin-right: 30px;
+}
+.advice-table1 td {
+	border-right: 1px solid rgb(204, 204, 204);
+	padding: 0 10px;
+	color: rgb(204, 204, 204);
+}
+
+.advice-table1 td:last-child {
+	border: none;
+	padding-right: 0px;
+}
+
+.advice-table1 td:first-child {
+	padding-left: 0px;
+}
+
+.table2-div {
+	margin-top: 5px;
+	margin-right: 10px;
+	border: 1px solid rgb(169, 169, 169);
+	background-color: white;
+	padding-left: 2px;
+	height: 38vh;
+	overflow-y: scroll;
+}
+.advice-color-change2{
+	margin-bottom: 20px;
+}
+
+/*新增鼠标悬停变色事件*/
+#save:hover{
+	background-color: #006DCC;
+}
+
+#submit:hover{
+	background-color:#006DCC;
+}
+#cancle:hover{
+	border: 1px solid #404D5B;
+}

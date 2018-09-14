@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.yunji.doctormanager.dao.ContactsMapper" >
+  <resultMap id="BaseResultMap" type="cn.yunji.doctormanager.entity.Contacts" >
+    <id column="contid" property="contid" jdbcType="INTEGER" />
+    <result column="mId" property="mid" jdbcType="CHAR" />
+    <result column="relationId" property="relationid" jdbcType="INTEGER" />
+    <result column="contName" property="contname" jdbcType="CHAR" />
+    <result column="contPhone" property="contphone" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    contid, mId, relationId, contName, contPhone
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from contacts
+    where contid = #{contid,jdbcType=INTEGER}
+  </select>
+  
+    <select id="queryByMid" resultType="java.util.HashMap" parameterType="java.lang.String" >
+    select c.*,r.*
+    from contacts c
+    left join relation r on c.relationId=r.relationId
+    where mid = #{0}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from contacts
+    where contid = #{contid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.yunji.doctormanager.entity.Contacts" >
+    insert into contacts (contid, mId, relationId, 
+      contName, contPhone)
+    values (#{contid,jdbcType=INTEGER}, #{mid,jdbcType=CHAR}, #{relationid,jdbcType=INTEGER}, 
+      #{contname,jdbcType=CHAR}, #{contphone,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.yunji.doctormanager.entity.Contacts" >
+    insert into contacts
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="contid != null" >
+        contid,
+      </if>
+      <if test="mid != null" >
+        mId,
+      </if>
+      <if test="relationid != null" >
+        relationId,
+      </if>
+      <if test="contname != null" >
+        contName,
+      </if>
+      <if test="contphone != null" >
+        contPhone,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="contid != null" >
+        #{contid,jdbcType=INTEGER},
+      </if>
+      <if test="mid != null" >
+        #{mid,jdbcType=CHAR},
+      </if>
+      <if test="relationid != null" >
+        #{relationid,jdbcType=INTEGER},
+      </if>
+      <if test="contname != null" >
+        #{contname,jdbcType=CHAR},
+      </if>
+      <if test="contphone != null" >
+        #{contphone,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.yunji.doctormanager.entity.Contacts" >
+    update contacts
+    <set >
+      <if test="mid != null" >
+        mId = #{mid,jdbcType=CHAR},
+      </if>
+      <if test="relationid != null" >
+        relationId = #{relationid,jdbcType=INTEGER},
+      </if>
+      <if test="contname != null" >
+        contName = #{contname,jdbcType=CHAR},
+      </if>
+      <if test="contphone != null" >
+        contPhone = #{contphone,jdbcType=CHAR},
+      </if>
+    </set>
+    where contid = #{contid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.yunji.doctormanager.entity.Contacts" >
+    update contacts
+    set mId = #{mid,jdbcType=CHAR},
+      relationId = #{relationid,jdbcType=INTEGER},
+      contName = #{contname,jdbcType=CHAR},
+      contPhone = #{contphone,jdbcType=CHAR}
+    where contid = #{contid,jdbcType=INTEGER}
+  </update>
+</mapper>

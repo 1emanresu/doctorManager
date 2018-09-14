@@ -1,0 +1,169 @@
+
+.top {
+	width: auto;
+	margin-left: 240px;
+	margin-right: 290px;
+}
+
+#arrows {
+	width: 100%;
+	background: url(../images/0514.png) no-repeat center left;
+	height: 70px;
+	background-size: 94% 80px;
+}
+
+#arrows button {
+	border-radius: 50%;
+	height: 40px;
+	width: 40px;
+	border: none;
+	position: absolute;
+	margin-top: 15px;
+	background-color:rgba(255,255,255,0) ;
+}
+#btn1 {
+	position: relative;
+}
+
+#btn2 {
+	left: 0%;
+	position: relative;
+	z-index: 1;
+}
+
+#btn3 {
+	left: 13%;
+	position: relative;
+	z-index: 1;
+}
+
+#btn4 {
+	left: 26%;
+	position: relative;
+	z-index: 1;
+}
+
+#btn5 {
+	left: 39%;
+	position: relative;
+	z-index: 1;
+}
+
+#btn6 {
+	left: 52%;
+	position: relative;
+	z-index: 1;
+}
+
+#btn7 {
+	left: 64%;
+	position: relative;
+	z-index: 1;
+}
+#btn8 {
+	left: 76%;
+	position: relative;
+	z-index: 1;
+}
+#btn9{
+	outline: none;
+	left: 93%;
+	position: relative;
+	cursor:inherit;
+}
+#btn10{
+	outline: none;
+	left: 96%;
+	position: relative;
+	cursor:inherit;
+}
+#timer,#timer span{
+	color: #CF2D27;
+	font-size: 15px;
+	font-weight: bold;
+}
+.note1 {
+	padding-top: 60px;
+	width: 70px;
+	height: 20px;
+	color: #333;
+	margin-left: -2px;
+	clear: both;
+}
+
+.note2 {
+	padding-top: 60px;
+	width: 70px;
+	height: 20px;
+	color: #333;
+	clear: both;
+	position: relative;
+	left: 12.5%;
+}
+
+.note3 {
+	padding-top: 60px;
+	width: 70px;
+	height: 20px;
+	color: #333;
+	clear: both;
+	margin-left: 25.5%;
+}
+
+.note4 {
+	padding-top: 60px;
+	width: 70px;
+	height: 20px;
+	color: #333;
+	clear: both;
+	margin-left: 38.5%;
+}
+
+.note5 {
+	padding-top: 60px;
+	width: 70px;
+	height: 20px;
+	color: #333;
+	clear: both;
+	margin-left: 51.5%;
+}
+
+.note6 {
+	padding-top: 60px;
+	width: 70px;
+	height: 20px;
+	color: #333;
+	clear: both;
+	margin-left: 63.5%;
+}
+
+.note7 {
+	padding-top: 60px;
+	width: 70px;
+	height: 20px;
+	color: #333;
+	clear: both;
+	margin-left: 75.5%;
+}
+.note8 {
+	padding-top: 60px;
+	width: 70px;
+	height: 20px;
+	color: #333;
+	margin-top: -20px;
+	margin-left: 1002px;
+}
+#no-selftest{
+	padding-left: 20px;
+	font-size: 16px;
+}
+#risk_factor2{
+	width: 100%;
+	border: none;
+	background-color: rgb(247,250,254);
+	height: 70px;
+	resize: none;
+}
+#btn1,#btn2,#btn3,#btn4,#btn5,#btn6,#btn7,#btn8{
+	cursor: auto;
+}

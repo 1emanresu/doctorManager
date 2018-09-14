@@ -1,0 +1,607 @@
+* {
+	padding: 0px;
+	margin: 0px;
+	font-size: 12px;
+	color: #696969;
+}
+
+.class_main {
+	width: 100%;
+}
+
+.top_Nav {
+	margin-top: 7px;
+	line-height: 30px;
+	padding-left: 12px;
+	border-bottom: gainsboro solid 1px;
+}
+
+.pro,
+.pro2,
+.pro3,
+.pro4,
+.pro5,
+.pro6,
+.pro7{
+	width: 100%;
+	padding: 1px 20px;
+	clear: both;
+	padding-right: 0px;
+}
+.pro4{
+	margin-bottom: 40px;
+}
+.pro2 table tr td {
+	text-align: center;
+	border: gainsboro solid 1px;
+	line-height: 30px;
+}
+
+.pro_left {
+	float: left;
+	width: 50%;
+	display: none;
+}
+
+.pro_right {
+	width: 50%;
+	float: right;
+	display: none;
+}
+
+.pro3_left {
+	width: 49%;
+	float: left;
+	height: 350px;
+	border: gainsboro solid 1px;
+	border-radius: 5px;
+	padding: 5px 10px;
+}
+
+.pro3_right {
+	width: 50%;
+	height: 350px;
+	float: right;
+}
+
+.select_div {
+	border: white solid 1px;
+	height: 35px;
+}
+
+.select_div ul {
+	padding-left: 0;
+}
+
+.select_div ul li {
+	list-style: none;
+	float: left;
+	line-height: 35px;
+	color: gainsboro;
+	font-size: 14px;
+}
+
+.span {
+	margin: 0 10px;
+}
+#butt1{
+	text-align: center;
+}
+#butt1 .but1,#butt1 .but3{
+	margin-top: 15px;
+	margin-left: 10px;
+	border: none;
+	border-radius: 5px;
+	width: 130px;
+	line-height: 28px;
+	color: white;
+	background: #76b0ff;
+}
+ 
+.but1:hover,
+.but3:hover{
+	background-color: #3589fb!important;
+}
+/*#butt1 .but2:hover{
+	border: 1px solid #404D5B;
+}*/
+
+#butt1 .but2 {
+	margin-left: 10px;
+	border: gainsboro solid 1px;
+	border-radius: 5px;
+	width: 130px;
+	line-height: 28px;
+	background: white;
+	margin-bottom: 15px;
+}
+
+#butt2 {
+	float: right;
+}
+
+#butt2 .but3 {
+	outline: none;
+	margin-top: 15px;
+	margin-left: -10px;
+	border: none;
+	border-radius: 20px;
+	width: 130px;
+	line-height: 23px;
+	color: white;
+	background: #8CB6EF;
+}
+
+#butt2 .but4 {
+	outline: none;
+	margin-top: 15px;
+	margin-left: 10px;
+	border: none;
+	border-radius: 20px;
+	width: 130px;
+	line-height: 23px;
+	color: white;
+	background: #8CB6EF;
+}
+
+.img_firstDiagnose_position {
+	position: absolute;
+	top: 9px;
+	right: 15px;
+	cursor: pointer;
+}
+
+.close {
+	opacity: 1 !important;
+}
+
+.advice-table1 {
+	margin: 15px;
+}
+
+.advice-table1 td {
+	border-right: 1px solid rgb(204, 204, 204);
+	padding: 0 10px;
+	color: rgb(204, 204, 204);
+}
+
+#search_keyword{
+	margin-left: 15px;
+}
+.advice-table1 td:last-child {
+	border: none;
+	padding-right: 0px;
+}
+
+.advice-table1 td:first-child {
+	padding-left: 0px;
+}
+*{
+	outline: none;
+}
+
+.advice-table1 td:hover{
+	color: #404D5B;
+}
+/*发送报告基础信息的样式*/
+.person-Message{
+	padding:1px 20px;
+	height: auto;
+	margin-top: 20px;
+	margin-bottom: 10px;
+}
+.label-person{
+	margin-bottom: 10px;
+}
+.label-person span{
+	margin-right: 19%;
+}
+.label-person label{
+	margin-right: 15px;
+}
+.div-text label{
+	float: left;
+}
+.div-text div{
+	float: right;
+	height: 75px;
+	width: 93%;
+	border: 1px solid #BCBCBC;
+}	
+.more{
+	height: auto;
+	margin-top: 90px;
+}
+.span-img{
+	float: right;
+	width: 100%;
+	margin-bottom: 10px;
+	cursor: pointer;
+}
+.hadmore{
+	float: right;
+	width: 5%;
+}
+.flip{
+	transform: rotate(180deg);
+	-ms-transform: rotate(180deg);          /* IE 9 */
+	-webkit-transform: rotate(180deg);      /* Safari and Chrome */
+	-o-transform: rotate(180deg);           /* Opera */
+	-moz-transform: rotate(180deg);         /* Firefox */
+}
+.more-span{
+	display: none;
+	width: 93%;
+	float: right;
+}
+.span-con{
+	height: 24px;
+	line-height: 24px;
+}
+.more-span label{
+	margin-right: 10px;
+}
+.more-span span{
+	margin-right: 20%;
+}
+.history1{
+	margin-left: 18%;
+}
+.morethen:hover{
+	color: #169BD5;
+}
+/*end*/
+
+/*院检报告样式*/
+.checkProjectHaveDone{
+	height: auto;
+}
+.div-check,.self-testing{
+	float: left;
+	width: 32%;
+	height: auto;
+	border-right: 1px solid #D7D7D7;
+	margin-right: 2%;
+	margin-bottom: 2%;
+}
+.symptom{
+	float: left;
+	width: 32%;
+	height: auto;
+}
+.div-check span,.div-check1 span,.div-check2 span{
+	color: #1F6ACF;
+	font-size: 14px;
+}
+.div-check1 img,.div-check img{
+	float: right;
+	width: 8%;
+}
+.div-table1,.div-table2,.div-table3{
+	width: 95%;
+	height: 30px;
+	margin-bottom: 20px;
+}
+.table1,.table2,.table3{
+	height: auto;
+	width: 95%;
+	border: 1px solid #666666;
+}
+.table1 td,.table2 td,.table3 td{
+	width: 33.3%;
+	height: 30px;
+}
+.div-here{
+	height: 20px;
+}
+/*异常指标分析start*/
+.con{
+	height: 200px!important;
+	width: 95%;
+}
+/*end*/
+/*往期报告回顾样式*/
+.historyTableContainer{
+	max-height: 310px;
+	overflow: auto;
+}
+.pro6{
+	width: 95%;
+}
+.time-choice{
+	height: 30px;
+	float: right;
+	margin-top: -40px;
+}
+.time-choice span,.time-choice select{
+	float: left;
+}
+.time-con{
+	height: auto;
+}
+.time-choice span{
+	margin-top: 5px;
+}
+.time-choice select{
+	width: 120px;
+	height: 25px;
+}
+.div-select:focus{
+	border: 1px solid #66AFE9!important;
+}
+#tips{
+	top:980px!important;
+	left: 6%!important;
+	background-color: white!important;
+}
+/*基本信息*/
+.basicInfo{
+	padding-left: 20px;
+	margin-bottom: 40px;
+}
+
+.basicInfo-container{
+	line-height: 50px;
+	display: flex;
+	margin-left: 15px;
+}
+
+.div-basicInfo{
+	flex: 1;
+}
+.weeklyReoprtTitle{
+	font-size: 14px;
+	color: #1F6ACF;
+	font-weight: bold;
+}
+.main_content{
+	margin-top: 20px;
+}
+.div-riskCause{
+	width: 100%;
+}
+.riskCause-content{
+	float: left;
+	margin-left: 30px;
+	width: 65px;
+}
+/*自测、报告和症状*/
+.checkProject-Summarize{
+	
+	padding-left: 20px;
+	display: flex;
+	width: 100%;
+	margin-bottom: 40px;
+}
+.table-Summarize{
+	flex: 1;
+}
+.common-table{
+	margin-left: 15px;
+	margin-top: 20px;
+	width: 90%;
+}
+.common-table td{
+	text-align: center;
+	border: 1px solid gainsboro;
+	width: 115px;
+	line-height: 28px;
+}
+
+#risk_result{
+	padding-left:0!important;
+	margin-top: -30px;
+	margin-bottom: 10px;
+}
+/*报告历史记录*/
+.div-weeklyReportHistory{
+	padding-left: 20px;
+	margin-bottom: 40px;
+}
+#table-weeklyReportHistory{
+	width:95%;
+	margin-left: 15px;
+}
+.table-weeklyReportHistory{
+	margin: 20px 0;
+}
+#table-weeklyReportHistory td{
+	text-align: center;
+	border: 1px solid gainsboro;
+	line-height: 28px;
+}
+#table-weeklyReportHistory tr td:nth-child(3),#table-weeklyReportHistory tr td:nth-child(4){
+	text-align: left;
+}
+#table-weeklyReportHistory tr:nth-child(1) td{
+	text-align: center;
+}
+.div_RiskModel{
+	width: 100%!important;
+}
+/*时间选择*/
+#timeSelector{
+	float: right;
+	font-weight: normal;
+}
+#timeSelector select{
+	display: inline;
+	outline: none;
+	width: 100px;
+}
+.weeklyReportHistory-title{
+	width: 1050px;
+}
+.timeSelector-words{
+	position: relative;
+	bottom:7px;
+}
+/*异常指标分析*/
+.abnormal-analysis{
+	padding-left:20px ;
+	margin-bottom: 40px;
+}
+#abnormal-analysis{
+	margin: 20px 0;
+	float: left;
+	min-height: 130px;
+	width: 95%;
+	border: 1px solid gainsboro;
+	border-radius: 5px;
+	margin-left: 15px;
+}
+.riskfactor-Msg{
+	padding-left: 0px!important;
+}
+/*点击更多*/
+.rotate-img {
+	/* Safari */
+	-webkit-transform: rotate(-180deg);
+	/* Firefox */
+	-moz-transform: rotate(-180deg);
+	/* Internet Explorer 滤镜写法*/
+	filter: progid: DXImageTransform.Microsoft.BasicImage(rotation=3);
+}
+#index-top {
+	width: 11px;
+	height: 13px;
+	margin-left: 5px;
+}
+.showMore{
+	width: 50px;
+	cursor: pointer;
+	position: absolute;
+	right: 100px;
+}
+#table-weeklyReportHistory tr td{
+	padding: 0 10px;
+}
+#table-weeklyReportHistory tr td:first-child,#table-weeklyReportHistory tr td:nth-child(2),#table-weeklyReportHistory tr td:nth-child(5){
+	white-space: nowrap;
+}
+#div-modelChart{
+	margin-left: -37px;
+}
+.riskfactor-container{
+	padding-right: 0px;
+	width: 100%;	
+}
+.riskfactor-container label,.riskfactor-container p{
+	margin-left: 15px;
+}
+.row{
+	margin-left: 0px!important;
+	margin-right: 0px!important;
+}
+#riskfactor-table{
+	width: 95%!important;
+	margin-left: 15px;
+}
+
+.col-md-6{
+	padding-left: 0px;
+}
+.echartsImages{
+	width: 28px;
+	float: right;
+	margin-right: 7%;
+	cursor: pointer;
+}
+#Table-systom{
+	width: 85%;
+}
+/*弹出窗*/
+#selfTest-box,#checkProject-box,#echarts2-box{
+	width: 450px;
+	border: 1px solid #E4E4E4;
+	padding: 20px 5px 0px 20px;
+	line-height: 20px;
+	position: absolute!important;
+	top: 10%;
+	left: 20%;
+	background-color: white;
+	border-radius: 5px;
+	box-shadow: gray;
+	box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.349019);
+	display: none;
+}
+/*通用弹出 框关闭按钮*/
+.close-move {
+	text-align: center;
+	width: 25px;
+	padding: 2px;
+	float: right;
+	position: relative;
+	top: -10px;
+	cursor: pointer;
+	opacity: 0.6;
+	z-index: 99;
+	top: -13px;
+}
+
+.close-move:hover {
+	opacity: 0.9;
+}
+/*自测图*/
+#echarts {
+	width: 400px;
+	height: 260px;
+}
+.echartsTitle{
+	margin-top: 10px;
+	width: 100%;
+	text-align: center;
+	font-size: 16px;
+}
+.echartsTitle span{
+	font-size: 16px;
+}
+/*检查报告*/
+#checkProjectTable td{
+	border: 1px solid gainsboro;
+	text-align: center;
+}
+#checkProject-box{
+	width: 410px;	
+}
+#checkProjectTable{
+	margin-top: 10px;
+	margin-left:5px;
+	width: 360px;
+	margin-bottom: 20px;
+}
+/*次数柱状统计图*/
+#echarts2{
+	width: 400px;
+	height: 260px;
+}
+/*周报预览弹窗*/
+.swiper-container{
+	width: 650px;
+    position: fixed!important;
+	top: 10%;
+	left: 20%;
+	border: none;
+	padding: 10px;
+	background-color: white;
+	border-radius: 5px;
+	box-shadow: gray;
+	box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.349019);
+	display: none;
+}
+.iframeReport{
+	margin-top: 10px;
+	width: 98%;
+}
+.weeklyClose{
+	margin-top: 10px;
+}
+#div_type{
+	float: left;
+	font-weight: bold;
+	font-size: 18px;
+	position: relative;
+	height: 45px;
+	top: 13px;
+	left: 10px;
+}

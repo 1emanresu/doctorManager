@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.yunji.doctormanager.dao.WeeklyReportBasicMapper" >
+  <resultMap id="BaseResultMap" type="cn.yunji.doctormanager.entity.WeeklyReportBasic" >
+    <id column="wId" property="wid" jdbcType="INTEGER" />
+    <result column="week" property="week" jdbcType="INTEGER" />
+    <result column="keyattention" property="keyattention" jdbcType="CHAR" />
+    <result column="antenatalitem" property="antenatalitem" jdbcType="CHAR" />
+    <result column="symptom" property="symptom" jdbcType="CHAR" />
+    <result column="exerciseYes" property="exerciseyes" jdbcType="CHAR" />
+    <result column="exerciseNo" property="exerciseno" jdbcType="CHAR" />
+    <result column="nursingessentials" property="nursingessentials" jdbcType="CHAR" />
+    <result column="psycholoyessentials" property="psycholoyessentials" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    wId, week, keyattention, antenatalitem, symptom, exerciseYes, exerciseNo, nursingessentials, 
+    psycholoyessentials
+  </sql>
+  <!-- luoyc 根据孕周查找数据 -->
+  <select id="findByWeek" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from weeklyreportbasic
+    where week = #{week,jdbcType=INTEGER}
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from weeklyreportbasic
+    where wId = #{wid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from weeklyreportbasic
+    where wId = #{wid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.yunji.doctormanager.entity.WeeklyReportBasic" >
+    insert into weeklyreportbasic (wId, week, keyattention, 
+      antenatalitem, symptom, exerciseYes, 
+      exerciseNo, nursingessentials, psycholoyessentials
+      )
+    values (#{wid,jdbcType=INTEGER}, #{week,jdbcType=INTEGER}, #{keyattention,jdbcType=CHAR}, 
+      #{antenatalitem,jdbcType=CHAR}, #{symptom,jdbcType=CHAR}, #{exerciseyes,jdbcType=CHAR}, 
+      #{exerciseno,jdbcType=CHAR}, #{nursingessentials,jdbcType=CHAR}, #{psycholoyessentials,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.yunji.doctormanager.entity.WeeklyReportBasic" >
+    insert into weeklyreportbasic
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="wid != null" >
+        wId,
+      </if>
+      <if test="week != null" >
+        week,
+      </if>
+      <if test="keyattention != null" >
+        keyattention,
+      </if>
+      <if test="antenatalitem != null" >
+        antenatalitem,
+      </if>
+      <if test="symptom != null" >
+        symptom,
+      </if>
+      <if test="exerciseyes != null" >
+        exerciseYes,
+      </if>
+      <if test="exerciseno != null" >
+        exerciseNo,
+      </if>
+      <if test="nursingessentials != null" >
+        nursingessentials,
+      </if>
+      <if test="psycholoyessentials != null" >
+        psycholoyessentials,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="wid != null" >
+        #{wid,jdbcType=INTEGER},
+      </if>
+      <if test="week != null" >
+        #{week,jdbcType=INTEGER},
+      </if>
+      <if test="keyattention != null" >
+        #{keyattention,jdbcType=CHAR},
+      </if>
+      <if test="antenatalitem != null" >
+        #{antenatalitem,jdbcType=CHAR},
+      </if>
+      <if test="symptom != null" >
+        #{symptom,jdbcType=CHAR},
+      </if>
+      <if test="exerciseyes != null" >
+        #{exerciseyes,jdbcType=CHAR},
+      </if>
+      <if test="exerciseno != null" >
+        #{exerciseno,jdbcType=CHAR},
+      </if>
+      <if test="nursingessentials != null" >
+        #{nursingessentials,jdbcType=CHAR},
+      </if>
+      <if test="psycholoyessentials != null" >
+        #{psycholoyessentials,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.yunji.doctormanager.entity.WeeklyReportBasic" >
+    update weeklyreportbasic
+    <set >
+      <if test="week != null" >
+        week = #{week,jdbcType=INTEGER},
+      </if>
+      <if test="keyattention != null" >
+        keyattention = #{keyattention,jdbcType=CHAR},
+      </if>
+      <if test="antenatalitem != null" >
+        antenatalitem = #{antenatalitem,jdbcType=CHAR},
+      </if>
+      <if test="symptom != null" >
+        symptom = #{symptom,jdbcType=CHAR},
+      </if>
+      <if test="exerciseyes != null" >
+        exerciseYes = #{exerciseyes,jdbcType=CHAR},
+      </if>
+      <if test="exerciseno != null" >
+        exerciseNo = #{exerciseno,jdbcType=CHAR},
+      </if>
+      <if test="nursingessentials != null" >
+        nursingessentials = #{nursingessentials,jdbcType=CHAR},
+      </if>
+      <if test="psycholoyessentials != null" >
+        psycholoyessentials = #{psycholoyessentials,jdbcType=CHAR},
+      </if>
+    </set>
+    where wId = #{wid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.yunji.doctormanager.entity.WeeklyReportBasic" >
+    update weeklyreportbasic
+    set week = #{week,jdbcType=INTEGER},
+      keyattention = #{keyattention,jdbcType=CHAR},
+      antenatalitem = #{antenatalitem,jdbcType=CHAR},
+      symptom = #{symptom,jdbcType=CHAR},
+      exerciseYes = #{exerciseyes,jdbcType=CHAR},
+      exerciseNo = #{exerciseno,jdbcType=CHAR},
+      nursingessentials = #{nursingessentials,jdbcType=CHAR},
+      psycholoyessentials = #{psycholoyessentials,jdbcType=CHAR}
+    where wId = #{wid,jdbcType=INTEGER}
+  </update>
+</mapper>

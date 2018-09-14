@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html> 
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>产科电子信息管理平台——求助问诊</title>
+		<link rel="stylesheet" href="../css/bootstrap.min.css" />
+		<link rel="stylesheet" href="../../common/UI_kit/css/site.min.css" />
+		<link rel="stylesheet" href="../../common/UI_kit/bootflat/css/bootflat.min.css">
+		<link rel="stylesheet" href="../../../common/UI_kit/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="css/chat.css" />
+		<link rel="stylesheet" href="../doctorAdviceManager/css/RiskModel-Util.css"/>
+		<link rel="stylesheet" href="../userList/css/changeAdvice.css"/>
+		<link rel="stylesheet" href="css/confirmReport.css" />
+		<link rel="stylesheet" href="../userList/css/fastSearch.css"/>
+		<link rel="stylesheet" href="../fastSearch/css/page.css" />
+		<style>
+			.returntwo{
+				cursor: pointer;
+			}
+			.returntwo:hover{
+				text-decoration: none;
+				color: cornflowerblue;
+			}
+			#next:hover{
+				background-color: #3189FB!important;
+				border: 1px solid #3189FB!important;
+			}
+			#reset_search, #btn_search,.btn-primary{
+				border: #76B0FF!important;
+				background: #76B0FF!important;
+			}
+			#reset_search:hover, #btn_search:hover,.btn-primary:hover{
+				border:#3189FB!important;
+				background-color: #3189FB!important;
+			}
+			.home,
+			.end {
+				width: 60px!important;
+			}
+			.class_bottom_container{
+				margin-bottom: 10px;
+			}
+			#next{
+				width: 68px!important;
+				height: 32px!important;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- 头部 导航路径-->
+		<div class="top_Nav">
+			<div class="Nav_content">
+				您当前的位置： <span class="returntwo" onclick="turnBack()" >远程问诊</span>
+				<img src="../images/u2929.png"/> 求助问诊
+			</div>
+		</div>
+		<img src="images/woman.png" width="35px" class="top-left-img">
+		<div class="all_content">
+			<div class="doctor-advice-title">本次问诊已结束，请确认问诊报告及下发医嘱：</div>
+			<div class="self_description">
+				<div class="second-class-title">自觉症状</div>
+				<table id="selfDescriptionTable" class="self_description_table">
+					
+				</table>
+			</div>
+			<div class="div-for-usual self_description">
+				<div class="second-class-title">本周自测项目：<span id="selfTest"></span></div>
+				<div id="haveNone"></div>
+				<table id="selfTestTable" class="table-for-usual self_test_table">
+					<tr>
+						<td>自测项目</td>
+						<td>本周测量结果</td>
+						<td>说明</td>
+					</tr>
+				</table>
+			</div>
+			<div id="abnormityinfoReport" class="second-class-title abnormal_index">院检报告异常指标：</div>
+			<div class="abnormal-analysis">
+					<div class="second-class-title">
+						异常指标分析
+					</div>
+					<div id="abnormal-analysis">
+						
+					</div>
+			</div>
+			<div>
+				<div class="second-class-title">医嘱建议：</div>
+				<div class="advice-input doctorAdvice-input">
+					<!--左侧-->
+					<div class="inputs" id="inputs" >
+						<!--工具栏-->
+									<div id="tools_bar">
+										<img src="../images/ask.png" alt="" />
+										<img src="../images/adviceManager.png" alt="" />
+										<img src="../images/wf_fonts.png" alt="" />
+										<img src="../images/ask1.png" alt="" id="gravida_ask_img" />
+										<img src="../images/whatshort.png" alt="" id="slide_img" style="float: right;" />
+									</div>
+									<!--袋鼠爱问_消息框 1-->
+								<div class="div_container">
+									<div class="class_serious_risk div_border kangaroo_ask_div">
+
+									<div class="changeMari">
+										<img src="../images/ask.png" alt=""   />
+										<span>袋鼠爱问</span>
+									</div>
+									<div id="img_firstDiagnos_serious_close" class="img_close2">
+										<img src="../images/guanbi.png" />
+									</div>
+									<div id="kangaroo_ask">
+										<div class="row">
+											<div class="col-md-7 col-md-offset-1">
+												<span>关键词：</span>
+												<input type="text" class="form-control" id="word_search" placeholder="请输入词条，例如：红细胞" />
+											</div>
+											<div class="col-md-4">
+												<span>&nbsp;</span>
+												<button type="button" id="btn_search" class="btn btn-primary btn-block" style="height: 34px!important;">检索</button>
+											</div>
+										</div>
+										<div class="row"> </div>
+										<!--检索信息的表格  词条相关的内容  词条相关资料文件-->
+										<div class="panel-body info_show_container" id="sun_container">
+
+										</div>
+										</div>
+									</div>
+								</div>
+								<!--消息框2-->
+									<div class="div_container">
+										<div class="class_serious_risk div_border kangaroo_ask_div">
+											<div class="changeMari">
+												<img src="../images/adviceManager.png" alt="" />
+												<span>管理</span>
+											</div>
+											<div id="img_firstDiagnos_serious_close" class="img_close2">
+												<img src="../images/guanbi.png"/>
+											</div>
+											<div>
+												<!--风险模型-->
+												<div class="main_cont">
+													<div class="row">
+														<div id="gravidaList-tips"></div>
+														<table id="gravidaList">
+			
+														</table>
+													</div>
+			
+													<div class="div_RiskModel">
+														<!--风险模型雷达图-->
+														<div id="div-modelChart">
+															<!--雷达图-->
+															<div id="modelChart2" class="modelChart2">
+			
+															</div>
+			
+															<!--柱图、饼图-->
+															<div id="riskChart2" style="margin-left: 150px;">
+			
+															</div>
+			
+														</div>
+			
+														<!--风险模型结果信息-->
+														<div id="risk_result2">
+															
+														</div>
+			
+													</div>
+													<!--风险因素-->
+													<div id="modal_RiskFactor" class="modal fade" tabindex="-1" role="dialog">
+														<div class="modal-dialog" role="document">
+															<div class="modal-content">
+																<!--建议-->
+																<div id="content_RiskFactor">
+																	<div class="closeMove">
+																		<img id="riskmodal_close" src="../images/guanbi.png" />
+																	</div>
+																	<div id="risk-gravida">
+																		<label>姓名：<span id="risk-gname"></span></label>
+																		<label>孕周：<span id="risk-gweeks"></span></label>
+																	</div>
+																	<table id="risk-table">
+																		<tr>
+																			<td>序号</td>
+																			<td>出现时间</td>
+																			<td>风险因素</td>
+																			<td>因素来源</td>
+																			<td>风险分值</td>
+																		</tr>
+																	</table>
+			
+																</div>
+															</div>
+															<!-- /.modal-content -->
+														</div>
+														<!-- /.modal-dialog -->
+													</div>
+			
+												</div>
+											</div>
+										</div>
+									</div>
+									<!--消息框.3-->
+									<div class="div_container">
+										<div class="class_serious_risk div_border message-div">
+		
+											<div class="changeMari">
+												<img src="../images/wf_fonts.png" alt="" />
+												<span>快捷建提示</span>
+											</div>
+											<div id="img_firstDiagnos_serious_close" class="img_close2">
+												<img src="../images/guanbi.png"/>
+											</div>
+											<div class="toolbar_input_tips">
+												快捷键说明：<br /> Alt+/ 键：提示信息<br /> Alt+s 键：切换关键词长度<br /> 空格键：选中信息条
+												<br /> 词条例子：
+												<br /> 失眠/sm：失眠,避免含咖啡因饮料...
+												<br /> 心率加快/xljk：心率加快,避免... <br /> 腹泻/fx： 腹泻,易引起脱水...<br /> 胸闷气短/xmqd：胸闷气短,侧睡... <br /> 血红蛋白/xhdb： 血红蛋白低,定期...<br /> 血红蛋白/xhdb： 血红蛋白高,注意...<br /> 白细胞/bxb：白细胞偏高,注意...
+												<br /> 红枣/hz：红枣,补充维生素...
+												<br /> 呕吐/ot：呕吐,少食多餐... <br />
+											</div>
+										</div>
+									</div>
+									<!--消息框.4-->
+									<div class="div_container">
+										<div class="class_serious_risk div_border message-div">
+											<!--.4.1.1.左侧标题-->
+											<div class="changeMari">
+												<img src="../images/ask1.png" alt="" />
+												<span>孕妇提问</span>
+											</div>
+											<!--.4.1.2.右侧图片-->
+											<div id="img_firstDiagnos_serious_close" class="img_close2">
+												<img src="../images/guanbi.png"/>
+											</div>
+											<div id="gravida_ask_div" style="margin-left: 10px;">
+												<div>
+													<p>2017年11月</p>
+													<p>豆腐干大概对方是个顺丰大概士大夫</p>
+													<p>地方士大夫大师傅似的
+														<a href="" style="color: #0088CC;">查看医嘱</a>
+													</p>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="thisAdvice_content" id="thisAdvice_content" contenteditable="true">
+			
+									</div>
+									<div class="input-img">
+										<img src="../userList/function/images/add.png" width="25px"/>
+										<a href="#key_value_insert_modal" id="insert_btn">保存至我的医嘱</a>
+									</div>
+								</div>
+								<!--右侧-->
+								<div class="inputs-right" id="inputs-right" style="height: 300px;">
+									<div class="row" style="width: 100%;">
+							      		<div class="col-md-9" style="padding: 0px;margin: 0px;"><input  id="search_box" style="margin-left: 4%;" class="form-control"/></div>
+								      	<div class="col-md-3" style="padding: 0px;margin: 0px;"><button id="search" style="margin-left: 10%;" type="button" class="btn btn-primary form-control">搜&nbsp;&nbsp;索</button></div>
+							      	</div>
+							      	<table class="advice-table1" id="advice-table1" style="margin-left: 28px;">
+										<tr>
+											<td class="advice" keyword='pregnancysymptom'>症状</td>
+											<td class='advice' keyword='food'>饮食</td>
+											<td class="advice" keyword='medicine'>用药</td>
+											<td class='advice' keyword='exercise'>运动</td>
+											<td class="advice" keyword='disease'>疾病</td>
+											<td class="my_advice">我的医嘱</td>
+										</tr>
+									</table>
+									<div class="right-span" id="right-span" contenteditable="true" style="height: 50%;">
+										
+									</div>
+									<!-- 分页显示区域-->
+								      <div id="page" class="row">
+								      	<div class="col-md-8" style="color: #76b0ff;margin-top: 15px;">双击指定医嘱可快速添加</div>
+								      	<div class="col-md-2" >
+								      		<button class="btn btn-default" id="prev" style="margin-left: -20px;margin-top: 10px;padding: 5px 12px!important;">上一页</button>
+								      	</div>		      	
+								      	<div class="col-md-2" >
+								      		<button class="btn btn-primary only" id="next" style="margin-left: -20px;margin-top: 10px;padding: 5px 12px!important;background-color: #76b0ff;border: 1px solid #76b0ff;">下一页</button>
+								      	</div>
+								      </div>
+								</div>
+								
+								      <!--快捷键提示框-->
+										<div class="row">
+								      	    <div class="col-md-5" id="tips" >
+								      	  	
+								            </div>
+									          
+									   </div>
+								</div>					
+							</div>
+						<!--医嘱输入框部分结束-->
+						<!-- 添加键值对模态框(2/2) begin -->
+						<div class="modal fade" id="key_value_insert_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+						  <div class="modal-dialog" role="document">
+						    <div class="modal-content modal-body4" style="background: white;">
+						      <div class="modal-header">
+						        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><img src="../images/guanbi.png"/></button>
+						        <p class="modal-title" id="myModalLabel">添加自定义医嘱</p>
+						      </div>
+						      <div class="modal-body">
+						      	<div class="row">
+						      		<div class="col-md-9"><input  id="key_value_input" class="form-control"/></div>
+							      	<div class="col-md-3"><button id="ok_btn" type="button" class="btn btn-primary form-control">确定</button></div>
+						      	</div>
+						      	
+						      	<!-- 数据展示div-->
+							      <div id="key_value_show" class="row show_div" contenteditable="true" style="border: 1px solid #ccc;height: 385px;"></div>
+							      
+						      </div>
+						      <div class="modal-footer">
+						       <p style="color:#337AB7;">请你输入自定义的关键字</p>
+						      </div>
+						    </div>
+						  </div>
+						</div>
+						<!-- 添加键值对模态框(2/2) end  -->
+				
+				<div class="button-div" style="clear: both;">
+					<div class="button-center">
+						<input id="" class="advice-color-change" type="button" value="确定发送" onclick="saveRecord()" />
+						<input id="" class="advice-color-no-change" type="button" value="取消" onclick="location.href='interrogation.html'" />
+					</div>
+				</div>	
+			</div>
+		</div>
+		<div class="button-div bottom-div">
+			<input id="inquiryRecordHistory" class="bottom-button" type="button" value="往期问诊报告查看"/>
+			<input id="inquiryRecordView" class="bottom-button" type="button" value="问诊报告预览" />
+		</div>
+	</body>
+	<script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="../js/getLogin.js"></script>
+	<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../js/topNavigationSetData.js"></script>
+	<script type="text/javascript" src="js/confirmReport.js" ></script>
+	<script type="text/javascript" src="../js/echarts.min.js"></script>
+	<script type="text/javascript" src="../js/pushMsg.js"></script>
+	<!--发送医嘱需要-->
+	<script src="../userList/function/js/editAdivce.js"></script>
+	<script type="text/javascript" src="../userList/function/js/page.js"></script>
+	<script src="../userList/function/js/classifyAdivce.js"></script>
+	<script type="text/javascript" src="../utils/js/drag.js"></script>
+	<!--风险模型的js-->
+	<script type="text/javascript" src="../doctorAdviceManager/js/RiskModel-Util2.js"></script>
+	<script type="text/javascript" src="../js/Util.js"></script>
+	<!--检索需要用到的js-->
+	<script type="text/javascript" src="../userList/function/js/fastSearch.js"></script>
+	<script type="text/javascript" src="../userList/function/js/pageUtil.js"></script>
+	<script>
+		$(function() {
+			$('#btn_search').trigger('click');
+		})
+	</script>
+</html>

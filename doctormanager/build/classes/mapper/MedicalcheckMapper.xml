@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.yunji.doctormanager.dao.MedicalcheckMapper" >
+  <resultMap id="BaseResultMap" type="cn.yunji.doctormanager.entity.Medicalcheck" >
+    <id column="mid" property="mid" jdbcType="INTEGER" />
+    <result column="tid" property="tid" jdbcType="INTEGER" />
+    <result column="mtype" property="mtype" jdbcType="INTEGER" />
+    <result column="mname" property="mname" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    mid, tid, mtype, mname
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from medicalcheck
+    where mid = #{mid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from medicalcheck
+    where mid = #{mid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.yunji.doctormanager.entity.Medicalcheck" >
+    insert into medicalcheck (mid, tid, mtype, 
+      mname)
+    values (#{mid,jdbcType=INTEGER}, #{tid,jdbcType=INTEGER}, #{mtype,jdbcType=INTEGER}, 
+      #{mname,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.yunji.doctormanager.entity.Medicalcheck" >
+    insert into medicalcheck
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="mid != null" >
+        mid,
+      </if>
+      <if test="tid != null" >
+        tid,
+      </if>
+      <if test="mtype != null" >
+        mtype,
+      </if>
+      <if test="mname != null" >
+        mname,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="mid != null" >
+        #{mid,jdbcType=INTEGER},
+      </if>
+      <if test="tid != null" >
+        #{tid,jdbcType=INTEGER},
+      </if>
+      <if test="mtype != null" >
+        #{mtype,jdbcType=INTEGER},
+      </if>
+      <if test="mname != null" >
+        #{mname,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.yunji.doctormanager.entity.Medicalcheck" >
+    update medicalcheck
+    <set >
+      <if test="tid != null" >
+        tid = #{tid,jdbcType=INTEGER},
+      </if>
+      <if test="mtype != null" >
+        mtype = #{mtype,jdbcType=INTEGER},
+      </if>
+      <if test="mname != null" >
+        mname = #{mname,jdbcType=CHAR},
+      </if>
+    </set>
+    where mid = #{mid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.yunji.doctormanager.entity.Medicalcheck" >
+    update medicalcheck
+    set tid = #{tid,jdbcType=INTEGER},
+      mtype = #{mtype,jdbcType=INTEGER},
+      mname = #{mname,jdbcType=CHAR}
+    where mid = #{mid,jdbcType=INTEGER}
+  </update>
+</mapper>

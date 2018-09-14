@@ -1,0 +1,427 @@
+<!--医嘱管理  妊娠高血压@author Luoyc-->
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="Pragma" content="no-cache">
+		<meta http-equiv="Window-target" content="_top">
+		<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+		<title>产科电子信息管理平台——家庭自测数据</title>
+		<link rel="stylesheet" href="../../css/bootstrap.min.css" />
+		<link rel="stylesheet" href="css/doctorAdvice_general.css" />
+		<link rel="stylesheet" href="css/familyTestData.css" />
+
+	</head>
+
+	<body>
+		<div class="class_main">
+			<!-- 头部 导航路径-->
+			<div class="top_Nav">
+				<div class="Nav_img"><img src="../../images/header_home.png" /></div>
+				<div class="Nav_content">
+					您当前的位置： 家庭自测数据
+				</div>
+			</div>
+			<div class="bottom_div">
+				<ul id="myTab" class="nav nav-tabs">
+					<li class="active">
+						<a href="#panel-bloodsugar" data-toggle="tab">
+							血糖趋势分布图
+						</a>
+					</li>
+					<li>
+						<a href="#panel-bloodpressure" data-toggle="tab">
+							血压变化趋势图
+						</a>
+					</li>
+					<li>
+						<a href="#panel-weight" data-toggle="tab">
+							体重变化趋势图
+						</a>
+					</li>
+					<li>
+						<a href="#panel-electrocardio" data-toggle="tab">
+							心电变化趋势图
+						</a>
+					</li>
+					<li>
+						<a href="#panel-temperature" data-toggle="tab">
+							体温变化趋势图
+						</a>
+					</li>
+					<li>
+						<a href="#panel-bloodfat" data-toggle="tab">
+							血脂变化趋势图
+						</a>
+					</li>
+					<li>
+						<a href="#panel-bloodoxygen" data-toggle="tab">
+							血氧变化趋势图
+						</a>
+					</li>
+				</ul>
+				<div id="selfTest-TabContent" class="tab-content">
+					<div class="tab-pane active" id="panel-bloodsugar">
+						<!-- begin 血糖总体趋势分析图  -->
+						<div class="blood-total">
+							<div class="bloodsugar-div-left">
+								<div class="bloodsugar-title">
+									血糖总体趋势分析图
+								</div>
+								<div id="chart1"></div>
+							</div>
+							<div class="bloodsugar-div-right">
+								<label class="first-label">参与评估记录数量：<span id="dataQuantity">0</span></label> <br />
+								<table class="first-table">
+									<tr>
+										<td>
+											<label>最高血糖值：</label>
+											<label><span id="max">0</span>mmol/L</label>
+										</td>
+										<td><label>测得高血糖次数：</label>
+											<label><span id="more" style="color: red;">8</span>次</label>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<label>最低血糖值：</label>
+											<label><span id="min">0</span>mmol/L</label>
+										</td>
+										<td>
+											<label>测得低血糖次数：</label>
+											<label><span id="less" style="color: red;">2</span>次</label>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<label>平均血糖值：</label>
+											<label><span id="ave">0</span>mmol/L</label>
+										</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+						<!-- end 血糖总体趋势分析图  -->
+						<div class="blood-total">
+							<div class="bloodsugar-div-left">
+								<div class="bloodsugar-title">
+									血糖每日分布趋势图
+								</div>
+								<div id="chart2"></div>
+							</div>
+							<div class="bloodsugar-div-right">
+								<label></label>
+								<label></label>
+								<br />
+								<table class="second-table">
+									<tr>
+										<td></td>
+										<td>早餐前</td>
+										<td>早餐后</td>
+										<td>午餐前</td>
+										<td>午餐后</td>
+										<td>晚餐前</td>
+										<td>晚餐后</td>
+										<td>夜间</td>
+									</tr>
+									<tr>
+										<td>偏低</td>
+										<td><span id="td11">0</span>%</td>
+										<td><span id="td12">0</span>%</td>
+										<td><span id="td13">0</span>%</td>
+										<td><span id="td14">0</span>%</td>
+										<td><span id="td15">0</span>%</td>
+										<td><span id="td16">0</span>%</td>
+										<td><span id="td17">0</span>%</td>
+									</tr>
+									<tr>
+										<td>正常</td>
+										<td><span id="td21">0</span>%</td>
+										<td><span id="td22">0</span>%</td>
+										<td><span id="td23">0</span>%</td>
+										<td><span id="td24">0</span>%</td>
+										<td><span id="td25">0</span>%</td>
+										<td><span id="td26">0</span>%</td>
+										<td><span id="td27">0</span>%</td>
+									</tr>
+									<tr>
+										<td>偏高</td>
+										<td><span id="td31">0</span>%</td>
+										<td><span id="td32">0</span>%</td>
+										<td><span id="td33">0</span>%</td>
+										<td><span id="td34">0</span>%</td>
+										<td><span id="td35">0</span>%</td>
+										<td><span id="td36">0</span>%</td>
+										<td><span id="td37">0</span>%</td>
+									</tr>
+								</table>
+							</div>
+							<!-- end 血糖每日分布趋势图  -->
+						</div>
+						<div class="blood-total">
+							<div class="bloodsugar-div-left">
+								<div class="bloodsugar-title">
+									血糖时段分析趋势图
+								</div>
+								<div id="chart3"></div>
+							</div>
+							<div class="bloodsugar-div-right">
+								<label class="first-label">时段血糖平均值：
+								<table class="first-table">
+								  <tr>
+									<td>
+								    <label >空&nbsp;&nbsp;&nbsp;腹： <span id="timedata1">0</span>mmol/L </label>
+									
+								</td>
+								<td >
+									<label >早餐前： <span id="timedata2">0</span>mmol/L </label>
+									 
+								</td>
+								</tr>
+								<tr>
+									<td >
+										<label >早餐后：<span id="timedata3">0</span>mmol/L</label>
+									</td>
+									<td>
+										<label >午餐前：<span id="timedata4">0</span>mmol/L</label>
+										
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<label >午餐后：<span id="timedata5">0</span>mmol/L</label>
+										
+									</td>
+									<td >
+										<label >晚餐前：<span id="timedata6">0</span>mmol/L</label>
+										
+									</td>
+								</tr>
+								<tr>
+									<td >
+										<label >晚餐后：<span id="timedata7">0</span>mmol/L</label>
+										
+									</td >
+									<td >
+										<label >夜&nbsp;&nbsp;&nbsp;间：<span id="timedata8">0</span>mmol/L</label>
+									
+									</td>
+								</tr>
+								</table>
+							</div>
+							<!-- end 血糖时段分析趋势图  -->
+						</div>
+					</div>
+					<div class="tab-pane" id="panel-bloodpressure">
+						<div class="blood-total">
+							<div class="bloodsugar-div-left">
+								<div class="electrocardio-photo">
+									本周血压趋势分析图
+								</div>
+								<div id="chart9"></div>
+							</div>
+							<div class="electrocardio-photo">
+								<div class="bloodpressure-title">
+									和上周比较
+								</div>
+								<div id="chart10"></div>
+							</div>
+						</div>
+						<div class="blood-total">
+							<div class="bloodsugar-div-left">
+								<div class="electrocardio-photo">
+									周报总结
+								</div>
+								<table class="first-table for-bloodpressure">
+									<tr>
+										<td>
+											<label>最高收缩压值：</label>
+											<label><span id="max1">0</span>mmol/L</label>
+										</td>
+										<td><label>测得高血压次数：</label>
+											<label><span id="more1" style="color: red;">8</span>次</label>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<label>最低舒张压值：</label>
+											<label><span id="min1">0</span>mmol/L</label>
+										</td>
+										<td>
+											<label>测得低血压次数：</label>
+											<label><span id="less1" style="color: red;">2</span>次</label>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<label>平均血压值&nbsp;&nbsp;&nbsp;：</label>
+											<label><span id="ave1">0</span>mmol/L</label>
+										</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+					</div>
+					<div class="tab-pane" id="panel-weight">
+						<div class="blood-total">
+							<div class="bloodsugar-div-left">
+								<div class="bloodsugar-title">
+									孕妇体重趋势分析图
+								</div>
+								<div id="chart7"></div>
+							</div>
+							<div class="bloodsugar-div-right">
+								<label class="first-label">参与评估记录数量：<span id="dataQuantity2">0</span></label> <br />
+								<table class="first-table">
+									<tr>
+										<td>
+											<label>最高体重值：</label>
+											<label><span id="max2">0</span>kg</label>
+										</td>
+										<td><label>测得超重次数：</label>
+											<label><span id="more2" style="color: red;">8</span>次</label>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<label>最低体重值：</label>
+											<label><span id="min2">0</span>kg</label>
+										</td>
+										<td>
+											<label>测得低重次数：</label>
+											<label><span id="less2" style="color: red;">2</span>次</label>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<label>平均体重值：</label>
+											<label><span id="ave2">0</span>kg</label>
+										</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+					</div>
+					<div class="tab-pane" id="panel-electrocardio">
+						<div id="" class="electrocardio-inner-div">
+							<div class="electrocardio-photo">
+								本次心电上传结果 <br/><img src="images/u4266.png" width="80%" height="150px" />
+							</div>
+							<div class="electrocardio-photo">历次心电上传结果一览</div>
+							<table id="electrocardio_table" class="second-table electrocardio-table" border="" cellspacing="" cellpadding="">
+								<tr>
+									<td>
+										上传时间
+									</td>
+									<td>
+										心率
+									</td>
+									<td>
+										QT间期
+									</td>
+									<td>
+										P波宽度
+									</td>
+									<td>
+										QTc间期
+									</td>
+									<td>
+										Q波宽度
+									</td>
+									<td>
+										QRS宽度
+									</td>
+									<td>
+										ST段
+									</td>
+									<td>
+										R波幅度
+									</td>
+									<td>
+										结论
+									</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+					<div class="tab-pane" id="panel-temperature">
+						<!-- begin 体温总体趋势分析图  -->
+						<div class="blood-total">
+							<div class="bloodsugar-div-left">
+								<div class="bloodsugar-title">
+									体温总体趋势分析图
+								</div>
+								<div id="chart4"></div>
+							</div>
+							<div class="bloodsugar-div-right">
+								<label class="first-label">参与评估记录数量：<span id="dataQuantity3">0</span></label> <br />
+								<table class="first-table">
+									<tr>
+										<td>
+											<label>最高体温值：</label>
+											<label><span id="max3">0</span>℃</label>
+										</td>
+										<td><label>测得高体温次数：</label>
+											<label><span id="more3" style="color: red;">0</span>次</label>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<label>最低体温值：</label>
+											<label><span id="min3">0</span>℃</label>
+										</td>
+										<td>
+											<label>测得低体温次数：</label>
+											<label><span id="less3" style="color: red;">2</span>次</label>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<label>平均体温值：</label>
+											<label><span id="ave3">36</span>℃</label>
+										</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+						<!-- end 体温总体趋势分析图  -->
+					</div>
+					<div class="tab-pane" id="panel-bloodfat">
+						<div class="blood-total">
+							<div class="bloodsugar-div-left">
+								<div class="bloodsugar-title">
+									血脂趋势分析图
+								</div>
+								<div id="chart5"></div>
+							</div>
+						</div>
+					</div>
+					<div class="tab-pane" id="panel-bloodoxygen">
+						<div class="blood-total">
+							<div class="bloodsugar-div-left">
+								<div class="bloodsugar-title">
+									血氧饱和度趋势分析图
+								</div>
+								<div id="chart6"></div>
+							</div>
+							<div class="">
+								<div class="bloodsugar-title">
+									血氧脉率趋势分析图
+								</div>
+								<div id="chart15"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="../../js/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="../../js/getLogin.js"></script>
+		<script type="text/javascript" src="../../js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="../../js/echarts.min.js"></script>
+		<script type="text/javascript" src="js/familyTestData.js"></script>
+		<script type="text/javascript" src="../../js/topNavigationSetData.js"></script>
+	</body>
+
+</html>

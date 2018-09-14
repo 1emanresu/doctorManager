@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.yunji.doctormanager.dao.AdviceMapper">
+  <resultMap id="BaseResultMap" type="cn.yunji.doctormanager.entity.Advice">
+    <id column="adid" jdbcType="INTEGER" property="adid" />
+    <result column="userID" jdbcType="INTEGER" property="userid" />
+    <result column="theme" jdbcType="CHAR" property="theme" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="phone" jdbcType="CHAR" property="phone" />
+    <result column="aDate" jdbcType="TIMESTAMP" property="adate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    adid, userID, theme, content, phone, aDate
+  </sql>
+ 
+  <insert id="insertSelective" parameterType="cn.yunji.doctormanager.entity.Advice">
+    insert into advice
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="adid != null">
+        adid,
+      </if>
+      <if test="userid != null">
+        userID,
+      </if>
+      <if test="theme != null">
+        theme,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="adate != null">
+        aDate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="adid != null">
+        #{adid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="theme != null">
+        #{theme,jdbcType=CHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=CHAR},
+      </if>
+      <if test="adate != null">
+        #{adate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+</mapper>

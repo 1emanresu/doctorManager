@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.yunji.doctormanager.dao.VipGradeMapper" >
+  <resultMap id="BaseResultMap" type="cn.yunji.doctormanager.entity.VipGrade" >
+    <id column="vipGradeid" property="vipgradeid" jdbcType="INTEGER" />
+    <result column="vipGradeName" property="vipgradename" jdbcType="CHAR" />
+    <result column="vipIntroduce" property="vipintroduce" jdbcType="VARCHAR" />
+    <result column="diagnosisTimes" property="diagnosistimes" jdbcType="INTEGER" />
+    <result column="vipPrices" property="vipprices" jdbcType="DECIMAL" />
+    <result column="weeklyTimes" property="weeklytimes" jdbcType="INTEGER" />
+    <result column="vipBeginDate" property="vipbegindate" jdbcType="DATE" />
+    <result column="vipendDate" property="vipenddate" jdbcType="DATE" />
+    <result column="projectDetail" property="projectdetail" jdbcType="CHAR" />
+    <result column="useTimes" property="usetimes" jdbcType="INTEGER" />
+    <result column="price" property="price" jdbcType="INTEGER" />
+    <result column="handleTips" property="handletips" jdbcType="CHAR" />
+    <result column="instructions" property="instructions" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    vipGradeid, vipGradeName, vipIntroduce, diagnosisTimes, vipPrices, weeklyTimes, vipBeginDate, 
+    vipendDate,projectDetail,useTimes,price,handleTips,instructions
+  </sql>
+  
+   <!-- 查询所有vip套餐 -->
+  <select id="find" resultMap="BaseResultMap">
+    select  *  from vipgrade
+  </select>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from vipgrade
+    where vipGradeid = #{vipgradeid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from vipgrade
+    where vipGradeid = #{vipgradeid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.yunji.doctormanager.entity.VipGrade" >
+    insert into vipgrade (vipGradeid, vipGradeName, vipIntroduce, 
+      diagnosisTimes, vipPrices, weeklyTimes, 
+      vipBeginDate, vipendDate)
+    values (#{vipgradeid,jdbcType=INTEGER}, #{vipgradename,jdbcType=CHAR}, #{vipintroduce,jdbcType=VARCHAR}, 
+      #{diagnosistimes,jdbcType=INTEGER}, #{vipprices,jdbcType=DECIMAL}, #{weeklytimes,jdbcType=INTEGER}, 
+      #{vipbegindate,jdbcType=DATE}, #{vipenddate,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.yunji.doctormanager.entity.VipGrade" >
+  
+  	<!-- 查看是否存在同一天的记录,如果存在则更新，否则插入 -->
+  	<selectKey keyProperty="count" order="BEFORE" resultType="int">
+  		select count(*) as count from vipgrade 
+  		where vipGradeid = #{vipgradeid,jdbcType=INTEGER}
+  	</selectKey>
+  	
+  	<!-- 如果等于0就执行插入 -->
+  	<if test="count==0">
+	    insert into vipgrade
+	    <trim prefix="(" suffix=")" suffixOverrides="," >
+	      <if test="vipgradeid != null" >
+	        vipGradeid,
+	      </if>
+	      <if test="vipgradename != null" >
+	        vipGradeName,
+	      </if>
+	      <if test="vipintroduce != null" >
+	        vipIntroduce,
+	      </if>
+	      <if test="diagnosistimes != null" >
+	        diagnosisTimes,
+	      </if>
+	      <if test="vipprices != null" >
+	        vipPrices,
+	      </if>
+	      <if test="weeklytimes != null" >
+	        weeklyTimes,
+	      </if>
+	      <if test="vipbegindate != null" >
+	        vipBeginDate,
+	      </if>
+	      <if test="vipenddate != null" >
+	        vipendDate,
+	      </if>
+	      <if test="projectdetail != null" >
+	        projectDetail,
+	      </if>
+	      <if test="usetimes != null" >
+	        useTimes,
+	      </if>
+	      <if test="price != null" >
+	        price,
+	      </if>
+	      <if test="handletips != null" >
+	        handleTips,
+	      </if>
+	      <if test="instructions != null" >
+	        instructions,
+	      </if>
+	    </trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides="," >
+	      <if test="vipgradeid != null" >
+	        #{vipgradeid,jdbcType=INTEGER},
+	      </if>
+	      <if test="vipgradename != null" >
+	        #{vipgradename,jdbcType=CHAR},
+	      </if>
+	      <if test="vipintroduce != null" >
+	        #{vipintroduce,jdbcType=VARCHAR},
+	      </if>
+	      <if test="diagnosistimes != null" >
+	        #{diagnosistimes,jdbcType=INTEGER},
+	      </if>
+	      <if test="vipprices != null" >
+	        #{vipprices,jdbcType=DECIMAL},
+	      </if>
+	      <if test="weeklytimes != null" >
+	        #{weeklytimes,jdbcType=INTEGER},
+	      </if>
+	      <if test="vipbegindate != null" >
+	        #{vipbegindate,jdbcType=DATE},
+	      </if>
+	      <if test="vipenddate != null" >
+	        #{vipenddate,jdbcType=DATE},
+	      </if>
+	      <if test="projectdetail != null" >
+	        #{projectdetail,jdbcType=CHAR},
+	      </if>
+	      <if test="usetimes != null" >
+	        #{usetimes,jdbcType=INTEGER},
+	      </if>
+	      <if test="price != null" >
+	        #{price,jdbcType=INTEGER},
+	      </if>
+	      <if test="handletips != null" >
+	        #{handletips,jdbcType=CHAR},
+	      </if>
+	      <if test="instructions != null" >
+	        #{instructions,jdbcType=CHAR},
+	      </if>
+	    </trim>
+    </if>
+    
+    <!-- 如果大于0则更新 -->
+    <if test="count>0">
+    	update vipgrade
+		<set >
+			 <if test="vipgradename != null" >
+			    vipGradeName = #{vipgradename,jdbcType=CHAR},
+			 </if>
+			 <if test="vipintroduce != null" >
+			    vipIntroduce = #{vipintroduce,jdbcType=VARCHAR},
+			 </if>
+			 <if test="diagnosistimes != null" >
+			    diagnosisTimes = #{diagnosistimes,jdbcType=INTEGER},
+			 </if>
+			 <if test="vipprices != null" >
+			    vipPrices = #{vipprices,jdbcType=DECIMAL},
+			 </if>
+			 <if test="weeklytimes != null" >
+			    weeklyTimes = #{weeklytimes,jdbcType=INTEGER},
+			 </if>
+			 <if test="vipbegindate != null" >
+			    vipBeginDate = #{vipbegindate,jdbcType=DATE},
+			 </if>
+			 <if test="vipenddate != null" >
+			    vipendDate = #{vipenddate,jdbcType=DATE},
+		    </if>
+			<if test="projectdetail != null" >
+			 	 projectDetail = #{projectdetail,jdbcType=CHAR},
+			</if>
+			<if test="usetimes != null" >
+			  	useTimes = #{usetimes,jdbcType=INTEGER},
+			</if>
+			<if test="price != null" >
+			 	 price = #{price,jdbcType=INTEGER},
+			</if>
+			<if test="handletips != null" >
+			 	handleTips = #{handletips,jdbcType=CHAR},
+			</if>
+			<if test="instructions != null" >
+			 	 instructions = #{instructions,jdbcType=CHAR},
+			</if>
+    	</set>
+    	where vipGradeid = #{vipgradeid,jdbcType=INTEGER}
+    </if>
+    
+  </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="cn.yunji.doctormanager.entity.VipGrade" >
+    update vipgrade
+    <set>
+		<if test="vipgradename != null" >
+		  vipGradeName = #{vipgradename,jdbcType=CHAR},
+		</if>
+		<if test="vipintroduce != null" >
+		  vipIntroduce = #{vipintroduce,jdbcType=VARCHAR},
+		</if>
+		<if test="diagnosistimes != null" >
+		  diagnosisTimes = #{diagnosistimes,jdbcType=INTEGER},
+		</if>
+		<if test="vipprices != null" >
+		  vipPrices = #{vipprices,jdbcType=DECIMAL},
+		</if>
+		<if test="weeklytimes != null" >
+		  weeklyTimes = #{weeklytimes,jdbcType=INTEGER},
+		</if>
+		<if test="vipbegindate != null" >
+		  vipBeginDate = #{vipbegindate,jdbcType=DATE},
+		</if>
+		<if test="vipenddate != null" >
+		  vipendDate = #{vipenddate,jdbcType=DATE},
+		</if>
+		<if test="projectdetail != null" >
+		  projectDetail = #{projectdetail,jdbcType=CHAR},
+		</if>
+		<if test="usetimes != null" >
+		  useTimes = #{usetimes,jdbcType=INTEGER},
+		</if>
+		<if test="price != null" >
+		  price = #{price,jdbcType=INTEGER},
+		</if>
+		<if test="handletips != null" >
+		 handleTips = #{handletips,jdbcType=CHAR},
+		</if>
+		<if test="instructions != null" >
+		  instructions = #{instructions,jdbcType=CHAR},
+		</if>
+    </set>
+    where vipGradeid = #{vipgradeid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.yunji.doctormanager.entity.VipGrade" >
+    update vipgrade
+    set vipGradeName = #{vipgradename,jdbcType=CHAR},
+      vipIntroduce = #{vipintroduce,jdbcType=VARCHAR},
+      diagnosisTimes = #{diagnosistimes,jdbcType=INTEGER},
+      vipPrices = #{vipprices,jdbcType=DECIMAL},
+      weeklyTimes = #{weeklytimes,jdbcType=INTEGER},
+      vipBeginDate = #{vipbegindate,jdbcType=DATE},
+      vipendDate = #{vipenddate,jdbcType=DATE}
+    where vipGradeid = #{vipgradeid,jdbcType=INTEGER}
+  </update>
+  <!-- 根据会员套餐名称查询  -->
+  <select id="selectByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	select * from vipgrade where vipGradeName = #{vipgradename,jdbcType=CHAR}
+  </select>
+</mapper>

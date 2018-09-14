@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.yunji.doctormanager.dao.ExpertsayarticleMapper" >
+  <resultMap id="BaseResultMap" type="cn.yunji.doctormanager.entity.Expertsayarticle" >
+    <id column="idexpertsayarticle" property="idexpertsayarticle" jdbcType="INTEGER" />
+    <result column="articleTitle" property="articletitle" jdbcType="CHAR" />
+    <result column="timeofpublication" property="timeofpublication" jdbcType="TIMESTAMP" />
+    <result column="author" property="author" jdbcType="CHAR" />
+    <result column="typeId" property="typeid" jdbcType="INTEGER" />
+    <result column="picture" property="picture" jdbcType="VARCHAR" />
+    <result column="authorid" property="authorid" jdbcType="INTEGER" />
+    <result column="video" property="video" jdbcType="CHAR" />
+    <result column="contentintroduction" property="contentintroduction" jdbcType="VARCHAR" />
+    <result column="earlypregnancytitle" property="earlypregnancytitle" jdbcType="CHAR" />
+    <result column="earlypregnancycontent" property="earlypregnancycontent" jdbcType="VARCHAR" />
+    <result column="middlepregnancytitle" property="middlepregnancytitle" jdbcType="CHAR" />
+    <result column="middlepregnancycontent" property="middlepregnancycontent" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="cn.yunji.doctormanager.entity.Expertsayarticle" extends="BaseResultMap" >
+    <result column="contentText" property="contenttext" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    idexpertsayarticle, articleTitle, timeofpublication, author, typeId, picture, authorid, 
+    video, contentintroduction, earlypregnancytitle, earlypregnancycontent, middlepregnancytitle, 
+    middlepregnancycontent
+  </sql>
+  <sql id="Blob_Column_List" >
+    contentText
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from expertsayarticle
+    where idexpertsayarticle = #{idexpertsayarticle,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from expertsayarticle
+    where idexpertsayarticle = #{idexpertsayarticle,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.yunji.doctormanager.entity.Expertsayarticle" >
+    insert into expertsayarticle (idexpertsayarticle, articleTitle, timeofpublication, 
+      author, typeId, picture, 
+      authorid, video, contentintroduction, 
+      earlypregnancytitle, earlypregnancycontent, 
+      middlepregnancytitle, middlepregnancycontent, 
+      contentText)
+    values (#{idexpertsayarticle,jdbcType=INTEGER}, #{articletitle,jdbcType=CHAR}, #{timeofpublication,jdbcType=TIMESTAMP}, 
+      #{author,jdbcType=CHAR}, #{typeid,jdbcType=INTEGER}, #{picture,jdbcType=VARCHAR}, 
+      #{authorid,jdbcType=INTEGER}, #{video,jdbcType=CHAR}, #{contentintroduction,jdbcType=VARCHAR}, 
+      #{earlypregnancytitle,jdbcType=CHAR}, #{earlypregnancycontent,jdbcType=VARCHAR}, 
+      #{middlepregnancytitle,jdbcType=CHAR}, #{middlepregnancycontent,jdbcType=VARCHAR}, 
+      #{contenttext,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.yunji.doctormanager.entity.Expertsayarticle" >
+    insert into expertsayarticle
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="idexpertsayarticle != null" >
+        idexpertsayarticle,
+      </if>
+      <if test="articletitle != null" >
+        articleTitle,
+      </if>
+      <if test="timeofpublication != null" >
+        timeofpublication,
+      </if>
+      <if test="author != null" >
+        author,
+      </if>
+      <if test="typeid != null" >
+        typeId,
+      </if>
+      <if test="picture != null" >
+        picture,
+      </if>
+      <if test="authorid != null" >
+        authorid,
+      </if>
+      <if test="video != null" >
+        video,
+      </if>
+      <if test="contentintroduction != null" >
+        contentintroduction,
+      </if>
+      <if test="earlypregnancytitle != null" >
+        earlypregnancytitle,
+      </if>
+      <if test="earlypregnancycontent != null" >
+        earlypregnancycontent,
+      </if>
+      <if test="middlepregnancytitle != null" >
+        middlepregnancytitle,
+      </if>
+      <if test="middlepregnancycontent != null" >
+        middlepregnancycontent,
+      </if>
+      <if test="contenttext != null" >
+        contentText,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="idexpertsayarticle != null" >
+        #{idexpertsayarticle,jdbcType=INTEGER},
+      </if>
+      <if test="articletitle != null" >
+        #{articletitle,jdbcType=CHAR},
+      </if>
+      <if test="timeofpublication != null" >
+        #{timeofpublication,jdbcType=TIMESTAMP},
+      </if>
+      <if test="author != null" >
+        #{author,jdbcType=CHAR},
+      </if>
+      <if test="typeid != null" >
+        #{typeid,jdbcType=INTEGER},
+      </if>
+      <if test="picture != null" >
+        #{picture,jdbcType=VARCHAR},
+      </if>
+      <if test="authorid != null" >
+        #{authorid,jdbcType=INTEGER},
+      </if>
+      <if test="video != null" >
+        #{video,jdbcType=CHAR},
+      </if>
+      <if test="contentintroduction != null" >
+        #{contentintroduction,jdbcType=VARCHAR},
+      </if>
+      <if test="earlypregnancytitle != null" >
+        #{earlypregnancytitle,jdbcType=CHAR},
+      </if>
+      <if test="earlypregnancycontent != null" >
+        #{earlypregnancycontent,jdbcType=VARCHAR},
+      </if>
+      <if test="middlepregnancytitle != null" >
+        #{middlepregnancytitle,jdbcType=CHAR},
+      </if>
+      <if test="middlepregnancycontent != null" >
+        #{middlepregnancycontent,jdbcType=VARCHAR},
+      </if>
+      <if test="contenttext != null" >
+        #{contenttext,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.yunji.doctormanager.entity.Expertsayarticle" >
+    update expertsayarticle
+    <set >
+      <if test="articletitle != null" >
+        articleTitle = #{articletitle,jdbcType=CHAR},
+      </if>
+      <if test="timeofpublication != null" >
+        timeofpublication = #{timeofpublication,jdbcType=TIMESTAMP},
+      </if>
+      <if test="author != null" >
+        author = #{author,jdbcType=CHAR},
+      </if>
+      <if test="typeid != null" >
+        typeId = #{typeid,jdbcType=INTEGER},
+      </if>
+      <if test="picture != null" >
+        picture = #{picture,jdbcType=VARCHAR},
+      </if>
+      <if test="authorid != null" >
+        authorid = #{authorid,jdbcType=INTEGER},
+      </if>
+      <if test="video != null" >
+        video = #{video,jdbcType=CHAR},
+      </if>
+      <if test="contentintroduction != null" >
+        contentintroduction = #{contentintroduction,jdbcType=VARCHAR},
+      </if>
+      <if test="earlypregnancytitle != null" >
+        earlypregnancytitle = #{earlypregnancytitle,jdbcType=CHAR},
+      </if>
+      <if test="earlypregnancycontent != null" >
+        earlypregnancycontent = #{earlypregnancycontent,jdbcType=VARCHAR},
+      </if>
+      <if test="middlepregnancytitle != null" >
+        middlepregnancytitle = #{middlepregnancytitle,jdbcType=CHAR},
+      </if>
+      <if test="middlepregnancycontent != null" >
+        middlepregnancycontent = #{middlepregnancycontent,jdbcType=VARCHAR},
+      </if>
+      <if test="contenttext != null" >
+        contentText = #{contenttext,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where idexpertsayarticle = #{idexpertsayarticle,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.yunji.doctormanager.entity.Expertsayarticle" >
+    update expertsayarticle
+    set articleTitle = #{articletitle,jdbcType=CHAR},
+      timeofpublication = #{timeofpublication,jdbcType=TIMESTAMP},
+      author = #{author,jdbcType=CHAR},
+      typeId = #{typeid,jdbcType=INTEGER},
+      picture = #{picture,jdbcType=VARCHAR},
+      authorid = #{authorid,jdbcType=INTEGER},
+      video = #{video,jdbcType=CHAR},
+      contentintroduction = #{contentintroduction,jdbcType=VARCHAR},
+      earlypregnancytitle = #{earlypregnancytitle,jdbcType=CHAR},
+      earlypregnancycontent = #{earlypregnancycontent,jdbcType=VARCHAR},
+      middlepregnancytitle = #{middlepregnancytitle,jdbcType=CHAR},
+      middlepregnancycontent = #{middlepregnancycontent,jdbcType=VARCHAR},
+      contentText = #{contenttext,jdbcType=LONGVARCHAR}
+    where idexpertsayarticle = #{idexpertsayarticle,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.yunji.doctormanager.entity.Expertsayarticle" >
+    update expertsayarticle
+    set articleTitle = #{articletitle,jdbcType=CHAR},
+      timeofpublication = #{timeofpublication,jdbcType=TIMESTAMP},
+      author = #{author,jdbcType=CHAR},
+      typeId = #{typeid,jdbcType=INTEGER},
+      picture = #{picture,jdbcType=VARCHAR},
+      authorid = #{authorid,jdbcType=INTEGER},
+      video = #{video,jdbcType=CHAR},
+      contentintroduction = #{contentintroduction,jdbcType=VARCHAR},
+      earlypregnancytitle = #{earlypregnancytitle,jdbcType=CHAR},
+      earlypregnancycontent = #{earlypregnancycontent,jdbcType=VARCHAR},
+      middlepregnancytitle = #{middlepregnancytitle,jdbcType=CHAR},
+      middlepregnancycontent = #{middlepregnancycontent,jdbcType=VARCHAR}
+    where idexpertsayarticle = #{idexpertsayarticle,jdbcType=INTEGER}
+  </update>
+  <select id="findHealthArticle" resultMap="ResultMapWithBLOBs" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from expertsayarticle
+    where typeId = 0
+  </select>
+  <select id="findDiseaseArticle" resultMap="ResultMapWithBLOBs" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from expertsayarticle
+    where typeId = 1
+  </select>
+  <select id="findHealthVideo" resultMap="ResultMapWithBLOBs" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from expertsayarticle
+    where typeId = 0
+    and video is not null
+  </select>
+  <select id="findDiseaseVideo" resultMap="ResultMapWithBLOBs" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from expertsayarticle
+    where typeId = 1
+     and video is not null
+  </select>
+</mapper>

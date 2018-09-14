@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.yunji.doctormanager.dao.UserTbMapper">
+	<resultMap id="BaseResultMap" type="cn.yunji.doctormanager.entity.UserTb">
+		<id column="userID" property="userid" jdbcType="INTEGER" />
+		<result column="userName" property="username" jdbcType="CHAR" />
+		<result column="password" property="password" jdbcType="CHAR" />
+		<result column="loginStatus" property="loginstatus" jdbcType="CHAR" />
+		<result column="nickName" property="nickname" jdbcType="CHAR" />
+		<result column="avatar" property="avatar" jdbcType="VARCHAR" />
+		<result column="createDate" property="createDate" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		userID, userName, password, loginStatus, nickName, avatar,createDate
+	</sql>
+
+
+
+	<resultMap id="BaseResultMap1" type="cn.yunji.doctormanager.entity.UserTb">
+		<id column="userID" property="userid" jdbcType="INTEGER" />
+		<result column="userName" property="username" jdbcType="CHAR" />
+		<result column="password" property="password" jdbcType="CHAR" />
+		<result column="loginStatus" property="loginstatus" jdbcType="CHAR" />
+		<result column="nickName" property="nickname" jdbcType="CHAR" />
+		<result column="avatar" property="avatar" jdbcType="VARCHAR" />
+		<association property="doctorid"
+			select="cn.yunji.doctormanager.dao.DoctorMapper.selectByPrimaryKey2"
+			column="userid"></association>
+		<association property="addUserRole"
+			select="cn.yunji.doctormanager.dao.UserRoleMapper.findByUserId"
+			column="userid"></association>
+		<association property="gravidaInfo"
+			select="cn.yunji.doctormanager.dao.GravidaInfoMapper.selectByPrimaryKey2"
+			column="userid"></association>
+		<association property="nuser"
+			select="cn.yunji.doctormanager.dao.NurseMapper.findByUserid" column="userid"></association>
+	</resultMap>
+	<!--检测密码账号问题 -->
+	<select id="findByNameAndpassword" parameterType="java.lang.String"
+		resultMap="BaseResultMap1">
+		select *
+		from usertb
+		where userName=#{0} and password=#{1}
+	</select>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from usertb
+		where userID = #{userid,jdbcType=INTEGER}
+	</select>
+	<select id="queryByUserName" resultType="java.lang.Integer"
+		parameterType="java.lang.String">
+		select userID from usertb where username = #{0}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from usertb
+		where userID = #{userid,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="cn.yunji.doctormanager.entity.UserTb" useGeneratedKeys="true" keyProperty="userid">
+		insert into usertb (
+		userName, password,
+		loginStatus, nickName, avatar
+		)
+		values
+		( #{username,jdbcType=CHAR},
+		#{password,jdbcType=CHAR},
+		#{loginstatus,jdbcType=CHAR},
+		#{nickname,jdbcType=CHAR}, #{avatar,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="cn.yunji.doctormanager.entity.UserTb">
+
+		<!-- 查看是否存在同一天的记录,如果存在则更新，否则插入 -->
+		<selectKey keyProperty="count" order="BEFORE" resultType="int">
+			select count(*) as count from usertb where username =
+			#{username,jdbcType=CHAR}
+		</selectKey>
+		<!-- 如果大于0则不做任何操作 -->
+		<if test="count>0">
+			update usertb
+			set
+			userName = #{username,jdbcType=CHAR},
+			loginStatus = 'E'
+			where userName = #{username,jdbcType=CHAR}
+		</if>
+		<!-- 如果小于0则增加 -->
+		<if test="count==0">
+			insert into usertb
+			<trim prefix="(" suffix=")" suffixOverrides=",">
+				<if test="userid != null">
+					userID,
+				</if>
+				<if test="username != null">
+					userName,
+				</if>
+				<if test="password != null">
+					password,
+				</if>
+				<if test="loginstatus != null">
+					loginStatus,
+				</if>
+				<if test="nickname != null">
+					nickName,
+				</if>
+				<if test="avatar != null">
+					avatar,
+				</if>
+			</trim>
+			<trim prefix="values (" suffix=")" suffixOverrides=",">
+				<if test="userid != null">
+					#{userid,jdbcType=INTEGER},
+				</if>
+				<if test="username != null">
+					#{username,jdbcType=CHAR},
+				</if>
+				<if test="password != null">
+					#{password,jdbcType=CHAR},
+				</if>
+				<if test="loginstatus != null">
+					#{loginstatus,jdbcType=CHAR},
+				</if>
+				<if test="nickname != null">
+					#{nickname,jdbcType=CHAR},
+				</if>
+				<if test="avatar != null">
+					#{avatar,jdbcType=VARCHAR},
+				</if>
+			</trim>
+		</if>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="cn.yunji.doctormanager.entity.UserTb">
+		update usertb
+		<set>
+			<if test="username != null">
+				userName = #{username,jdbcType=CHAR},
+			</if>
+			<if test="password != null">
+				password = #{password,jdbcType=CHAR},
+			</if>
+			<if test="loginstatus != null">
+				loginStatus = #{loginstatus,jdbcType=CHAR},
+			</if>
+			<if test="nickname != null">
+				nickName = #{nickname,jdbcType=CHAR},
+			</if>
+			<if test="avatar != null">
+				avatar = #{avatar,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where userName = #{username,jdbcType=CHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="cn.yunji.doctormanager.entity.UserTb">
+		update usertb
+		set
+		userName = #{username,jdbcType=CHAR},
+		password =
+		#{password,jdbcType=CHAR},
+		loginStatus = #{loginstatus,jdbcType=CHAR},
+		nickName = #{nickname,jdbcType=CHAR},
+		avatar =
+		#{avatar,jdbcType=VARCHAR}
+		where userID = #{userid,jdbcType=INTEGER}
+	</update>
+	<select id="selectByName" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select * from usertb where username = #{username,jdbcType=CHAR}
+	</select>
+</mapper>

@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.yunji.doctormanager.dao.SymptomMapper" >
+  <resultMap id="BaseResultMap" type="cn.yunji.doctormanager.entity.Symptom" >
+    <id column="symptomDetailId" property="symptomdetailid" jdbcType="INTEGER" />
+    <result column="symptomName" property="symptomname" jdbcType="CHAR" />
+    <result column="grade" property="grade" jdbcType="CHAR" />
+    <result column="reason" property="reason" jdbcType="VARCHAR" />
+    <result column="normalExpression" property="normalexpression" jdbcType="VARCHAR" />
+    <result column="abnormalExpression" property="abnormalexpression" jdbcType="VARCHAR" />
+    <result column="dispose" property="dispose" jdbcType="VARCHAR" />
+    <result column="suggest" property="suggest" jdbcType="VARCHAR" />
+    <result column="prevention" property="prevention" jdbcType="VARCHAR" />
+    <result column="influence" property="influence" jdbcType="VARCHAR" />
+    <result column="check" property="check" jdbcType="VARCHAR" />
+    <result column="disposeDescription" property="disposedescription" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    symptomDetailId, symptomName, grade, reason, normalExpression, abnormalExpression, 
+    dispose, suggest, prevention, influence, `check`, disposeDescription
+  </sql>
+  <!-- luoyc 根据主键数组查询 -->
+  <select id="selectByPrimaryKeys" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from symptom
+    <if test="ids != null">  
+        where symptomdetailid in(  
+            <foreach collection="ids" item="symptomdetailid" index="index" separator="," >    
+                #{symptomdetailid,jdbcType=INTEGER}   
+            </foreach>  
+        )     
+    </if> 
+  </select>
+  <!--@wagnzw 查询孕妇的症状-->
+  <select id="findSymptom" resultType="java.util.HashMap" parameterType="java.lang.String">
+        select * from symptomresult sm
+        left join symptom st on sm.symptomDetailId=st.symptomDetailId where mid=#{0};
+  </select>
+  
+  <!--@zhengpl 查询所有症状-->
+  <select id="queryAll" resultMap="BaseResultMap">
+      select * from symptom
+  </select>
+  <!--@zhengpl 根据条件查询症状-->
+  <select id="queryByCondition" resultMap="BaseResultMap" parameterType="java.lang.String">
+      SELECT * from symptom 
+      WHERE symptomName LIKE CONCAT('%','${condition}','%' )  
+      OR abnormalExpression LIKE CONCAT('%','${condition}','%' )
+  </select>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from symptom
+    where symptomDetailId = #{symptomdetailid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from symptom
+    where symptomDetailId = #{symptomdetailid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.yunji.doctormanager.entity.Symptom" >
+    insert into symptom (symptomDetailId, symptomName, grade, 
+      reason, normalExpression, abnormalExpression, 
+      dispose, suggest, prevention, 
+      influence, `check`, disposeDescription
+      )
+    values (#{symptomdetailid,jdbcType=INTEGER}, #{symptomname,jdbcType=CHAR}, #{grade,jdbcType=CHAR}, 
+      #{reason,jdbcType=VARCHAR}, #{normalexpression,jdbcType=VARCHAR}, #{abnormalexpression,jdbcType=VARCHAR}, 
+      #{dispose,jdbcType=VARCHAR}, #{suggest,jdbcType=VARCHAR}, #{prevention,jdbcType=VARCHAR}, 
+      #{influence,jdbcType=VARCHAR}, #{check,jdbcType=VARCHAR}, #{disposedescription,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.yunji.doctormanager.entity.Symptom" >
+    insert into symptom
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="symptomdetailid != null" >
+        symptomDetailId,
+      </if>
+      <if test="symptomname != null" >
+        symptomName,
+      </if>
+      <if test="grade != null" >
+        grade,
+      </if>
+      <if test="reason != null" >
+        reason,
+      </if>
+      <if test="normalexpression != null" >
+        normalExpression,
+      </if>
+      <if test="abnormalexpression != null" >
+        abnormalExpression,
+      </if>
+      <if test="dispose != null" >
+        dispose,
+      </if>
+      <if test="suggest != null" >
+        suggest,
+      </if>
+      <if test="prevention != null" >
+        prevention,
+      </if>
+      <if test="influence != null" >
+        influence,
+      </if>
+      <if test="check != null" >
+        `check`,
+      </if>
+      <if test="disposedescription != null" >
+        disposeDescription,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="symptomdetailid != null" >
+        #{symptomdetailid,jdbcType=INTEGER},
+      </if>
+      <if test="symptomname != null" >
+        #{symptomname,jdbcType=CHAR},
+      </if>
+      <if test="grade != null" >
+        #{grade,jdbcType=CHAR},
+      </if>
+      <if test="reason != null" >
+        #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="normalexpression != null" >
+        #{normalexpression,jdbcType=VARCHAR},
+      </if>
+      <if test="abnormalexpression != null" >
+        #{abnormalexpression,jdbcType=VARCHAR},
+      </if>
+      <if test="dispose != null" >
+        #{dispose,jdbcType=VARCHAR},
+      </if>
+      <if test="suggest != null" >
+        #{suggest,jdbcType=VARCHAR},
+      </if>
+      <if test="prevention != null" >
+        #{prevention,jdbcType=VARCHAR},
+      </if>
+      <if test="influence != null" >
+        #{influence,jdbcType=VARCHAR},
+      </if>
+      <if test="check != null" >
+        #{check,jdbcType=VARCHAR},
+      </if>
+      <if test="disposedescription != null" >
+        #{disposedescription,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.yunji.doctormanager.entity.Symptom" >
+    update symptom
+    <set >
+      <if test="symptomname != null" >
+        symptomName = #{symptomname,jdbcType=CHAR},
+      </if>
+      <if test="grade != null" >
+        grade = #{grade,jdbcType=CHAR},
+      </if>
+      <if test="reason != null" >
+        reason = #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="normalexpression != null" >
+        normalExpression = #{normalexpression,jdbcType=VARCHAR},
+      </if>
+      <if test="abnormalexpression != null" >
+        abnormalExpression = #{abnormalexpression,jdbcType=VARCHAR},
+      </if>
+      <if test="dispose != null" >
+        dispose = #{dispose,jdbcType=VARCHAR},
+      </if>
+      <if test="suggest != null" >
+        suggest = #{suggest,jdbcType=VARCHAR},
+      </if>
+      <if test="prevention != null" >
+        prevention = #{prevention,jdbcType=VARCHAR},
+      </if>
+      <if test="influence != null" >
+        influence = #{influence,jdbcType=VARCHAR},
+      </if>
+      <if test="check != null" >
+        `check` = #{check,jdbcType=VARCHAR},
+      </if>
+      <if test="disposedescription != null" >
+        disposeDescription = #{disposedescription,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where symptomDetailId = #{symptomdetailid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.yunji.doctormanager.entity.Symptom" >
+    update symptom
+    set symptomName = #{symptomname,jdbcType=CHAR},
+      grade = #{grade,jdbcType=CHAR},
+      reason = #{reason,jdbcType=VARCHAR},
+      normalExpression = #{normalexpression,jdbcType=VARCHAR},
+      abnormalExpression = #{abnormalexpression,jdbcType=VARCHAR},
+      dispose = #{dispose,jdbcType=VARCHAR},
+      suggest = #{suggest,jdbcType=VARCHAR},
+      prevention = #{prevention,jdbcType=VARCHAR},
+      influence = #{influence,jdbcType=VARCHAR},
+      `check` = #{check,jdbcType=VARCHAR},
+      disposeDescription = #{disposedescription,jdbcType=VARCHAR}
+    where symptomDetailId = #{symptomdetailid,jdbcType=INTEGER}
+  </update>
+</mapper>

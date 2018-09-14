@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.yunji.doctormanager.dao.CheckindexMapper" >
+  <resultMap id="BaseResultMap" type="cn.yunji.doctormanager.entity.Checkindex" >
+    <id column="cid" property="cid" jdbcType="INTEGER" />
+    <result column="checkProjectId" property="checkprojectid" jdbcType="INTEGER" />
+    <result column="cname" property="cname" jdbcType="CHAR" />
+    <result column="cbegin" property="cbegin" jdbcType="DECIMAL" />
+    <result column="cend" property="cend" jdbcType="DECIMAL" />
+    <result column="cunit" property="cunit" jdbcType="CHAR" />
+    <result column="referencevalue" property="referencevalue" jdbcType="CHAR" />
+    <result column="hospitalid" property="hospitalid" jdbcType="CHAR" />
+    <result column="shortname" property="shortname" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    cid, checkProjectId, cname, cbegin, cend, cunit,referencevalue
+  </sql>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select * from checkindex
+    where cid = #{0}
+  </select>
+  
+  <!--@wangzw 查询标准-->
+    <select id="queryShouAll" resultType="java.util.HashMap"  parameterType="java.lang.Integer">
+  select * from checkindex ck inner join checkproject c on
+   c.checkProjectId=ck.checkProjectId where c.checkProjectId=#{0} and ck.cid=#{1};
+  </select>
+  
+  <select id="queryByProjectId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from checkindex
+    where checkProjectId = #{0}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from checkindex
+    where cid = #{cid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.yunji.doctormanager.entity.Checkindex" >
+    insert into checkindex (cid, checkProjectId, cname, 
+      cbegin, cend, cunit)
+    values (#{cid,jdbcType=INTEGER}, #{checkprojectid,jdbcType=INTEGER}, #{cname,jdbcType=CHAR}, 
+      #{cbegin,jdbcType=DECIMAL}, #{cend,jdbcType=DECIMAL}, #{cunit,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.yunji.doctormanager.entity.Checkindex" >
+    insert into checkindex
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cid != null" >
+        cid,
+      </if>
+      <if test="checkprojectid != null" >
+        checkProjectId,
+      </if>
+      <if test="cname != null" >
+        cname,
+      </if>
+      <if test="cbegin != null" >
+        cbegin,
+      </if>
+      <if test="cend != null" >
+        cend,
+      </if>
+      <if test="cunit != null" >
+        cunit,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cid != null" >
+        #{cid,jdbcType=INTEGER},
+      </if>
+      <if test="checkprojectid != null" >
+        #{checkprojectid,jdbcType=INTEGER},
+      </if>
+      <if test="cname != null" >
+        #{cname,jdbcType=CHAR},
+      </if>
+      <if test="cbegin != null" >
+        #{cbegin,jdbcType=DECIMAL},
+      </if>
+      <if test="cend != null" >
+        #{cend,jdbcType=DECIMAL},
+      </if>
+      <if test="cunit != null" >
+        #{cunit,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.yunji.doctormanager.entity.Checkindex" >
+    update checkindex
+    <set >
+      <if test="checkprojectid != null" >
+        checkProjectId = #{checkprojectid,jdbcType=INTEGER},
+      </if>
+      <if test="cname != null" >
+        cname = #{cname,jdbcType=CHAR},
+      </if>
+      <if test="cbegin != null" >
+        cbegin = #{cbegin,jdbcType=DECIMAL},
+      </if>
+      <if test="cend != null" >
+        cend = #{cend,jdbcType=DECIMAL},
+      </if>
+      <if test="cunit != null" >
+        cunit = #{cunit,jdbcType=CHAR},
+      </if>
+    </set>
+    where cid = #{cid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.yunji.doctormanager.entity.Checkindex" >
+    update checkindex
+    set checkProjectId = #{checkprojectid,jdbcType=INTEGER},
+      cname = #{cname,jdbcType=CHAR},
+      cbegin = #{cbegin,jdbcType=DECIMAL},
+      cend = #{cend,jdbcType=DECIMAL},
+      cunit = #{cunit,jdbcType=CHAR}
+    where cid = #{cid,jdbcType=INTEGER}
+  </update>
+   <select id="findCNameByCid" resultType="java.lang.String" parameterType="java.lang.Integer" >
+    select 
+    cname
+    from checkindex
+   where cid = #{cid,jdbcType=INTEGER}
+  </select>
+</mapper>

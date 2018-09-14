@@ -1,0 +1,1089 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.yunji.doctormanager.dao.GravidaInfoMapper">
+	<resultMap id="BaseResultMap" type="cn.yunji.doctormanager.entity.GravidaInfo">
+		<id column="mId" property="mid" jdbcType="CHAR" />
+		<result column="userID" property="userid" jdbcType="INTEGER" />
+		<result column="hospitalId" property="hospitalid" jdbcType="CHAR" />
+		<result column="bhospitalId" property="bhospitalid" jdbcType="CHAR" />
+		<result column="fhospitalId" property="fhospitalid" jdbcType="CHAR" />
+		<result column="gHigh" property="ghigh" jdbcType="INTEGER" />
+		<result column="gName" property="gname" jdbcType="CHAR" />
+		<result column="birthCertificate" property="birthcertificate"
+			jdbcType="VARCHAR" />
+		<result column="monthPResidenceAddress" property="monthpresidenceaddress"
+			jdbcType="VARCHAR" />
+		<result column="monthPresentAddress" property="monthpresentaddress"
+			jdbcType="VARCHAR" />
+		<result column="expectedConfinement" property="expectedconfinement"
+			jdbcType="DATE" />
+		<result column="preparer" property="preparer" jdbcType="INTEGER" />
+		<result column="recordDate" property="recorddate" jdbcType="DATE" />
+		<result column="recordNo" property="recordno" jdbcType="CHAR" />
+		<result column="registerType" property="registertype" jdbcType="INTEGER" />
+		<result column="attribution" property="attribution" jdbcType="INTEGER" />
+		<result column="doctor" property="doctor" jdbcType="INTEGER" />
+		<result column="pergnancystatus" property="pergnancystatus"
+			jdbcType="INTEGER" />
+		<result column="endDate" property="enddate" jdbcType="DATE" />
+		<!-- @wangzw 添加3个字段 -->
+		<result column="patientTypeId" property="patienttypeid"
+			jdbcType="INTEGER" />
+		<result column="medicalRecordNo" property="medicalrecordno"
+			jdbcType="CHAR" />
+		<result column="processingState" property="processingState"
+			jdbcType="INTEGER" />
+		<!-- @yinzx 添加2个字段 weeklyState、adviceState 2017/9/20 -->
+		<result column="weeklyState" property="weeklystate" jdbcType="INTEGER" />
+		<result column="adviceState" property="advicestate" jdbcType="INTEGER" />
+		<result column="pregnancyBirth" property="pregnancyBirth"
+			jdbcType="CHAR" />
+		<result column="medicalcardtype" property="medicalcardtype"
+			jdbcType="INTEGER" />
+		<!--@wangzw 添加一个字段 -->
+		<result column="birthYears" property="birthYears" jdbcType="DATE" />
+		<!-- @hongwx 添加的字段 -->
+		<result column="distance" property="distance" jdbcType="CHAR" />
+		<result column="husband_condition" property="husband_condition"
+			jdbcType="INTEGER" />
+		<result column="poor" property="poor" jdbcType="INTEGER" />
+		<result column="family_gdp" property="family_gdp" jdbcType="INTEGER" />
+		<result column="postalcode" property="postalcode" jdbcType="INTEGER" />
+		<result column="household_register" property="household_register"
+			jdbcType="INTEGER" />
+		<result column="town" property="town" jdbcType="INTEGER" />
+		<result column="domicile" property="domicile" jdbcType="CHAR" />
+		<result column="wedlock" property="wedlock" jdbcType="CHAR" />
+		<result column="marry_age" property="marry_age" jdbcType="INTEGER" />
+		<result column="inoculation_history" property="inoculation_history"
+			jdbcType="INTEGER" />
+		<result column="medical_insurance" property="medical_insurance"
+			jdbcType="CHAR" />
+		<result column="agricultural" property="agricultural" jdbcType="CHAR" />
+		<!--实现一对多的关系 -->
+		<collection property="familyMemberList" javaType="ArrayList"
+			ofType="cn.yunji.doctormanager.entity.FamilyMember" column="mid"
+			select="cn.yunji.doctormanager.dao.FamilyMemberMapper.selectByMid">
+		</collection>
+
+		<collection property="abnormityinfoList" javaType="ArrayList"
+			ofType="cn.yunji.doctormanager.entity.Abnormityinfo" column="mid"
+			select="cn.yunji.doctormanager.dao.AbnormityinfoMapper.selectByPrimaryKey2">
+		</collection>
+
+		<collection property="weightTestList" javaType="ArrayList"
+			ofType="cn.yunji.doctormanager.entity.WeightTest" column="mId"
+			select="cn.yunji.doctormanager.dao.WeightTestMapper.find">
+		</collection>
+	</resultMap>
+
+	<resultMap id="BaseResultMap2" type="cn.yunji.doctormanager.entity.GravidaInfo">
+		<id column="mId" property="mid" jdbcType="CHAR" />
+		<result column="userID" property="userid" jdbcType="INTEGER" />
+		<result column="hospitalId" property="hospitalid" jdbcType="CHAR" />
+		<result column="gHigh" property="ghigh" jdbcType="INTEGER" />
+		<result column="gName" property="gname" jdbcType="CHAR" />
+		<result column="birthCertificate" property="birthcertificate"
+			jdbcType="VARCHAR" />
+		<result column="monthPResidenceAddress" property="monthpresidenceaddress"
+			jdbcType="VARCHAR" />
+		<result column="monthPresentAddress" property="monthpresentaddress"
+			jdbcType="VARCHAR" />
+		<result column="expectedconfinement" property="expectedconfinement"
+			jdbcType="DATE" />
+		<result column="preparer" property="preparer" jdbcType="INTEGER" />
+		<result column="recordDate" property="recorddate" jdbcType="DATE" />
+		<result column="recordNo" property="recordno" jdbcType="CHAR" />
+		<result column="registerType" property="registertype" jdbcType="INTEGER" />
+		<result column="attribution" property="attribution" jdbcType="INTEGER" />
+		<result column="doctor" property="doctor" jdbcType="INTEGER" />
+		<result column="pergnancystatus" property="pergnancystatus"
+			jdbcType="INTEGER" />
+		<result column="endDate" property="enddate" jdbcType="DATE" />
+		<!-- @wangzw 添加3个字段 -->
+		<result column="patientTypeId" property="patienttypeid"
+			jdbcType="INTEGER" />
+		<result column="medicalRecordNo" property="medicalrecordno"
+			jdbcType="CHAR" />
+		<result column="processingState" property="processingState"
+			jdbcType="INTEGER" />
+		<result column="pregnancyBirth" property="pregnancyBirth"
+			jdbcType="CHAR" />
+		<result column="medicalcardtype" property="medicalcardtype"
+			jdbcType="INTEGER" />
+		<!--@wangzw 添加一个字段 -->
+		<result column="birthYears" property="birthYears" jdbcType="DATE" />
+		<!-- @hongwx 添加的字段 -->
+		<result column="distance" property="distance" jdbcType="CHAR" />
+		<result column="husband_condition" property="husband_condition"
+			jdbcType="INTEGER" />
+		<result column="poor" property="poor" jdbcType="INTEGER" />
+		<result column="family_gdp" property="family_gdp" jdbcType="INTEGER" />
+		<result column="postalcode" property="postalcode" jdbcType="INTEGER" />
+		<result column="household_register" property="household_register"
+			jdbcType="INTEGER" />
+		<result column="town" property="town" jdbcType="INTEGER" />
+		<result column="domicile" property="domicile" jdbcType="CHAR" />
+		<result column="wedlock" property="wedlock" jdbcType="CHAR" />
+		<result column="marry_age" property="marry_age" jdbcType="INTEGER" />
+		<result column="inoculation_history" property="inoculation_history"
+			jdbcType="INTEGER" />
+		<result column="medical_insurance" property="medical_insurance"
+			jdbcType="CHAR" />
+		<result column="agricultural" property="agricultural" jdbcType="CHAR" />
+		<!--实现一对多的关系 -->
+		<collection property="abnormityinfoList" javaType="ArrayList"
+			ofType="cn.yunji.doctormanager.entity.Abnormityinfo" column="mid"
+			select="cn.yunji.doctormanager.dao.AbnormityinfoMapper.selectByPrimaryKey2">
+		</collection>
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		mId, userID, hospitalId,bhospitalId,fhospitalId, gHigh,
+		gName,pergnancystatus,
+		birthCertificate,
+		monthPResidenceAddress,
+		monthPresentAddress,
+		expectedconfinement,
+		preparer, recordDate,
+		recordNo, registerType,
+		attribution, doctor,
+		endDate ,patientTypeId,
+		medicalRecordNo,
+		processingState,weeklyState,adviceState,pregnancyBirth,
+		medicalcardtype,
+		birthYears,
+		distance, husband_condition, poor,
+		family_gdp, postalcode,
+		household_register,
+		town, domicile, wedlock,
+		marry_age,
+		inoculation_history,medical_insurance,agricultural
+	</sql>
+
+	<!-- luoyc 更新处理状态 -->
+	<update id="updateProcessingState" parameterType="cn.yunji.doctormanager.entity.GravidaInfo">
+		update
+		gravidainfo set processingState=#{processingState,jdbcType=INTEGER}
+		where mId =#{mid,jdbcType=CHAR}
+	</update>
+	<!-- luoyc 更新病人类型id -->
+	<update id="updatePatientTypeId" parameterType="cn.yunji.doctormanager.entity.GravidaInfo">
+		update
+		gravidainfo set patienttypeid=#{patienttypeid,jdbcType=INTEGER} where
+		mId =#{mid,jdbcType=CHAR}
+	</update>
+
+	<!--@zhangqt 查询孕妇的信息 -->
+	<select id="findByMid" resultType="java.util.HashMap"
+		parameterType="java.lang.String">
+		select g.*,h.hospitalName,h.hospitalId from gravidainfo
+		g
+		left join hospital h on g.hospitalId = h.hospitalId
+		where g.mid=#{0};
+	</select>
+
+	<!--@zhangqt 查询所有孕妇vip订购的信息 -->
+	<select id="queryByVip" resultType="java.util.HashMap">
+		select
+		g.*, vg.vipgradeName, vg.vipPrices, vo.*, f.Age, f.phone from
+		viporder vo
+		left join gravidainfo g on vo.mid = g.mid
+		left join vipgrade vg on vg.vipgradeid = vo.vipid
+		left join familymember f on g.mid= f.mid
+		where
+		f.relationId=1 and vo.edate > #{cur,jdbcType=DATE}
+		<if test="gname != null">
+			and g.gname=#{gname,jdbcType=INTEGER}
+		</if>
+		<if test="vipGradeid != null">
+			and vg.vipGradeid=#{vipGradeid,jdbcType=INTEGER}
+		</if>
+		<if test="medicalrecordno != null">
+			and g.medicalRecordNo=#{medicalrecordno,jdbcType=CHAR}
+		</if>
+		<if test="sweeks != null">
+			and g.endDate 
+			between #{sweeks,jdbcType=DATE} and #{eweeks,jdbcType=DATE}
+		</if>
+		<if test="pageIndex != null">
+			limit
+			#{pageIndex,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
+		</if>
+		
+	</select>
+	
+	<select id="getVipCount" resultType="java.lang.Integer">
+		select count(*) from viporder vo
+		left join gravidainfo g on vo.mid = g.mid
+		left join vipgrade vg on vg.vipgradeid = vo.vipid
+		left join familymember f on g.mid= f.mid
+		where
+		f.relationId=1
+		<if test="gname != null">
+			and g.gname=#{gname,jdbcType=INTEGER}
+		</if>
+		<if test="vipGradeid != null">
+			and vg.vipGradeid=#{vipGradeid,jdbcType=INTEGER}
+		</if>
+		<if test="medicalrecordno != null">
+			and g.medicalRecordNo=#{medicalrecordno,jdbcType=CHAR}
+		</if>
+		<if test="sweeks != null">
+			and g.endDate 
+			between #{sweeks,jdbcType=DATE} and #{eweeks,jdbcType=DATE}
+		</if>
+		and vo.edate > #{cur,jdbcType=DATE}
+	</select>
+
+	<!--@wangzw 查询孕妇的信息 -->
+	<select id="findGravidainfoAll" resultType="java.util.HashMap"
+		parameterType="java.lang.Integer">
+		select g.* from gravidainfo g
+		where g.patientTypeId=#{0}
+		and g.processingState=#{1} ;
+	</select>
+
+	<!--@wangzw 查询孕妇的信息 -->
+	<select id="getPregnancyCount1" resultType="int">
+		select g.* from
+		gravidainfo
+		<!-- where pergnancystatus=1; -->
+	</select>
+
+	<!--@wangzw 查询孕妇的信息 -->
+	<select id="getPregnancyCount2" resultType="int">
+		select count(*) from
+		gravidainfo
+		<!-- where pergnancystatus=1 -->
+	</select>
+
+	<!--@wangzw 查询孕妇 -->
+	<select id="findPagingAll" resultType="java.util.HashMap"
+		parameterType="java.lang.Integer">
+		select g.* from gravidainfo g
+		where g.patientTypeId=#{0}
+		and g.processingState=#{1} limit #{2},#{3};
+	</select>
+
+	<!--@wangzw 查询孕妇数量 -->
+	<select id="countAll" resultType="java.lang.Integer"
+		parameterType="java.lang.Integer">
+		select count(*) from gravidainfo g
+		where
+		g.patientTypeId=#{0} and g.processingState=#{1};
+	</select>
+
+	<!--@wangzw 查询全部孕妇的信息 -->
+	<select id="selectGravidainfoAll" resultType="java.util.HashMap"
+		parameterType="java.lang.String">
+		select
+		f.age,g.*,p.patientTypeName,wt.pregnancy from
+		familyMember f
+		left join gravidaInfo g on f.mid =g.mid
+		left join
+		patientType p on p.patientTypeId=g.patientTypeId
+		right join weighttest
+		wt on wt.mid=g.mid
+		where g.mid=#{0} and
+		f.relationId=1 order by wt.wDate
+		desc limit 1;
+	</select>
+
+	<!--@wangzw 查询男方血型 -->
+	<select id="queryManBlood" resultType="java.util.HashMap"
+		parameterType="java.lang.String">
+		select f.bloodType from gravidaInfo g
+		inner join
+		familyMember f on f.mid=g.mid
+		where f.relationId=2 and g.mid=#{0};
+	</select>
+
+	<!--@wangzw 查询家族个人史 -->
+	<select id="queryPersonage" resultType="java.util.HashMap"
+		parameterType="java.util.HashMap">
+		select g.pregnancyBirth,f.hPersonalHistory from
+		gravidaInfo g
+		inner join familyMember f on f.mid=g.mid
+		where
+		f.relationId=#{0} and g.mid=#{1};
+	</select>
+	<!--@wangzw 查询孕妇的症状 -->
+	<select id="querySymptom" resultType="java.util.HashMap">
+		select sp.symptomName from
+		symptomResult sr
+		inner join
+		symptom sp on sp.symptomDetailId
+		=sr.symptomDetailId where
+		sr.mid=#{0} and sr.ariseDate between #{1} and
+		#{2};
+	</select>
+	<!-- ZHANG -->
+	<select id="findByPage" resultType="java.util.HashMap">
+		select g.*,vg.vipGradeName,vg.vipgradeid,v.*,od.odId
+		from gravidainfo g
+		left
+		join viporder v on g.mid =v.mid
+		left join orderdetails od on od.ovipid
+		=v.ovipid
+		left join vipgrade vg on vg.vipGradeid =v.vipid
+		where g.gName
+		is not null
+		<if test="gname != null">
+			and g.gname=#{gname,jdbcType=INTEGER}
+		</if>
+		<if test="sbirth != null">
+            and g.birthYears between #{sbirth,jdbcType=DATE}
+            and #{ebirth,jdbcType=DATE}
+        </if>
+		<if test="processingState != null">
+			and od.processingState=#{processingState,jdbcType=CHAR}
+		</if>
+		<if test="edate != null">
+			and od.expireDate >= #{edate,jdbcType=CHAR}
+			and od.startDate &lt;= #{edate,jdbcType=CHAR}
+		</if>
+		<if test="serviceType != null">
+			and od.serviceType=#{serviceType,jdbcType=INTEGER}
+		</if>
+		<if test="vipGrade != null">
+			and vg.vipGradeid=#{vipGrade,jdbcType=INTEGER}
+		</if>
+
+		<if test="medicalrecordno != null"> and g.medicalRecordNo=#{medicalrecordno,jdbcType=CHAR}
+		</if>
+		<if test="sweeks != null">
+			and g.endDate between #{sweeks,jdbcType=DATE}
+			and #{eweeks,jdbcType=DATE}
+		</if>
+		<if test="patientTypeId != null">
+			and g.patientTypeId = #{patientTypeId,jdbcType=INTEGER}
+		</if>
+		<if test="adviceState != null">
+			and g.adviceState = #{adviceState,jdbcType=INTEGER}
+		</if>
+		<if test="weeklyState != null">
+			and g.weeklyState = #{weeklyState,jdbcType=INTEGER}
+		</if>
+		group by g.mid
+		<if test="sortName != null">
+			order by ${sortName} ${sortOrder}
+		</if>
+		<if test="pageIndex != null">
+			limit
+			#{pageIndex,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
+		</if>
+	</select>
+
+
+	<!--@zhangqt -->
+	<select id="queryByUserPhone" resultType="String" parameterType="String">
+		select g.mid from
+		gravidainfo g
+		left join userTb u on g.userId=u.userId
+		where u.username=#{0}
+		<!-- where pergnancystatus=1; -->
+	</select>
+
+	<!-- ZHANG -->
+	<select id="getDateCount1" resultType="int">
+		select count(DISTINCT g.mid)
+		from gravidainfo g
+		left join viporder v on	g.mid =v.mid
+		left join orderdetails od on od.ovipid
+		=v.ovipid
+		left join vipgrade vg on vg.vipGradeid =v.vipid
+		where
+		g.gName is not null
+		<if test="gname != null">
+			and g.gname=#{gname,jdbcType=INTEGER}
+		</if>
+		<if test="sbirth != null">
+             and g.birthYears between #{sbirth,jdbcType=DATE}
+            and #{ebirth,jdbcType=DATE}
+        </if>
+		<if test="vipGrade != null">
+			and vg.vipGradeid=#{vipGrade,jdbcType=INTEGER}
+		</if>
+		<if test="medicalrecordno != null">
+			and g.medicalRecordNo=#{medicalrecordno,jdbcType=CHAR}
+		</if>
+		<if test="processingState != null">
+			and od.processingState=#{processingState,jdbcType=CHAR}
+		</if>
+		<if test="edate != null">
+			and od.expireDate >= #{edate,jdbcType=CHAR}
+			and od.startDate &lt;= #{edate,jdbcType=CHAR}
+		</if>
+		<if test="serviceType != null">
+			and od.serviceType=#{serviceType,jdbcType=INTEGER}
+		</if>
+		<if test="sweeks != null">
+			and g.endDate 
+			between #{sweeks,jdbcType=DATE} and #{eweeks,jdbcType=DATE}
+		</if>
+		<if test="patientTypeId != null">
+			and g.patientTypeId = #{patientTypeId,jdbcType=INTEGER}
+		</if>
+		<if test="adviceState != null">
+			and g.adviceState = #{adviceState,jdbcType=INTEGER}
+		</if>
+		<if test="weeklyState != null">
+			and g.weeklyState = #{weeklyState,jdbcType=INTEGER}
+		</if>
+	</select>
+
+
+	<select id="getMid" resultType="java.lang.String">
+		select g.mid
+		from gravidainfo g
+		left join usertb u on u.userid = g.userid
+		where u.username=#{0} limit 1
+	</select>
+
+	<!-- 医生审核孕妇的建档 -->
+	<update id="examineInfo">
+		update gravidainfo set doctor=#{1} where mid=#{0}
+	</update>
+
+	<insert id="addOrUpdateInfo" parameterType="cn.yunji.doctormanager.entity.GravidaInfo">
+
+		<!-- 查看是否存在同一天的记录,如果存在则更新，否则插入 -->
+		<selectKey keyProperty="count" order="BEFORE" resultType="int">
+			select count(*) as count from gravidaInfo where userID =
+			#{userid,jdbcType=INTEGER}
+		</selectKey>
+
+		<!-- 如果大于0则更新 -->
+		<if test="count>0">
+			update gravidainfo
+			<set>
+				<if test="userid != null">
+					userID = #{userid,jdbcType=INTEGER},
+				</if>
+				<if test="hospitalid != null">
+					hospitalId = #{hospitalid,jdbcType=CHAR},
+				</if>
+				<if test="bhospitalid != null">
+					bhospitalId =
+					#{bhospitalid,jdbcType=CHAR},
+				</if>
+				<if test="ghigh != null">
+					gHigh = #{ghigh,jdbcType=INTEGER},
+				</if>
+				<if test="gname != null">
+					gName = #{gname,jdbcType=CHAR},
+				</if>
+				<if test="birthcertificate != null">
+					birthCertificate = #{birthcertificate,jdbcType=VARCHAR},
+				</if>
+				<if test="monthpresidenceaddress != null">
+					monthPResidenceAddress =
+					#{monthpresidenceaddress,jdbcType=VARCHAR},
+				</if>
+				<if test="monthpresentaddress != null">
+					monthPresentAddress =
+					#{monthpresentaddress,jdbcType=VARCHAR},
+				</if>
+				<if test="expectedconfinement != null">
+					expectedConfinement =
+					#{expectedconfinement,jdbcType=DATE},
+				</if>
+				<if test="preparer != null">
+					preparer = #{preparer,jdbcType=INTEGER},
+				</if>
+				<if test="recorddate != null">
+					recordDate = #{recorddate,jdbcType=DATE},
+				</if>
+				<if test="recordno != null">
+					recordNo = #{recordno,jdbcType=CHAR},
+				</if>
+				<if test="registertype != null">
+					registerType = #{registertype,jdbcType=INTEGER},
+				</if>
+				<if test="attribution != null">
+					attribution = #{attribution,jdbcType=INTEGER},
+				</if>
+				<if test="doctor != null">
+					doctor = #{doctor,jdbcType=INTEGER},
+				</if>
+				<if test="enddate != null">
+					endDate = #{enddate,jdbcType=DATE},
+				</if>
+				<if test="medicalrecordno != null">
+					medicalrecordno=#{medicalrecordno,jdbcType=CHAR},
+				</if>
+				<if test="birthYears != null">
+					birthYears = #{birthYears,jdbcType=DATE},
+				</if>
+			</set>
+			where userID = #{userid,jdbcType=INTEGER}
+
+		</if>
+		<!-- 如果等于0则保存 -->
+		<if test="count==0">
+			insert into gravidainfo
+			<trim prefix="(" suffix=")" suffixOverrides=",">
+				<if test="mid != null">
+					mId,
+				</if>
+				<if test="userid != null">
+					userID,
+				</if>
+				<if test="hospitalid != null">
+					hospitalId,
+				</if>
+				<if test="bhospitalid != null">
+					bhospitalid,
+				</if>
+				<if test="ghigh != null">
+					gHigh,
+				</if>
+				<if test="gname != null">
+					gName,
+				</if>
+				<if test="birthcertificate != null">
+					birthCertificate,
+				</if>
+				<if test="monthpresidenceaddress != null">
+					monthPResidenceAddress,
+				</if>
+				<if test="monthpresentaddress != null">
+					monthPresentAddress,
+				</if>
+				<if test="expectedconfinement != null">
+					expectedConfinement,
+				</if>
+				<if test="preparer != null">
+					preparer,
+				</if>
+				<if test="recorddate != null">
+					recordDate,
+				</if>
+				<if test="recordno != null">
+					recordNo,
+				</if>
+				<if test="registertype != null">
+					registerType,
+				</if>
+				<if test="attribution != null">
+					attribution,
+				</if>
+				<if test="doctor != null">
+					doctor,
+				</if>
+				<if test="enddate != null">
+					endDate,
+				</if>
+				<if test="medicalrecordno != null">
+					medicalrecordno,
+				</if>
+				<if test="birthYears != null">
+					birthYears,
+				</if>
+			</trim>
+			<trim prefix="values (" suffix=")" suffixOverrides=",">
+				<if test="mid != null">
+					#{mid,jdbcType=CHAR},
+				</if>
+				<if test="userid != null">
+					#{userid,jdbcType=INTEGER},
+				</if>
+				<if test="hospitalid != null">
+					#{hospitalid,jdbcType=CHAR},
+				</if>
+				<if test="bhospitalid != null">
+					#{bhospitalid,jdbcType=CHAR},
+				</if>
+				<if test="ghigh != null">
+					#{ghigh,jdbcType=INTEGER},
+				</if>
+				<if test="gname != null">
+					#{gname,jdbcType=CHAR},
+				</if>
+				<if test="birthcertificate != null">
+					#{birthcertificate,jdbcType=VARCHAR},
+				</if>
+				<if test="monthpresidenceaddress != null">
+					#{monthpresidenceaddress,jdbcType=VARCHAR},
+				</if>
+				<if test="monthpresentaddress != null">
+					#{monthpresentaddress,jdbcType=VARCHAR},
+				</if>
+				<if test="expectedconfinement != null">
+					#{expectedconfinement,jdbcType=DATE},
+				</if>
+				<if test="preparer != null">
+					#{preparer,jdbcType=INTEGER},
+				</if>
+				<if test="recorddate != null">
+					#{recorddate,jdbcType=DATE},
+				</if>
+				<if test="recordno != null">
+					#{recordno,jdbcType=CHAR},
+				</if>
+				<if test="registertype != null">
+					#{registertype,jdbcType=INTEGER},
+				</if>
+				<if test="attribution != null">
+					#{attribution,jdbcType=INTEGER},
+				</if>
+				<if test="doctor != null">
+					#{doctor,jdbcType=INTEGER},
+				</if>
+				<if test="enddate != null">
+					#{enddate,jdbcType=DATE},
+				</if>
+				<if test="medicalrecordno != null">
+					#{medicalrecordno,jdbcType=CHAR},
+				</if>
+				<if test="birthYears != null">
+					#{birthYears,jdbcType=DATE},
+				</if>
+			</trim>
+		</if>
+	</insert>
+
+
+
+	<select id="findAll" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from gravidainfo
+	</select>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select * from gravidainfo
+		where mId =
+		#{mid,jdbcType=CHAR}
+	</select>
+
+	<!-- 根据登录对应用户编号查找对应的孕妇 -->
+	<select id="selectByPrimaryKey2" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from gravidainfo
+		where userID = #{userID,jdbcType=INTEGER}
+	</select>
+
+	<select id="find" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from gravidainfo
+		where mId = #{mid,jdbcType=CHAR}
+	</select>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from
+		gravidainfo
+		where mId = #{mid,jdbcType=CHAR}
+	</delete>
+	<insert id="insert" parameterType="cn.yunji.doctormanager.entity.GravidaInfo">
+		insert into gravidainfo (mId,
+		userID, hospitalId,
+		gHigh, gName, birthCertificate,
+		monthPResidenceAddress, monthPresentAddress,
+		expectedConfinement,
+		preparer, recordDate,
+		recordNo, registerType, attribution,
+		doctor,
+		endDate)
+		values (#{mid,jdbcType=CHAR}, #{userid,jdbcType=INTEGER},
+		#{hospitalid,jdbcType=CHAR},
+		#{ghigh,jdbcType=INTEGER},
+		#{gname,jdbcType=CHAR}, #{birthcertificate,jdbcType=VARCHAR},
+		#{monthpresidenceaddress,jdbcType=VARCHAR},
+		#{monthpresentaddress,jdbcType=VARCHAR},
+		#{expectedconfinement,jdbcType=DATE}, #{preparer,jdbcType=INTEGER},
+		#{recorddate,jdbcType=DATE},
+		#{recordno,jdbcType=CHAR},
+		#{registertype,jdbcType=INTEGER}, #{attribution,jdbcType=INTEGER},
+		#{doctor,jdbcType=INTEGER}, #{enddate,jdbcType=DATE})
+	</insert>
+	<insert id="insertSelective" parameterType="cn.yunji.doctormanager.entity.GravidaInfo">
+		insert into gravidainfo
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="mid != null">
+				mId,
+			</if>
+			<if test="userid != null">
+				userID,
+			</if>
+			<if test="hospitalid != null">
+				hospitalId,
+			</if>
+			<if test="ghigh != null">
+				gHigh,
+			</if>
+			<if test="gname != null">
+				gName,
+			</if>
+			<if test="birthcertificate != null">
+				birthCertificate,
+			</if>
+			<if test="monthpresidenceaddress != null">
+				monthPResidenceAddress,
+			</if>
+			<if test="monthpresentaddress != null">
+				monthPresentAddress,
+			</if>
+			<if test="expectedconfinement != null">
+				expectedConfinement,
+			</if>
+			<if test="preparer != null">
+				preparer,
+			</if>
+			<if test="recorddate != null">
+				recordDate,
+			</if>
+			<if test="recordno != null">
+				recordNo,
+			</if>
+			<if test="registertype != null">
+				registerType,
+			</if>
+			<if test="attribution != null">
+				attribution,
+			</if>
+			<if test="doctor != null">
+				doctor,
+			</if>
+			<if test="enddate != null">
+				endDate,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="mid != null">
+				#{mid,jdbcType=CHAR},
+			</if>
+			<if test="userid != null">
+				#{userid,jdbcType=INTEGER},
+			</if>
+			<if test="hospitalid != null">
+				#{hospitalid,jdbcType=CHAR},
+			</if>
+			<if test="ghigh != null">
+				#{ghigh,jdbcType=INTEGER},
+			</if>
+			<if test="gname != null">
+				#{gname,jdbcType=CHAR},
+			</if>
+			<if test="birthcertificate != null">
+				#{birthcertificate,jdbcType=VARCHAR},
+			</if>
+			<if test="monthpresidenceaddress != null">
+				#{monthpresidenceaddress,jdbcType=VARCHAR},
+			</if>
+			<if test="monthpresentaddress != null">
+				#{monthpresentaddress,jdbcType=VARCHAR},
+			</if>
+			<if test="expectedconfinement != null">
+				#{expectedconfinement,jdbcType=DATE},
+			</if>
+			<if test="preparer != null">
+				#{preparer,jdbcType=INTEGER},
+			</if>
+			<if test="recorddate != null">
+				#{recorddate,jdbcType=DATE},
+			</if>
+			<if test="recordno != null">
+				#{recordno,jdbcType=CHAR},
+			</if>
+			<if test="registertype != null">
+				#{registertype,jdbcType=INTEGER},
+			</if>
+			<if test="attribution != null">
+				#{attribution,jdbcType=INTEGER},
+			</if>
+			<if test="doctor != null">
+				#{doctor,jdbcType=INTEGER},
+			</if>
+			<if test="enddate != null">
+				#{enddate,jdbcType=DATE},
+			</if>
+		</trim>
+	</insert>
+
+
+
+	<update id="updateByPrimaryKeySelective" parameterType="cn.yunji.doctormanager.entity.GravidaInfo">
+		update gravidainfo
+		<set>
+			<if test="userid != null">
+				userID = #{userid,jdbcType=INTEGER},
+			</if>
+			<if test="hospitalid != null">
+				hospitalId = #{hospitalid,jdbcType=CHAR},
+			</if>
+			<if test="bhospitalid != null">
+				bhospitalId = #{bhospitalid,jdbcType=CHAR},
+			</if>
+			<if test="fhospitalid != null">
+				fhospitalId = #{fhospitalid,jdbcType=CHAR},
+			</if>
+			<if test="ghigh != null">
+				gHigh = #{ghigh,jdbcType=INTEGER},
+			</if>
+			<if test="gname != null">
+				gName = #{gname,jdbcType=CHAR},
+			</if>
+			<if test="birthcertificate != null">
+				birthCertificate = #{birthcertificate,jdbcType=VARCHAR},
+			</if>
+			<if test="monthpresidenceaddress != null">
+				monthPResidenceAddress =
+				#{monthpresidenceaddress,jdbcType=VARCHAR},
+			</if>
+			<if test="monthpresentaddress != null">
+				monthPresentAddress =
+				#{monthpresentaddress,jdbcType=VARCHAR},
+			</if>
+			<if test="expectedconfinement != null">
+				expectedConfinement =
+				#{expectedconfinement,jdbcType=DATE},
+			</if>
+			<if test="preparer != null">
+				preparer = #{preparer,jdbcType=INTEGER},
+			</if>
+			<if test="recorddate != null">
+				recordDate = #{recorddate,jdbcType=DATE},
+			</if>
+			<if test="recordno != null">
+				recordNo = #{recordno,jdbcType=CHAR},
+			</if>
+			<if test="registertype != null">
+				registerType = #{registertype,jdbcType=INTEGER},
+			</if>
+			<if test="attribution != null">
+				attribution = #{attribution,jdbcType=INTEGER},
+			</if>
+			<if test="doctor != null">
+				doctor = #{doctor,jdbcType=INTEGER},
+			</if>
+			<if test="enddate != null">
+				endDate = #{enddate,jdbcType=DATE},
+			</if>
+			<if test="medicalcardtype != null">
+				medicalcardtype =
+				#{medicalcardtype,jdbcType=INTEGER},
+			</if>
+			<if test="birthYears != null">
+				birthYears =#{birthYears,jdbcType=DATE},
+			</if>
+			<if test="distance != null">
+				distance = #{distance,jdbcType=CHAR},
+			</if>
+			<if test="husband_condition != null">
+				husband_condition =
+				#{husband_condition,jdbcType=INTEGER},
+			</if>
+			<if test="poor != null">
+				poor =#{poor,jdbcType=INTEGER},
+			</if>
+			<if test="family_gdp != null">
+				family_gdp = #{family_gdp,jdbcType=INTEGER},
+			</if>
+			<if test="postalcode != null">
+				postalcode = #{postalcode,jdbcType=INTEGER},
+			</if>
+			<if test="household_register != null">
+				household_register =
+				#{household_register,jdbcType=INTEGER},
+			</if>
+			<if test="town != null">
+				town =#{town,jdbcType=INTEGER},
+			</if>
+			<if test="domicile != null">
+				domicile = #{domicile,jdbcType=CHAR},
+			</if>
+			<if test="wedlock != null">
+				wedlock= #{wedlock,jdbcType=CHAR},
+			</if>
+			<if test="marry_age != null">
+				marry_age = #{marry_age,jdbcType=INTEGER},
+			</if>
+			<if test="domicile != null">
+				domicile = #{domicile,jdbcType=CHAR},
+			</if>
+			<if test="inoculation_history != null">
+				inoculation_history =
+				#{inoculation_history,jdbcType=INTEGER},
+			</if>
+			<if test="medical_insurance != null">
+				medical_insurance = #{medical_insurance,jdbcType=CHAR},
+			</if>
+			<if test="agricultural != null">
+				agricultural =#{agricultural,jdbcType=CHAR}
+			</if>
+		</set>
+		where mId = #{mid,jdbcType=CHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="cn.yunji.doctormanager.entity.GravidaInfo">
+		update gravidainfo
+		set userID = #{userid,jdbcType=INTEGER},
+		hospitalId =
+		#{hospitalid,jdbcType=CHAR},
+		gHigh = #{ghigh,jdbcType=INTEGER},
+		gName =
+		#{gname,jdbcType=CHAR},
+		birthCertificate =
+		#{birthcertificate,jdbcType=VARCHAR},
+		monthPResidenceAddress =
+		#{monthpresidenceaddress,jdbcType=VARCHAR},
+		monthPresentAddress =
+		#{monthpresentaddress,jdbcType=VARCHAR},
+		expectedConfinement =
+		#{expectedconfinement,jdbcType=DATE},
+		preparer =
+		#{preparer,jdbcType=INTEGER},
+		recordDate = #{recorddate,jdbcType=DATE},
+		recordNo = #{recordno,jdbcType=CHAR},
+		registerType =
+		#{registertype,jdbcType=INTEGER},
+		attribution =
+		#{attribution,jdbcType=INTEGER},
+		doctor = #{doctor,jdbcType=INTEGER},
+		endDate = #{enddate,jdbcType=DATE},
+		birthYears =
+		#{birthYears,jdbcType=DATE},
+		medicalcardtype =
+		#{medicalcardtype,jdbcType=INTEGER},
+		distance =
+		#{distance,jdbcType=CHAR},
+		husband_condition =
+		#{husband_condition,jdbcType=INTEGER},
+		poor = #{poor,jdbcType=INTEGER},
+		family_gdp = #{family_gdp,jdbcType=INTEGER},
+		postalcode =
+		#{postalcode,jdbcType=INTEGER},
+
+		household_register =
+		#{household_register,jdbcType=INTEGER},
+		town =
+		#{town,jdbcType=INTEGER},
+		domicile = #{domicile,jdbcType=CHAR},
+		wedlock
+		= #{wedlock,jdbcType=CHAR},
+
+		marry_age = #{marry_age,jdbcType=INTEGER},
+		inoculation_history = #{inoculation_history,jdbcType=INTEGER},
+		medical_insurance = #{medical_insurance,jdbcType=CHAR},
+		agricultural =
+		#{agricultural,jdbcType=CHAR}
+		where mId = #{mid,jdbcType=CHAR}
+	</update>
+
+	<update id="updateGravida" parameterType="cn.yunji.doctormanager.entity.GravidaInfo">
+		update gravidainfo
+		<set>
+			<if test="userid != null">
+				userID = #{userid,jdbcType=INTEGER},
+			</if>
+			<if test="hospitalid != null">
+				hospitalId = #{hospitalid,jdbcType=CHAR},
+			</if>
+			<if test="bhospitalid != null">
+				bhospitalId = #{bhospitalid,jdbcType=CHAR},
+			</if>
+			<if test="fhospitalid != null">
+				fhospitalId = #{fhospitalid,jdbcType=CHAR},
+			</if>
+			<if test="ghigh != null">
+				gHigh = #{ghigh,jdbcType=INTEGER},
+			</if>
+			<if test="gname != null">
+				gName = #{gname,jdbcType=CHAR},
+			</if>
+			<if test="birthcertificate != null">
+				birthCertificate = #{birthcertificate,jdbcType=VARCHAR},
+			</if>
+			<if test="monthpresidenceaddress != null">
+				monthPResidenceAddress =
+				#{monthpresidenceaddress,jdbcType=VARCHAR},
+			</if>
+			<if test="monthpresentaddress != null">
+				monthPresentAddress =
+				#{monthpresentaddress,jdbcType=VARCHAR},
+			</if>
+			<if test="expectedconfinement != null">
+				expectedConfinement =
+				#{expectedconfinement,jdbcType=DATE},
+			</if>
+			<if test="preparer != null">
+				preparer = #{preparer,jdbcType=INTEGER},
+			</if>
+			<if test="recorddate != null">
+				recordDate = #{recorddate,jdbcType=DATE},
+			</if>
+			<if test="recordno != null">
+				recordNo = #{recordno,jdbcType=CHAR},
+			</if>
+			<if test="registertype != null">
+				registerType = #{registertype,jdbcType=INTEGER},
+			</if>
+			<if test="attribution != null">
+				attribution = #{attribution,jdbcType=INTEGER},
+			</if>
+			<if test="doctor != null">
+				doctor = #{doctor,jdbcType=INTEGER},
+			</if>
+			<if test="enddate != null">
+				endDate = #{enddate,jdbcType=DATE},
+			</if>
+			<if test="medicalcardtype != null">
+				medicalcardtype =
+				#{medicalcardtype,jdbcType=INTEGER},
+			</if>
+			<if test="birthYears != null">
+				birthYears =#{birthYears,jdbcType=DATE},
+			</if>
+			<if test="distance != null">
+				distance = #{distance,jdbcType=CHAR},
+			</if>
+			<if test="husband_condition != null">
+				husband_condition =
+				#{husband_condition,jdbcType=INTEGER},
+			</if>
+			<if test="poor != null">
+				poor =#{poor,jdbcType=INTEGER},
+			</if>
+			<if test="family_gdp != null">
+				family_gdp = #{family_gdp,jdbcType=INTEGER},
+			</if>
+			<if test="postalcode != null">
+				postalcode = #{postalcode,jdbcType=INTEGER},
+			</if>
+			<if test="household_register != null">
+				household_register =
+				#{household_register,jdbcType=INTEGER},
+			</if>
+			<if test="town != null">
+				town =#{town,jdbcType=INTEGER},
+			</if>
+			<if test="domicile != null">
+				domicile = #{domicile,jdbcType=CHAR},
+			</if>
+			<if test="wedlock != null">
+				wedlock= #{wedlock,jdbcType=CHAR},
+			</if>
+			<if test="marry_age != null">
+				marry_age = #{marry_age,jdbcType=INTEGER},
+			</if>
+			<if test="domicile != null">
+				domicile = #{domicile,jdbcType=CHAR},
+			</if>
+			<if test="inoculation_history != null">
+				inoculation_history =
+				#{inoculation_history,jdbcType=INTEGER},
+			</if>
+			<if test="medical_insurance != null">
+				medical_insurance = #{medical_insurance,jdbcType=CHAR},
+			</if>
+			<if test="agricultural != null">
+				agricultural =#{agricultural,jdbcType=CHAR}
+			</if>
+		</set>
+		where mId = #{mid,jdbcType=CHAR}
+	</update>
+</mapper>

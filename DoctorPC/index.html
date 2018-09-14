@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#echart1 {
+				width: 400px;
+				height: 350px;
+				border: red solid 1px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="tt">
+			<div id="echart1">
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="js/echarts.min.js">
+	</script>
+	<script type="text/javascript">
+		var address = sessionStorage.getItem("address");
+		$(function() {
+			setEchart();
+		});
+ 
+		function setEchart() {
+			var ins = 0;
+			var not = 0;
+			var data;
+			var inCheck = "";
+			var notCheck = "";
+			$.ajax({
+				type: "post",
+				url: address + "weekly/findCheckProject.do",
+				data: {
+					mid: 'dg000001',
+					week: 13
+				},
+				async: false,
+				success: function(d) {
+					console.log(JSON.stringify(d));
+					data = d.data;
+					ins = data.in.length;
+					not = data.not.length;
+					for(var i = 0; i < data.in.length; i++) {
+						if(i == 0) {
+							inCheck += "\n\n" + data.in[i].name + "\n\n";
+						} else {
+							inCheck += data.in[i].name + "\n\n";
+						}
+					}
+					for(var i = 0; i < data.not.length; i++) {
+						if(i == 0) {
+							notCheck += "\n\n" + data.not[i].name + "\n\n";
+						} else {
+							notCheck += data.not[i].name + "\n\n";
+						}
+					}
+				}
+			});
+			if(inCheck == "") {
+				inCheck = "无";
+			}
+			if(notCheck == "") {
+				notCheck = "无";
+			}
+			var echart1 = document.getElementById('echart1');
+			var myChart9 = echarts.init(echart1);
+			option = {
+				tooltip: {
+					trigger: 'item',
+					formatter: "{b}"
+				},
+				legend: {
+					orient: 'vertical',
+					x: 'center',
+					y: 'bottom',
+					data: ['未检查项目' + notCheck, '已检查项目' + inCheck]
+				},
+				series: [{
+					name: '',
+					type: 'pie',
+					radius: ['30%', '50%'],
+					center: ['50%', '50%'],
+					label: {
+						normal: {
+							formatter: "{b}",
+							backgroundColor: '#eee',
+							borderColor: '#aaa',
+							borderWidth: 1,
+							borderRadius: 4
+						}
+					},
+					labelLine: {
+						normal: {
+							length: 45
+						}
+					},
+					data: [{
+							value: not,
+							name: '未检查:' + notCheck,
+							itemStyle: {
+								normal: {
+									label: {
+										show: true,
+									},
+									labelLine: {
+										show: true
+									}
+								}
+							}
+						},
+						{
+							value: ins,
+							name: '已检查:' + inCheck,
+							itemStyle: {
+								normal: {
+									label: {
+										show: true,
+									},
+									labelLine: {
+										show: true
+									}
+								}
+							}
+						}
+					]
+				}]
+			};
+
+			var opt = option.series[0];
+			lineHide(opt);
+			//数据为零时隐藏线段  
+			function lineHide(opt) {
+				jQuery.each(opt.data, function(i, item) {
+					if(item.value == 0) {
+						item.itemStyle.normal.labelLine.show = false;
+						item.itemStyle.normal.label.show = false;
+					}
+				});
+			}
+			myChart9.setOption(option);
+		}
+	</script>
+
+</html>

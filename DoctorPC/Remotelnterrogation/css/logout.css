@@ -1,0 +1,48 @@
+.modal-dialog{
+	width: 500px;
+	margin: 250px auto;
+}
+.alert_frame{
+	border: 1px solid gainsboro;
+	border-radius: 5px;
+	font-family: "微软雅黑";
+}
+.modal_content {
+	border-radius: 5px;
+	background-color: rgb(242, 242, 242);
+}
+
+.title11{
+	height: 30px;
+	background-color: gainsboro;
+	border-top-right-radius:5px;
+	border-top-left-radius:5px ;
+}
+.content11{
+	height: 200px;
+	background-color: rgba(250,250,240,1);
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+.warning_div{
+	height: 130px;
+	padding: 20px;
+	text-align: center;
+}
+.btn_div{
+	text-align: center;
+}
+
+.btn_div button{
+	width: 100px;
+	height: 30px;
+	background-color: #5794E7;
+	border: none;
+	font-family: "微软雅黑";
+	border-radius: 5px;
+	color: white;
+	cursor: pointer;
+}
+.btn_div button:hover{
+	background-color: dodgerblue;
+}

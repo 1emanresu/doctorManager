@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="Pragma" content="no-cache">
+		<meta http-equiv="Window-target" content="_top">
+		<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+		<title>产科电子信息管理平台——医嘱管理</title>
+		<link rel="stylesheet" href="../css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="../css/bootstrap-table.css" />
+		<link rel="stylesheet" type="text/css" href="../css/comm.css" />
+		<link rel="stylesheet" type="text/css" href="css/personalCenter.css" />
+		<style>
+			.nav>li>a {
+				cursor: pointer;
+			}
+			.nav-tabs>li>a{
+				border: none;
+			}
+			.nav-tabs>li>a:hover{
+				background-color: #f5f7fa;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="class_main">
+			<div class="top_Nav">
+				<div class="Nav_img"><img src="../images/header_home.png" /></div>
+				<div class="Nav_content">
+					您当前的位置： <span>个人中心</span>
+				</div>
+			</div>
+			<!-- 主要内容 -->
+			<div class="main_content">
+				<ul class="nav nav-tabs nva-tabs-ul">
+					<li class="active">
+						<div class="class_li_line" onclick=""></div>
+						<a href="#panel-978065" data-toggle="tab" style="color: #666666;"><img src="images/u4300.png"  width="21px"/>&nbsp;&nbsp;&nbsp;个人资料</a>
+					</li>
+					<li>
+						<div class="class_li_line"></div>
+						<a href="#panel-978066" data-toggle="tab" style="color: #666666;"><img src="images/u4158.png" width="21px"/>&nbsp;&nbsp;&nbsp;修改密码</a>
+					</li>
+				</ul>
+				<div class="tab-content">
+					<div class="tab-pane fade in active  data-show" id="panel-978065">
+						<div style="width: 100%;height: 30px;margin-top: 10px;line-height: 30px;border-bottom: 1px solid lightgray;">
+							<p style="float: left;width: 60px;font-size: 14px;">基本信息</p>
+						</div>
+						<div style="width: 500px;margin: 0 auto;margin-top: 50px;">
+							<div class="row_div">
+								<div class="text_div">账户名：</div>
+								<input id="u4176_div" type="text" />
+							</div>
+							<div class="row_div">
+								<div class="text_div">联系电话：</div>
+								<input id="u4181_div" type="text" />
+							</div>
+							<div class="row_div">
+								<div class="text_div">固定电话：</div>
+								<input id="u4186_div" type="text" />
+							</div>
+							<div class="row_div">
+								<div class="text_div">邮箱地址：</div>
+								<input id="u4191_div" type="text" />
+							</div>
+							<div class="row_div">
+								<div class="text_div">所属科室：</div>
+								<select id="u4196_div" class="weeks" id="weeksQuery" style="height: 33px!important;">
+									<option value="1-45">选择科室</option>
+								</select>
+							</div>
+							<div class="row_div">
+								<div class="text_div">所属医院：</div>
+								<select id="u4167_div" class="weeks" id="weeksQuery" style="height: 33px!important;">
+									<option value="1-45">选择医院</option>
+								</select>
+							</div>
+							<div class="row_div" style="margin-top: 50px;text-align: center;">
+								<button id="u4171" class="ax_default">保存资料</button>
+							</div>
+						</div>
+					</div>
+					<div class="tab-pane fade" id="panel-978066">
+						<div style="width: 500px;margin: 150px auto;">
+							<div class="row_div">
+								<div class="text_div">当前密码：</div>
+								<input type="password" id="u4284_div" />
+							</div>
+							<div class="row_div">
+								<div class="text_div">新密码：</div>
+								<input type="password" id="u4289_div" placeholder="密码由6-12个字符组成，区分大小写">
+							</div>
+							<div class="row_div">
+								<div class="text_div">再次输入：</div>
+								<input type="password" id="u4294_div">
+							</div>
+							<div style="margin-top: 60px;text-align: center;">
+								<button id="u4296" class="ax_default" style="margin-right: 30px;">立即修改</button>
+								<button id="u4298" class="ax_default">取消</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="../js/getLogin.js"></script>
+		<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="../js/bootstrap-table.js"></script>
+		<script type="text/javascript" src="../js/bootstrap-table-zh-CN.js"></script>
+		<script type="text/javascript" src="../utils/js/bootstrapTable.js"></script>
+		<script type="text/javascript" src="../js/Util.js"></script>
+		<script type="text/javascript" src="js/personalCenter.js"></script>
+	</body>
+
+</html>

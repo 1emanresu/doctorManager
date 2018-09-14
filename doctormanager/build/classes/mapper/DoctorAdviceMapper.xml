@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.yunji.doctormanager.dao.DoctorAdviceMapper">
+	<resultMap id="BaseResultMap" type="cn.yunji.doctormanager.entity.DoctorAdvice">
+		<id column="daId" property="daid" jdbcType="INTEGER" />
+		<result column="mId" property="mid" jdbcType="CHAR" />
+		<result column="doctorId" property="doctorid" jdbcType="INTEGER" />
+		<result column="adviceDate" property="advicedate" jdbcType="TIMESTAMP" />
+		<result column="myKnowledge" property="myknowledge" jdbcType="VARCHAR" />
+		<result column="abnormityid" property="abnormityid" jdbcType="VARCHAR" />
+		<result column="prescriptionimg" property="prescriptionimg"
+			jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		daId, mId, doctorId, abnormityid, adviceDate,
+		myKnowledge,prescriptionimg
+	</sql>
+	<!--Luoyc -->
+	<select id="doctorAdviceQueryByMid" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from doctoradvice
+		where mId = #{0} 
+	</select>
+	<!--Luoyc -->
+	<select id="findByMid" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from doctoradvice
+		where mId = #{mid}
+		<if test="keyword != null">
+			and myKnowledge like  CONCAT(CONCAT('%', #{keyword}), '%')
+		</if>
+		<if test="sdate != null">
+			and adviceDate between #{sdate} and #{edate}
+		</if>
+		<if test="pageIndex != null">
+			limit #{pageIndex}, #{pageSize}
+		</if>
+		order by adviceDate
+	</select>
+	<!--Luoyc 根据时间范围查询指定孕妇医嘱 -->
+	<select id="findByDateRange" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from doctoradvice
+		where mId = #{0} and adviceDate between #{1} and #{2}
+	</select>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from doctoradvice
+		where daId = #{daid,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		doctoradvice
+		where daId = #{daid,jdbcType=INTEGER}
+	</delete>
+	<!-- luoyc -->
+	<insert id="insertDoctorAdvice" parameterType="cn.yunji.doctormanager.entity.DoctorAdvice"
+		useGeneratedKeys="true" keyProperty="daid">
+		insert into doctoradvice
+		(mid,doctorid,advicedate,myknowledge)
+		values
+		(#{mid,jdbcType=CHAR},#{doctorid,jdbcType=INTEGER},#{advicedate,jdbcType=TIMESTAMP},#{myknowledge,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insert" parameterType="cn.yunji.doctormanager.entity.DoctorAdvice">
+
+
+
+		<!-- 查看是否存在同一天的记录,如果存在则更新，否则插入 -->
+		<selectKey keyProperty="count" order="BEFORE" resultType="int">
+			select count(*) as count from doctoradvice where adviceDate =
+			#{advicedate,jdbcType=TIMESTAMP} and mId = #{mid,jdbcType=CHAR}
+			and
+			checkprojectid = #{checkprojectid,jdbcType=INTEGER}
+		</selectKey>
+
+		<!-- 如果大于0则更新 -->
+		<if test="count>0">
+			update doctoradvice
+			set mId = #{mid,jdbcType=CHAR},
+			doctorId = #{doctorid,jdbcType=INTEGER},
+			checkprojectid =
+			#{checkprojectid,jdbcType=INTEGER},
+			weeks = #{weeks,jdbcType=INTEGER},
+			adviceDate = #{advicedate,jdbcType=TIMESTAMP},
+			myKnowledge =
+			#{myknowledge,jdbcType=VARCHAR}
+			where adviceDate
+			=#{advicedate,jdbcType=TIMESTAMP}
+			and mId = #{mid,jdbcType=CHAR}
+			and
+			checkprojectid = #{checkprojectid,jdbcType=INTEGER}
+		</if>
+		<!-- 如果等于0则保存 -->
+		<if test="count==0">
+			insert into doctoradvice (daId, mId, doctorId,
+			checkprojectid, weeks, adviceDate,
+			myKnowledge)
+			values
+			(#{daid,jdbcType=INTEGER}, #{mid,jdbcType=CHAR},
+			#{doctorid,jdbcType=INTEGER},
+			#{checkprojectid,jdbcType=INTEGER},
+			#{weeks,jdbcType=INTEGER}, #{advicedate,jdbcType=TIMESTAMP},
+			#{myknowledge,jdbcType=VARCHAR})
+		</if>
+	</insert>
+
+	<insert id="insertSelective" parameterType="cn.yunji.doctormanager.entity.DoctorAdvice">
+		insert into doctoradvice
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="daid != null">
+				daId,
+			</if>
+			<if test="mid != null">
+				mId,
+			</if>
+			<if test="doctorid != null">
+				doctorId,
+			</if>
+			<if test="checkprojectid != null">
+				checkprojectid,
+			</if>
+			<if test="weeks != null">
+				weeks,
+			</if>
+			<if test="advicedate != null">
+				adviceDate,
+			</if>
+			<if test="myknowledge != null">
+				myKnowledge,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="daid != null">
+				#{daid,jdbcType=INTEGER},
+			</if>
+			<if test="mid != null">
+				#{mid,jdbcType=CHAR},
+			</if>
+			<if test="doctorid != null">
+				#{doctorid,jdbcType=INTEGER},
+			</if>
+			<if test="checkprojectid != null">
+				#{checkprojectid,jdbcType=INTEGER},
+			</if>
+			<if test="weeks != null">
+				#{weeks,jdbcType=INTEGER},
+			</if>
+			<if test="advicedate != null">
+				#{advicedate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="myknowledge != null">
+				#{myknowledge,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="cn.yunji.doctormanager.entity.DoctorAdvice">
+		update doctoradvice
+		<set>
+			<if test="mid != null">
+				mId = #{mid,jdbcType=CHAR},
+			</if>
+			<if test="doctorid != null">
+				doctorId = #{doctorid,jdbcType=INTEGER},
+			</if>
+			<if test="checkprojectid != null">
+				checkprojectid = #{checkprojectid,jdbcType=INTEGER},
+			</if>
+			<if test="weeks != null">
+				weeks = #{weeks,jdbcType=INTEGER},
+			</if>
+			<if test="advicedate != null">
+				adviceDate = #{advicedate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="myknowledge != null">
+				myKnowledge = #{myknowledge,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where daId = #{daid,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="cn.yunji.doctormanager.entity.DoctorAdvice">
+		update
+		doctoradvice
+		set mId = #{mid,jdbcType=CHAR},
+		doctorId =
+		#{doctorid,jdbcType=INTEGER},
+		checkprojectid =
+		#{checkprojectid,jdbcType=INTEGER},
+		weeks = #{weeks,jdbcType=INTEGER},
+		adviceDate = #{advicedate,jdbcType=TIMESTAMP},
+		myKnowledge =
+		#{myknowledge,jdbcType=VARCHAR}
+		where daId = #{daid,jdbcType=INTEGER}
+	</update>
+</mapper>

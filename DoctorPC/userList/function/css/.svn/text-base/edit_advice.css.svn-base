@@ -1,0 +1,191 @@
+/*编辑医嘱 css @author yinzx*/
+/**{border: 1px red solid;}*/
+.edit_advice{
+	margin: -7px 7px 7px 7px;
+	width: 99%;
+	height: auto;
+	border: 1px solid #E4E4E4;
+	overflow: hidden;
+	border-radius: 5px;
+}
+.edit_advice label{
+	font-weight: normal;
+}
+/*高危风险因素*/
+.content_highrisk {
+	height: 110px;
+	width: 100%;
+	margin: 0px auto;
+	border-radius: 5px;
+	border-bottom: 1px solid #E4E4E4;
+}
+
+.highrisk_title {
+	height: 110px;
+	width: 20%;
+	float: left;
+	padding-top: 40px;
+	text-align: center;
+	
+	
+}
+.highrisk_title label{
+	font-weight: 800;
+}
+.highrisk_content {
+	float: left;
+	height: 110px;
+	width: 80%;
+	padding: 15px;
+	
+	line-height: 25px;
+}
+
+.highrisk_content_p {
+	color: red;
+}
+
+/*医嘱建议*/
+.content_advice {
+	height: 130px;
+	width: 100%;
+	margin: 0px auto;
+	border-radius: 5px;
+	border-bottom: 1px solid #E4E4E4;
+}
+
+.advice_title {
+	height: 130px;
+	width: 20%;
+	float: left;
+	padding-top: 55px;
+	text-align: center;
+}
+
+.advice_content {
+	float: left;
+	height: 130px;
+	width: 80%;
+	padding: 15px;
+	line-height: 25px;
+}
+.advice_content a{
+	color: #6FA0E6;
+}
+.docAdvice_content{
+	width: 95%;
+	height: 70px;
+	border: none;
+	resize: none;
+}
+.advice_content a{
+	float: right;
+	margin-right: 20px;
+}
+
+/*家庭检测项目建议*/
+.content_Notice{
+	width: 100%;
+	margin: 0 auto;
+	
+}
+
+.Notice_title{
+	width: 20%;
+	text-align: center;
+	height: 140px;
+	float: left;
+	padding-top: 35px;
+}
+.Notice_content{
+	height: 140px;
+	line-height: 30px;
+	padding: 15px;
+}
+.notice_tip{
+	margin-left:20%;
+	line-height: 18px;
+	color: #6FA0E6;
+}
+.Notice_content input{
+	width: 25px;
+	height: 15px;
+	vertical-align: text-bottom;
+}
+.Notice_content span,
+.Notice_content select{
+	/*margin-left: 10px;*/
+	width: 250px;
+	height: 26px!important;
+	font-size: 12px;
+}
+.Notice_send{
+	width: 100%;
+	height: 130px;
+	line-height: 30px;
+	
+}
+.send_title{
+	width: 20%;
+	height: 130px;
+	float: left;
+	padding-top: 30px;
+	text-align: right;
+	padding-right: 4%;
+}
+.send_content input{
+	width: 25px;
+	height: 15px;
+	vertical-align: text-bottom;
+}
+.send_content label{
+	
+	width: 70px;
+}
+.Notice_send .send_tip{
+	margin-left:20%;
+	line-height: 18px;
+	color: #6FA0E6;
+}
+.content_submit{
+	width:100%;
+	margin-top: 15px;
+	text-align: right;
+}
+.content_submit #cancle{
+	width: 120px;
+	background-color: white;
+	border: none;
+	line-height: 25px;
+	border: 1px solid #696969;
+	border-radius: 5px;
+	margin-right: 30px;
+	
+}
+.content_submit #submit{
+	width: 120px;
+	background-color: #5794E7;
+	border: none;
+	line-height: 26px;
+	color: white;
+	border-radius: 5px;
+	margin-right: 20px;
+}
+/*微调已建档->编辑医嘱->两个按钮样式*/
+.content_submit #cancle:hover{
+	border: 1px solid #262626;
+}
+.content_submit #submit:hover{
+	background-color: #006DCC;
+}
+#pressureCont{
+	padding: 0px 6px 0px 6px!important;
+	margin:0px!important;
+	margin-top: 2px!important;
+}
+.loveno{
+	padding: 0px!important;
+}
+.controller-height{
+	height: 35px!important;
+}

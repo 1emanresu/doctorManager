@@ -1,0 +1,1467 @@
+<!--医嘱管理 非高危患者 @author Luoyc-->
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="Pragma" content="no-cache">
+		<meta http-equiv="Window-target" content="_top">
+		<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+		<title></title>
+		<!--<link rel="stylesheet" href="../css/bootstrap.min.css" />-->
+		<link rel="stylesheet" type="text/css" href="../css/bootstrap-table.css" />
+		<link rel="stylesheet" href="../../common/UI_kit/bootflat/css/bootflat.min.css">
+		<link rel="stylesheet" href="../../common/UI_kit/css/site.min.css" />
+		<link rel="stylesheet" href="css/serviceManage.css" />
+		<style>
+			
+		</style>
+	</head>
+
+	<body>
+		<div class="class_main" style="min-width: 1230px;">
+			<div class="zhegaidivblock">2</div>
+			<!-- 头部 导航路径-->
+			<div class="top_Nav" style="font-size: 12px;">
+				<div class="Nav_img"><img src="../images/header_home.png" /></div>
+				<div class="Nav_content">
+					您当前的位置： <span id="adviceOrWeekly">服务管理</span><!--<a target="_parent" href="../RemoteInterrogation/interrogation.html">求助问诊</a>-->
+				</div>
+			</div>
+			<!-- 主要内容 -->
+			<div class="main_content" style="position: relative;">
+
+				<!--begin Tab-Control 选项卡-->
+				<div class="right-Tab-Control">
+					<ul class="nav nav-tabs nva-tabs-ul tap-ul-selector" id="getulinner_lis">
+						<li class="active" id="">
+							<div class="li_line"></div>
+							<a href="#panel-978065" data-toggle="tab">服务开通管理</a>
+						</li>
+						<li id="">
+							<div class="li_line"></div>
+							<a href="#panel-978067" data-toggle="tab">会员列表</a>
+						</li>
+						<li id="">
+							<div class="li_line"></div>
+							<a href="#panel-978066" data-toggle="tab">服务变更管理</a>
+						</li>
+
+					</ul>
+					<div class="tab-content contents" style="font-family: '微软雅黑';font-size: 12px!important;">
+						<div class="tab-pane active  data-show" id="panel-978065">
+							<div class="servicemange_info">
+								<div class="rightdiv_detailinfor">
+									<div class="content_item" style="display: flex;min-width: 1200px; ">
+										<div align="center" class="leftitem_baseinfor">
+											<div align="center" class="lefticon_circular">
+												<img height="29px" style="vertical-align:middle" src="images/lefticon3img.png" />
+											</div>
+											<div class="jibeninfor_edit" id="mainbbareditid">
+												<img width="20px" height="20px" src="images/editiconleft2.png" />
+												<label id="jibenxinchanged">基本信息</label>
+											</div>
+											<div class="leftposition_line2"></div>
+										</div>
+										<div class="shang_baohan">
+											<div id="left1"></div>
+											<div class="baseinfor_shang">
+												<div class="row margin59">
+												  <div class="col-md-4">
+												  	<div class="col-md-4" style="text-align: right;padding-right: 0px;line-height: 25px;">孕况状态：</div>
+												  	<div class="col-md-8">
+												  		<select name="" id="stateInfo" onchange="changeStateInfo()">
+															<option value="2">怀孕</option>
+															<option value="1">备孕</option>
+														</select>
+												  	</div>
+												  </div>
+												</div>
+												<!--<div style="margin-left: 15px;">孕况状态
+													<select name="" id="stateInfo" style="margin-left: 49px;" onchange="changeStateInfo()">
+														<option value="2">怀孕</option>
+														<option value="1">备孕</option>
+													</select>
+												</div>-->
+												
+												<form action="" id="myform1" style="display: none;">
+													<div class="row margin59">
+													  <div class="col-md-4">
+													  	<div class="col-md-4" style="text-align: right;padding-right: 0px;line-height: 25px;">*姓名：</div>
+													  	<div class="col-md-8">
+													  		<input type="text" name="gname" id="gname" class="required form-control"/>
+													  	</div>
+													  </div>
+													  <div class="col-md-4">
+													  	<div class="col-md-4" style="text-align: right;padding-right: 0px;line-height: 25px;">*出生日期：</div>
+													  	<div class="col-md-8">
+													  		<input type="date" name="birthYears" id="birthYears" class="required dateISO form-control"/>
+													  	</div>
+													  </div>
+													  <div class="col-md-4">
+													  	<div class="col-md-4" style="text-align: right;padding-right: 0px;line-height: 25px;">孕产妇编号：</div>
+													  	<div class="col-md-8">
+													  		<input type="text" name="mid" class="mid1 form-control"/>
+													  	</div>
+													  </div>
+													</div>
+													<div class="row margin59">
+													  <div class="col-md-4">
+													  	<div class="col-md-4" style="text-align: right;padding-right: 0px;line-height: 25px;">病历号：</div>
+													  	<div class="col-md-8">
+													  		<input type="text" name="medicalrecordno" id="medicalrecordno" class="form-control" />
+													  	</div>
+													  </div>
+													  <div class="col-md-4">
+													  	<div class="col-md-4" style="text-align: right;padding-right: 0px;line-height: 25px;">*孕育史：</div>
+													  	<div class="col-md-8">
+													  		<select name="inoculation_history" >
+																	<option value="0">0次</option>
+																	<option value="1">1次</option>
+																	<option value="2">2次</option>
+																	<option value="3">3次</option>
+																	<option value="4">4次</option>
+																</select>
+													  	</div>
+													  </div>
+													</div>
+													<div class="row margin59">
+													  <div class="col-md-4">
+													  	<div class="col-md-4" style="text-align: right;padding-right: 0px;line-height: 25px;">*联系电话：</div>
+													  	<div class="col-md-8" style="">
+													  		<input type="text" id="myPhone1" class="required mobilePhone form-control" maxlength="11" style="float: left;"/> 
+													  	</div>
+													  </div>
+													  <div class="col-md-4" style="padding-left: 0px;">
+													  	<div class="col-md-7" style="padding-left: 0px;margin-left: -28px;">
+															<input type="text" class="form-control required" id="verificationCode1" placeholder="请输入验证码" style="float: left;margin-left: 3px;" />
+													  	</div>
+													  </div>
+													  <div class="col-md-3" style="padding-left: 0px;margin-left: -60px;">
+													  	<div class="col-md-6" style="padding-left:0px;margin-left: -130px;">
+													  		<button type="button" class="btn btn-primary btn-block" style="width: 75px;height:25px;padding: 0px;font-size: 12px;border: none!important;background-color: #5794E7;color: white;" onclick="subForm2()">获取验证码</button>
+													  	</div>
+													  </div>
+													  
+													</div>
+													<div class="row margin59">
+													  <div class="col-md-4">
+													  	<div class="col-md-4" style="text-align: right;padding-right: 0px;line-height: 25px;">户口所在地：</div>
+													  	<div class="col-md-8" style="">
+													  		<select id="hukou" name="" ></select>
+													  	</div>
+													  </div>
+													  <div class="col-md-4" style="padding-left: 0px;">
+													  	<div class="col-md-7" style="padding-left: 0px;margin-left: -25px;">
+													  		<select id="chengshi" name="" ></select>
+													  	</div>
+													  </div>
+													  <div class="col-md-4" style="padding-left: 0px;margin-left: -60px;">
+													  	<div class="col-md-12" style="padding-left:0px;margin-left: -130px;">
+													  		<input id="detail_address1" class="form-control" type="text " placeholder="请输入详细地址">
+													  	</div>
+													  </div>
+													</div>
+													<!--<table class="shang_table1" id="by" style="display: none;">
+														<tr>
+															<td width="85px">*姓名：</td>
+															<td style="color: #999999;width: 330px;">
+																<input type="text" name="gname" class="required form-control"/></td>
+															<td width="85px" >
+																<div style="margin-left: -111px;width: 85px;">*出生日期：</div>
+															</td>
+															<td style="color: #999999;">
+																<input type="date" name="birthYears"  style="margin-left: -111px;" class="required dateISO form-control"/>
+															</td>
+															<td width="85px">
+																<div style="margin-left: -70px;">孕产妇编号：</div>
+															</td>
+															<td style="color: #999999;width: 150px;">
+																<input type="text" name="gravida_num" style="margin-left: -70px;" class="mid1 form-control"/>
+															</td>
+														</tr>
+														<tr>
+															<td width="85px">病历号：</td>
+															<td style="color: #999999;">
+																<input type="text" name="medicalrecordno" class="form-control" />
+															</td>
+															<td width="85px">
+																<div style="margin-left: -111px;width: 85px;">*孕育史：</div>
+															</td>
+															<td style="color: #999999;">
+																<select name="inoculation_history" style="margin-left: -111px;">
+																	<option value="0">0次</option>
+																	<option value="1">1次</option>
+																	<option value="2">2次</option>
+																	<option value="3">3次</option>
+																	<option value="4">4次</option>
+																</select>
+															</td>
+														</tr>
+														<tr>
+															<td width="85px">*联系电话：</td>
+															<td style="color: #999999;">
+																<input type="text" id="myPhone1" class="required digits form-control" maxlength="11" style="float: left;"/> 
+																<input type="text" class="form-control" id="verificationCode1" placeholder="请输入验证码" style="float: left;margin-left: 3px;" />
+															</td>
+															<td></td>
+															<td>
+																<div style="width: 75px;height:25px;margin-left: -139px; background: #F0F0F0; border-radius:5px;line-height: 25px; text-align: center; cursor: pointer;"  onclick="subForm2()">获取验证码</div>
+															</td>
+														</tr>
+														<tr>
+															<td width="85px">户口所在地：</td>
+															<td style="color: #999999;">
+																<div style="">
+																	<select id="hukou" name="" ></select>
+                      												<select id="chengshi" name="" ></select>
+																</div>
+															</td>
+															<td></td>
+															<td style="color: #999999;">
+																<input id="detail_address1" class="form-control" type="text " placeholder="请输入详细地址" style="margin-left: -139px;width: 150%;" >
+															</td>
+														</tr>
+													</table>-->
+												</form>
+											
+												<form action="" id="myform2">
+													<div class="row margin59">
+													  <div class="col-md-4">
+													  	<div class="col-md-4" style="text-align: right;padding-right: 0px;line-height: 25px;">*姓名：</div>
+													  	<div class="col-md-8">
+													  		<input type="text" name="gname" placeholder="请输入孕妇姓名" class="required form-control"/>
+													  	</div>
+													  </div>
+													  <div class="col-md-4">
+													  	<div class="col-md-4" style="text-align: right;padding-right: 0px;line-height: 25px;">*出生日期：</div>
+													  	<div class="col-md-8">
+													  		<input type="date" name="birthYears" class="required dateISO form-control"/>
+													  	</div>
+													  </div>
+													  <div class="col-md-4">
+													  	<div class="col-md-4" style="text-align: right;padding-right: 0px;line-height: 25px;">孕产妇编号：</div>
+													  	<div class="col-md-8">
+													  		<input type="text" name="mid" class="mid1 form-control"/>
+													  	</div>
+													  </div>
+													</div>
+													<div class="row margin59">
+													  <div class="col-md-4">
+													  	<div class="col-md-4" style="text-align: right;padding-right: 0px;line-height: 25px;">病历号：</div>
+													  	<div class="col-md-8">
+													  		<input type="text" name="medicalrecordno" class="form-control" placeholder="请输入病历号"/>
+													  	</div>
+													  </div>
+													  <div class="col-md-4">
+													  	<div class="col-md-4" style="text-align: right;padding-right: 0px;line-height: 25px;">*孕育史：</div>
+													  	<div class="col-md-8">
+													  		<select name="inoculation_history" >
+																	<option value="0">0次</option>
+																	<option value="1">1次</option>
+																	<option value="2">2次</option>
+																	<option value="3">3次</option>
+																	<option value="4">4次</option>
+																</select>
+													  	</div>
+													  </div>
+													  <div class="col-md-4">
+													  	<div class="col-md-4" style="text-align: right;padding-right: 0px;line-height: 25px;">*末次月经：</div>
+													  	<div class="col-md-8">
+													  		<input type="date" name="enddate" onchange="alretDate(this,1)" class="required dateISO form-control"/>
+													  	</div>
+													  </div>
+													</div>
+													<div class="row margin59">
+													  <div class="col-md-4">
+													  	<div class="col-md-4" style="text-align: right;padding-right: 0px;line-height: 25px;">预产期：</div>
+													  	<div class="col-md-8">
+													  		<input type="text" class="budget1 form-control" disabled="disabled" name="expectedconfinement" placeholder="根据末次月经自动计算" />
+													  	</div>
+													  </div>
+													  <div class="col-md-4">
+													  	<div class="col-md-4" style="text-align: right;padding-right: 0px;line-height: 25px;">建档孕周：</div>
+													  	<div class="col-md-8">
+													  		<input type="text" disabled="disabled" class="weeks1 form-control" placeholder="根据末次月经自动计算" style="" />
+													  	</div>
+													  </div>
+													</div>
+													<div class="row margin59">
+													  <div class="col-md-4">
+													  	<div class="col-md-4" style="text-align: right;padding-right: 0px;line-height: 25px;">建档日期：</div>
+													  	<div class="col-md-8">
+													  		<input type="date" class="form-control"/>
+													  	</div>
+													  </div>
+													  <div class="col-md-4">
+													  	<div class="col-md-4" style="text-align: right;padding-right: 0px;line-height: 25px;">建档医院：</div>
+													  	<div class="col-md-8">
+													  		<select name="bhospitalid" class="hospital" ></select>
+													  	</div>
+													  </div>
+													  <div class="col-md-4">
+													  	<div class="col-md-4" style="text-align: right;padding-right: 0px;line-height: 25px;">建档医生：</div>
+													  	<div class="col-md-8">
+													  		<input type="text" class="form-control"placeholder="请输入医生姓名"/>
+													  	</div>
+													  </div>
+													</div>
+													<div class="row margin59">
+													  <div class="col-md-4">
+													  	<div class="col-md-4" style="text-align: right;padding-right: 0px;line-height: 25px;">*联系电话：</div>
+													  	<div class="col-md-8" style="">
+													  		<input type="text" id="myPhone2" name="myPhone2" class="required mobilePhone form-control" maxlength="11" style="float: left;" placeholder="请输入手机号码"/> 
+													  	</div>
+													  </div>
+													  <div class="col-md-4" style="padding-left: 0px;">
+													  	<div class="col-md-7" style="padding-left: 0px;margin-left: -28px;">
+															<input type="text" class="form-control required" id="verificationCode2" placeholder="请输入验证码" style="float: left;margin-left: 3px;" />
+													  	</div>
+													  </div>
+													  <div class="col-md-3" style="padding-left: 0px;margin-left: -60px;">
+													  	<div class="col-md-6" style="padding-left:0px;margin-left: -130px;">
+													  		<!--<div style="width: 75px;height:25px; background: #F0F0F0;border: 1px solid gray;border-radius:5px;line-height: 25px; text-align: center; cursor: pointer;"  onclick="subForm2()">获取验证码</div>-->
+													  		<button type="button" class="btn btn-primary btn-block" style="width: 75px;height:25px;padding: 0px;font-size: 12px;border: none!important;color: white;" onclick="subForm2()">获取验证码</button>
+													  	</div>
+													  </div>
+													  
+													</div>
+													<div class="row margin59">
+													  <div class="col-md-4">
+													  	<div class="col-md-4" style="text-align: right;padding-right: 0px;line-height: 25px;">户口所在地：</div>
+													  	<div class="col-md-8" style="">
+													  		<select id="s_province" name="" ></select>
+													  	</div>
+													  </div>
+													  <div class="col-md-4" style="padding-left: 0px;">
+													  	<div class="col-md-7" style="padding-left: 0px;margin-left: -25px;">
+													  		<select id="s_city" name="" ></select>
+													  	</div>
+													  </div>
+													  <div class="col-md-4" style="padding-left: 0px;margin-left: -60px;">
+													  	<div class="col-md-12" style="padding-left:0px;margin-left: -130px;">
+													  		<input id="detail_address2" class="form-control" type="text " placeholder="请输入详细地址">
+													  	</div>
+													  </div>
+													  
+													</div>
+													<!--<table class="shang_table1" id="hy">
+														<tr>
+															<td width="85px">*姓名：</td>
+															<td style="color: #999999;width: 330px;">
+																<input type="text" name="gname" class="required form-control"/></td>
+															<td width="85px" >
+																<div style="margin-left: -111px;width: 85px;">*出生日期：</div>
+															</td>
+															<td style="color: #999999;">
+																<input type="date" name="birthYears"  style="margin-left: -111px;" class="required dateISO form-control"/>
+															</td>
+															<td width="85px">
+																<div style="margin-left: -70px;">孕产妇编号：</div>
+															</td>
+															<td style="color: #999999;width: 150px;">
+																<input type="text" name="mid" class="mid1 form-control" style="margin-left: -70px"/>
+															</td>
+														</tr>
+														<tr>
+															<td width="85px">病历号：</td>
+															<td style="color: #999999;">
+																<input type="text" name="medicalrecordno" class="form-control"/>
+															</td>
+															<td width="85px">
+																<div style="margin-left: -111px;width: 85px;">孕育史：</div>
+															</td>
+															<td style="color: #999999;">
+																<select name="inoculation_history" style="margin-left: -111px;">
+																	<option value="0">0次</option>
+																	<option value="1">1次</option>
+																	<option value="2">2次</option>
+																	<option value="3">3次</option>
+																	<option value="4">4次</option>
+																</select>
+															</td>
+															<td><div style="margin-left: -70px;">*末次月经：</div></td>
+															<td style="color: #999999;">
+																<input type="date" name="enddate" onchange="alretDate(this,1)" style="margin-left: -70px;" class="required dateISO form-control"/>
+															</td>
+														</tr>
+														<tr>
+															<td>预产期：</td>
+															<td style="color: #999999;">
+																<input type="text" class="budget1 form-control" disabled="disabled" name="expectedconfinement" style="background: whitesmoke;" /></td>
+															<td>
+																<div style="margin-left: -111px;width: 85px;">建档孕周：</div>
+															</td>
+															<td style="color: #999999;">
+																<input type="text" style="margin-left: -111px;" disabled="disabled" class="weeks1 form-control" style="background: whitesmoke;" />
+															</td>
+														</tr>
+														<tr>
+															<td>建档日期：</td>
+															<td style="color: #999999;">
+																<input type="date" class="form-control"/></td>
+															<td>
+																<div style="margin-left: -111px;width: 85px;">
+																	建档医院：
+																</div>
+															</td>
+															<td style="color: #999999;">
+																<select name="bhospitalid" class="hospital" style="margin-left: -111px;">
+
+																</select>
+															</td>
+															<td width="85px"><div style="margin-left: -70px;">建档医生：</div></td>
+															<td style="color: #999999;">
+																<input type="text" style="margin-left: -70px;" class="form-control"/>
+															</td>
+														</tr>
+														<tr>
+															<td width="85px">*联系电话：</td>
+															<td style="color: #999999;">
+																<input type="text"  id="myPhone2" class="form-control" name="myPhone2" class="required" maxlength="11" style="float: left;"/>
+																<input type="text" class="form-control" id="verificationCode2" placeholder="请输入验证码" style="float: left;margin-left: 3px;" />
+															</td>
+															<td></td>
+															<td>
+																<div style="width: 75px;height:25px;margin-left:-139px; background: #F0F0F0; border-radius:5px;line-height: 25px; text-align: center; cursor: pointer;"  onclick="subForm2()">获取验证码</div>
+															</td>
+														</tr>
+														<tr>
+															<td width="85px">户口所在地：</td>
+															<td style="color: #999999;">
+																<div style="">
+																	<select id="s_province" ></select>
+                      												<select id="s_city"></select>
+																</div>
+															</td>
+															<td></td>
+															<td style="color: #999999;">
+																<input id="detail_address2" class="form-control" type="text" placeholder="请输入详细地址" style="margin-left: -139px;width: 150%;" >
+															</td>
+														</tr>
+													</table>-->
+												</form>
+												
+												<form action="" id="myform5">
+													<div class="row margin59">
+													  <div class="col-md-4">
+													  	<div class="col-md-4" style="text-align: right;padding-right: 0px;line-height: 25px;">*看护人：</div>
+													  	<div class="col-md-8">
+													  		<input type="text" name="care" class="orderlies required form-control" placeholder="请输入看护人姓名"/>
+													  	</div>
+													  </div>
+													  <div class="col-md-4">
+													  	<div class="col-md-4" style="text-align: right;padding-right: 0px;line-height: 25px;">*关系：</div>
+													  	<div class="col-md-8">
+													  		<select class="contactsRelation relation" id="contactsRelation1" ></select>
+													  	</div>
+													  </div>
+													  <div class="col-md-4">
+													  	<div class="col-md-4" style="text-align: right;padding-right: 0px;line-height: 25px;">*联系电话：</div>
+													  	<div class="col-md-8">
+													  		<input type="text" name="phone1" maxlength="11" class="required mobilePhone form-control orderliesPhone " placeholder="请输入看护人手机号码"/>
+													  	</div>
+													  </div>
+													</div>
+													<div class="row margin59">
+													  <div class="col-md-4">
+													  	<div class="col-md-4" style="text-align: right;padding-right: 0px;line-height: 25px;">*紧急联系人：</div>
+													  	<div class="col-md-8">
+													  		<input type="text" name="emergency" class="required form-control" placeholder="请输入紧急联系人姓名"/>
+													  	</div>
+													  </div>
+													  <div class="col-md-4">
+													  	<div class="col-md-4" style="text-align: right;padding-right: 0px;line-height: 25px;">*关系：</div>
+													  	<div class="col-md-8">
+													  		<select class="contactsRelation" id="contactsRelation2">
+	
+																</select>
+													  	</div>
+													  </div>
+													  <div class="col-md-4">
+													  	<div class="col-md-4" style="text-align: right;padding-right: 0px;line-height: 25px;">*联系电话：</div>
+													  	<div class="col-md-8">
+													  		<input type="text" name="phone2" maxlength="11" class="required mobilePhone form-control" placeholder="请输入联系人手机号码"/>
+													  	</div>
+													  </div>
+													</div>
+													<!--<table class="shang_table2">
+														<tr>
+															<td width="85px">*看护人：</td>
+															<td>
+																<input type="text" name="care" class="orderlies required form-control" />
+															</td>
+															<td width="85px">*关系：</td>
+															<td>
+																<select class="contactsRelation relation" id="contactsRelation1" ></select>
+															</td>
+															<td width="85px">*联系电话：</td>
+															<td>
+																<input type="text" name="phone1" maxlength="11" class="required digits form-control orderliesPhone " />
+															</td>
+														</tr>
+														<tr>
+															<td>*紧急联系人：</td>
+															<td>
+																<input type="text" name="emergency" class="required form-control"/></td>
+															<td>*关系：</td>
+															<td>
+																<select class="contactsRelation" id="contactsRelation2">
+	
+																</select>
+															</td>
+															<td>*联系电话：</td>
+															<td>
+																<input type="text" name="phone2" maxlength="11" class="required digits form-control"/></td>
+														</tr>
+													</table>-->
+												</form>
+											</div>
+										</div>
+									</div>
+									<div class="content_item" style="display: flex;min-width: 1200px; " id="high_select1">
+										<div class="leftitem_baseinfor">
+											<div align="center" class="lefticon_circular">
+												<img height="29px" style="vertical-align:middle" src="images/lefticon3img.png" />
+											</div>
+											<div class="highrisktype_edit">
+												<img width="20px" height="20px" src="images/editiconleft2.png" />
+												<label style="height: 23px;">高危分型分级</label>
+											</div>
+											<div class="leftposition_line2"></div>
+										</div>
+										<div class="shang_baohan" id="highSelectBox1">
+											<div class="baseinfor_shang">
+												<div id="eval_table">
+													<form id="high_form1">
+														<table>
+															<tr>
+																<td style="width: 10%;"></td>
+																<td style="width: 30%;">异常情况</td>
+																<td style="width: 10%;">评分</td>
+																<td style="width: 10%;"></td>
+																<td style="width: 30%">异常情况</td>
+																<td style="width: 10%;">评分</td>
+															</tr>
+														</table>
+													</form>
+													<div class="high_confrim_but">
+														<input type="reset" class="form-control" style="float:left;width: 100px;height: 36px;margin-left: 40%;margin-right: 10px;" onclick="document.getElementById('high_form1').reset()"></input>
+														<button class="btn btn-primary btn-block" style="width: 100px;padding:8px 30px;" onclick="highConf(1)">确定</button>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="content_item" style="display: flex;min-width: 1200px;" id="high_result1">
+										<div class="leftitem_baseinfor">
+											<div align="center" class="lefticon_circular">
+												<img height="29px" style="vertical-align:middle" src="images/lefticon3img.png" />
+											</div>
+											<div class="highrisktype_edit">
+												<img width="20px" height="20px" src="images/editiconleft2.png" />
+												<label>高危评测结果</label>
+											</div>
+											<div class="leftposition_line2"></div>
+										</div>
+
+										<div class="shang_baohan" id="highResult1" style="float: left;">
+											<div class="highrisktyping_zhong">
+												<table class="hightdetialtable_outer" width="100%">
+													<caption style=" margin-left:8px;font-weight:bold; color: #333333;">本次评测高危情况</caption>
+													<tr>
+														<td>高危总分：</td>
+														<td> <span class="high_count1" style="color: red;font-size: 15px;">15</span></td>
+													</tr>
+													<tr>
+														<td>高危登记:</td>
+														<td><span class="high_text1" style="color: red;font-size: 15px;">重度高危</span></td>
+													</tr>
+													<tr>
+														<td width="8%" valign="top">高危详情：</td>
+														<td width="85%">
+															<table width="60%" border="1px" bordercolor="#CCCCCC" cellspacing="0" cellpadding="0" class="hightdetialtable_inner highdea1">
+																<tr height="35px" class="xq">
+																	<th width="">序号</th>
+																	<th>出现时间</th>
+																	<th>出现阶段</th>
+																	<th>风险因素</th>
+																	<th>高危分值</th>
+																</tr>
+															</table>
+														</td>
+													</tr>
+												</table> 
+												<a onclick="revise(1)" style="float: right;margin-right: 38%;cursor: pointer;">修 改</a>
+											</div>
+										</div>
+									</div>
+
+									<div class="content_item" style="display: flex;min-width: 1200px; ">
+										<div class="leftitem_baseinfor">
+											<div align="center" class="lefticon_circular">
+												<img height="29px" style="vertical-align:middle" src="images/lefticon3img.png" />
+											</div>
+											<div class="highrisktype_edit" style="width: 92px;margin-left: 10px;">
+												<img width="20px" height="20px" src="images/editiconleft2.png" />
+												<label>选择服务</label>
+											</div>
+											<div class="leftposition_line2"></div>
+										</div>
+										<div class="shang_baohan" id="serviceBox1">
+											<div class="servicechange_xia">
+												<div class="selectsevice_grade">
+													<div class="gradeselect_left">
+														<label style="float:left;font-weight:bold;line-height: 25px;color: #333333;">选择服务等级: &nbsp;&nbsp;</label>
+														<select class="selectservice_style" id="selectservice_style1" style="float: left;" onchange="changeVipDescDate(this,1)" onclick="VipDescDate(this,1)">
+															<!--<option value="200">200元</option>
+															<option value="500">500元</option>-->
+														</select>
+													</div>
+													<div class="vipservice_intro">
+														<span style="color: blueviolet; cursor: pointer;">vip服务类型说明？</span>
+													</div>
+												</div>
+												<div class="service1">
+													<table class="shouming_table" id="service1">
+														<tr>
+															<th>提供相应的服务：</th>
+														</tr>
+													</table>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="content_item" style="display: flex;min-width: 1200px; ">
+										<div class="leftitem_baseinfor">
+											<div align="center" class="lefticon_circular">
+												<img height="29px" style="vertical-align:middle" src="images/lefticon3img.png" />
+											</div>
+											<div class="highrisktype_edit" style="width: 92px;margin-left: 10px;">
+												<img width="20px" height="20px" src="images/editiconleft2.png" />
+												<label>选择支付</label>
+											</div>
+											<div class="leftposition_line2"></div>
+										</div>
+										<div class="shang_baohan">
+											<div class="servicechange_xia">
+												<div class="selectsevice_grade">
+													<div class="gradeselect_left">
+														<label style="font-weight:bold; color: #333333;margin-top: 5px;">扫描支付</label>
+													</div>
+												</div>
+												<div style="display: flex;padding-top: 10px;">
+													<div style="flex: 1;text-align: center;">
+														<div><img src="images/u16319.png" alt="" /></div>
+														<div style="margin-top: 10px;"><img src="images/u16321.png" width="200px" /></div>
+													</div>
+													<div style="flex: 1;text-align: center;">
+														<div><img src="images/u16317.png" /></div>
+														<div style="margin-top: 10px;"><img src="images/u16321.png" width="200px" /></div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="shang_baohan" style="display: none;">
+
+										<div class="baseinfor_shang">
+											<table class="shang_table1" style="line-height: 10px;">
+												<caption style=" margin-left:11px; font-weight:bold; color: #333333;">围产期信息</caption>
+
+												<tr>
+													<td width="6%">门诊号：</td>
+													<td width="20%" style="color: #999999;">
+														<span>555555</span></td>
+													<td width="7%">孕产妇编号：</td>
+													<td width="20%" style="color: #999999;">
+														<span>555555</span></td>
+													<td width="7%">孕育史：</td>
+													<td width="19%" style="color: #999999;">
+														<span>555555</span>
+												</tr>
+												<tr>
+													<td>末次月经：</td>
+													<td style="color: #999999;">
+														<span>555555</span></td>
+													<td>预产期：</td>
+													<td style="color: #999999;">
+														<span>555555</span></td>
+													<td>建档日期：</td>
+													<td style="color: #999999;">
+														<span>555555</span></td>
+												</tr>
+												<tr>
+													<td>孕周：</td>
+													<td style="color: #999999;"><span>555555</span></td>
+													<td>建档医生：</td>
+													<td style="color: #999999;"><span>555555</span></td>
+													<td>建档医院：</td>
+													<td style="color: #999999;"><span>555555</span></td>
+												</tr>
+
+											</table>
+											<table class="shang_table2" style="line-height: 10px;">
+												<caption style=" margin-left:11px;">联系人信息</caption>
+
+												<tr>
+													<td width="80px">常用联系人1：</td>
+													<td width="125px">
+														<span>555555</span>
+													</td>														
+													<td align="right" width="85px">关系：</td>
+													<td width="105px">
+														<span>555555</span>
+													</td>
+													<td align="right" width="95px">联系电话：</td>
+													<td width="105px">
+														<span>555555</span>
+													</td>
+												</tr>
+												<tr>
+													<td>常用联系人2：</td>
+													<td>
+														<span>555555</span></td>
+													<td align="right">关系：</td>
+													<td>
+														<span>555555</span></td>
+													<td align="right">联系电话：</td>
+													<td>
+														<span>555555</span></td>
+												</tr>
+											</table>
+											<table class="hightdetialtable_outer" width="100%">
+												<caption style=" margin-left:8px;font-weight:bold; color: #333333;">本次评测高危情况</caption>
+
+												<tr>
+													<td>高危总分：</td>
+													<td> <span style="color: red;">15</span></td>
+												</tr>
+												<tr>
+													<td>高危登记:</td>
+													<td><span style="color: red;">重度高危</span></td>
+												</tr>
+												<tr>
+													<td width="8%" valign="top">高危详情：</td>
+													<td width="85%">
+														<table width="60%" border="1px" bordercolor="#CCCCCC" cellspacing="0" cellpadding="0" class="hightdetialtable_inner">
+															<tr height="35px">
+																<th width="">序号</th>
+																<th>出现时间</th>
+																<th>出现阶段</th>
+																<th>风险因素</th>
+																<th>高危分值</th>
+															</tr>
+															<tr height="20px">
+																<td>1</td>
+																<td><span style="color: red;">2017-2-23</span></td>
+																<td><span style="color: red;">产前备孕</span></td>
+																<td><span style="color: red;">年龄》35</span></td>
+																<td><span style="color: red;">10</span></td>
+															</tr>
+															<tr height="20px">
+																<td>1</td>
+																<td><span style="color: red;">2017-2-23</span></td>
+																<td><span style="color: red;">产前备孕</span></td>
+																<td><span style="color: red;">年龄》35</span></td>
+																<td><span style="color: red;">10</span></td>
+															</tr>
+														</table>
+													</td>
+												</tr>
+											</table>
+
+											<div style="line-height: 23px;">
+												<div style=" margin-left:8px;font-weight:bold; color: #333333;">本次开通服务套餐</div>
+												<div style="text-indent:2em;">健康服务套餐 vip2</div>
+												<div style="text-indent:2em;">套餐服务时限：30天 自2017/9/4至2017/10/4</div>
+											</div>
+
+										</div>
+
+									</div>
+
+								</div>
+								<div class="subForm" style="max-width: 1260px;text-align: center;margin-bottom: 50px;">
+									<button style="padding: 10px 55px;" onclick="subForm()" class="subBut"/>提交</button>
+								</div>
+							</div>
+							
+
+						</div>
+						<div class="tab-pane  examine " id="panel-978066">
+
+							<div class="content_item" style="display: flex;min-width: 1200px;">
+								<div class="leftitem_baseinfor">
+									<div align="center" class="lefticon_circular">
+										<img height="29px" style="vertical-align:middle" src="images/lefticon3img.png" />
+									</div>
+									<div class="highrisktype_edit" style="width: 92px;margin-left: 10px;">
+										<img width="20px" height="20px" src="images/editiconleft2.png" />
+										<label>选择服务</label>
+									</div>
+									<div class="leftposition_line2"></div>
+								</div>
+								<div class="shang_baohan">
+									<div id="left2"></div>
+									<div class="servicechange_xia">
+										<div class="selectsevice_grade">
+											<div class="gradeselect_left">
+												<label style="float: left;font-weight:bold;line-height: 25px;color: #333333;">选择服务等级: &nbsp;&nbsp;</label>
+												<select class="selectservice_style" id="selectservice_style2" onchange="changeVipDescDate(this,2)" onclick="VipDescDate(this,2)">
+													<!--<option value="200">200元</option>
+															<option value="500">500元</option>-->
+												</select>
+											</div>
+											<div class="vipservice_intro">
+												<span style="color: blueviolet; cursor: pointer;">vip服务类型说明？</span>
+											</div>
+										</div>
+										<div class="service1">
+											<table class="shouming_table" id="service2">
+
+											</table>
+										</div>
+
+									</div>
+								</div>
+							</div>
+
+							<div class="servicemange_info">
+								<div class="rightdiv_detailinfor">
+									<div class="content_item" style="display: flex;min-width: 1200px;">
+										<div align="center" class="leftitem_baseinfor">
+											<div align="center" class="lefticon_circular">
+												<img height="29px" style="vertical-align:middle" src="images/lefticon3img.png" />
+											</div>
+											<div class="jibeninfor_edit" id="mainbbareditid">
+												<img width="20px" height="20px" src="images/editiconleft2.png" />
+												<label id="jibenxinchanged">基本信息</label>
+											</div>
+											<div class="leftposition_line2"></div>
+										</div>
+										<div class="shang_baohan">
+
+											<div class="baseinfor_shang">
+												<!--<div style="margin-left: 15px;">孕况状态
+													<select name="" id="stateInfo2" style="margin-left: 49px;" onchange="changeStateInfo2()">
+														<option value="2">怀孕</option>
+														<option value="1">备孕</option>
+													</select>
+												</div>-->
+												<div class="row margin59">
+												  <div class="col-md-4">
+												  	<div class="col-md-4" style="text-align: right;padding-right: 0px;line-height: 25px;">孕况状态：</div>
+												  	<div class="col-md-8">
+												  		<select name="" id="stateInfo2" onchange="changeStateInfo2()">
+															<option value="2">怀孕</option>
+															<option value="1">备孕</option>
+														</select>
+												  	</div>
+												  </div>
+												</div>
+												<form action="" id="myform3" style="display: none;" >
+													<div class="row margin59">
+													  <div class="col-md-4">
+													  	<div class="col-md-4" style="text-align: right;padding-right: 0px;line-height: 25px;">姓名：</div>
+													  	<div class="col-md-8">
+													  		<input type="text" name="gname" class="gname form-control" disabled="disabled" />
+													  	</div>
+													  </div>
+													  <div class="col-md-4">
+													  	<div class="col-md-4" style="text-align: right;padding-right: 0px;line-height: 25px;">出生日期：</div>
+													  	<div class="col-md-8">
+													  		<input type="text" name="birthYears" class="birthYears form-control" disabled="disabled" />
+													  	</div>
+													  </div>
+													  <div class="col-md-4">
+													  	<div class="col-md-4" style="text-align: right;padding-right: 0px;line-height: 25px;">孕产妇编号：</div>
+													  	<div class="col-md-8">
+													  		<input type="text" value="" class="mnnum form-control" disabled="disabled" />
+													  	</div>
+													  </div>
+													</div>
+													<div class="row margin59">
+													  <div class="col-md-4">
+													  	<div class="col-md-4" style="text-align: right;padding-right: 0px;line-height: 25px;">病历号：</div>
+													  	<div class="col-md-8">
+													  		<input type="text" name="medicalrecordno" class="medicalRecordNo form-control" disabled="disabled" />
+													  	</div>
+													  </div>
+													  <div class="col-md-4">
+													  	<div class="col-md-4" style="text-align: right;padding-right: 0px;line-height: 25px;">孕育史：</div>
+													  	<div class="col-md-8">
+													  		<input type="text" name="inoculation_history" class="inoculation_history form-control" disabled="disabled" />
+													  	</div>
+													  </div>
+													  <div class="col-md-4">
+													  	<div class="col-md-4" style="text-align: right;padding-right: 0px;line-height: 25px;">联系电话：</div>
+													  	<div class="col-md-8">
+													  		<input type="text" class="myPhone1 form-control" id="myPhone1" disabled="disabled" />
+													  	</div>
+													  </div>
+													</div>
+													<!--<table class="shang_table1" id="by2" style="display: none;">
+														<tr>
+															<td width="85px">姓名：</td>
+															<td style="color: #999999;">
+																<input type="text" name="gname" class="gname" disabled="disabled" /></td>
+															<td width="85px">出生日期：</td>
+															<td style="color: #999999;">
+																<input type="text" name="birthYears" class="birthYears" disabled="disabled" />
+															</td>
+															<td width="85px">孕产妇编号：</td>
+															<td style="color: #999999;">
+																<input type="text" value="test1" class="mnnum" disabled="disabled" />
+															</td>
+														</tr>
+														<tr>
+															<td width="85px">病历号：</td>
+															<td style="color: #999999;">
+																<input type="text" name="medicalrecordno" class="medicalRecordNo" disabled="disabled" />
+															</td>
+															<td width="85px">孕育史：</td>
+															<td style="color: #999999;">
+																<input type="text" name="inoculation_history" class="inoculation_history" disabled="disabled" />
+															</td>
+															<td width="85px">联系电话：</td>
+															<td style="color: #999999;">
+																<input type="text"  id="myPhone1" disabled="disabled" />
+															</td>
+														</tr>
+													</table>-->
+												</form>
+												<form action="" id="myform4">
+													<div class="row margin59">
+													  <div class="col-md-4">
+													  	<div class="col-md-4" style="text-align: right;padding-right: 0px;line-height: 25px;">姓名：</div>
+													  	<div class="col-md-8">
+													  		<input type="text" name="gname" class="gname form-control" style="background: whitesmoke;" disabled="disabled" />
+													  	</div>
+													  </div>
+													  <div class="col-md-4">
+													  	<div class="col-md-4" style="text-align: right;padding-right: 0px;line-height: 25px;">出生日期：</div>
+													  	<div class="col-md-8">
+													  		<input type="text" name="birthYears" class="birthYears form-control" style="background: whitesmoke;" disabled="disabled" />
+													  	</div>
+													  </div>
+													  <div class="col-md-4">
+													  	<div class="col-md-4" style="text-align: right;padding-right: 0px;line-height: 25px;">孕产妇编号：</div>
+													  	<div class="col-md-8">
+													  		<input type="text" value="" class="mnnum form-control" style="background: whitesmoke;" disabled="disabled" />
+													  	</div>
+													  </div>
+													</div>
+													<div class="row margin59">
+													  <div class="col-md-4">
+													  	<div class="col-md-4" style="text-align: right;padding-right: 0px;line-height: 25px;">病历号：</div>
+													  	<div class="col-md-8">
+													  		<input type="text" name="medicalrecordno" class="medicalRecordNo form-control" style="background: whitesmoke;" disabled="disabled" />
+													  	</div>
+													  </div>
+													  <div class="col-md-4">
+													  	<div class="col-md-4" style="text-align: right;padding-right: 0px;line-height: 25px;">孕育史：</div>
+													  	<div class="col-md-8">
+																<input type="text" name="inoculation_history" class="inoculation_history form-control" style="background: whitesmoke;" disabled="disabled" />
+													  	</div>
+													  </div>
+													  <div class="col-md-4">
+													  	<div class="col-md-4" style="text-align: right;padding-right: 0px;line-height: 25px;">联系电话：</div>
+													  	<div class="col-md-8">
+															<input type="text" value="" class="myPhone2 form-control" id="myPhone2" style="background: whitesmoke;" disabled="disabled" />
+													  	</div>
+													  </div>
+													</div>
+													<div class="row margin59">
+													  <div class="col-md-4">
+													  	<div class="col-md-4" style="text-align: right;padding-right: 0px;line-height: 25px;">末次月经：</div>
+													  	<div class="col-md-8">
+																<input type="date" name="enddate" class="enddate form-control" onchange="alretDate(this,2)" />
+													  	</div>
+													  </div>
+													  <div class="col-md-4">
+													  	<div class="col-md-4" style="text-align: right;padding-right: 0px;line-height: 25px;">预产期：</div>
+													  	<div class="col-md-8">
+																<input type="text" class="budget budget2 form-control" disabled="disabled" name="expectedconfinement" style="background: whitesmoke;" /></td>
+													  	</div>
+													  </div>
+													  <div class="col-md-4">
+													  	<div class="col-md-4" style="text-align: right;padding-right: 0px;line-height: 25px;">建档孕周：</div>
+													  	<div class="col-md-8">
+													  		<input type="text" disabled="disabled" class="weeks weeks2 weekly_close form-control" style="background: whitesmoke;" />
+													  	</div>
+													  </div>
+													</div>
+													<div class="row margin59">
+													  <div class="col-md-4">
+													  	<div class="col-md-4" style="text-align: right;padding-right: 0px;line-height: 25px;">建档日期：</div>
+													  	<div class="col-md-8">
+													  		<input type="date" class="form-control"/>
+													  	</div>
+													  </div>
+													  <div class="col-md-4">
+													  	<div class="col-md-4" style="text-align: right;padding-right: 0px;line-height: 25px;">建档医院：</div>
+													  	<div class="col-md-8">
+													  		<select class="hospital"></select>
+													  	</div>
+													  </div>
+													  <div class="col-md-4">
+													  	<div class="col-md-4" style="text-align: right;padding-right: 0px;line-height: 25px;">建档医生：</div>
+													  	<div class="col-md-8">
+													  		<input type="text" class="form-control" />
+													  	</div>
+													  </div>
+													</div>
+													<!--<table class="shang_table1" id="hy2">
+														<tr>
+															<td width="85px">姓名：</td>
+															<td style="color: #999999;">
+																<input type="text" name="gname" class="gname" style="background: whitesmoke;" disabled="disabled" /></td>
+															<td width="85px">出生日期：</td>
+															<td style="color: #999999;">
+																<input type="text" name="birthYears" class="birthYears" style="background: whitesmoke;" disabled="disabled" />
+															</td>
+															<td width="85px">孕产妇编号：</td>
+															<td style="color: #999999;">
+																<input type="text" value="test2" class="mnnum" style="background: whitesmoke;" disabled="disabled" />
+															</td>
+														</tr>
+														<tr>
+															<td width="85px">病历号：</td>
+															<td style="color: #999999;">
+																<input type="text" name="medicalrecordno" class="medicalRecordNo" style="background: whitesmoke;" disabled="disabled" />
+															</td>
+															<td width="85px">孕育史：</td>
+															<td style="color: #999999;">
+																<input type="text" name="inoculation_history" class="inoculation_history" style="background: whitesmoke;" disabled="disabled" />
+															</td>
+															<td width="85px">联系电话：</td>
+															<td style="color: #999999;">
+																<input type="text" value="15444658231" id="myPhone2" style="background: whitesmoke;" disabled="disabled" />
+															</td>
+														</tr>
+														<tr>
+															<td>末次月经：</td>
+															<td style="color: #999999;">
+																<input type="date" name="enddate" class="enddate" onchange="alretDate(this,2)" />
+															</td>
+															<td>预产期：</td>
+															<td style="color: #999999;">
+																<input type="text" class="budget budget2" disabled="disabled" name="expectedconfinement" style="background: whitesmoke;" /></td>
+															<td>建档孕周：</td>
+															<td style="color: #999999;"><input type="text" disabled="disabled" class="weeks weeks2 weekly_close" style="background: whitesmoke;" /></td>
+														</tr>
+														<tr>
+															<td>建档日期：</td>
+															<td style="color: #999999;">
+																<input type="date" /></td>
+															<td>建档医院：</td>
+															<td style="color: #999999;">
+																<select class="hospital">
+
+																</select>
+															</td>
+															<td width="85px">建档医生：</td>
+															<td style="color: #999999;">
+																<input type="text" />
+															</td>
+														</tr>
+													</table>-->
+												</form>
+												<form id="myform6">
+													<div class="row margin59">
+													  <div class="col-md-4">
+													  	<div class="col-md-4" style="text-align: right;padding-right: 0px;line-height: 25px;">*看护人：</div>
+													  	<div class="col-md-8">
+													  		<input type="text" class="form-control c_orderlies" />
+													  	</div>
+													  </div>
+													  <div class="col-md-4">
+													  	<div class="col-md-4" style="text-align: right;padding-right: 0px;line-height: 25px;">*关系：</div>
+													  	<div class="col-md-8">
+													  		<select class="contactsRelation c_relation" id="contactsRelation1"></select>
+													  	</div>
+													  </div>
+													  <div class="col-md-4">
+													  	<div class="col-md-4" style="text-align: right;padding-right: 0px;line-height: 25px;">*联系电话：</div>
+													  	<div class="col-md-8">
+													  		<input type="text" maxlength="11" class="form-control c_orderliesPhone"/>
+													  	</div>
+													  </div>
+													</div>
+													<div class="row margin59">
+													  <div class="col-md-4">
+													  	<div class="col-md-4" style="text-align: right;padding-right: 0px;line-height: 25px;">*紧急联系人：</div>
+													  	<div class="col-md-8">
+													  		<input type="text" class="form-control"/>
+													  	</div>
+													  </div>
+													  <div class="col-md-4">
+													  	<div class="col-md-4" style="text-align: right;padding-right: 0px;line-height: 25px;">*关系：</div>
+													  	<div class="col-md-8">
+													  		<select class="contactsRelation" id="contactsRelation2"></select>
+													  	</div>
+													  </div>
+													  <div class="col-md-4">
+													  	<div class="col-md-4" style="text-align: right;padding-right: 0px;line-height: 25px;">*联系电话：</div>
+													  	<div class="col-md-8">
+													  		<input type="text" maxlength="11" class="form-control " />
+													  	</div>
+													  </div>
+													</div>
+												
+												<!--<table class="shang_table2">
+													<tr>
+														<td width="85px">看护人：</td>
+														<td>
+															<input type="text" />
+														</td>
+														<td width="85px">关系：</td>
+														<td>
+															<select class="contactsRelation" id="contactsRelation1">
+
+															</select>
+														</td>
+														<td width="85px">联系电话：</td>
+														<td>
+															<input type="text" />
+														</td>
+													</tr>
+													<tr>
+														<td>紧急联系人：</td>
+														<td>
+															<input type="text" /></td>
+														<td>关系：</td>
+														<td>
+															<select class="contactsRelation" id="contactsRelation2">
+
+															</select>
+														</td>
+														<td>联系电话：</td>
+														<td>
+															<input type="text" /></td>
+													</tr>
+												</table>-->
+												</form>
+												<div style="width: 100%;margin-top:15px;text-align: center;">
+													<button class="btn btn-primary btn-block" style="width:100px;height:36px;margin: 0 auto;border: none!important;padding: 5px 15px;color: white;border-radius: 5px;" type="button"  onclick="subService()" >提交</button>
+												</div>
+												
+											</div>
+
+										</div>
+									</div>
+
+									<div class="content_item" style="display: flex;min-width: 1200px;" id="high_result2">
+										<div class="leftitem_baseinfor">
+											<div align="center" class="lefticon_circular">
+												<img height="29px" style="vertical-align:middle" src="images/lefticon3img.png" />
+											</div>
+											<div class="highrisktype_edit">
+												<img width="20px" height="20px" src="images/editiconleft2.png" />
+												<label>高危评测结果</label>
+											</div>
+											<div class="leftposition_line2"></div>
+										</div>
+
+										<div class="shang_baohan" style="float: left;">
+											<div class="highrisktyping_zhong">
+												<table class="hightdetialtable_outer" width="100%">
+													<caption style=" margin-left:8px;font-weight:bold; color: #333333;">本次评测高危情况</caption>
+													<tr>
+														<td>高危总分：</td>
+														<td> <span class="high_count2" style="color: red;font-size: 15px;">15</span></td>
+													</tr>
+													<tr>
+														<td>高危登记:</td>
+														<td><span class="high_text2" style="color: red;font-size: 15px;">重度高危</span></td>
+													</tr>
+													<tr>
+														<td width="8%" valign="top">高危详情：</td>
+														<td width="85%">
+															<table width="60%" border="1px" bordercolor="#CCCCCC" cellspacing="0" cellpadding="0" class="hightdetialtable_inner highdea2">
+																<tr height="35px" class="xq">
+																	<th width="">序号</th>
+																	<th>出现时间</th>
+																	<th>出现阶段</th>
+																	<th>风险因素</th>
+																	<th>高危分值</th>
+																</tr>
+															</table>
+														</td>
+													</tr>
+												</table>
+											</div>
+										</div>
+									</div>
+
+									<div class="content_item" style="display: flex;min-width: 1200px; ">
+										<div class="leftitem_baseinfor">
+											<div align="center" class="lefticon_circular">
+												<img height="29px" style="vertical-align:middle" src="images/lefticon3img.png" />
+											</div>
+											<div class="highrisktype_edit" style="width: 92px;margin-left: 10px;">
+												<img width="20px" height="20px" src="images/editiconleft2.png" />
+												<label>选择支付</label>
+											</div>
+											<div class="leftposition_line2"></div>
+										</div>
+										<div class="shang_baohan">
+											<div class="servicechange_xia">
+												<div class="selectsevice_grade">
+													<div class="gradeselect_left">
+														<label style="font-weight:bold; color: #333333;margin-top: 5px;">扫描支付</label>
+													</div>
+												</div>
+												<div style="display: flex;padding-top: 10px;">
+													<div style="flex: 1;text-align: center;">
+														<div><img src="images/u16319.png" alt="" /></div>
+														<div style="margin-top: 10px;"><img src="images/u16321.png" width="200px" /></div>
+													</div>
+													<div style="flex: 1;text-align: center;">
+														<div><img src="images/u16317.png" /></div>
+														<div style="margin-top: 10px;"><img src="images/u16321.png" width="200px" /></div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="shang_baohan" style="display: none;">
+
+										<div class="baseinfor_shang">
+											<table class="shang_table1" style="line-height: 10px;">
+												<caption style=" margin-left:11px; font-weight:bold; color: #333333;">围产期信息</caption>
+
+												<tr>
+													<td width="6%">门诊号：</td>
+													<td width="20%" style="color: #999999;">
+														<span>555555</span></td>
+													<td width="7%">孕产妇编号：</td>
+													<td width="20%" style="color: #999999;">
+														<span>555555</span></td>
+													<td width="7%">孕育史：</td>
+													<td width="19%" style="color: #999999;">
+														<span>555555</span>
+												</tr>
+												<tr>
+													<td>末次月经：</td>
+													<td style="color: #999999;">
+														<span>555555</span></td>
+													<td>预产期：</td>
+													<td style="color: #999999;">
+														<span>555555</span></td>
+													<td>建档日期：</td>
+													<td style="color: #999999;">
+														<span>555555</span></td>
+												</tr>
+												<tr>
+													<td>孕周：</td>
+													<td style="color: #999999;"><span>555555</span></td>
+													<td>建档医生：</td>
+													<td style="color: #999999;"><span>555555</span></td>
+													<td>建档医院：</td>
+													<td style="color: #999999;"><span>555555</span></td>
+												</tr>
+
+											</table>
+											<table class="shang_table2" style="line-height: 10px;">
+												<caption style=" margin-left:11px;">联系人信息</caption>
+
+												<tr>
+													<td width="80px">常用联系人1：</td>
+													<td width="125px">
+														<span>555555</span>
+														<td align="right" width="85px">关系：</td>
+														<td width="105px">
+															<span>555555</span>
+														</td>
+														<td align="right" width="95px">联系电话：</td>
+														<td width="105px">
+															<span>555555</span>
+														</td>
+												</tr>
+												<tr>
+													<td>常用联系人2：</td>
+													<td>
+														<span>555555</span></td>
+													<td align="right">关系：</td>
+													<td>
+														<span>555555</span></td>
+													<td align="right">联系电话：</td>
+													<td>
+														<span>555555</span></td>
+												</tr>
+											</table>
+											<table class="hightdetialtable_outer" width="100%">
+												<caption style=" margin-left:8px;font-weight:bold; color: #333333;">本次评测高危情况</caption>
+
+												<tr>
+													<td>高危总分：</td>
+													<td> <span style="color: red;">15</span></td>
+												</tr>
+												<tr>
+													<td>高危登记:</td>
+													<td><span style="color: red;">重度高危</span></td>
+												</tr>
+												<tr>
+													<td width="8%" valign="top">高危详情：</td>
+													<td width="85%">
+														<table width="60%" border="1px" bordercolor="#CCCCCC" cellspacing="0" cellpadding="0" class="hightdetialtable_inner">
+															<tr height="35px">
+																<th width="">序号</th>
+																<th>出现时间</th>
+																<th>出现阶段</th>
+																<th>风险因素</th>
+																<th>高危分值</th>
+															</tr>
+															<tr height="20px">
+																<td>1</td>
+																<td><span style="color: red;">2017-2-23</span></td>
+																<td><span style="color: red;">产前备孕</span></td>
+																<td><span style="color: red;">年龄》35</span></td>
+																<td><span style="color: red;">10</span></td>
+															</tr>
+															<tr height="20px">
+																<td>1</td>
+																<td><span style="color: red;">2017-2-23</span></td>
+																<td><span style="color: red;">产前备孕</span></td>
+																<td><span style="color: red;">年龄》35</span></td>
+																<td><span style="color: red;">10</span></td>
+															</tr>
+														</table>
+													</td>
+												</tr>
+											</table>
+
+											<div style="line-height: 23px;">
+												<div style=" margin-left:8px;font-weight:bold; color: #333333;">本次开通服务套餐</div>
+												<div style="text-indent:2em;">健康服务套餐 vip2</div>
+												<div style="text-indent:2em;">套餐服务时限：30天 自2017/9/4至2017/10/4</div>
+											</div>
+
+										</div>
+
+									</div>
+
+								</div>
+
+							</div>
+
+						</div>
+						<div class="tab-pane  examine " id="panel-978067">
+							<div class="content_search">
+								<!--孕周-->
+								<div class="active5" style="width: 33.3%;">
+									<div class="neiceng">
+										<span>孕周：</span>
+									</div>
+									<select name="" class="weeks" id="weeksQuery">
+									</select>
+								</div>
+								<div class="active5" style="width: 33.3%;">
+									<div class="neiceng" style="">
+										<span>健康套餐：</span>
+									</div>
+									<select name="" class="vipGrade" id="vipGrade">
+									</select>
+								</div>
+								<!--病例-->
+								<div class="active5" style="width: 33.3%;">
+									<div class="neiceng">
+										<span>病历卡号：</span>
+									</div>
+									<input type="text" class="form-control medicalrecordno" placeholder="" id="medicalNo">
+								</div>
+								<!--button-->
+								<div class="" style="margin-right: -2%;width: 350px;">
+									<div class="neiceng" style="margin-right: 43px;">
+										<button id="queryInfo" style="display: inline;width: 110px;height: 28px!important;padding:1px 10px;border: none!important;" onclick="searchList()" class="btn btn-primary btn-block">查询</button>
+									</div>
+									<div class="neiceng">
+										<button id="queryReset" style="display: inline;width: 110px;height: 28px!important;padding:1px 10px;border: none!important;" onclick="resetInput()" class="btn btn-primary btn-block">重置</button>
+									</div>
+								</div>
+							</div>
+							<!--<div class="row margin59 content_search">
+							  <div class="col-md-12">
+							  	<div class="col-md-1" style="text-align: center;padding: 0px;line-height: 25px;">病历卡号</div>
+							  	<div class="col-md-2">
+							  		<input type="text" name="" class="medicalrecordno form-control" style="padding: 2px 5px;"/>
+							  	</div>
+							  	<div class="col-md-1" style=""></div>
+							  	<div class="col-md-1" style="text-align: center;padding: 0px;line-height: 25px;">健康服务套餐</div>
+							  	<div class="col-md-2">
+							  		<select name="" class="vip_service_list"></select>
+							  	</div>
+							  	<div class="col-md-1" style=""></div>
+							  	<div class="col-md-4">
+							  		<button class="btn btn-primary btn-block" onclick="queryByVip()" style="float: left;width: 80px;height: 25px;padding: 0px;border: none;">查询</button>
+									<button class="btn btn-primary btn-block" style="float: left;width: 80px;height: 25px;padding: 0px;margin-top: 0px;margin-left: 30px;border: none;">重置</button>
+							  	</div>
+							  </div>
+							</div>-->
+							<!--头部搜索栏-->
+							<!--<div class="content_search">
+								<label>病历卡号</label>
+								<input type="text" name="" class="medicalrecordno" />
+								<label>健康服务套餐</label>
+								<select name="" class="vip_service_list">
+								</select>
+								<button onclick="queryByVip()">查询</button>
+								<button class="" id="">重置</button>
+							</div>-->
+							<div class="treated_list">
+								<table class="treated_table" id="user_list">
+									<!--<tr>
+										<td>序号</td>
+										<td>选择</td>
+										<td>病历号</td>
+										<td>姓名</td>
+										<td>年龄</td>
+										<td>孕周</td>
+										<td>套餐等级</td>
+										<td>联系电话</td>
+										<td>金额</td>
+										<td>注册时间</td>
+										<td>到期时间</td>
+										<td>剩余天数</td>
+										<td>备注</td>
+										<td colspan='3'>操作</td>
+									</tr>-->
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="../js/getLogin.js"></script>
+		<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="../utils/js/util.js"></script>
+		<script type="text/javascript" src="../js/jquery-ui.min.js"></script>
+		<script type="text/javascript" src="../js/bootstrap-table.js"></script>
+		<script type="text/javascript" src="../js/bootstrap-table-zh-CN.js"></script>
+		<script type="text/javascript" src="../utils/js/bootstrapTable.js"></script>
+		<script type="text/javascript" src="../utils/js/drag.js"></script>
+		<script type="text/javascript" src="../js/Util.js"></script>
+		<script type="text/javascript" src="../../common/utils/js/jquery.validate.min.js"></script>
+		<script type="text/javascript" src="js/serviceManage.js"></script>
+		<!--判断高危程度js-->
+		<script type="text/javascript" src="../js/high_degree.js"></script>
+		<!--计算孕周与计算预产期的方法-->
+		<script type="text/javascript" src="js/serviceManageUtil.js"></script>
+		
+		<script type="text/javascript" src="../js/liandong.js"></script>
+		<script type="text/javascript">
+	      _init_area();
+	    </script>
+	    <script type="text/javascript" src="../js/liandong1.js"></script>
+	    <script type="text/javascript">
+	    	_init_area1();
+	    </script>
+	</body>
+
+</html>

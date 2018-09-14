@@ -1,0 +1,73 @@
+body{
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.nav>li>a {
+	cursor: pointer;
+	border-radius: inherit;
+}
+
+.search input {
+	height: 34px!important;
+}
+
+.content_search select {
+	width: 110px;
+}
+
+.content_search input {
+	width: 110px;
+}
+
+.active5 {
+	margin: 0px;
+	width: 25%;
+	margin-bottom: 10px;
+}
+.active5 .neiceng{
+	width:122px;
+}
+.btn11 {
+	margin-left: 0px;
+}
+
+#queryInfo,
+#queryReset {
+	background-color: #5794E7;
+	border: none;
+}
+
+#queryReset {
+	float: right;
+}
+
+.btn11 {
+	float: right;
+}
+/**
+ * 搜索框
+ */
+.content_search {
+	padding: 0 0 0px 0;
+	height: 90px;
+}
+/**
+ * 查询按钮
+ */
+.btn-class{
+	padding-top: 50px;
+	width: 100%;
+}
+/**
+ * 健康套餐
+ */
+#oneTool{
+	
+}
+#secondTool{
+	
+}
+#third{
+}

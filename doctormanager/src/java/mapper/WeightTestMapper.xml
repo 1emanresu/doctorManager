@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.yunji.doctormanager.dao.WeightTestMapper" >
+  <resultMap id="BaseResultMap" type="cn.yunji.doctormanager.entity.WeightTest" >
+    <id column="wId" property="wid" jdbcType="INTEGER" />
+    <result column="mId" property="mid" jdbcType="CHAR" />
+    <result column="checkProjectId" property="checkprojectid" jdbcType="INTEGER" />
+    <result column="wDate" property="wdate" jdbcType="TIMESTAMP" />
+    <result column="pregnancy" property="pregnancy" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    wId, mId, checkProjectId, wDate, pregnancy
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from weighttest
+    where wId = #{wid,jdbcType=INTEGER}
+  </select>
+  <select id="selectByMid" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from weighttest
+    where mId = #{mid,jdbcType=CHAR}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from weighttest
+    where wId = #{wid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.yunji.doctormanager.entity.WeightTest" >
+    insert into weighttest (wId, mId, checkProjectId, 
+      wDate, pregnancy)
+    values (#{wid,jdbcType=INTEGER}, #{mid,jdbcType=CHAR}, #{checkprojectid,jdbcType=INTEGER}, 
+      #{wdate,jdbcType=TIMESTAMP}, #{pregnancy,jdbcType=CHAR})
+  </insert>
+  <select id="find" parameterType="java.lang.String" resultType="cn.yunji.doctormanager.entity.WeightTest" >
+  	select * from weighttest where mId=#{mid,jdbcType=CHAR}  order by wdate;
+  </select>
+  <!-- luoyc 根据日期范围查询指定孕妇体重的数据 -->
+  <select id="findByDateRange" resultType="cn.yunji.doctormanager.entity.WeightTest" >
+  	select * from weighttest where mid=#{0} and wDate between #{1} and #{2}
+  </select>
+  
+  <insert id="insertSelective" parameterType="cn.yunji.doctormanager.entity.WeightTest" >
+    insert into weighttest
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="wid != null" >
+        wId,
+      </if>
+      <if test="mid != null" >
+        mId,
+      </if>
+      <if test="checkprojectid != null" >
+        checkProjectId,
+      </if>
+      <if test="wdate != null" >
+        wDate,
+      </if>
+      <if test="pregnancy != null" >
+        pregnancy,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="wid != null" >
+        #{wid,jdbcType=INTEGER},
+      </if>
+      <if test="mid != null" >
+        #{mid,jdbcType=CHAR},
+      </if>
+      <if test="checkprojectid != null" >
+        #{checkprojectid,jdbcType=INTEGER},
+      </if>
+      <if test="wdate != null" >
+        #{wdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pregnancy != null" >
+        #{pregnancy,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.yunji.doctormanager.entity.WeightTest" >
+    update weighttest
+    <set >
+      <if test="mid != null" >
+        mId = #{mid,jdbcType=CHAR},
+      </if>
+      <if test="checkprojectid != null" >
+        checkProjectId = #{checkprojectid,jdbcType=INTEGER},
+      </if>
+      <if test="wdate != null" >
+        wDate = #{wdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pregnancy != null" >
+        pregnancy = #{pregnancy,jdbcType=CHAR},
+      </if>
+    </set>
+    where wId = #{wid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.yunji.doctormanager.entity.WeightTest" >
+    update weighttest
+    set mId = #{mid,jdbcType=CHAR},
+      checkProjectId = #{checkprojectid,jdbcType=INTEGER},
+      wDate = #{wdate,jdbcType=TIMESTAMP},
+      pregnancy = #{pregnancy,jdbcType=CHAR}
+    where wId = #{wid,jdbcType=INTEGER}
+  </update>
+</mapper>

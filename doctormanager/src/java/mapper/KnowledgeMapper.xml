@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.yunji.doctormanager.dao.KnowledgeMapper" >
+  <resultMap id="BaseResultMap" type="cn.yunji.doctormanager.entity.Knowledge" >
+    <id column="knowledgeId" property="knowledgeid" jdbcType="INTEGER" />
+    <result column="highRiskResultTypeId" property="highriskresulttypeid" jdbcType="INTEGER" />
+    <result column="cid" property="cid" jdbcType="INTEGER" />
+    <result column="knowledge" property="knowledge" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    knowledgeId, highRiskResultTypeId, cid, knowledge
+  </sql>
+  <!-- luoyc 根据关键字模糊查询医嘱 -->
+  <select id="queryByKeyword" resultType="java.lang.String" parameterType="java.lang.String" >
+    select knowledge from knowledge where knowledge like #{0}
+  </select>
+  <!-- zhang -->
+  <select id="queryById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from knowledge
+    where highRiskResultTypeId = #{0} and cid = #{1}
+  </select>
+  <select id="selectByCidHType" resultMap="BaseResultMap" parameterType="map" >
+    select 
+    <include refid="Base_Column_List" />
+    from knowledge
+    where cid = #{0} and highRiskResultTypeId=#{1}
+  </select>
+  
+    <!-- king -->
+    <select id="queryByListId" resultType="cn.yunji.doctormanager.entity.Knowledge">  
+        select 
+        <include refid="Base_Column_List" />
+        from knowledge where cid = #{cid,jdbcType=INTEGER}
+    </select> 
+    
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from knowledge
+    where knowledgeId = #{knowledgeid,jdbcType=INTEGER}
+  </select>
+  <select id="selectByHidandCid" resultMap="BaseResultMap" parameterType="cn.yunji.doctormanager.entity.Knowledge" >
+    select 
+    <include refid="Base_Column_List" />
+    from knowledge
+    where highRiskResultTypeId = #{hid,jdbcType=INTEGER}
+    and cid = #{cid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from knowledge
+    where knowledgeId = #{knowledgeid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.yunji.doctormanager.entity.Knowledge" >
+    insert into knowledge (knowledgeId, highRiskResultTypeId, 
+      cid, knowledge)
+    values (#{knowledgeid,jdbcType=INTEGER}, #{highriskresulttypeid,jdbcType=INTEGER}, 
+      #{cid,jdbcType=INTEGER}, #{knowledge,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.yunji.doctormanager.entity.Knowledge" >
+    insert into knowledge
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="knowledgeid != null" >
+        knowledgeId,
+      </if>
+      <if test="highriskresulttypeid != null" >
+        highRiskResultTypeId,
+      </if>
+      <if test="cid != null" >
+        cid,
+      </if>
+      <if test="knowledge != null" >
+        knowledge,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="knowledgeid != null" >
+        #{knowledgeid,jdbcType=INTEGER},
+      </if>
+      <if test="highriskresulttypeid != null" >
+        #{highriskresulttypeid,jdbcType=INTEGER},
+      </if>
+      <if test="cid != null" >
+        #{cid,jdbcType=INTEGER},
+      </if>
+      <if test="knowledge != null" >
+        #{knowledge,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.yunji.doctormanager.entity.Knowledge" >
+    update knowledge
+    <set >
+      <if test="highriskresulttypeid != null" >
+        highRiskResultTypeId = #{highriskresulttypeid,jdbcType=INTEGER},
+      </if>
+      <if test="cid != null" >
+        cid = #{cid,jdbcType=INTEGER},
+      </if>
+      <if test="knowledge != null" >
+        knowledge = #{knowledge,jdbcType=CHAR},
+      </if>
+    </set>
+    where knowledgeId = #{knowledgeid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.yunji.doctormanager.entity.Knowledge" >
+    update knowledge
+    set highRiskResultTypeId = #{highriskresulttypeid,jdbcType=INTEGER},
+      cid = #{cid,jdbcType=INTEGER},
+      knowledge = #{knowledge,jdbcType=CHAR}
+    where knowledgeId = #{knowledgeid,jdbcType=INTEGER}
+  </update>
+</mapper>

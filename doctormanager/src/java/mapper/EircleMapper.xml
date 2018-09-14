@@ -1,0 +1,106 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.yunji.doctormanager.dao.EircleMapper" >
+
+<resultMap id="findAlleircleAndreturnCard"  type="cn.yunji.doctormanager.entity.Eircle">
+  <id column="eid" property="eid" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="CHAR" />
+    <result column="content" property="content" jdbcType="CHAR" />
+    <result column="userid" property="userId" jdbcType="INTEGER" />
+    <result column="eDate" property="eDate" jdbcType="TIMESTAMP" />
+    <result column="praise" property="praise" jdbcType="CHAR" />
+    <result column="avatar" property="avatar" jdbcType="VARCHAR" />
+	<collection property="rec"   javaType="ArrayList"
+   ofType="cn.yunji.doctormanager.entity.ReturnCard"   column="eid"
+    select="cn.yunji.doctormanager.dao.ReturnCardMapper.findById1"></collection>
+</resultMap>
+
+  <!-- 查询用户全部的帖子及其评论 -->
+<select id="findByUserId" parameterType="int" resultMap="findAlleircleAndreturnCard">
+		select e.*,ut.avatar from eircle e
+		LEFT JOIN userTb ut on e.userid=ut.userid
+		order by e.eDate desc
+</select>
+
+
+<!--  查询对应的帖子-->
+<select  id="findByUserIdAndeid"  parameterType="int" resultType="cn.yunji.doctormanager.entity.Eircle">
+	      select * from eircle
+	      where  userid=#{0} and eid=#{1}
+	</select>
+
+	<!--  删除自己发过的帖子-->
+<delete  id="deleteById"  parameterType="int" >
+	delete from eircle
+	where userid=#{userId} and eid=#{eid}
+</delete>
+
+<!-- 修改模式 -->
+<update id="updateAll"  parameterType="cn.yunji.doctormanager.entity.Eircle">
+	update eircle   
+	 <set >
+      <if test="title!= null" >
+        title= #{title},
+      </if>
+      <if test="content!= null" >
+        content = #{content},
+      </if>
+      <if test="praise!= null" >
+         praise = #{praise},
+      </if>
+       <if test="eDate!= null" >
+          eDate = #{eDate},
+      </if>
+    </set>
+    where  userid= #{userId}  and eid=#{eid}
+	</update>
+	
+	
+	
+	
+	<!--  取消赞-->
+	<update id="updatepraise"  parameterType="cn.yunji.doctormanager.entity.Eircle">
+	update eircle   
+	  set
+         praise = #{praise}
+     
+    where  userid= #{userId}  and eid=#{eid}
+	</update>
+	
+	
+	
+	
+	
+	<!-- 发帖 -->
+	 <insert id="insert" parameterType="map" >
+    insert into  eircle
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="title!= null" >
+        title,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="userId!= null" >
+        userid,
+      </if>
+      <if test="eDate!= null" >
+        eDate,
+      </if>    
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="title != null" >
+        #{title},
+      </if>
+      <if test="content != null" >
+        #{content},
+      </if>
+        <if test="userId!= null" >
+        #{userId},
+      </if>
+      <if test="eDate != null" >
+        #{eDate},
+      </if>
+    </trim>
+  </insert>
+	
+</mapper>

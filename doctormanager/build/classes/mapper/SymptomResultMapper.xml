@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.yunji.doctormanager.dao.SymptomResultMapper" >
+  <resultMap id="BaseResultMap" type="cn.yunji.doctormanager.entity.SymptomResult" >
+    <id column="symptomId" property="symptomid" jdbcType="INTEGER" />
+    <result column="symptomDetailId" property="symptomdetailid" jdbcType="INTEGER" />
+    <result column="mId" property="mid" jdbcType="CHAR" />
+    <result column="ariseDate" property="arisedate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    symptomId, symptomDetailId, mId, ariseDate
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from symptomresult
+    where symptomId = #{symptomid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from symptomresult
+    where symptomId = #{symptomid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.yunji.doctormanager.entity.SymptomResult" >
+    insert into symptomresult (symptomId, symptomDetailId, mId, 
+      ariseDate)
+    values (#{symptomid,jdbcType=INTEGER}, #{symptomdetailid,jdbcType=INTEGER}, #{mid,jdbcType=CHAR}, 
+      #{arisedate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.yunji.doctormanager.entity.SymptomResult" >
+    insert into symptomresult
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="symptomid != null" >
+        symptomId,
+      </if>
+      <if test="symptomdetailid != null" >
+        symptomDetailId,
+      </if>
+      <if test="mid != null" >
+        mId,
+      </if>
+      <if test="arisedate != null" >
+        ariseDate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="symptomid != null" >
+        #{symptomid,jdbcType=INTEGER},
+      </if>
+      <if test="symptomdetailid != null" >
+        #{symptomdetailid,jdbcType=INTEGER},
+      </if>
+      <if test="mid != null" >
+        #{mid,jdbcType=CHAR},
+      </if>
+      <if test="arisedate != null" >
+        #{arisedate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.yunji.doctormanager.entity.SymptomResult" >
+    update symptomresult
+    <set >
+      <if test="symptomdetailid != null" >
+        symptomDetailId = #{symptomdetailid,jdbcType=INTEGER},
+      </if>
+      <if test="mid != null" >
+        mId = #{mid,jdbcType=CHAR},
+      </if>
+      <if test="arisedate != null" >
+        ariseDate = #{arisedate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where symptomId = #{symptomid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.yunji.doctormanager.entity.SymptomResult" >
+    update symptomresult
+    set symptomDetailId = #{symptomdetailid,jdbcType=INTEGER},
+      mId = #{mid,jdbcType=CHAR},
+      ariseDate = #{arisedate,jdbcType=TIMESTAMP}
+    where symptomId = #{symptomid,jdbcType=INTEGER}
+  </update>
+</mapper>

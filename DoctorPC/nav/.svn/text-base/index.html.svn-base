@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<!-- 样式库需要引入的CSS -->
+		<link rel="stylesheet" href="../css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/left.css">
+	</head>
+ 
+	<body>
+		<!-- 标题区  -->
+		<div class="main_title">
+			<div id="top1" style="background: #76b0ff;color: white;height: 100%;">
+				<div class="this-head-img"><img src="images/logo.png" width="40px" style="margin: 15px 15px 0 0;"/></div>
+				<span style="font-size: 23px;">围产健康管理系统</span>
+				<div id="right_item" style="float: right;height: 100%;margin-right: 2.1%;">
+					<ul>
+						<li onclick="location.href='../login/home_page.html'"><img src="images/u33.png">首页</li>
+						<li><img src="images/u22.png"><span id="name">未登录</span></li>
+						<li onclick="location.href='../login/login.html';getOut()"><img src="images/u44.png">退出</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="main_content">
+			<div id="nav_menu" class="left_nav" onselectstart="return false;">
+			</div>
+			
+			<!-- 内容区  -->
+			<div class="content_right tab-content">
+				<iframe id="myIframe" src="" width="100%" frameborder="no" border="1px" marginwidth="0" marginheight="0" allowtransparency="yes"></iframe>
+			</div>
+		</div>
+		<script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="../js/getLogin.js"></script>
+		<script type="text/javascript" src="js/menu.js" ></script>
+		<!--<script type="text/javascript" src="js/left.js"></script>-->
+		<script type="text/javascript">
+			$(function() {
+				var src = sessionStorage.getItem("src")
+				$("#myIframe").attr("src", src);
+				$("[onclick=\"ifream('" + src + "')\"]").parent().css('background', '#E4E4E4');
+				$("[onclick=\"ifream('" + src + "')\"]").parent().css("border-left", "8px solid #76b0ff");
+				$("[onclick=\"ifream('" + src + "')\"]").parent().css("padding-left", "17px");
+				var h = window.innerHeight;
+				var w = window.innerWidth - 180;
+				$('.content_right').css('width', w + 'px');
+				$("#myIframe").css("height", (h * 0.9 + 25).toFixed(0) + "px")
+				$('.nav li').click(function() {
+					$(this).css('background', '#E4E4E4');
+					$(this).css("border-left", "8px solid #76b0ff");
+					$("[onclick=\"ifream('" + src + "')\"]").css('background', 'transparent');
+					$(this).siblings().css('background', 'transparent');
+				});
+				//改变屏幕大小监控事件
+				window.onresize = function() {
+					var w = window.innerWidth - 180;
+					$('.content_right').css('width', w + 'px');
+				}
+				//赋值姓名
+				var dName = sessionStorage.getItem('dName');
+				if(dName != null) {
+					$("#name").html(dName).click(function(){
+						ifream('../personalCenter/personalCenter.html');
+					});
+				}
+			});
+			/*为ifream赋src*/
+			function ifream(url) {
+				var ser = '../serviceManage/serviceManage.html';
+				if(url == ser){
+					sessionStorage.setItem("whether2", null);
+				}
+				$("#myIframe").attr("src", url);
+				
+			}
+
+			function fun() {
+				sessionStorage.setItem("src", "../serviceManage/serviceManage.html");
+				location.href = '../nav/LeftNav.html';
+			}
+
+			function getOut() {
+				console.log("out")
+				sessionStorage.removeItem('doctorId');
+				sessionStorage.removeItem('dName');
+			}
+		</script>
+	</body>
+
+</html>

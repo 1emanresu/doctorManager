@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.yunji.doctormanager.dao.vipOrderMapper">
+	<resultMap id="BaseResultMap" type="cn.yunji.doctormanager.entity.vipOrder">
+		<id column="ovipId" property="ovipid" jdbcType="INTEGER" />
+		<result column="voderDate" property="voderdate" jdbcType="DATE" />
+		<result column="voderName" property="vodername" jdbcType="CHAR" />
+		<result column="vipId" property="vipid" jdbcType="INTEGER" />
+		<result column="mId" property="mid" jdbcType="CHAR" />
+		<result column="sdate" property="sdate" jdbcType="TIMESTAMP" />
+		<result column="edate" property="edate" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		ovipId, voderDate, voderName, vipId, mId, sdate, edate
+	</sql>
+	<select id="queryServiceTypeNum" resultType="java.util.HashMap">
+		select count(*)
+		count,vr.vipid from gravidainfo g
+		join viporder vr on g.mid=vr.mid
+		group by vr.vipid
+	</select>
+
+	<select id="queryWeeklyHandleNum" resultType="java.util.HashMap">
+		select
+		od.processingState from gravidainfo g
+		inner join viporder vr on
+		g.mid=vr.mid
+		inner join orderdetails od on vr.ovipId=od.ovipId
+		where
+		vr.vipid=#{vipid}
+		and od.expireDate &gt;= #{weeklast}
+		and od.startDate
+		&lt;= #{weeklast}
+		<if test="vipid != 100">
+			and od.serviceType=1
+		</if>
+		group by g.mid
+	</select>
+
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from viporder
+		where ovipId = #{ovipid,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		viporder
+		where ovipId = #{ovipid,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="cn.yunji.doctormanager.entity.vipOrder"
+		useGeneratedKeys="true" keyProperty="ovipid">
+		insert into viporder (ovipId,
+		voderDate, voderName,
+		vipId, mId, sdate, edate
+		)
+		values
+		(#{ovipid,jdbcType=INTEGER}, #{voderdate,jdbcType=DATE},
+		#{vodername,jdbcType=CHAR},
+		#{vipid,jdbcType=INTEGER},
+		#{mid,jdbcType=CHAR}, #{sdate,jdbcType=TIMESTAMP},
+		#{edate,jdbcType=TIMESTAMP}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="cn.yunji.doctormanager.entity.vipOrder">
+		insert into viporder
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="ovipid != null">
+				ovipId,
+			</if>
+			<if test="voderdate != null">
+				voderDate,
+			</if>
+			<if test="vodername != null">
+				voderName,
+			</if>
+			<if test="vipid != null">
+				vipId,
+			</if>
+			<if test="mid != null">
+				mId,
+			</if>
+			<if test="sdate != null">
+				sdate,
+			</if>
+			<if test="edate != null">
+				edate,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="ovipid != null">
+				#{ovipid,jdbcType=INTEGER},
+			</if>
+			<if test="voderdate != null">
+				#{voderdate,jdbcType=DATE},
+			</if>
+			<if test="vodername != null">
+				#{vodername,jdbcType=CHAR},
+			</if>
+			<if test="vipid != null">
+				#{vipid,jdbcType=INTEGER},
+			</if>
+			<if test="mid != null">
+				#{mid,jdbcType=CHAR},
+			</if>
+			<if test="sdate != null">
+				#{sdate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="edate != null">
+				#{edate,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="cn.yunji.doctormanager.entity.vipOrder">
+		update viporder
+		<set>
+			<if test="voderdate != null">
+				voderDate = #{voderdate,jdbcType=DATE},
+			</if>
+			<if test="vodername != null">
+				voderName = #{vodername,jdbcType=CHAR},
+			</if>
+			<if test="vipid != null">
+				vipId = #{vipid,jdbcType=INTEGER},
+			</if>
+			<if test="mid != null">
+				mId = #{mid,jdbcType=CHAR},
+			</if>
+			<if test="sdate != null">
+				sdate = #{sdate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="edate != null">
+				edate = #{edate,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where ovipId = #{ovipid,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="cn.yunji.doctormanager.entity.vipOrder">
+		update viporder
+		set voderDate = #{voderdate,jdbcType=DATE},
+		voderName =
+		#{vodername,jdbcType=CHAR},
+		vipId = #{vipid,jdbcType=INTEGER},
+		mId =
+		#{mid,jdbcType=CHAR},
+		sdate = #{sdate,jdbcType=TIMESTAMP},
+		edate =
+		#{edate,jdbcType=TIMESTAMP}
+		where ovipId = #{ovipid,jdbcType=INTEGER}
+	</update>
+</mapper>

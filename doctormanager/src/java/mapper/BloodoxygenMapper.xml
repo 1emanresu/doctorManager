@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.yunji.doctormanager.dao.BloodoxygenMapper" >
+  <resultMap id="BaseResultMap" type="cn.yunji.doctormanager.entity.Bloodoxygen" >
+    <id column="bId" property="bid" jdbcType="INTEGER" />
+    <result column="mId" property="mid" jdbcType="CHAR" />
+    <result column="bdate" property="bdate" jdbcType="TIMESTAMP" />
+    <result column="bloodoxygen" property="bloodoxygen" jdbcType="CHAR" />
+    <result column="heartrate" property="heartrate" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    bId, mId, bdate, bloodoxygen, heartrate
+  </sql>
+  <!--luoyc 根据孕妇Id查询所有的血氧自测数据 -->
+  <select id="findByMid" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from bloodoxygen
+    where mId = #{mid,jdbcType=CHAR}
+  </select>
+  <!-- luoyc 根据日期范围查询指定孕妇血氧数据 -->
+  <select id="findByDateRange" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from bloodoxygen
+    where mid=#{0} and bDate between #{1} and #{2}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from bloodoxygen
+    where bId = #{bid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.yunji.doctormanager.entity.Bloodoxygen" >
+    insert into bloodoxygen (bId, mId, bdate, 
+      bloodoxygen, heartrate)
+    values (#{bid,jdbcType=INTEGER}, #{mid,jdbcType=CHAR}, #{bdate,jdbcType=TIMESTAMP}, 
+      #{bloodoxygen,jdbcType=CHAR}, #{heartrate,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.yunji.doctormanager.entity.Bloodoxygen" >
+    insert into bloodoxygen
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="bid != null" >
+        bId,
+      </if>
+      <if test="mid != null" >
+        mId,
+      </if>
+      <if test="bdate != null" >
+        bdate,
+      </if>
+      <if test="bloodoxygen != null" >
+        bloodoxygen,
+      </if>
+      <if test="heartrate != null" >
+        heartrate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="bid != null" >
+        #{bid,jdbcType=INTEGER},
+      </if>
+      <if test="mid != null" >
+        #{mid,jdbcType=CHAR},
+      </if>
+      <if test="bdate != null" >
+        #{bdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bloodoxygen != null" >
+        #{bloodoxygen,jdbcType=CHAR},
+      </if>
+      <if test="heartrate != null" >
+        #{heartrate,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.yunji.doctormanager.entity.Bloodoxygen" >
+    update bloodoxygen
+    <set >
+      <if test="mid != null" >
+        mId = #{mid,jdbcType=CHAR},
+      </if>
+      <if test="bdate != null" >
+        bdate = #{bdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bloodoxygen != null" >
+        bloodoxygen = #{bloodoxygen,jdbcType=CHAR},
+      </if>
+      <if test="heartrate != null" >
+        heartrate = #{heartrate,jdbcType=CHAR},
+      </if>
+    </set>
+    where bId = #{bid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.yunji.doctormanager.entity.Bloodoxygen" >
+    update bloodoxygen
+    set mId = #{mid,jdbcType=CHAR},
+      bdate = #{bdate,jdbcType=TIMESTAMP},
+      bloodoxygen = #{bloodoxygen,jdbcType=CHAR},
+      heartrate = #{heartrate,jdbcType=CHAR}
+    where bId = #{bid,jdbcType=INTEGER}
+  </update>
+</mapper>

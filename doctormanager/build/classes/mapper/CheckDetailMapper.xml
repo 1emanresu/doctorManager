@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.yunji.doctormanager.dao.CheckDetailMapper" >
+  <resultMap id="BaseResultMap" type="cn.yunji.doctormanager.entity.CheckDetail" >
+    <id column="checkDetailId" property="checkdetailid" jdbcType="INTEGER" />
+    <result column="cid" property="cid" jdbcType="INTEGER" />
+    <result column="checkResultId" property="checkresultid" jdbcType="INTEGER" />
+    <result column="checkValue" property="checkvalue" jdbcType="DECIMAL" />
+    <result column="symbol" property="symbol" jdbcType="CHAR" />
+    <result column="description" property="description" jdbcType="CHAR" />
+    <association property="checkindex" column="cid"   javaType="cn.yunji.doctormanager.entity.Checkindex" select ="cn.yunji.doctormanager.dao.CheckindexMapper.selectByPrimaryKey" ></association>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    checkDetailId, cid, checkResultId, checkValue,symbol,description
+  </sql>
+  <select id="selectByFKCR" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select * from checkdetail
+    where checkResultId = #{checkresultid,jdbcType=INTEGER}
+  </select>
+  <!--@wangzw 按cid 查询检查明细-->
+    <select id="selectByCid" resultMap="BaseResultMap" parameterType="java.lang.Object" >
+		select *from checkResult cr inner join 
+		checkDetail cd on cr.checkResultId=cd.checkResultId
+		 where mid=#{0} and cid=#{1};
+  </select>
+  
+  <!--@wuwj 按检查结果编号查询检查明细-->
+  <select id="finddetailByCheckresultid" resultType="java.util.HashMap" parameterType="java.lang.Integer" >
+    select ci.cname,cd.cid,cd.checkvalue,ci.cunit from checkdetail cd join checkindex ci where cd.cid = ci.cid and cd.checkresultid = #{0}
+  </select>
+  
+  <!--@wuwj 按检查项目编号和孕妇编号和日期降序查询检查明细-->
+  <select id="finddetailByCidandmid" resultType="java.util.HashMap">
+    select ci.cname,cd.cid,cd.checkvalue,ci.cunit from checkdetail cd join checkindex ci join checkresult cr 
+    where cd.cid = ci.cid and cd.checkresultid = cr.checkresultid and cd.cid = #{0} and cr.mid = #{1} group by cr.checkdate desc;
+  </select>
+  <!--@yinzx 按检查项目编号和检查结果编号和日期降序查询检查指标明细-->
+  <select id="findByCidandResultId" resultType="java.util.HashMap">
+   select ci.cname,cd.checkvalue,cd.symbol,cd.description,cr.checkDate,cr.gWeeks
+    from checkdetail cd  join checkindex ci  join checkresult cr
+    
+    on cd.cid=ci.cid and cr.checkresultid= cd.checkresultid
+    where cd.cid= #{cid,jdbcType=INTEGER}
+    and  cd.checkresultid= #{checkresultid,jdbcType=INTEGER}
+  </select>
+    <!-- 按指标id、mid、指标名字  查询该项指标的最新数据     日期降序  @yinzx -->
+  <select id="queryNewByCid" resultType="java.util.HashMap">
+      SELECT
+     ci.cname,cd.checkvalue,cd.symbol,cd.description, cr.checkDate,cr.checkResultId
+    FROM checkdetail cd
+     JOIN checkresult cr ON cd.checkResultId = cr.checkResultId
+     JOIN checkindex ci ON cd.cid = ci.cid
+    WHERE cr.mId =#{mid,jdbcType=CHAR}
+    AND cd.cid=#{cid,jdbcType=INTEGER}
+    order by checkDate desc
+    limit 0,1
+   </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from checkdetail
+    where checkDetailId = #{checkdetailid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from checkdetail
+    where checkDetailId = #{checkdetailid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.yunji.doctormanager.entity.CheckDetail" >
+    insert into checkdetail (checkDetailId, cid, checkResultId, 
+      checkValue)
+    values (#{checkdetailid,jdbcType=INTEGER}, #{cid,jdbcType=INTEGER}, #{checkresultid,jdbcType=INTEGER}, 
+      #{checkvalue,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.yunji.doctormanager.entity.CheckDetail" >
+    insert into checkdetail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="checkdetailid != null" >
+        checkDetailId,
+      </if>
+      <if test="cid != null" >
+        cid,
+      </if>
+      <if test="checkresultid != null" >
+        checkResultId,
+      </if>
+      <if test="checkvalue != null" >
+        checkValue,
+      </if>
+      <if test="symbol != null" >
+        symbol,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="checkdetailid != null" >
+        #{checkdetailid,jdbcType=INTEGER},
+      </if>
+      <if test="cid != null" >
+        #{cid,jdbcType=INTEGER},
+      </if>
+      <if test="checkresultid != null" >
+        #{checkresultid,jdbcType=INTEGER},
+      </if>
+      <if test="checkvalue != null" >
+        #{checkvalue,jdbcType=DECIMAL},
+      </if>
+       <if test="symbol != null" >
+        #{symbol,jdbcType=CHAR},
+      </if>
+      
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.yunji.doctormanager.entity.CheckDetail" >
+    update checkdetail
+    <set >
+      <if test="cid != null" >
+        cid = #{cid,jdbcType=INTEGER},
+      </if>
+      <if test="checkresultid != null" >
+        checkResultId = #{checkresultid,jdbcType=INTEGER},
+      </if>
+      <if test="checkvalue != null" >
+        checkValue = #{checkvalue,jdbcType=DECIMAL},
+      </if>
+      <if test="symbol != null" >
+        symbol = #{symbol,jdbcType=CHAR},
+      </if>
+    </set>
+    where checkDetailId = #{checkdetailid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.yunji.doctormanager.entity.CheckDetail" >
+    update checkdetail
+    set cid = #{cid,jdbcType=INTEGER},
+      checkResultId = #{checkresultid,jdbcType=INTEGER},
+      checkValue = #{checkvalue,jdbcType=DECIMAL}
+    where checkDetailId = #{checkdetailid,jdbcType=INTEGER}
+  </update>
+</mapper>

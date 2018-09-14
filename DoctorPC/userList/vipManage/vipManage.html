@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="Pragma" content="no-cache">
+		<meta http-equiv="Window-target" content="_top">
+		<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+		<title>产科电子信息管理平台-会员管理</title>
+		<link rel="stylesheet" href="../../css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/bootstrap-table.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/comm.css" />
+		<link rel="stylesheet" type="text/css" href="../css/RiskModel-Util.css" />
+		<link rel="stylesheet" href="css/vipManage.css" />
+	</head>
+	<body>
+		<div class="class_main">
+			<div class="top_Nav">
+				<div class="Nav_img"><img src="../../images/header_home.png" /></div>
+				<div class="Nav_content">
+					您当前的位置： <span id="location">个人中心</span>
+				</div>
+			</div>
+			<!-- 主要内容 -->
+			<div class="main_content" style="padding: 25px 50px;">
+				<ul class="navigation nav nav-tabs">
+					<li class="active" style="width: 198px;">
+						<div class="class_li_line"></div>
+						<a href="#pane-950901" data-toggle = "tab" style="color: #666666;">新增服务</a>
+					</li>
+					<li style="width: 198px;">
+						<div class="class_li_line"></div>
+						<a href="#pane-950902" data-toggle = "tab" style="color: #666666;">服务修改</a>
+					</li>
+				</ul>
+				<div class="content_body tab-content">
+					<!-- 新增服务 -->
+					<div class="tab-pane fade in active" id="pane-950901">
+						<div class="headline">服务套餐信息</div>
+						<div class="bodyline">
+							<div class="row">
+								<div class="col-md-2" style="text-align: right;" id="font" id="font">套餐名称：</div>
+								<div class="col-md-10">
+									<input type="text" class="form-control" id="t_name"/>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-2" style="text-align: right;" id="font">套餐项目：</div>
+								<div class="col-md-10">
+									<input type="text" id="t_project" class="form-control" style="float: left;"/> 
+									<div style="float: left;margin-left: 15px;">一句话说明</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-2" style="text-align: right;" id="font">服务说明：</div>
+								<div class="col-md-10">
+									<input type="text" id="t_intrduce" class="form-control"/>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-2" style="text-align: right;" id="font">套餐收费标准：</div>
+								<div class="col-md-10">
+									<input type="text" id="t_price" class="form-control"/>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-2" style="text-align: right;" id="font">套餐服务次数：</div>
+								<div class="col-md-10">
+									<select id="t_times">
+										<option>1</option>
+										<option>2</option>
+										<option>3</option>
+										<option>4</option>
+										<option>5</option>
+										<option>6</option>
+										<option>7</option>
+										<option>8</option>
+										<option>9</option>
+										<option>10</option>
+									</select>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-2" style="text-align: right;" id="font">处理小贴士：</div>
+								<div class="col-md-10">
+									<textarea id="t_tips" class="form-control"></textarea>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-2" style="text-align: right;" id="font">操作指南：</div>
+								<div class="col-md-10">
+									<textarea id="t_instructions" class="form-control"></textarea>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-2"></div>
+								<div class="col-md-10">
+									<!--<button type="button" class="upload">上传附件</button>-->
+								</div>
+							</div>
+							<div class="save_btn">
+								<button type="button" id="save">保存</button>
+							</div>
+						</div>
+					</div>
+					
+					<!-- 服务修改 -->
+					<div class="tab-pane fade" id="pane-950902">
+						<div class="show_data">
+							<div class="list_title">
+								<div class="list_name">服务名称</div>
+								<div class="list_content">套餐项目</div>
+								<div class="list_operation">操作</div>
+							</div>
+							<div class="list_body">
+								<!--<div class="body_content">
+									<div class="list_name">提醒名称</div>
+									<div class="list_content">提醒内容</div>
+									<div class="list_operation">
+										<a>编辑</a> | <a>删除</a>
+									</div>
+								</div>-->
+							</div>
+						</div>
+						<div class="update_data" id="" style="display: none;">
+							<div class="headline"><span id="title_name" style="font-size: 14px;"></span></div>
+							<div class="bodyline">
+								<form id="form_update">
+									<div class="row">
+										<div class="col-md-2" style="text-align: right;" id="font">套餐名称：</div>
+										<div class="col-md-10">
+											<input type="text" class="form-control" id="vipgradename"/>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-2" style="text-align: right;" id="font">套餐项目：</div>
+										<div class="col-md-10">
+											<input type="text" id="projectdetail" class="form-control" style="float: left;"/> 
+											<div style="float: left;margin-left: 15px;">一句话说明</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-2" style="text-align: right;" id="font">服务说明：</div>
+										<div class="col-md-10">
+											<input type="text" id="vipintroduce" class="form-control"/>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-2" style="text-align: right;" id="font">套餐收费标准：</div>
+										<div class="col-md-10">
+											<input type="text" id="price" class="form-control"/>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-2" style="text-align: right;" id="font">套餐服务次数：</div>
+										<div class="col-md-10">
+											<select id="usetimes">
+												<option>1</option>
+												<option>2</option>
+												<option>3</option>
+												<option>4</option>
+												<option>5</option>
+												<option>6</option>
+												<option>7</option>
+												<option>8</option>
+												<option>9</option>
+												<option>10</option>
+											</select>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-2" style="text-align: right;" id="font">处理小贴士：</div>
+										<div class="col-md-10">
+											<textarea id="handletips" class="form-control"></textarea>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-2" style="text-align: right;" id="font">操作指南：</div>
+										<div class="col-md-10">
+											<textarea id="instructions" class="form-control"></textarea>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-2"></div>
+										<div class="col-md-10">
+											<!--<button type="button" id="a_upload" class="upload">上传附件</button>-->
+										</div>
+									</div>
+								</form>
+								<div class="save_btn">
+									<button type="button" id="a_save">保存</button>
+									<button type="button" id="a_back" style="margin-left: 30px;border: 1px solid gray;background-color: white;color: gray;">取消</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					
+				</div>
+			</div>
+			
+		</div>
+		
+		<div id="alert" class="modal fade" tabindex="-1" role="dialog">
+			<div class="modal-dialog" role="document">
+				<div class="modal_content">
+					<!--退出提示框-->
+					<div class="alert_frame" style="width: 500px;">
+						<div class="title11">
+							<img id="close" src="images/close11.png" width="20px" style="float: right;margin: 5px 10px 0 0;cursor: pointer;">
+						</div>
+						<div class="content11" style="">
+							<div class="warning_div">
+								<img src="images/warning.png" width="50px" />
+								<div style="margin-top: 20px;">提示：确定要删除此服务吗?</div>
+							</div>
+							<div class="btn_div">
+								<button id="submit11">确定</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<button id="cancel11">取消</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<script type="text/javascript" src="../../js/jquery-3.2.1.min.js" ></script>
+		<script type="text/javascript" src="../../js/getLogin.js"></script>
+		<script type="text/javascript" src="../../js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/vipManage.js"></script>
+	</body>
+</html>

@@ -1,0 +1,82 @@
+.close img{
+	width: 20px;
+	height: 20px;
+	
+}
+
+.close {
+	position: relative;
+	top: 0px;
+	z-index: 199;
+	height: 45px;
+	opacity: 0.6 !important;
+}
+
+.close img {
+	margin-right: 0px;
+	margin-top: -30px;
+}
+
+.close:hover {
+	opacity: 3 !important;
+}
+
+button{
+	outline: none;
+}
+/*doctorAdviceManager-->hypertension.html 选项卡专用颜色*/
+
+.nav-tabs>li{
+	border-left: none!important;
+}
+/*doctorAdviceManager-->hypertension.html 风险模型textarea*/
+.risk-textarea {
+margin-top: 20px;
+width: 400px;
+height: 150px!important;
+}
+.risk-textarea:focus{
+	border: 1px solid #006DCC!important;
+}
+/*编辑医嘱-select框样式*/
+#pressureCont {
+padding: 0px 6px 0px 6px!important;
+margin: 0px!important;
+margin-top: 2px!important;
+}
+.Notice_content span, .Notice_content select {
+/* margin-left: 10px; */
+width: 250px;
+height: 26px!important;
+font-size: 12px;
+}
+.loveno{
+	padding: 0px!important;
+}
+.controller-height {
+	height: 35px!important;
+}
+/*编辑医嘱-按钮样式*/
+.color-no-change:hover{
+	border: 1px solid #262626!important;
+}
+/*按项目查看异常情况*/
+.textarea-div{
+	margin-top: 0px!important;
+	margin-left: 150px!important;
+}
+.select-div{
+	margin-left: 5px!important;
+	height: 35px;
+	margin-top: 30px;
+}
+.numspan{
+	float: left;
+	margin-right: 2px;
+	line-height: 30px;
+	margin-left: 15px;
+}
+.table-controller{
+	margin-top: -35px!important;
+	margin-left: -80px!important;
+}

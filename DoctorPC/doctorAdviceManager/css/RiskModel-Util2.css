@@ -1,0 +1,81 @@
+/******   风险模型 css  @yinzx         *******/
+*{
+	color: #666;
+}
+html,body{
+	width:100%!important;
+}
+.fontblod{
+	font-weight: bold!important;
+}
+.div_RiskModel{
+	width: 120%;
+	padding-top: 20px;
+}
+/*echarts图表*/
+#div-modelChart{
+	width: 95%;
+	/*border: 1px red solid;*/
+	display: flex;
+	height: 350px;
+}
+#riskChart{
+
+	height: 350px;
+	min-width: 400px;
+	/*border: 1px green solid;*/
+}
+#modelChart{
+	height: 350px;
+/*	max-width: 1080px;*/
+	min-width: 400px;
+	/*border: 1px blue solid;*/
+	margin-left: 50px!important;
+}
+/*echarts图表*/
+#div-modelChart2{
+	width: 95%;
+	/*border: 1px red solid;*/
+	display: flex;
+	height: 350px;
+}
+#riskChart2{
+	
+	height: 350px;
+	min-width: 400px;
+	/*border: 1px green solid;*/
+}
+#modelChart2{
+	height: 350px;
+/*	max-width: 1080px;*/
+	min-width: 400px;
+	/*border: 1px blue solid;*/
+	margin-left: 50px!important;
+}
+#risk_result{
+	
+	padding-left: 20px;
+	
+}
+#riskfactor-table{
+	width: 120%;
+	text-align: center;
+}
+#riskfactor-table td{
+	border: 1px solid #D4D4D4;
+	line-height: 30px;
+}
+#riskfactor-table2{
+	width: 170%;
+	text-align: center;
+}
+#riskfactor-table2 td{
+	border: 1px solid #D4D4D4;
+	line-height: 30px;
+}
+.result333,.riskfactor-Advice{
+	padding-left: 20px;
+}
+.riskfactor-Advice{
+	padding-top: 20px;
+}

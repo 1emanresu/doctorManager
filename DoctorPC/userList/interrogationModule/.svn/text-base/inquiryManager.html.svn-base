@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/bootstrap-table.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/comm.css" />
+	</head>
+	<style type="text/css">
+		.pNum {
+			margin-top: 20px;
+			margin-left: 15px;
+			font-size: 16px;
+			color: #696969;
+			font-weight: bold;
+		}
+		
+		#tb-div {
+			margin: 0 auto;
+			padding-left: 20px;
+			padding-right: 20px;
+			min-width: 1024px;
+			font-size: 12px;
+		}
+		
+		a {
+			text-decoration: none !important;
+		}
+		/*小手指专用class*/
+		
+		.pointer {
+			cursor: pointer;
+		}
+		
+		.search input {
+			height: 34px!important;
+		}
+		.nav-tabs>li>a{
+			border: none;
+			cursor: pointer;
+		}
+	</style>
+
+	<body>
+		<div class="class_main">
+			<input type="hidden" id="pending-state" value="1" />
+			<div class="top_Nav">
+				<div class="Nav_img"><img src="../../images/header_home.png" /></div>
+				<div class="Nav_content">
+					您当前的位置： <span id="adviceOrWeekly">问诊管理</span>
+				</div>
+			</div>
+			<!-- 主要内容 -->
+			<div class="main_content">
+				<div class="content_search">
+					<div class="active5">
+						<div class="neiceng">
+							<span>预约日间：</span>
+						</div>
+						<select name="day" id="day">
+							<option value='-1'>全部</option>
+						</select>
+					</div>
+					<!--预约时段-->
+					<div class="active5" style="">
+						<div class="neiceng">
+							<span>预约时段：</span>
+						</div>
+						<input type="text" class="form-control dname" placeholder="时间" />
+					</div>
+					<!--预约时段-->
+					<div class="active5" style="">
+						<div class="neiceng">
+							<span>姓名：</span>
+						</div>
+						<input type="text" class="form-control gname" placeholder="姓名" />
+					</div>
+					<!--预约时段-->
+					<div class="active5" style="margin-left: -2%;">
+						<div class="neiceng">
+							<span>孕周：</span>
+						</div>
+						<select name="" class="weeks" id="weeksQuery">
+						</select>
+					</div>
+					<!--button-->
+					<div class=" btn-class" style="-30px;width: 200px;">
+						<div class="btn11">
+							<button id="queryInfo" onclick="search()" style="float: left;margin-right: 38px;" class="btn btn-default btn-block">查询</button>
+							<button style="margin-left: 25px;margin-top: -1px;" id="queryReset" onclick="resetInput()" class="btn btn-default btn-block">重置</button>
+						</div>
+
+						
+
+					</div>
+				</div>
+				<div class="right-Tab-Control">
+					<ul class="nav nav-tabs nva-tabs-ul">
+						<li class="active" id="this_advice">
+							<div class="class_li_line"></div>
+							<a data-toggle="tab">问诊管理</a>
+						</li>
+					</ul>
+					<div class="tab-content contents">
+						<div class="tab-pane active  data-show" id="panel-978065">
+							<table id="user_list"></table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script type="text/javascript" src="../../js/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="../../js/getLogin.js"></script>
+		<script type="text/javascript" src="../../js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="../../utils/js/util.js"></script>
+		<script type="text/javascript" src="../../js/bootstrap-table.js"></script>
+		<script type="text/javascript" src="../../js/bootstrap-table-zh-CN.js"></script>
+		<script type="text/javascript" src="../../utils/js/bootstrapTable.js"></script>
+		<script type="text/javascript" src="../../js/Util.js"></script>
+		<script type="text/javascript" src="js/inquiry.js"></script>
+	</body>
+
+</html>

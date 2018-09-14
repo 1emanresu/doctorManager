@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.yunji.doctormanager.dao.RemoteReservationMapper">
+	<resultMap id="BaseResultMap"
+		type="cn.yunji.doctormanager.entity.RemoteReservation">
+		<id column="rrid" property="rrid" jdbcType="INTEGER" />
+		<result column="hospitalId" property="hospitalid" jdbcType="CHAR" />
+		<result column="doctorId" property="doctorid" jdbcType="INTEGER" />
+		<result column="mId" property="mid" jdbcType="CHAR" />
+		<result column="type" property="type" jdbcType="INTEGER" />
+		<result column="bookTime" property="booktime" jdbcType="DATE" />
+		<result column="inquiryState" property="inquirystate" jdbcType="INTEGER" />
+		<result column="pendingState" property="pendingState" jdbcType="INTEGER" />
+		<result column="interrogationTime" property="interrogationTime"
+			jdbcType="TIMESTAMP" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		rrid, hospitalId, doctorId, mId, type, bookTime,
+		inquiryState,interrogationTime,pendingState
+	</sql>
+
+	<!-- 查询当天预约孕妇的列表 -->
+	<select id="queryByBespeak" resultType="java.util.HashMap">
+		select r.*,g.gname,g.mid,g.enddate,g.expectedConfinement from
+		remotereservation r
+		left join gravidainfo g on r.mid =g.mid
+		where pendingState=#{pendingState}
+		<if test="sdate != null">
+			and r.bookTime between #{sdate} and #{edate}
+		</if>
+		<if test="name != null">
+			and g.gname= #{name}
+		</if>
+		<if test="sweeks != null">
+			and g.endDate between #{sweeks,jdbcType=DATE}
+			and #{eweeks,jdbcType=DATE}
+		</if>
+		<if test="pendingState == 1">
+			group by g.mid
+		</if>
+		order by r.bookTime 
+		<if test="pageIndex != null">
+			limit #{pageIndex},#{pageSize}
+		</if>
+	</select>
+	
+
+	<!-- 查询预约孕妇总数 -->
+	<select id="queryByBespeakCount" resultType="int">
+		select count(*) from
+		remotereservation r
+		left join gravidainfo g on r.mid =g.mid
+		where pendingState=#{pendingState}
+		<if test="sdate != null">
+			and r.bookTime between #{sdate} and #{edate}
+		</if>
+		<if test="name != null">
+			and g.gname= #{name}
+		</if>
+		<if test="sweeks != null">
+			and g.endDate between #{sweeks,jdbcType=DATE}
+			and #{eweeks,jdbcType=DATE}
+		</if>
+	</select>
+	
+	 <!-- 更新问诊处理状态zhangqt -->
+	<update id="updateState"  parameterType="java.lang.Integer">
+		update
+		remotereservation
+		set pendingState =	1
+		where rrid =
+		#{rrid,jdbcType=INTEGER}
+	</update>
+	
+
+	<!-- 改变孕妇的在线状态 -->
+	<update id="changeState" parameterType="cn.yunji.doctormanager.entity.RemoteReservation">
+		update remotereservation
+		set inquiryState = #{0}
+		where mid = #{1}
+	</update>
+
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from remotereservation
+		where rrid = #{rrid,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		remotereservation
+		where rrid = #{rrid,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="cn.yunji.doctormanager.entity.RemoteReservation">
+		insert into remotereservation
+		(rrid, hospitalId, doctorId,
+		mId, type, bookTime,
+		inquiryState)
+		values
+		(#{rrid,jdbcType=INTEGER}, #{hospitalid,jdbcType=CHAR},
+		#{doctorid,jdbcType=INTEGER},
+		#{mid,jdbcType=CHAR},
+		#{type,jdbcType=INTEGER}, #{booktime,jdbcType=DATE},
+		#{inquirystate,jdbcType=INTEGER})
+	</insert>
+	<insert id="insertSelective" parameterType="cn.yunji.doctormanager.entity.RemoteReservation">
+		insert into remotereservation
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="rrid != null">
+				rrid,
+			</if>
+			<if test="hospitalid != null">
+				hospitalId,
+			</if>
+			<if test="doctorid != null">
+				doctorId,
+			</if>
+			<if test="mid != null">
+				mId,
+			</if>
+			<if test="type != null">
+				type,
+			</if>
+			<if test="booktime != null">
+				bookTime,
+			</if>
+			<if test="inquirystate != null">
+				inquiryState,
+			</if>
+			<if test="interrogationTime != null">
+				interrogationTime
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="rrid != null">
+				#{rrid,jdbcType=INTEGER},
+			</if>
+			<if test="hospitalid != null">
+				#{hospitalid,jdbcType=CHAR},
+			</if>
+			<if test="doctorid != null">
+				#{doctorid,jdbcType=INTEGER},
+			</if>
+			<if test="mid != null">
+				#{mid,jdbcType=CHAR},
+			</if>
+			<if test="type != null">
+				#{type,jdbcType=INTEGER},
+			</if>
+			<if test="booktime != null">
+				#{booktime,jdbcType=DATE},
+			</if>
+			<if test="inquirystate != null">
+				#{inquirystate,jdbcType=INTEGER},
+			</if>
+			<if test="interrogationTime != null">
+				#{interrogationTime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="cn.yunji.doctormanager.entity.RemoteReservation">
+		update remotereservation
+		<set>
+			<if test="hospitalid != null">
+				hospitalId = #{hospitalid,jdbcType=CHAR},
+			</if>
+			<if test="doctorid != null">
+				doctorId = #{doctorid,jdbcType=INTEGER},
+			</if>
+			<if test="mid != null">
+				mId = #{mid,jdbcType=CHAR},
+			</if>
+			<if test="type != null">
+				type = #{type,jdbcType=INTEGER},
+			</if>
+			<if test="booktime != null">
+				bookTime = #{booktime,jdbcType=DATE},
+			</if>
+			<if test="inquirystate != null">
+				inquiryState = #{inquirystate,jdbcType=INTEGER},
+			</if>
+		</set>
+		where rrid = #{rrid,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="cn.yunji.doctormanager.entity.RemoteReservation">
+		update
+		remotereservation
+		set hospitalId = #{hospitalid,jdbcType=CHAR},
+		doctorId = #{doctorid,jdbcType=INTEGER},
+		mId = #{mid,jdbcType=CHAR},
+		type = #{type,jdbcType=INTEGER},
+		bookTime =
+		#{booktime,jdbcType=DATE},
+		inquiryState =
+		#{inquirystate,jdbcType=INTEGER}
+		where rrid =
+		#{rrid,jdbcType=INTEGER}
+	</update>
+	
+	<!-- 更新处理状态 -->
+	<update id="updatePendingState" parameterType="java.lang.Integer">
+		update remotereservation set pendingState = 1
+		where rrid=#{rrid,jdbcType=INTEGER}
+	</update>
+</mapper>

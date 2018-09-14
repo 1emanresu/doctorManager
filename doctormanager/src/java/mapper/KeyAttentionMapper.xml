@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.yunji.doctormanager.dao.KeyAttentionMapper">
+  <resultMap id="BaseResultMap" type="cn.yunji.doctormanager.entity.KeyAttention">
+    <id column="kId" jdbcType="INTEGER" property="kid" />
+    <result column="attentionproject" jdbcType="CHAR" property="attentionproject" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    kId, attentionproject
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from keyattention
+    where kId = #{kid,jdbcType=INTEGER}
+  </select>
+  <!-- luoyc 根据id数组查询数据 -->
+  <select id="selectByPrimaryKeys" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from keyattention
+    <if test="ids != null">  
+        where kId in(  
+            <foreach collection="ids" item="kid" index="index" separator="," >    
+                #{kid,jdbcType=INTEGER}   
+            </foreach>  
+        )     
+    </if> 
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from keyattention
+    where kId = #{kid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.yunji.doctormanager.entity.KeyAttention">
+    insert into keyattention (kId, attentionproject)
+    values (#{kid,jdbcType=INTEGER}, #{attentionproject,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.yunji.doctormanager.entity.KeyAttention">
+    insert into keyattention
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="kid != null">
+        kId,
+      </if>
+      <if test="attentionproject != null">
+        attentionproject,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="kid != null">
+        #{kid,jdbcType=INTEGER},
+      </if>
+      <if test="attentionproject != null">
+        #{attentionproject,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.yunji.doctormanager.entity.KeyAttention">
+    update keyattention
+    <set>
+      <if test="attentionproject != null">
+        attentionproject = #{attentionproject,jdbcType=CHAR},
+      </if>
+    </set>
+    where kId = #{kid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.yunji.doctormanager.entity.KeyAttention">
+    update keyattention
+    set attentionproject = #{attentionproject,jdbcType=CHAR}
+    where kId = #{kid,jdbcType=INTEGER}
+  </update>
+</mapper>

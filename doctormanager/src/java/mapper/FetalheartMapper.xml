@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.yunji.doctormanager.dao.FetalheartMapper" >
+  <resultMap id="BaseResultMap" type="cn.yunji.doctormanager.entity.Fetalheart" >
+    <id column="fid" property="fid" jdbcType="INTEGER" />
+    <result column="mId" property="mid" jdbcType="CHAR" />
+    <result column="checkProjectId" property="checkprojectid" jdbcType="INTEGER" />
+    <result column="hospitalName" property="hospitalname" jdbcType="CHAR" />
+    <result column="sBloodPressure" property="sbloodpressure" jdbcType="INTEGER" />
+    <result column="dBloodPressure" property="dbloodpressure" jdbcType="INTEGER" />
+    <result column="aBloodPressure" property="abloodpressure" jdbcType="INTEGER" />
+    <result column="oxygenSaturation" property="oxygensaturation" jdbcType="DECIMAL" />
+    <result column="frateline" property="frateline" jdbcType="INTEGER" />
+    <result column="sleepWakeCycle" property="sleepwakecycle" jdbcType="INTEGER" />
+    <result column="waveShape" property="waveshape" jdbcType="INTEGER" />
+    <result column="fetalMovements" property="fetalmovements" jdbcType="INTEGER" />
+    <result column="aperiodicAcceleration" property="aperiodicacceleration" jdbcType="INTEGER" />
+    <result column="periodicAcceleration" property="periodicacceleration" jdbcType="INTEGER" />
+    <result column="apparentAcceleration" property="apparentacceleration" jdbcType="INTEGER" />
+    <result column="ED" property="ed" jdbcType="INTEGER" />
+    <result column="LD" property="ld" jdbcType="INTEGER" />
+    <result column="PD" property="pd" jdbcType="INTEGER" />
+    <result column="SVD" property="svd" jdbcType="INTEGER" />
+    <result column="MVD" property="mvd" jdbcType="INTEGER" />
+    <result column="cytometaplasia" property="cytometaplasia" jdbcType="INTEGER" />
+    <result column="contractions" property="contractions" jdbcType="INTEGER" />
+    <result column="weeks" property="weeks" jdbcType="INTEGER" />
+    <result column="checkDate" property="checkdate" jdbcType="TIMESTAMP" />
+    <result column="famplitude" property="famplitude" jdbcType="INTEGER" />
+    <result column="facceltim" property="facceltim" jdbcType="INTEGER" />
+    <result column="faccelamplitude" property="faccelamplitude" jdbcType="INTEGER" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="FHRchange" property="fhrchange" jdbcType="INTEGER" />
+    <result column="FHRtimes" property="fhrtimes" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    fid, mId, checkProjectId, hospitalName, sBloodPressure, dBloodPressure, aBloodPressure, 
+    oxygenSaturation, frateline,sleepWakeCycle,waveShape, fetalMovements, aperiodicAcceleration, periodicAcceleration, 
+    apparentAcceleration, ED, LD, PD, SVD, MVD, cytometaplasia, contractions, weeks, 
+    checkDate, famplitude, facceltim, faccelamplitude, description,FHRchange,FHRtimes
+  </sql>
+  <!-- 根据日期范围查询指定孕妇的胎心结果 luoyc -->
+  <select id="findByDateRange" resultMap="BaseResultMap">
+  	select *
+    from fetalheart
+    where mid=#{0} and checkdate between #{1} and #{2}
+  </select>
+  <!-- 根据孕妇ID查询胎心信息 -->
+  <select id="findByMid" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from fetalheart
+    <where>
+      <if test="mid != null" >
+        and mId = #{mid}
+      </if>
+      <if test="checkDate != null" >
+        and checkDate = #{checkDate}
+      </if>
+    </where>
+  </select>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from fetalheart
+    where fid = #{fid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from fetalheart
+    where fid = #{fid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.yunji.doctormanager.entity.Fetalheart" >
+    insert into fetalheart (fid, mId, checkProjectId, 
+      hospitalName, sBloodPressure, dBloodPressure, 
+      aBloodPressure, oxygenSaturation, frateline, sleepWakeCycle,waveShape,
+      fetalMovements, aperiodicAcceleration, 
+      periodicAcceleration, apparentAcceleration, 
+      ED, LD, PD, SVD, 
+      MVD, cytometaplasia, contractions, 
+      weeks, checkDate, famplitude, 
+      facceltim, faccelamplitude, description)
+    values (#{fid,jdbcType=INTEGER}, #{mid,jdbcType=CHAR}, #{checkprojectid,jdbcType=INTEGER}, 
+      #{hospitalname,jdbcType=CHAR}, #{sbloodpressure,jdbcType=INTEGER}, #{dbloodpressure,jdbcType=INTEGER}, 
+      #{abloodpressure,jdbcType=INTEGER}, #{oxygensaturation,jdbcType=DECIMAL}, #{frateline,jdbcType=INTEGER}, 
+       #{sleepwakecycle,jdbcType=INTEGER},  #{waveshape,jdbcType=INTEGER}, 
+      #{fetalmovements,jdbcType=INTEGER}, #{aperiodicacceleration,jdbcType=INTEGER}, 
+      #{periodicacceleration,jdbcType=INTEGER}, #{apparentacceleration,jdbcType=INTEGER}, 
+      #{ed,jdbcType=INTEGER}, #{ld,jdbcType=INTEGER}, #{pd,jdbcType=INTEGER}, #{svd,jdbcType=INTEGER}, 
+      #{mvd,jdbcType=INTEGER}, #{cytometaplasia,jdbcType=INTEGER}, #{contractions,jdbcType=INTEGER}, 
+      #{weeks,jdbcType=INTEGER}, #{checkdate,jdbcType=TIMESTAMP}, #{famplitude,jdbcType=INTEGER}, 
+      #{facceltim,jdbcType=INTEGER}, #{faccelamplitude,jdbcType=INTEGER}, #{description,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.yunji.doctormanager.entity.Fetalheart" >
+    insert into fetalheart
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="fid != null" >
+        fid,
+      </if>
+      <if test="mid != null" >
+        mId,
+      </if>
+      <if test="checkprojectid != null" >
+        checkProjectId,
+      </if>
+      <if test="hospitalname != null" >
+        hospitalName,
+      </if>
+      <if test="sbloodpressure != null" >
+        sBloodPressure,
+      </if>
+      <if test="dbloodpressure != null" >
+        dBloodPressure,
+      </if>
+      <if test="abloodpressure != null" >
+        aBloodPressure,
+      </if>
+      <if test="oxygensaturation != null" >
+        oxygenSaturation,
+      </if>
+      <if test="frateline != null" >
+        frateline,
+      </if>
+      <if test="fetalmovements != null" >
+        fetalMovements,
+      </if>
+      <if test="aperiodicacceleration != null" >
+        aperiodicAcceleration,
+      </if>
+      <if test="periodicacceleration != null" >
+        periodicAcceleration,
+      </if>
+      <if test="apparentacceleration != null" >
+        apparentAcceleration,
+      </if>
+      <if test="ed != null" >
+        ED,
+      </if>
+      <if test="ld != null" >
+        LD,
+      </if>
+      <if test="pd != null" >
+        PD,
+      </if>
+      <if test="svd != null" >
+        SVD,
+      </if>
+      <if test="mvd != null" >
+        MVD,
+      </if>
+      <if test="cytometaplasia != null" >
+        cytometaplasia,
+      </if>
+      <if test="contractions != null" >
+        contractions,
+      </if>
+      <if test="weeks != null" >
+        weeks,
+      </if>
+      <if test="checkdate != null" >
+        checkDate,
+      </if>
+      <if test="famplitude != null" >
+        famplitude,
+      </if>
+      <if test="facceltim != null" >
+        facceltim,
+      </if>
+      <if test="faccelamplitude != null" >
+        faccelamplitude,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="fid != null" >
+        #{fid,jdbcType=INTEGER},
+      </if>
+      <if test="mid != null" >
+        #{mid,jdbcType=CHAR},
+      </if>
+      <if test="checkprojectid != null" >
+        #{checkprojectid,jdbcType=INTEGER},
+      </if>
+      <if test="hospitalname != null" >
+        #{hospitalname,jdbcType=CHAR},
+      </if>
+      <if test="sbloodpressure != null" >
+        #{sbloodpressure,jdbcType=INTEGER},
+      </if>
+      <if test="dbloodpressure != null" >
+        #{dbloodpressure,jdbcType=INTEGER},
+      </if>
+      <if test="abloodpressure != null" >
+        #{abloodpressure,jdbcType=INTEGER},
+      </if>
+      <if test="oxygensaturation != null" >
+        #{oxygensaturation,jdbcType=DECIMAL},
+      </if>
+      <if test="frateline != null" >
+        #{frateline,jdbcType=INTEGER},
+      </if>
+      <if test="fetalmovements != null" >
+        #{fetalmovements,jdbcType=INTEGER},
+      </if>
+      <if test="aperiodicacceleration != null" >
+        #{aperiodicacceleration,jdbcType=INTEGER},
+      </if>
+      <if test="periodicacceleration != null" >
+        #{periodicacceleration,jdbcType=INTEGER},
+      </if>
+      <if test="apparentacceleration != null" >
+        #{apparentacceleration,jdbcType=INTEGER},
+      </if>
+      <if test="ed != null" >
+        #{ed,jdbcType=INTEGER},
+      </if>
+      <if test="ld != null" >
+        #{ld,jdbcType=INTEGER},
+      </if>
+      <if test="pd != null" >
+        #{pd,jdbcType=INTEGER},
+      </if>
+      <if test="svd != null" >
+        #{svd,jdbcType=INTEGER},
+      </if>
+      <if test="mvd != null" >
+        #{mvd,jdbcType=INTEGER},
+      </if>
+      <if test="cytometaplasia != null" >
+        #{cytometaplasia,jdbcType=INTEGER},
+      </if>
+      <if test="contractions != null" >
+        #{contractions,jdbcType=INTEGER},
+      </if>
+      <if test="weeks != null" >
+        #{weeks,jdbcType=INTEGER},
+      </if>
+      <if test="checkdate != null" >
+        #{checkdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="famplitude != null" >
+        #{famplitude,jdbcType=INTEGER},
+      </if>
+      <if test="facceltim != null" >
+        #{facceltim,jdbcType=INTEGER},
+      </if>
+      <if test="faccelamplitude != null" >
+        #{faccelamplitude,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.yunji.doctormanager.entity.Fetalheart" >
+    update fetalheart
+    <set >
+      <if test="mid != null" >
+        mId = #{mid,jdbcType=CHAR},
+      </if>
+      <if test="checkprojectid != null" >
+        checkProjectId = #{checkprojectid,jdbcType=INTEGER},
+      </if>
+      <if test="hospitalname != null" >
+        hospitalName = #{hospitalname,jdbcType=CHAR},
+      </if>
+      <if test="sbloodpressure != null" >
+        sBloodPressure = #{sbloodpressure,jdbcType=INTEGER},
+      </if>
+      <if test="dbloodpressure != null" >
+        dBloodPressure = #{dbloodpressure,jdbcType=INTEGER},
+      </if>
+      <if test="abloodpressure != null" >
+        aBloodPressure = #{abloodpressure,jdbcType=INTEGER},
+      </if>
+      <if test="oxygensaturation != null" >
+        oxygenSaturation = #{oxygensaturation,jdbcType=DECIMAL},
+      </if>
+      <if test="frateline != null" >
+        frateline = #{frateline,jdbcType=INTEGER},
+      </if>
+      <if test="sleepwakecycle != null" >
+        sleepwakecycle = #{sleepwakecycle,jdbcType=INTEGER},
+      </if>
+      <if test="waveshape != null" >
+        waveshape = #{waveshape,jdbcType=INTEGER},
+      </if>
+      <if test="fetalmovements != null" >
+        fetalMovements = #{fetalmovements,jdbcType=INTEGER},
+      </if>
+      <if test="aperiodicacceleration != null" >
+        aperiodicAcceleration = #{aperiodicacceleration,jdbcType=INTEGER},
+      </if>
+      <if test="periodicacceleration != null" >
+        periodicAcceleration = #{periodicacceleration,jdbcType=INTEGER},
+      </if>
+      <if test="apparentacceleration != null" >
+        apparentAcceleration = #{apparentacceleration,jdbcType=INTEGER},
+      </if>
+      <if test="ed != null" >
+        ED = #{ed,jdbcType=INTEGER},
+      </if>
+      <if test="ld != null" >
+        LD = #{ld,jdbcType=INTEGER},
+      </if>
+      <if test="pd != null" >
+        PD = #{pd,jdbcType=INTEGER},
+      </if>
+      <if test="svd != null" >
+        SVD = #{svd,jdbcType=INTEGER},
+      </if>
+      <if test="mvd != null" >
+        MVD = #{mvd,jdbcType=INTEGER},
+      </if>
+      <if test="cytometaplasia != null" >
+        cytometaplasia = #{cytometaplasia,jdbcType=INTEGER},
+      </if>
+      <if test="contractions != null" >
+        contractions = #{contractions,jdbcType=INTEGER},
+      </if>
+      <if test="weeks != null" >
+        weeks = #{weeks,jdbcType=INTEGER},
+      </if>
+      <if test="checkdate != null" >
+        checkDate = #{checkdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="famplitude != null" >
+        famplitude = #{famplitude,jdbcType=INTEGER},
+      </if>
+      <if test="facceltim != null" >
+        facceltim = #{facceltim,jdbcType=INTEGER},
+      </if>
+      <if test="faccelamplitude != null" >
+        faccelamplitude = #{faccelamplitude,jdbcType=INTEGER},
+      </if>
+    </set>
+    where fid = #{fid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.yunji.doctormanager.entity.Fetalheart" >
+    update fetalheart
+    set mId = #{mid,jdbcType=CHAR},
+      checkProjectId = #{checkprojectid,jdbcType=INTEGER},
+      hospitalName = #{hospitalname,jdbcType=CHAR},
+      sBloodPressure = #{sbloodpressure,jdbcType=INTEGER},
+      dBloodPressure = #{dbloodpressure,jdbcType=INTEGER},
+      aBloodPressure = #{abloodpressure,jdbcType=INTEGER},
+      oxygenSaturation = #{oxygensaturation,jdbcType=DECIMAL},
+      frateline = #{frateline,jdbcType=INTEGER},
+      sleepwakecycle = #{sleepwakecycle,jdbcType=INTEGER},
+      waveshape = #{waveshape,jdbcType=INTEGER},
+      fetalMovements = #{fetalmovements,jdbcType=INTEGER},
+      aperiodicAcceleration = #{aperiodicacceleration,jdbcType=INTEGER},
+      periodicAcceleration = #{periodicacceleration,jdbcType=INTEGER},
+      apparentAcceleration = #{apparentacceleration,jdbcType=INTEGER},
+      ED = #{ed,jdbcType=INTEGER},
+      LD = #{ld,jdbcType=INTEGER},
+      PD = #{pd,jdbcType=INTEGER},
+      SVD = #{svd,jdbcType=INTEGER},
+      MVD = #{mvd,jdbcType=INTEGER},
+      cytometaplasia = #{cytometaplasia,jdbcType=INTEGER},
+      contractions = #{contractions,jdbcType=INTEGER},
+      weeks = #{weeks,jdbcType=INTEGER},
+      checkDate = #{checkdate,jdbcType=TIMESTAMP},
+      famplitude = #{famplitude,jdbcType=INTEGER},
+      facceltim = #{facceltim,jdbcType=INTEGER},
+      faccelamplitude = #{faccelamplitude,jdbcType=INTEGER}
+    where fid = #{fid,jdbcType=INTEGER}
+  </update>
+  
+  <!-- 根据孕妇ID、检查时间、孕周查询胎心结果 -->
+  <select id="search" resultMap="BaseResultMap" parameterType="cn.yunji.doctormanager.entity.Fetalheart" >
+    select 
+    <include refid="Base_Column_List" />
+    from fetalheart
+    <where>
+      <if test="mid != null and mid != ''" >
+        and mId = #{mid,jdbcType=CHAR} 
+      </if>
+      <if test="checkdate != null" >
+        and checkDate = #{checkdate,jdbcType=TIMESTAMP} 
+      </if>
+      <if test="weeks != null and weeks != ''" >
+        and weeks = #{weeks,jdbcType=INTEGER} 
+      </if>
+    </where>
+  </select>
+  
+  <!-- 根据孕周查询胎心检查结果 -->
+  <select id="queryDescription" resultType="java.util.HashMap">
+    SELECT description 
+    from fetalheart 
+    WHERE weeks = #{weeks,jdbcType=INTEGER} 
+  </select>
+  <!-- 按项目查询： 根据检查项目id、mid查询检查明细及指标 (按时间升序排序) @yinzx -->
+  <select id="findByMidAndProject" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from fetalheart
+    where mid = #{mId,jdbcType=CHAR}
+    and  checkProjectId = #{checkProjectId,jdbcType=INTEGER}
+    order by checkDate
+  </select>
+   <!-- 按孕周查询： 根据检查项目id、mid孕周查询检查明细及指标 (按时间升序排序) @yinzx -->
+  <select id="findByMidAndWeek" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from fetalheart
+    where mid = #{mId,jdbcType=CHAR}
+    and  checkProjectId = #{checkProjectId,jdbcType=INTEGER}
+    and weeks = #{weeks,jdbcType=INTEGER} 
+    order by checkDate
+  </select>
+</mapper>

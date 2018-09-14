@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.yunji.doctormanager.dao.SubscribeMapper" >
+  <resultMap id="BaseResultMap" type="cn.yunji.doctormanager.entity.Subscribe" >
+    <id column="subscribeId" property="subscribeid" jdbcType="INTEGER" />
+    <result column="hospitalId" property="hospitalid" jdbcType="CHAR" />
+    <result column="mId" property="mid" jdbcType="CHAR" />
+    <result column="officeId" property="officeid" jdbcType="INTEGER" />
+    <result column="doctorId" property="doctorid" jdbcType="INTEGER" />
+    <result column="sCount" property="scount" jdbcType="INTEGER" />
+    <result column="antenatalCare" property="antenatalcare" jdbcType="VARCHAR" />
+    <result column="sProjectName" property="sprojectname" jdbcType="VARCHAR" />
+    <result column="sdate" property="sdate" jdbcType="VARCHAR" />
+    <result column="sdatetime" property="sdatetime" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    subscribeId, hospitalId, mId, officeId, doctorId, sCount, antenatalCare, sProjectName, 
+    sdate, sdatetime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from subscribe
+    where subscribeId = #{subscribeid,jdbcType=INTEGER}
+  </select>
+  <!--查询预约的数量-->
+  <select id="queryCount" resultType="int" >
+    select  count(*)  from subscribe
+  </select>
+  <!--产检预约-->
+ 
+  <select id="queryBySubId" resultType="java.util.HashMap"
+   parameterType="cn.yunji.doctormanager.entity.Subscribe" >
+ select  s.sdatetime ,s.antenatalCare,s.sdate,h.hospitalName ,g.gName,f.Age from subscribe s
+ inner join gravidainfo g on s.mid=g.mid
+ inner join hospital h on s.hospitalId=h.hospitalId
+ inner join familyMember f  on f.mid=g.mid 
+ inner join doctor d on s.doctorId=d.doctorId
+ where g.mId=s.mid and f.relationid=1 and  d.doctorId=#{0}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from subscribe
+    where subscribeId = #{subscribeid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.yunji.doctormanager.entity.Subscribe" >
+    insert into subscribe (subscribeId, hospitalId, mId, 
+      officeId, doctorId, sCount, 
+      antenatalCare, sProjectName, sdate, 
+      sdatetime)
+    values (#{subscribeid,jdbcType=INTEGER}, #{hospitalid,jdbcType=CHAR}, #{mid,jdbcType=CHAR}, 
+      #{officeid,jdbcType=INTEGER}, #{doctorid,jdbcType=INTEGER}, #{scount,jdbcType=INTEGER}, 
+      #{antenatalcare,jdbcType=VARCHAR}, #{sprojectname,jdbcType=VARCHAR}, #{sdate,jdbcType=VARCHAR}, 
+      #{sdatetime,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.yunji.doctormanager.entity.Subscribe" >
+    insert into subscribe
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="subscribeid != null" >
+        subscribeId,
+      </if>
+      <if test="hospitalid != null" >
+        hospitalId,
+      </if>
+      <if test="mid != null" >
+        mId,
+      </if>
+      <if test="officeid != null" >
+        officeId,
+      </if>
+      <if test="doctorid != null" >
+        doctorId,
+      </if>
+      <if test="scount != null" >
+        sCount,
+      </if>
+      <if test="antenatalcare != null" >
+        antenatalCare,
+      </if>
+      <if test="sprojectname != null" >
+        sProjectName,
+      </if>
+      <if test="sdate != null" >
+        sdate,
+      </if>
+      <if test="sdatetime != null" >
+        sdatetime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="subscribeid != null" >
+        #{subscribeid,jdbcType=INTEGER},
+      </if>
+      <if test="hospitalid != null" >
+        #{hospitalid,jdbcType=CHAR},
+      </if>
+      <if test="mid != null" >
+        #{mid,jdbcType=CHAR},
+      </if>
+      <if test="officeid != null" >
+        #{officeid,jdbcType=INTEGER},
+      </if>
+      <if test="doctorid != null" >
+        #{doctorid,jdbcType=INTEGER},
+      </if>
+      <if test="scount != null" >
+        #{scount,jdbcType=INTEGER},
+      </if>
+      <if test="antenatalcare != null" >
+        #{antenatalcare,jdbcType=VARCHAR},
+      </if>
+      <if test="sprojectname != null" >
+        #{sprojectname,jdbcType=VARCHAR},
+      </if>
+      <if test="sdate != null" >
+        #{sdate,jdbcType=VARCHAR},
+      </if>
+      <if test="sdatetime != null" >
+        #{sdatetime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.yunji.doctormanager.entity.Subscribe" >
+    update subscribe
+    <set >
+      <if test="hospitalid != null" >
+        hospitalId = #{hospitalid,jdbcType=CHAR},
+      </if>
+      <if test="mid != null" >
+        mId = #{mid,jdbcType=CHAR},
+      </if>
+      <if test="officeid != null" >
+        officeId = #{officeid,jdbcType=INTEGER},
+      </if>
+      <if test="doctorid != null" >
+        doctorId = #{doctorid,jdbcType=INTEGER},
+      </if>
+      <if test="scount != null" >
+        sCount = #{scount,jdbcType=INTEGER},
+      </if>
+      <if test="antenatalcare != null" >
+        antenatalCare = #{antenatalcare,jdbcType=VARCHAR},
+      </if>
+      <if test="sprojectname != null" >
+        sProjectName = #{sprojectname,jdbcType=VARCHAR},
+      </if>
+      <if test="sdate != null" >
+        sdate = #{sdate,jdbcType=VARCHAR},
+      </if>
+      <if test="sdatetime != null" >
+        sdatetime = #{sdatetime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where subscribeId = #{subscribeid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.yunji.doctormanager.entity.Subscribe" >
+    update subscribe
+    set hospitalId = #{hospitalid,jdbcType=CHAR},
+      mId = #{mid,jdbcType=CHAR},
+      officeId = #{officeid,jdbcType=INTEGER},
+      doctorId = #{doctorid,jdbcType=INTEGER},
+      sCount = #{scount,jdbcType=INTEGER},
+      antenatalCare = #{antenatalcare,jdbcType=VARCHAR},
+      sProjectName = #{sprojectname,jdbcType=VARCHAR},
+      sdate = #{sdate,jdbcType=VARCHAR},
+      sdatetime = #{sdatetime,jdbcType=VARCHAR}
+    where subscribeId = #{subscribeid,jdbcType=INTEGER}
+  </update>
+</mapper>

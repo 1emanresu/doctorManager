@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../../css/comm.css" />
+	</head>
+
+	<body>
+		<div class="class_main" style="overflow: hidden;">
+			<div class="top_Nav">
+				<div class="Nav_img"><img src="../../images/header_home.png" /></div>
+				<div class="Nav_content">
+					您当前的位置： <span id="adviceOrWeekly">首诊建档</span>
+				</div>
+			</div>
+			<img src="../images/zb1.png" width="90%" style="margin-left:1px ;" />
+			<img src="../images/zb2.png" width="90%" style="margin-left:0px ;position: relative;bottom: 15px;" />
+		</div>
+	</body>
+
+</html>

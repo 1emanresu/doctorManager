@@ -1,0 +1,4719 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>产科电子信息管理平台——求助问诊</title>
+		<link rel="stylesheet" href="../../common/UI_kit/css/site.min.css" />
+		<!-- 样式库需要引入的CSS -->
+		<link rel="stylesheet" href="../../common/UI_kit/bootflat/css/bootflat.min.css">
+		<link rel="stylesheet" href="../../common/UI_kit/css/bootstrap-table.css">
+		<link rel="stylesheet" href="../../common/UI_kit/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../css/bootstrap-datetimepicker.css" />
+		<link rel="stylesheet" href="css/swiper-3.4.2.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/chat.css" />
+		<link rel="stylesheet" type="text/css" href="css/firstDiagnose_yet_bookbuilding_info.css" />
+		<link rel="stylesheet" type="text/css" href="css/diagnosisTool.css" />
+		<link rel="stylesheet" href="css/prescription_history.css" />
+		<link rel="stylesheet" type="text/css" href="css/timeArrow.css" />
+		<link rel="stylesheet" type="text/css" href="css/doctorAdvice_general.css" />
+		<link rel="stylesheet" href="css/inquiry_history.css" />
+		<link rel="stylesheet" type="text/css" href="css/weeklyTemplate.css" />
+		<link rel="stylesheet" type="text/css" href="css/brushTool.css" />
+		<link rel="stylesheet" type="text/css" href="css/calendar.css" />
+		<link rel="stylesheet" type="text/css" href="../css/editAdivce.css" />
+		<link rel="stylesheet" href="css/logout.css" />
+		<!--风险模型需要的css-->
+		<link rel="stylesheet" href="../doctorAdviceManager/css/RiskModel-Util.css">
+		<link rel="stylesheet" href="../userList/function/css/changeAdvice.css" />
+		<link rel="stylesheet" href="../fastSearch/css/fastSearch.css">
+		<link rel="stylesheet" href="../fastSearch/css/page.css" />
+	</head>
+
+	<style>
+		.echart::-webkit-scrollbar {
+			width: 5px;
+			height: 5px;
+		}
+		
+		.kekeyboard_notice {
+			margin-top: 17%;
+			margin-right: -10%;
+		}
+		
+		.close2 {
+			top: -22px;
+			left: 18px;
+		}
+		/*单独控制此页医嘱弹窗的相关样式--start*/
+		/*.modal-header{
+			height: 55px!important;
+		}
+		.modal-content{
+			background-color: white!important;
+		}
+		#show_div p{
+			margin-left: 10px;
+		}
+		.form-control{
+			width:160%!important;
+		}*/
+		/*新增的底部按钮的样式*/
+		
+		.bottom-btn {
+			/*position:absolute;
+			bottom: 2%;
+			left: 50%;*/
+			/*修改位置   @author zhongjl*/
+			margin-top: 8px;
+			text-align: center;
+		}
+		
+		.bottom-btn button {
+			border: none;
+			width: 130px;
+			height: 30px;
+			background: #76b0ff;
+			border-radius: 5px;
+			color: white;
+		}
+		
+		.bottom-btn button:hover,
+		#btn_send:hover {
+			background: #3589fb!important;
+		}
+		/*单独控制此页面的风险模型样式*/
+		/*#riskChart {
+			width: 520px!important;
+			height: 250px!important;
+		}
+		
+		#modelChart {
+			width: 480px!important;
+			height: 250px!important;
+		}*/
+		
+		#risk_result .row {
+			margin-top: -80px!important;
+		}
+		
+		.nav>li>a {
+			background-color: #EAEEF1!important;
+			border: none;
+		}
+		
+		.nav>li>a:hover {
+			background-color: #eee;
+		}
+		
+		#tips {
+			margin-top: -170px!important;
+			margin-left: -210px!important;
+		}
+		
+		#sendMessageTextArea {
+			overflow: auto!important;
+		}
+		
+		.nav-tabs>li {
+			border-left: none;
+		}
+		
+		#chat_content {
+			height: 40.5vh;
+		}
+		
+		.only,
+		#prev {
+			height: 25px!important;
+			padding: 1px 1px !important;
+		}
+		
+		#onlyone img {
+			margin-right: -40px;
+			margin-top: 25px;
+		}
+		
+		.bottom-btn button {
+			margin-top: 20px!important;
+		}
+		
+		.bottom-btn button:hover {
+			border: none!important;
+		}
+		
+		.class_serious_risk1 {
+			display: none;
+			position: fixed;
+			z-index: 2;
+			background-color: white;
+			overflow-x: hidden;
+		}
+		
+		.weekly-modal-content {
+			width: 1230px!important;
+		}
+		
+		.interonly {
+			cursor: pointer;
+		}
+		
+		.interonly:hover {
+			text-decoration: none;
+			color: cornflowerblue;
+		}
+		
+		.home,
+		.end {
+			width: 60px!important;
+		}
+		
+		#ui-page4 {
+			margin-bottom: 10px;
+		}
+		
+		#checkEchart {
+			width: 365px;
+			height: 250px;
+			position: relative;
+		}
+	</style>
+
+	<body>
+		<div class="background_img">
+			<!--顶部-->
+			<div id="ContentTop">
+				<div id="logo">产科电子信息管理平台</div>
+				<div id="right_item" style="float: right;">
+					<ul>
+						<li><span></span>当前参与回话：</li>
+						<li><span></span><img src="images/u349.png" />&nbsp;&nbsp;<span style="color: white;" id="dname">李医生</span></li>
+						<li style="display: none;"><span></span><img src="images/u349.png" />&nbsp;&nbsp;<span id="name" style="color: white;" id="dname2"></span></li>
+						<li onclick="openTool('tool10')"><span></span><img src="images/u25.png" /></li>
+						<li onclick="fun()"><img src="images/u44.png" width="18px">&nbsp;&nbsp;退出问诊</li>
+					</ul>
+				</div>
+			</div>
+			<!-- 头部 导航路径-->
+			<div class="top_Nav" style="clear: both;">
+				<div class="Nav_content">
+					您当前的位置： <span class="interonly" onclick="fun()">待问诊</span><img src="../images/u2929.png" />远程问诊
+				</div>
+			</div>
+			<img src="images/woman.png" width="35px" style="position: absolute;top: 42px;left: 20px;">
+			<!--时间戳-->
+			<div class="top">
+				<div id="arrows">
+					<div style="position: relative;top:-6%;left: 0%;width: 70px;">
+						<button id="btn2" class="btn-many"><img src="../Remotelnterrogation/images/u5241.png" width="100%"/></button>
+						<div class="note1 first-span general-color">孕6-13周</div>
+					</div>
+					<div style="left: 0%;top:-93%;position: relative;">
+						<button id="btn3" class="btn-many"><img src="../Remotelnterrogation/images/u5241.png" width="100%"/></button>
+						<div class="note2 general-color">孕14-20周</div>
+					</div>
+					<div style="left: 0%;top:-180%;position: relative;">
+						<button id="btn4" class="btn-many"><img src="../Remotelnterrogation/images/u5241.png" width="100%"/></button>
+						<div class="note3 general-color">孕20-24周</div>
+					</div>
+					<div style="top:-265%;position: relative;">
+						<button id="btn5" class="btn-many"><img src="../Remotelnterrogation/images/u5241.png" width="100%"/></button>
+						<div class="note4 general-color">孕24-28周</div>
+					</div>
+					<div style="top:-350%;position: relative;">
+						<button id="btn6" class="btn-many"><img src="../Remotelnterrogation/images/u5241.png" width="100%"/></button>
+						<div class="note5 general-color">孕28-32周</div>
+					</div>
+					<div style="top:-437%;position: relative;">
+						<button id="btn7" class="btn-many"><img src="../Remotelnterrogation/images/u5241.png" width="100%"/></button>
+						<div class="note6 general-color">孕33-36周</div>
+					</div>
+					<div style="top:-522%;position: relative;">
+						<button id="btn8" class="btn-many"><img src="../Remotelnterrogation/images/u5241.png" width="100%"/></button>
+						<div class="note7 general-color">孕37-41周</div>
+					</div>
+
+					<!--<button id="btn8"><img src="../Remotelnterrogation/images/u524.png" width="100%"/></button>-->
+					<div style="top:-612%;position: relative;">
+						<button id="btn9" style="margin-right: 5px;">
+						<img src="images/Hourglass.png" width="100%"/>		
+						</button>
+						<button id="btn10">
+							<div id="timer" style="margin-left: 10px!important;">
+								<span id="minute">9</span>:<span id="seconds">59</span>
+							</div>
+						</button>
+					</div>
+				</div>
+			</div>
+
+			<div id="content">
+				<div id="left_content">
+					<div id="left_top">
+						<div class="left_top">产科信息</div>
+						<div class="left_title" style="background: #F2F2F2;">个人基本信息</div>
+						<div class="left_TopImg">
+							<a onclick="showBaseMsg()"><img src="images/GR.png" alt="" width="25px" style="margin:11px;margin-left:15px ; float: left;" />
+								<p style="float: left;margin-top: 18px;color: #669BDB;cursor: pointer;position: relative;top: -5px;">个人基本信息</p>
+							</a>
+						</div>
+
+					</div>
+					<div class="left_middle">
+						<div class="left_title" style="background: #F2F2F2;">
+							院检报告
+						</div>
+						<div class="tb" id="tb1" onclick="showOrHide(1)" style="cursor: pointer;background: whitesmoke;"> 化验科
+							<img src="images/ri.png" width="6px" class="ri" id="ri1" />
+						</div>
+
+						<div class="nr" id="nr1">
+							<div class="check_project check1">
+								<div><img id="blood_rout" src="images/xuechanggui.png" /></div>
+								<div style="margin-left: 12px;">
+									<span>血常规</span>
+									<span class="nr_tips">&nbsp;</span>
+								</div>
+							</div>
+							<div class="check_project check2">
+								<div><img src="images/niaochanggui.png" /></div>
+								<div style=" margin-left: 12px;">
+									尿常规
+									<span class="nr_tips">&nbsp;</span>
+								</div>
+							</div>
+							<div class="check_project check6">
+								<div><img src="images/16.png" /></div>
+								<div style="margin-left: 12px;">
+									空腹血糖
+									<span class="nr_tips">&nbsp;</span>
+								</div>
+							</div>
+							<div class="check_project check7">
+								<div><img src="images/xuexing.png" /></div>
+								<div style="margin-left: 12px;">
+									血型
+									<span class="nr_tips">&nbsp;</span>
+								</div>
+							</div>
+							<div class="check_project check5">
+								<div><img src="images/u29120.png" /></div>
+								<div style="margin-left: 12px;">
+									肝肾功能
+									<span class="nr_tips">&nbsp;</span>
+								</div>
+							</div>
+							<div class="check_project check8">
+								<div><img src="images/u29122.png" /></div>
+								<div style="margin-left: 12px;">
+									HBsAg
+									<span class="nr_tips">&nbsp;</span>
+								</div>
+							</div>
+							<div class="check_project check9">
+								<div><img src="images/u29126.png" /></div>
+								<div style="margin-left: 12px;">
+									梅毒螺旋体
+									<span class="nr_tips">&nbsp;</span>
+								</div>
+							</div>
+							<div class="check_project check10">
+								<div><img src="images/gdm.png" /></div>
+								<div style="margin-left: 12px;">
+									HIV报告
+									<span class="nr_tips">&nbsp;</span>
+								</div>
+							</div>
+							<div class="check_project check11">
+								<div><img src="images/u260.png" /></div>
+								<div style=" margin-left: 12px;">
+									宫颈细胞学检查
+									<span class="nr_tips">&nbsp;</span>
+								</div>
+							</div>
+							<div class="check_project check3">
+								<div><img src="images/8.png" /></div>
+								<div style=" margin-left: 12px;">
+									优生五项
+									<span class="nr_tips">&nbsp;</span>
+								</div>
+							</div>
+							<div class="check_project check4">
+								<div><img src="images/u29325.png" /></div>
+								<div style="margin-left: 12px;">
+									输血八项
+									<span class="nr_tips">&nbsp;</span>
+								</div>
+							</div>
+						</div>
+						<div class="tb" id="tb2" onclick="showOrHide(2)"> 影像科
+							<img src="images/ri.png" width="6px" class="ri" id="ri2" />
+						</div>
+						<div class="nr" id="nr2">
+							<div class="check_project  check12">
+								<div><img src="images/15.png" /></div>
+								<div style="margin-left: 12px;">
+									心电
+									<span class="nr_tips">&nbsp;</span>
+								</div>
+							</div>
+							<div class="check_project check13">
+								<div><img src="images/7.png" /></div>
+								<div style="margin-left: 12px;">三维彩超
+									<span class="nr_tips">&nbsp;</span>
+								</div>
+							</div>
+							<div class="check_project check13">
+								<div><img src="images/11.png" /></div>
+								<div style="margin-left: 12px;">四维彩超
+									<span class="nr_tips">&nbsp;</span>
+								</div>
+							</div>
+							<div class="check_project  check14">
+								<div><img src="images/2.png" /></div>
+								<div style="margin-left: 12px;">NST检查
+									<span class="nr_tips">&nbsp;</span>
+								</div>
+							</div>
+						</div>
+						<div class="tb" id="tb3" onclick="showOrHide(3)" style="cursor: pointer;">
+							基因检查
+							<img src="images/ri.png" width="6px" class="ri" id="ri3" />
+						</div>
+						<div class="nr" id="nr3">
+							<div class="check_project check15">
+								<div><img src="images/6.png" /></div>
+								<div style="margin-left: 12px;">唐筛
+									<span class="nr_tips">&nbsp;</span>
+								</div>
+							</div>
+							<div class="check_project check16">
+								<div><img src="images/u29126.png" /></div>
+								<div style="margin-left: 12px;">NIPT
+									<span class="nr_tips">&nbsp;</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="content_middle" style="position: relative;">
+					<div id="chatBox">
+						<div id="chat_top">
+							<div class="top_name graName"></div>
+							<div class="top_img">
+								<img id="video_btn" src="images/video.png" class="chat_img" />
+								<img src="images/dianhua.png" />
+								<img src="images/jia.png" />
+							</div>
+						</div>
+						<div id="chat_content" ondrop="drop(event)" ondragover="allowDrop(event)">
+
+						</div>
+						<div id="chat_tool">
+							<div onclick="startRecording(this)" style="width: 35px;overflow: hidden;float: left;">
+								<img src="images/yy.png" style="cursor:pointer;" />
+							</div>
+
+							<button onclick="stopRecording(this);" id="send" style="display: none;position: relative;top: 7px;">stop</button>
+
+							<div id="fileClick" style="width: 35px;overflow: hidden;float: left;cursor:pointer;">
+								<img src="images/yy.png" style="position: relative;right: 33px;" />
+							</div>
+
+							<form id="uploadPhoto" style="float: left;margin-top: 4px;margin-left: 10px;">
+								<input type="file" name="uimg" id="uimg" onchange="uploadPhoto()" style="opacity: 0;z-index: -1;position: relative;width: 33px;overflow: hidden;left: -45px;" />
+							</form>
+							<!--<div class="search">
+								<div style="color: gray;cursor: default;">医嘱搜索▼</div>
+								<div>
+									<a href="#myAdviceModal" data-toggle="modal" keyword="通用" id="commonAdvice">通用医嘱</a>
+								</div>
+								<div>
+									<a href="#myAdviceModal" data-toggle="modal" keyword="给药" id="medicineClassify">给药</a>
+								</div>
+								<div>
+									<a class="classify" href="#myAdviceModal" data-toggle="modal" keyword="妊娠高血压">妊娠高血压医嘱</a>
+								</div>
+								<div>
+									<a class="classify" href="#myAdviceModal" data-toggle="modal" keyword="妊娠糖尿病">妊娠糖尿病医嘱</a>
+								</div>
+								<div>
+									<a class="classify" href="#myAdviceModal" data-toggle="modal" keyword="合并贫血">妊娠合并贫血医嘱</a>
+								</div>
+								<div onclick="queryAdvice(6)">妊娠肥胖医嘱</div>
+							</div>-->
+						</div>
+						<div id="input_content_box">
+							<!--左侧-->
+							<div class="inputs" id="inputs" style="height: 200px;background: white;border: NONE;border-bottom-left-radius: 5px;">
+								<!--工具栏-->
+								<div id="tools_bar" style="background: transparent;margin-top: -35px;margin-left: 70px;">
+									<img src="../images/ask.png" alt="" width="20px" />
+									<img src="../images/adviceManager.png" alt="" width="20px" />
+									<img src="../images/wf_fonts.png" alt="" width="20px" />
+									<img src="../images/ask1.png" alt="" id="gravida_ask_img" width="20px" />
+									<img src="../images/whatshort.png" alt="" id="slide_img1" style="float: right;" width="20px" />
+								</div>
+								<!--袋鼠爱问_消息框 1-->
+								<div class="div_container">
+									<div class="class_serious_risk1 div_border kangaroo_ask_div">
+
+										<div class="changeMari">
+											<img src="../images/ask.png" alt="" />
+											<span>袋鼠爱问</span>
+										</div>
+										<div id="img_firstDiagnos_serious_close" class="img_close2">
+											<img src="../images/guanbi.png" />
+										</div>
+										<div id="kangaroo_ask">
+											<div class="row">
+												<div class="col-md-7 col-md-offset-1">
+													<span>关键词：</span>
+													<input type="text" class="form-control" id="word_search" placeholder="请输入词条，例如：红细胞" />
+												</div>
+												<div class="col-md-4">
+													<span>&nbsp;</span>
+													<button type="button" id="btn_search" class="btn btn-primary btn-block" style="margin-top: 0px;height: 34px!important;">检索</button>
+												</div>
+											</div>
+											<div class="row"> </div>
+											<!--检索信息的表格  词条相关的内容  词条相关资料文件-->
+											<div class="panel-body info_show_container" id="sun_container">
+
+											</div>
+										</div>
+									</div>
+								</div>
+								<!--消息框2-->
+								<div class="div_container" style="overflow-x: hidden;">
+									<div class="class_serious_risk1 div_border kangaroo_ask_div">
+										<div class="changeMari">
+											<img src="../images/adviceManager.png" alt="" />
+											<span>管理</span>
+										</div>
+										<div id="img_firstDiagnos_serious_close" class="img_close2">
+											<img src="../images/guanbi.png" />
+										</div>
+										<div>
+											<!--风险模型-->
+											<div class="main_cont">
+												<div class="row">
+													<div id="gravidaList-tips"></div>
+													<table id="gravidaList">
+
+													</table>
+												</div>
+
+												<div class="div_RiskModel">
+													<!--风险模型雷达图-->
+													<div id="div-modelChart2">
+
+													</div>
+
+													<!--风险模型结果信息-->
+													<div id="risk_result2">
+
+													</div>
+
+												</div>
+
+											</div>
+										</div>
+									</div>
+								</div>
+								<!--消息框.3-->
+								<div class="div_container">
+									<div class="class_serious_risk1 div_border message-div">
+
+										<div class="changeMari">
+											<img src="../images/wf_fonts.png" alt="" />
+											<span>快捷建提示</span>
+										</div>
+										<div id="img_firstDiagnos_serious_close" class="img_close2">
+											<img src="../images/guanbi.png" />
+										</div>
+										<div class="toolbar_input_tips">
+											快捷键说明：<br /> Alt+/ 键：提示信息<br /> Alt+s 键：切换关键词长度<br /> 空格键：选中信息条
+											<br /> 词条例子：
+											<br /> 失眠/sm：失眠,避免含咖啡因饮料...
+											<br /> 心率加快/xljk：心率加快,避免... <br /> 腹泻/fx： 腹泻,易引起脱水...<br /> 胸闷气短/xmqd：胸闷气短,侧睡... <br /> 血红蛋白/xhdb： 血红蛋白低,定期...<br /> 血红蛋白/xhdb： 血红蛋白高,注意...<br /> 白细胞/bxb：白细胞偏高,注意...
+											<br /> 红枣/hz：红枣,补充维生素...
+											<br /> 呕吐/ot：呕吐,少食多餐... <br />
+										</div>
+									</div>
+								</div>
+								<!--消息框.4-->
+								<div class="div_container">
+									<div class="class_serious_risk1 div_border message-div">
+										<!--.4.1.1.左侧标题-->
+										<div class="changeMari">
+											<img src="../images/ask1.png" alt="" />
+											<span>孕妇提问</span>
+										</div>
+										<!--.4.1.2.右侧图片-->
+										<div id="img_firstDiagnos_serious_close" class="img_close2">
+											<img src="../images/guanbi.png" />
+										</div>
+										<div id="gravida_ask_div">
+											<div>
+												<p>2017年11月</p>
+												<p>豆腐干大概对方是个顺丰大概士大夫</p>
+												<p>地方士大夫大师傅似的
+													<a href="" style="color: #0088CC;">查看医嘱</a>
+												</p>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<!--<div id="sendMessageTextArea" contenteditable="true" ondrop="drop(event)" ondragover="allowDrop(event)"></div>-->
+								<div class="sendMessageTextArea" id="sendMessageTextArea" contenteditable="true" style="width: 100%;height: 165px;"></div>
+								<div class="input-img">
+									<div style="margin-right: 100px;">
+										<img src="../userList/function/images/add.png" width="25px" />
+										<a href="#key_value_insert_modal" id="insert_btn">保存至我的医嘱</a>
+									</div>
+									<div style="margin-right: -10px;margin-top: 3px;">
+										<button onclick="sendMessage(1,0)" style="width: 80px;height:30px; float: right;" type="button" class="btn btn-primary btn-block btn-send" id="btn_send">发送</button>
+									</div>
+								</div>
+							</div>
+
+							<!--医嘱输入框部分结束-->
+							<!-- 添加键值对模态框(2/2) begin -->
+							<div class="modal fade" id="key_value_insert_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+								<div class="modal-dialog" role="document">
+									<div class="modal-content modal-body4">
+										<div class="modal-header">
+											<button type="button" class="close" id="onlyone" data-dismiss="modal" aria-label="Close" style="background: transparent;"><img src="../images/guanbi.png"/></button>
+											<p class="modal-title" id="myModalLabel">添加自定义医嘱</p>
+										</div>
+										<div class="modal-body">
+											<div class="row">
+												<div class="col-md-9"><input id="key_value_input" class="form-control" /></div>
+												<div class="col-md-3"><button id="ok_btn" type="button" class="btn btn-primary form-control" style="margin-top: 0px;">确定</button></div>
+											</div>
+
+											<!-- 数据展示div-->
+											<div id="key_value_show" class="row show_div" contenteditable="true" style="border: 1px solid #ccc;height: 385px;"></div>
+
+										</div>
+										<div class="modal-footer" style="padding: 5px!important;">
+											<p style="color:#337AB7;">请你输入自定义的关键字</p>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<!--右侧-->
+							<div class="inputs-right" id="inputs-right" style="height: 234px;background: white;margin-top: -34px;border-left: 1px solid #DDDDDD;border-bottom-right-radius: 5px;">
+								<div class="row" style="margin-bottom: -7px;width: 93%;margin-left: 4%;">
+									<div class="col-md-9" style="margin: 0;padding: 0;"><input id="search_box" class="form-control" style="height: 25px;" /></div>
+									<div class="col-md-3" style="margin: 0;padding: 0;"><button id="search" type="button" class="btn btn-primary form-control" style="margin-top: 0px;height: 25px;padding: 1px 1px;border-radius: 2px;">搜&nbsp;&nbsp;索</button></div>
+								</div>
+								<table class="advice-table1" id="advice-table1" style="margin-bottom: -2px;margin-left: 23px;">
+									<tr>
+										<td class="advice" keyword='pregnancysymptom'>症状</td>
+										<td class='advice' keyword='food'>饮食</td>
+										<td class="advice" keyword='medicine'>用药</td>
+										<td class='advice' keyword='exercise'>运动</td>
+										<td class="advice" keyword='disease'>疾病</td>
+										<td class="my_advice">我的医嘱</td>
+									</tr>
+								</table>
+								<div class="right-span" id="right-span" contenteditable="true">
+
+								</div>
+								<!-- 分页显示区域-->
+								<div id="page" class="row">
+									<div class="col-md-8" style="color: #0099FF;margin-top: -10px;">双击指定医嘱可快速添加</div>
+									<div class="col-md-2">
+										<button class="btn btn-default" id="prev" style="margin-left: -20px;margin-top: -12px;height: 25px;width: 65px;background: white!important;color: #666666;border: 1px solid #666666;border-radius: 2px;">上一页</button>
+									</div>
+
+									<div class="col-md-2">
+										<button class="btn btn-primary only" id="next" style="margin-top: -12px;height：25px;width: 65px;border-radius: 2px;">下一页</button>
+									</div>
+								</div>
+							</div>
+
+						</div>
+						<div class="row">
+							<div class="col-md-5" id="tips" style="background: white;">
+							</div>
+						</div>
+
+					</div>
+					<div class="bottom-btn" style="clear: both;">
+						<button id="nextStep" onclick="confirmReport()">保存，下一步</button>
+						<button id="" onclick="">保存至我的病例库</button>
+					</div>
+
+				</div>
+				<!--end-->
+
+				<div id="toolContent">
+					<div id="tool_item">
+						<div class="tool" id="tool2" style="display: block;">
+							<div class="left_title">自觉症状</div>
+							<div class="tool_content" style="padding-left: 40px;">
+								<!--孕1-12周 自觉症状-->
+								<div title="拖动发送孕1-12周 自觉症状" id="problem_1_12" draggable="true" ondragstart="dragToSend(event)" style="cursor: pointer;">
+									<img src="images/ZJZZ.png" alt="" width="25px" style="margin-right: 5px;" />孕1-12周 自觉症状
+									<div class="problem">
+										<div class="problem_html">
+											<div>您好，您已开始进行孕1-12周自己症状回答，共计4个小问题，预计花费1分钟完成，现在开始咯~</div>
+											<div class="problem_box">
+												Q1：您是否有阴道流血的症状发生？
+												<br />
+												<div class="problem_but">
+													<button onclick="problemBut('有阴道流血的症状发生',this)">有</button>
+													<button onclick="problemBut('没有阴道流血的症状发生',this)">没有</button>
+												</div>
+											</div>
+											<div class="problem_box">Q2：您是否有腹痛的症状发生？
+												<br />
+												<div class="problem_but">
+													<button onclick="problemBut('有腹痛的症状发生',this)">有</button>
+													<button onclick="problemBut('没有腹痛的症状发生',this)">没有</button>
+												</div>
+											</div>
+											<div class="problem_box">
+												Q3：您是否有发热的症状发生？
+												<br />
+												<div class="problem_but">
+													<button onclick="problemBut('有发热的症状发生',this)">有</button>
+													<button onclick="problemBut('没有发热的症状发生',this)">没有</button>
+												</div>
+											</div>
+											<div class="problem_box">Q4：您是否有剧烈呕吐，不能进食的症状发生？
+												<br />
+												<div class="problem_but">
+													<button onclick="problemBut('有剧烈呕吐，不能进食的症状发生',this)">有</button>
+													<button onclick="problemBut('没有剧烈呕吐，不能进食的症状发生',this)">没有</button>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!--孕12-28周 自觉症状-->
+								<div title="拖动发送孕12-28周 自觉症状" id="problem_12_18" draggable="true" ondragstart="dragToSend(event)" style="cursor: pointer;">
+									<img src="images/ZJZZ.png" alt="" width="25px" style="margin-right: 5px;" />孕12-28周 自觉症状
+									<div class="problem">
+										<div class="problem_html">
+											<div>您好，您已开始进行孕12-28周自己症状回答，共计4个小问题，预计花费2分钟完成，现在开始咯~</div>
+											<div class="problem_box">
+												Q1：您是否有阴道流血的症状发生？
+												<br />
+												<div class="problem_but">
+													<button onclick="problemBut('有阴道流血的症状发生',this)">有</button>
+													<button onclick="problemBut('没有阴道流血的症状发生',this)">没有</button>
+												</div>
+											</div>
+											<div class="problem_box">
+												Q2：您是否有腹痛的症状发生？
+												<br />
+												<div class="problem_but">
+													<button onclick="problemBut('有腹痛的症状发生',this)">有</button>
+													<button onclick="problemBut('没有腹痛的症状发生',this)">没有</button>
+												</div>
+											</div>
+											<div class="problem_box">
+												Q3：您是否有发热的症状发生？
+												<br />
+												<div class="problem_but">
+													<button onclick="problemBut('有发热的症状发生',this)">有</button>
+													<button onclick="problemBut('没有发热的症状发生',this)">没有</button>
+												</div>
+											</div>
+											<div class="problem_box">
+												Q4：您是否有心慌、气短、夜间不能平卧的症状 发生？
+												<br />
+												<div class="problem_but">
+													<button onclick="problemBut('有心慌、气短、夜间不能平卧的症状 发生',this)">有</button>
+													<button onclick="problemBut('没有心慌、气短、夜间不能平卧的症状 发生',this)">没有</button>
+												</div>
+											</div>
+											<div class="problem_box">
+												Q5：您是否有恶心、呕吐的症状发生？
+												<br />
+												<div class="problem_but">
+													<button onclick="problemBut('有恶心、呕吐的症状发生',this)">有</button>
+													<button onclick="problemBut('没有恶心、呕吐的症状发生',this)">没有</button>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="problem">
+										<div class="problem_html">
+											<div>
+												<div class="progress_pater">
+													<div class="progress_boy" style="width: 57%;"></div>
+												</div>您已完成5小题，只剩4小题了~</div>
+											<div class="problem_box">
+												Q6：您是否有头晕、头痛、视物不清的症状发生？
+												<br />
+												<div class="problem_but">
+													<button onclick="problemBut('有头晕、头痛、视物不清的症状发生',this)">有</button>
+													<button onclick="problemBut('没有头晕、头痛、视物不清的症状发生',this)">没有</button>
+												</div>
+											</div>
+											<div class="problem_box">
+												Q7：您是否有心慌、憋气的症状发生？
+												<br />
+												<div class="problem_but">
+													<button onclick="problemBut('有心慌、憋气的症状发生',this)">有</button>
+													<button onclick="problemBut('没有心慌、憋气的症状发生',this)">没有</button>
+												</div>
+											</div>
+											<div class="problem_box">
+												Q8：您的血压是否≥140/90mmHg？
+												<br />
+												<div class="problem_but">
+													<button onclick="problemBut('血压≥140/90mmHg',this)">有</button>
+													<button onclick="problemBut('血压没有≥140/90mmHg',this)">没有</button>
+												</div>
+											</div>
+											<div class="problem_box">
+												Q9：您是否短时间体重增加过多？
+												<br />
+												<div class="problem_but">
+													<button onclick="problemBut('有短时间体重增加过多',this)">有</button>
+													<button onclick="problemBut('没有短时间体重增加过多',this)">没有</button>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div title="拖动发送孕28-40周 自觉症状" id="problem_28-40" draggable="true" ondragstart="dragToSend(event)" style="cursor: pointer;">
+									<img src="images/ZJZZ.png" alt="" width="25px" style="margin-right: 5px;" />孕28-40周 自觉症状
+									<div class="problem">
+										<div class="problem_html">
+
+											<div>您好，您已开始进行孕28-40周自己症状回答，共计9个小问题，预计花费2分钟完成，现在开始咯~</div>
+											<div class="problem_box">
+												Q1：您是否有阴道流血的症状发生？
+												<br />
+												<div class="problem_but">
+													<button onclick="problemBut('有阴道流血的症状发生',this)">有</button>
+													<button onclick="problemBut('没有阴道流血的症状发生',this)">没有</button>
+												</div>
+											</div>
+											<div class="problem_box">
+												Q2：您是否有腹痛的症状发生？
+												<br />
+												<div class="problem_but">
+													<button onclick="problemBut('有腹痛的症状发生',this)">有</button>
+													<button onclick="problemBut('没有腹痛的症状发生',this)">没有</button>
+												</div>
+											</div>
+											<div class="problem_box">
+												Q3：您是否有心慌、气短、夜间不能平卧的症状 发生？
+												<br />
+												<div class="problem_but">
+													<button onclick="problemBut('有心慌、气短、夜间不能平卧的症状 发生',this)">有</button>
+													<button onclick="problemBut('没有心慌、气短、夜间不能平卧的症状 发生',this)">没有</button>
+												</div>
+											</div>
+											<div class="problem_box">
+												Q4：您是否有头晕、头痛、视物不清的症状发生？
+												<br />
+												<div class="problem_but">
+													<button onclick="problemBut('有头晕、头痛、视物不清的症状发生',this)">有</button>
+													<button onclick="problemBut('没有头晕、头痛、视物不清的症状发生',this)">没有</button>
+												</div>
+											</div>
+											<div class="problem_box">
+												Q5：您的血压是否≥140/90mmHg？
+												<br />
+												<div class="problem_but">
+													<button onclick="problemBut('血压≥140/90mmHg',this)">有</button>
+													<button onclick="problemBut('血压否≥140/90mmHg',this)">没有</button>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="problem">
+										<div class="problem_html">
+											<div>
+												<div class="progress_pater">
+													<div class="progress_boy" style="width: 57%;"></div>
+												</div>您已完成5小题，只剩4小题了~</div>
+											<div class="problem_box">
+												Q6：您是否有阴道流水的症状发生？
+												<br />
+												<div class="problem_but">
+													<button onclick="problemBut('有阴道流水的症状发生',this)">有</button>
+													<button onclick="problemBut('没有阴道流水的症状发生',this)">没有</button>
+												</div>
+											</div>
+											<div class="problem_box">
+												Q7：您是否有浮肿的症状发生？
+												<br />
+												<div class="problem_but">
+													<button onclick="problemBut('有浮肿的症状发生',this)">有</button>
+													<button onclick="problemBut('没有浮肿的症状发生',this)">没有</button>
+												</div>
+											</div>
+											<div class="problem_box">
+												Q8：您是否有胎动异常（胎动减少或无）的症状
+												<br />
+												<div class="problem_but">
+													<button onclick="problemBut('有胎动异常（胎动减少或无）的症状',this)">有</button>
+													<button onclick="problemBut('没有胎动异常（胎动减少或无）的症状',this)">没有</button>
+												</div>
+											</div>
+											<div class="problem_box">
+												Q9：您的孕周是否≥41周？
+												<br />
+												<div class="problem_but">
+													<button onclick="problemBut('孕周是≥41周',this)">是</button>
+													<button onclick="problemBut('孕周否≥41周',this)">否</button>
+												</div>
+											</div>
+										</div>
+									</div>
+
+								</div>
+
+								<div title="拖动发送高危患者 自觉症状" id="problem_h" draggable="true" ondragstart="dragToSend(event)" style="cursor: pointer;">
+									<img src="images/ZJZZ.png" alt="" width="25px" style="margin-right: 5px;" />高危患者 自觉症状
+									<div class="problem">
+										<div class="problem_html">
+											<div>您好，您已开始进行高危自觉症状回答，共计18个小问题，预计花费3分钟完成，现在开始咯~</div>
+											<div class="problem_box">
+												Q1：与上周相比，您的体重是否有明细下降？
+												<br />
+												<div class="problem_but_4k">
+													<button onclick="problemBut('体重没有下降',this)">没有下降</button>
+													<button onclick="problemBut('体重下降0-0.5kg',this)">体重下降0-0.5kg</button>
+													<button onclick="problemBut('体重下降0.5-1kg',this)">体重下降0.5-1kg</button>
+													<button onclick="problemBut('体重下降>1kg',this)">体重下降>1kg</button>
+												</div>
+											</div>
+											<div class="problem_box">
+												Q2：您是否有恶心呕吐的症状出现？
+												<br />
+												<div class="problem_but_4k">
+													<button onclick="problemBut('没有恶心呕吐的症状出现',this)">没有</button>
+													<button onclick="problemBut('有时出现恶心呕吐的症状',this)">有时出现</button>
+													<button onclick="problemBut('经常出现恶心呕吐的症状',this)">经常出现</button>
+													<button onclick="problemBut('持续出现恶心呕吐的症状',this)">持续出现</button>
+												</div>
+											</div>
+											<div class="problem_box">
+												Q3：您是否有头痛的症状出现？
+												<br />
+												<div class="problem_but_4k">
+													<button onclick="problemBut('没有头痛的症状出现',this)">没有</button>
+													<button onclick="problemBut('有时头痛',this)">有时头痛</button>
+													<button onclick="problemBut('经常头痛',this)">经常头痛</button>
+													<button onclick="problemBut('持续头痛',this)">持续头痛</button>
+												</div>
+											</div>
+											<div class="problem_box">
+												Q4：您是否有乏力的症状出现？
+												<br />
+												<div class="problem_but_4k">
+													<button onclick="problemBut('没有乏力的症状出现',this)">没有</button>
+													<button onclick="problemBut('有时没力气',this)">有时没力气</button>
+													<button onclick="problemBut('经常没力气',this)">经常没力气</button>
+													<button onclick="problemBut('一直没力气',this)">一直没力气</button>
+												</div>
+											</div>
+											<div class="problem_box">
+												Q5：您是否有呼吸困难的症状出现？
+												<br />
+												<div class="problem_but_4k">
+													<button onclick="problemBut('没有呼吸困难的症状出现',this)">没有</button>
+													<button onclick="problemBut('有时呼吸困难',this)">有时</button>
+													<button onclick="problemBut('经常呼吸困难',this)">经常</button>
+													<button onclick="problemBut('持续呼吸困难',this)">持续</button>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="problem">
+										<div class="problem_html">
+											<div>
+												<div class="progress_pater">
+													<div class="progress_boy"></div>
+												</div>您已完成5小题，还有13小题哟~</div>
+											<div class="problem_box">
+												Q6：您是否有眼花、视力模糊的症状出现？
+												<br />
+												<div class="problem_but_4k">
+													<button onclick="problemBut('没眼花、视力模糊的症状出现',this)">没有</button>
+													<button onclick="problemBut('偶尔有眼花、视力模糊的症状出现',this)">偶尔有</button>
+													<button onclick="problemBut('经常有眼花、视力模糊的症状出现',this)">经常有</button>
+													<button onclick="problemBut('一直有眼花、视力模糊的症状出现',this)">一直有</button>
+												</div>
+											</div>
+											<div class="problem_box">
+												Q7：您是否有腹泻的症状出现？
+												<br />
+												<div class="problem_but_4k">
+													<button onclick="problemBut('没有腹泻的症状出现',this)">没有</button>
+													<button onclick="problemBut('偶尔有腹泻的症状出现',this)">偶尔有</button>
+													<button onclick="problemBut('经常有腹泻的症状出现',this)">经常有</button>
+													<button onclick="problemBut('一直有腹泻的症状出现',this)">一直有</button>
+												</div>
+											</div>
+											<div class="problem_box">
+												Q8：您是否有多饮（经常口渴，大量喝水）的症状出现？
+												<br />
+												<div class="problem_but_4k">
+													<button onclick="problemBut('没有多饮（经常口渴，大量喝水）的症状出现',this)">没有</button>
+													<button onclick="problemBut('偶尔有多饮（经常口渴，大量喝水）的症状出现',this)">偶尔有</button>
+													<button onclick="problemBut('经常有多饮（经常口渴，大量喝水）的症状出现',this)">经常有</button>
+													<button onclick="problemBut('一直有多饮（经常口渴，大量喝水）的症状出现',this)">一直有</button>
+												</div>
+											</div>
+											<div class="problem_box">
+												Q9：您是否有咳痰的症状出现？
+												<br />
+												<div class="problem_but_4k">
+													<button onclick="problemBut('没有咳痰的症状出现',this)">没有</button>
+													<button onclick="problemBut('偶尔有咳痰的症状出现',this)">偶尔有</button>
+													<button onclick="problemBut('经常有咳痰的症状出现',this)">经常有</button>
+													<button onclick="problemBut('一直有咳痰的症状出现',this)">一直有</button>
+												</div>
+											</div>
+											<div class="problem_box">
+												Q10：您是否有尿痛的症状出现？
+												<br />
+												<div class="problem_but_4k">
+													<button onclick="problemBut('没有尿痛的症状出现',this)">没有</button>
+													<button onclick="problemBut('偶尔有尿痛的症状出现',this)">偶尔有</button>
+													<button onclick="problemBut('经常有尿痛的症状出现',this)">经常有</button>
+													<button onclick="problemBut('一直有尿痛的症状出现',this)">一直有</button>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="problem">
+										<div class="problem_html">
+											<div>
+												<div class="progress_pater">
+													<div class="progress_boy" style="width: 55%;"></div>
+												</div>您已完成10小题，还有8小题哟~</div>
+											<div class="problem_box">
+												Q11：您是否有胸闷（呼吸费力或气不够用）的症状出现？
+												<br />
+												<div class="problem_but_4k">
+													<button onclick="problemBut('没有胸闷（呼吸费力或气不够用）的症状出现',this)">没有</button>
+													<button onclick="problemBut('偶尔有胸闷（呼吸费力或气不够用）的症状出现',this)">偶尔有</button>
+													<button onclick="problemBut('经常有胸闷（呼吸费力或气不够用）的症状出现',this)">经常有</button>
+													<button onclick="problemBut('一直有胸闷（呼吸费力或气不够用）的症状出现',this)">一直有</button>
+												</div>
+											</div>
+											<div class="problem_box">
+												Q12：您是否有头昏（头脑昏昏沉沉，头晕，脑子不清醒，丢三落四）的症状出现？
+												<br />
+												<div class="problem_but_4k">
+													<button onclick="problemBut('没有头昏（头脑昏昏沉沉，头晕，脑子不清醒，丢三落四）的症状出现',this)">没有</button>
+													<button onclick="problemBut('偶尔有头昏（头脑昏昏沉沉，头晕，脑子不清醒，丢三落四）的症状出现',this)">偶尔有</button>
+													<button onclick="problemBut('经常有头昏（头脑昏昏沉沉，头晕，脑子不清醒，丢三落四）的症状出现',this)">经常有</button>
+													<button onclick="problemBut('一直有头昏（头脑昏昏沉沉，头晕，脑子不清醒，丢三落四）的症状出现',this)">一直有</button>
+												</div>
+											</div>
+											<div class="problem_box">
+												Q13：您是否有胸痛的症状出现？
+												<br />
+												<div class="problem_but_4k">
+													<button onclick="problemBut('没有胸痛的症状出现',this)">没有</button>
+													<button onclick="problemBut('偶尔有胸痛的症状出现',this)">偶尔有</button>
+													<button onclick="problemBut('经常有胸痛的症状出现',this)">经常有</button>
+													<button onclick="problemBut('一直有胸痛的症状出现',this)">一直有</button>
+												</div>
+											</div>
+											<div class="problem_box">
+												Q14：您是否有心悸（自觉心跳快而强，并伴有心前区不适感）的症状出现？
+												<br />
+												<div class="problem_but_4k">
+													<button onclick="problemBut('没有心悸（自觉心跳快而强，并伴有心前区不适感）的症状出现',this)">没有</button>
+													<button onclick="problemBut('偶尔有心悸（自觉心跳快而强，并伴有心前区不适感）的症状出现',this)">偶尔有</button>
+													<button onclick="problemBut('经常有心悸（自觉心跳快而强，并伴有心前区不适感）的症状出现',this)">经常有</button>
+													<button onclick="problemBut('一直有心悸（自觉心跳快而强，并伴有心前区不适感）的症状出现',this)">一直有</button>
+												</div>
+											</div>
+											<div class="problem_box">
+												Q15：您是否有关节肿痛的症状出现？
+												<br />
+												<div class="problem_but_4k">
+													<button onclick="problemBut('没有关节肿痛的症状出现',this)">没有</button>
+													<button onclick="problemBut('偶尔有关节肿痛的症状出现',this)">偶尔有</button>
+													<button onclick="problemBut('经常有关节肿痛的症状出现',this)">经常有</button>
+													<button onclick="problemBut('一直有关节肿痛的症状出现',this)">一直有</button>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="problem">
+										<div class="problem_html">
+											<div>
+												<div class="progress_pater">
+													<div class="progress_boy" style="width: 83%;"></div>
+												</div>您已完成15小题，只剩3小题了~</div>
+											<div class="problem_box">
+												Q16：您是否有四肢麻木的症状出现？
+												<br />
+												<div class="problem_but_4k">
+													<button onclick="problemBut('没有四肢麻木的症状出现',this)">没有</button>
+													<button onclick="problemBut('偶尔有四肢麻木的症状出现',this)">偶尔有</button>
+													<button onclick="problemBut('经常有四肢麻木的症状出现',this)">经常有</button>
+													<button onclick="problemBut('一直有四肢麻木的症状出现',this)">一直有</button>
+												</div>
+											</div>
+											<div class="problem_box">
+												Q17：您是否有耳鸣的症状出现？
+												<br />
+												<div class="problem_but_4k">
+													<button onclick="problemBut('没有耳鸣的症状出现',this)">没有</button>
+													<button onclick="problemBut('偶尔有耳鸣的症状出现',this)">偶尔有</button>
+													<button onclick="problemBut('经常有耳鸣的症状出现',this)">经常有</button>
+													<button onclick="problemBut('一直有耳鸣的症状出现',this)">一直有</button>
+												</div>
+											</div>
+											<div class="problem_box">
+												Q18：您是否有慢性咳嗽的症状出现？
+												<br />
+												<div class="problem_but_4k">
+													<button onclick="problemBut('没有慢性咳嗽的症状出现',this)">没有</button>
+													<button onclick="problemBut('偶尔有慢性咳嗽的症状出现',this)">偶尔有</button>
+													<button onclick="problemBut('经常有慢性咳嗽的症状出现',this)">经常有</button>
+													<button onclick="problemBut('一直有慢性咳嗽的症状出现',this)">一直有</button>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="tool" id="tool3">
+							<div class="left_title">自测工具</div>
+							<div class="tool_content">
+								<table style="margin: 0 auto;width: 100%;line-height: 40px;text-align: left;background: white;margin-left: 15px;">
+									<tr>
+										<td id="bloodpressureDate1"><img src="images/u3593.png" alt="" width="25px" style="margin-right: 5px;" />血压</td>
+										<td id="bloodsugarDate1"><img src="images/u3563.png" alt="" width="25px" style="margin-right: 5px;" />血糖</td>
+									</tr>
+									<tr>
+										<td onclick="showTestDate('fetalSmData',3)"><img src="images/u4000.png" alt="" width="25px" style="margin-right: 5px;" />胎心(小)</td>
+										<td onclick="showTestDate('fetalLargeData',4)"><img src="images/u3573.png" alt="" width="25px" style="margin-right: 5px;" />胎心(大)</td>
+									</tr>
+									<tr>
+										<td id="weightData1"><img src="images/u3588.png" alt="" width="25px" style="margin-right: 5px;" />体重</td>
+										<td id="fetalMovementData1"><img src="images/u3600.png" alt="" width="25px" style="margin-right: 5px;" />胎动</td>
+									</tr>
+									<tr>
+										<td id="uterineDate1"><img src="images/u3330.png" alt="" width="25px" style="margin-right: 5px;" />宫高</td>
+										<td id="circumferenceDate1"><img src="images/u3605.png" alt="" width="25px" style="margin-right: 5px;" />腹围</td>
+									</tr>
+									<tr>
+										<td id="bloodoxygenDate1"><img src="images/u3558.png" alt="" width="25px" style="margin-right: 5px;" />血氧</td>
+										<td id="temperatureData1"><img src="images/u3553.png" alt="" width="25px" style="margin-right: 5px;" />体温</td>
+									</tr>
+									<tr>
+										<td id="bloodfatDate1"><img src="images/u3578.png" alt="" width="25px" style="margin-right: 5px;" />血脂</td>
+										<!--<td style="color：#333;opacity:0.25;cursor: default;"><img src="images/u3573.png" alt="" width="25px" style="margin-right: 5px;" />心电</td>-->
+										<!--onclick="showTestDate('electrocardioDate',12)"-->
+									</tr>
+									<!--<tr>
+									<td style="position: relative;left: 3px;color：#333;opacity:0.25;cursor: default;"><img src="images/u3608.png" alt="" width="23px" style="margin-right: 5px;" /><span>运动</span></td>
+									<!-- onclick="showTestDate('sportsDate',13)"-->
+									<!--<td style="color：#333;opacity:0.25;cursor: default;"><img src="images/u3632.png" alt="" width="35px" style="margin-right: 5px;" /><span style="position: relative;left: -10px;">尿液</span></td>
+									<!-- onclick="showTestDate('urineDate',14)"-->
+									<!--</tr>-->
+								</table>
+							</div>
+						</div>
+						<!--历史问诊模块--wuwj-->
+						<div class="tool" id="tool4">
+							<div class="left_title tool4_5_title">历史问诊记录&医嘱</div>
+							<div class="historywenzhenbox" id="div_weekreport" onclick="showOrHidehistorywz(51)">
+								<img style="float: left; margin-left: 10px; margin-right: 20px;" src="images/weekreport.png" />
+								<span style="cursor: pointer;">本月健康周报</span>
+								<img class="ri" id="ri51" style="float: right; margin-right: 9px; margin-top: 7px;" src="images/upclose.png" />
+							</div>
+							<div id="nr51">
+								<div class="historywzbox_table" id="div_weekreport_date" style="background: white;">
+									<table id="table_weeklyreport">
+
+									</table>
+								</div>
+								<div class="historywenzhenbox_more" id="div_weekreport_more">
+									<!--<span class="spanMore">更多周报</span>-->
+								</div>
+							</div>
+							<div class="historywenzhenbox_interr" id="div_interrogation" onclick="showOrHidehistorywz(52)">
+								<img style="margin-left: 10px;" src="images/interrogation.png" />
+								<span style="cursor: pointer;">本月问诊记录</span>
+								<img class="ri" id="ri52" style="float: right; margin-top: 6px; margin-right: 9px;" src="images/upclose.png" />
+							</div>
+							<div id="nr52">
+								<div class="historywzbox_table" id="div_interrogation_date" style="background: white;">
+									<table id="monthlyInterrogation">
+
+									</table>
+								</div>
+								<div class="historywenzhenbox_more" id="div_interrogation_more">
+									<!--<span class="spanMore" style="margin-right: 15px;">更多问诊</span>-->
+								</div>
+							</div>
+							<div class="historywenzhenbox_interr" id="div_advice" onclick="showOrHidehistorywz(53)">
+								<img style="margin-left: 10px;" src="images/advice.png" />
+								<span style="margin-left: 15px;cursor: pointer;">本月医嘱记录</span>
+								<img class="ri" id="ri53" style="float: right; margin-top: 6px; margin-right: 9px;" src="images/upclose.png" />
+							</div>
+							<div id="nr53">
+								<div class="historywzbox_table" id="div_advice_date" style="background: white;">
+									<table id="table_doctor_advice">
+
+									</table>
+								</div>
+								<div class="historywenzhenbox_more" id="div_advice_more">
+									<!--<span class="spanMore">更多医嘱</span>-->
+								</div>
+							</div>
+						</div>
+						<div class="tool" id="tool5" style="display: none;">
+							<div class="left_title tool4_5_title">用药记录</div>
+							<div style="width: 230px;">
+								<div id="foo_toobox_mediRecord" style="position: relative;background: white;top: -10px;">
+
+								</div>
+							</div>
+
+						</div>
+						<!-- 在线患者-->
+						<div class="tool" id="tool10">
+							<div class="left_title">在线患者</div>
+							<div class="tool_content_user">
+								<ul class="user_list">
+								</ul>
+							</div>
+						</div>
+						<!-- 孕妇课堂-->
+						<div class="tool" id="tool7">
+							<div class="left_title7">
+								<div class="yunketangtitle">孕妇课堂</div>
+							</div>
+							<div class="shipingxuanjiang ">
+								<label>专家讲座</label>
+							</div>
+							<div id="tool3Table">
+
+								<div class="tb6" id="tb6" style="cursor: pointer;" onclick="showOrHide(6)">
+
+									<div class="yunqibaojianstyle1">孕期保健</div>
+									<img src="images/ri.png" width="6px" class="ri" id="ri6" style="transform:rotate(270deg); float: right; margin-right: 12px; margin-top: 11px;" />
+								</div>
+								<div class="nr6" id="nr6" style="background-color: #FFFFFF;">
+									<div class="check_project6" style="overflow: hidden;">
+										<table width="100%" style="border-collapse:collapse">
+											<tr style="">
+												<td width="30%">
+
+													<img width="35px" height="32px" src="images/yunfuketangimg1.jpg" />
+
+												</td>
+												<td width="70%" align="left">
+													<label id="draglable11" draggable="true" ondragstart="draglabel1(event)" onclick="showTestDateDiettd('fetaleducation1')" style="font-weight:normal; color: #666666;  ">
+													<span style="cursor: pointer;" class="sub_health_title1">孕十二周应当注意什么？</span> 
+												<div class="problem" style="display: none;">
+														<a href="#"     onclick="skip2('../receiveDoctorSend/expertlecture_Pcare1')" style="text-decoration:none; color:#333;">
+														<div  class="yfsptipstyle" >
+															<div class="top_tip"     >
+																<label>还有一个保健美文不错，推荐你看看</label>
+									</div>
+
+									<div class="zujiancontent">
+
+										<img height="35px" width="49px" src="images/shipingfasongimg2.jpg">
+										<div class="conten_botton">
+
+											<label class="sub_health_title1">孕十二周应当注意什么？..</label>
+
+										</div>
+
+									</div>
+								</div>
+								</a>
+
+							</div>
+							</label>
+
+							</td>
+							</tr>
+							</table>
+
+						</div>
+					</div>
+
+					<div class="tb7" id="tb7" onclick="showOrHide(7)">
+
+						<label style="cursor: pointer;">孕期妊娠疾病</label>
+						<img src="images/ri.png" width="6px" class="ri" id="ri7" />
+					</div>
+					<div class="nr7" id="nr7" style="background-color: #FFFFFF;">
+						<div class="check_project7" style="overflow: hidden;">
+							<table width="100%">
+								<tr style="border-bottom:1px solid #E5E5E5">
+									<td>
+										<img width="35px" height="32px" src="images/yunfuketangimg1.jpg" />
+
+									</td>
+									<td align="left">
+										<label onclick="showTestDateDiettd('fetaleducation4')" id="draglable14" draggable="true" ondragstart="draglabel1(event)" style="font-weight:normal; color: #666666; ">
+								<span style="cursor: pointer;" class="sub_disease_title2">如何预防妊娠贫血以及.... </span>	 
+															
+												<div class="problem" style="display: none;">
+												<a onclick="skip2('../receiveDoctorSend/expertlecture_Pdisease2')"   href="#" style="text-decoration:none; color:#333;">
+														<div class="yfsptipstyle">
+															<div class="top_tip">
+																<label     >还有一个保健美文不错，推荐你看看</label>
+						</div>
+
+						<div class="zujiancontent">
+
+							<img height="35px" width="49px" src="images/shipingfasongimg2.jpg">
+							<div class="conten_botton">
+
+								<label class="sub_disease_title2">如何预防妊娠贫血以及膳食..</label>
+
+							</div>
+
+						</div>
+					</div>
+					</a>
+
+				</div>
+				</label>
+				</td>
+				</tr>
+
+				</table>
+
+			</div>
+		</div>
+
+		</div>
+
+		<div class="shipingxuanjiang">
+
+			<div class="shipingxjlaber_style"><label>视频宣讲</label></div>
+
+		</div>
+		<div id="tool3Table">
+
+			<div class="tb8" id="tb8" onclick="showOrHide(8)">
+				<div class="yunfubaojianstyle" style="cursor: pointer;">今日课堂</div>
+				<img src="images/ri.png" width="6px" class="ri" id="ri8" />
+			</div>
+			<div class="nr8" id="nr8" style=" background-color: #FFFFFF;max-height: 330px;overflow-y: auto;">
+			</div>
+		</div>
+
+		</div>
+		<!--运动-->
+		<div class="tool" id="tool8">
+			<div class="left_title8rest">
+				<div class="yundongleft1">运动作息</div>
+				<div class="yundongright1" onclick="exerciseresthide()">
+					<!--	<img style="border: 1px solid;" src="images/yundongzuoxiright1.png">-->
+					<div style="width: 20px; height: 21px;"></div>
+
+				</div>
+			</div>
+			<div id="tool3Table">
+
+				<div class="tb4" id="tb4" onclick="showOrHideyd(4)">
+					<img class="tb4imgs" src="images/smallsport.png" />
+					<div class="yundongname_title">
+						<label style="cursor: pointer;">微量运动</label></div>
+					<img src="images/ri.png" width="6px" class="ri" id="ri4" />
+				</div>
+				<div class="nr4" id="nr4" style="background-color: #FFFFFF;">
+					<div class="check_project4" style="overflow: hidden; clear: both;">
+						<table width="100%">
+							<tr>
+								<td style="  text-align: center;" width="50px">
+									<label onclick="showTestDateDiettd('motionTestDateStarch1')" id="draglable1" draggable="true" ondragstart="draglabel1(event)"><span class="exerciseName1">足尖运动</span>
+									<div class="problem" style="display: none;">
+								          <div class="frametipstyle11">
+											<label> 可在家进行适量的运动，如足尖运动</label>
+									<div class="zujiancontent11">
+										<div class="conten_top11">
+											<div class="top_left11">
+												<img height="28px" src="images/zujianyundong.png"></div>
+											<label class="exerciseName1">足尖运动</label>
+										</div>
+										<div class="conten_botton11 ex_effect1">
+											姿势：准妈妈坐在椅子上，两脚踏平地面，脚尖尽力上翘，翘起后再放下，反复多次，注意脚尖上翘时，脚掌不要离地。
+											<h6><h6>功效：通过脚尖运动，促进血液循环，并增强脚部肌肉。 </h6></h6>
+
+										</div>
+
+									</div>
+					</div>
+				</div>
+				</label>
+				</td>
+				<td style="  text-align: center;" width="50px">
+					<label onclick="showTestDateDiettd('motionTestDateStarch2')" id="draglable2" draggable="true" ondragstart="draglabel1(event)"><span class="exerciseName2">四肢运动</span>
+									             <div class="problem" style="display: none;">
+								                    <div class="frametipstyle11"       >
+		                                              <label> </label>
+					<div class="zujiancontent11">
+
+						<div class="conten_top11">
+							<div class="top_left11"><img height="28px" src="images/sizhiyundong2.png"></div>
+							<div class="contoplabel11_bar"><label class="exerciseName2">四肢运动</label></div>
+						</div>
+						<div class="conten_botton11 ex_effect2">
+							姿势：准妈妈坐在椅子上，两脚踏平地面，脚尖尽力上翘，翘起后再放下，反复多次，注意脚尖上翘时，脚掌不要离地。
+							<h6><h6>功效：通过脚尖运动，促进血液循环，并增强脚部肌肉。 </h6></h6>
+						</div>
+
+					</div>
+			</div>
+		</div>
+		</label><br />
+		</td>
+		</tr>
+		<tr>
+			<td style=" text-align: center;" width="50px">
+				<label onclick="showTestDateDiettd('motionTestDateStarch3')" id="draglable3" draggable="true" ondragstart="draglabel1(event)"><span class="exerciseName3">舒展背部</span>
+									             <div class="problem" style="display: none;">
+								                    <div  class="frametipstyle11"        >
+														<label > </label>
+				<div class="zujiancontent11">
+
+					<div class="conten_top11">
+						<div class="top_left11"><img height="28px" src="images/shuzhanbeibu2.png"></div>
+						<div class="contoplabel11_bar"> <label class="exerciseName3">舒展背部</label></div>
+					</div>
+					<div class="conten_botton11 ex_effect3">
+						姿势：准妈妈坐在椅子上，两脚踏平地面，脚尖尽力上翘，翘起后再放下，反复多次，注意脚尖上翘时，脚掌不要离地。
+						<h6><h6>功效：通过脚尖运动，促进血液循环，并增强脚部肌肉。 </h6></h6>
+
+					</div>
+
+				</div>
+				</div>
+				</div>
+				</label>
+			</td>
+			<td style="  text-align: center;" width="50px">
+				<label onclick="showTestDateDiettd('motionTestDateStarch4')" id="draglable4" draggable="true" ondragstart="draglabel1(event)"><span class="exerciseName4">骨盆运动</span>
+									             <div class="problem" style="display: none;">
+								                    <div  class="frametipstyle11"  >
+																	<label > </label>
+				<div class="zujiancontent11">
+					<div class="conten_top11">
+						<div class="top_left11"><img height="28px" src="images/penguyundong2.png"></div>
+						<div class="contoplabel11_bar"><label class="exerciseName4">盆骨运动</label></div>
+					</div>
+					<div class="conten_botton11 ex_effect4">
+						姿势：准妈妈坐在椅子上，两脚踏平地面，脚尖尽力上翘，翘起后再放下，反复多次，注意脚尖上翘时，脚掌不要离地。
+						<h6><h6>功效：通过脚尖运动，促进血液循环，并增强脚部肌肉。 </h6></h6>
+
+					</div>
+
+				</div>
+				</div>
+				</div>
+				</label><br /></td>
+		</tr>
+		<tr>
+			<td style=" text-align: center;" width="50px">
+				<label onclick="showTestDateDiettd('motionTestDateStarch5')" id="draglable5" draggable="true" ondragstart="draglabel1(event)"><span class="exerciseName5">伸展运动</span>
+					<div class="problem" style="display: none;"> <div class="frametipstyle11"> <label > </label>
+				<div class="zujiancontent11">
+
+					<div class="conten_top11">
+						<div class="top_left11"><img height="28px" src="images/shenzhanyundong2.png"></div>
+						<div class="contoplabel11_bar"><label class="exerciseName5">伸展运动</label></div>
+					</div>
+					<div class="conten_botton11 ex_effect5">
+						姿势：准妈妈坐在椅子上，两脚踏平地面，脚尖尽力上翘，翘起后再放下，反复多次，注意脚尖上翘时，脚掌不要离地。
+						<h6><h6>功效：通过脚尖运动，促进血液循环，并增强脚部肌肉。 </h6></h6>
+
+					</div>
+
+				</div>
+				</div>
+				</div>
+				</label>
+			</td>
+			<td style="  text-align: center;" width="50px">
+				<label onclick="showTestDateDiettd('motionTestDateStarch6')" id="draglable6" draggable="true" ondragstart="draglabel1(event)"><span class="exerciseName6">踝关节运动</span>
+									             <div class="problem" style="display: none;">
+								                     <div class="frametipstyle11"        >
+	                                       	<label> </label>
+				<div class="zujiancontent11">
+
+					<div class="conten_top11">
+						<div class="top_left11"><img height="28px" src="images/huaiguanjieyundong2.png"></div>
+						<div class="contoplabel11_bar"> <label class="exerciseName6">裸关节运动</label></div>
+					</div>
+					<div class="conten_botton11 ex_effect6">
+						姿势：准妈妈坐在椅子上，两脚踏平地面，脚尖尽力上翘，翘起后再放下，反复多次，注意脚尖上翘时，脚掌不要离地。
+						<h6><h6>功效：通过脚尖运动，促进血液循环，并增强脚部肌肉。 </h6></h6>
+
+					</div>
+
+				</div>
+				</div>
+				</div>
+				</label><br /></td>
+		</tr>
+
+		</table>
+
+		</div>
+		</div>
+
+		<div class="tb5" id="tb5" onclick="showOrHideyd(5)">
+			<img class="tb5imgs" src="images/centersport.png" width="10px" />
+			<div style="float: left;margin-left: 19px;"><label style="line-height: 35px; font-weight:normal;cursor: pointer;">中量运动</label></div>
+			<img src="images/ri.png" width="6px" class="ri" id="ri5" style="transform:rotate(270deg); float: right; margin-right: 13px; margin-top: 10px;" />
+		</div>
+		<div class="nr5" id="nr5" style="background-color: #FFFFFF;">
+			<div class="check_project5" style="overflow: hidden;">
+				<table width="100%">
+					<tr>
+						<td style="text-align: center;" width="50px">
+							<label onclick="showTestDateDiettd('motionTestDateStarch7')" id="draglable7" draggable="true" ondragstart="draglabel1(event)">
+								<span class="mexerciseName1">走路散步</span>
+								<div class="problem" style="display: none;">
+									<div class="frametipstyle11" >
+										<label > </label>
+							<div class="zujiancontent11">
+								<div class="conten_top11">
+									<div class="top_left11"><img height="28px" src="images/zoulusanbu2.png"></div>
+									<div class="contoplabel11_bar"><label class="mexerciseName1">走路散步</label></div>
+								</div>
+								<div class="conten_botton11 mex_effect1">
+									姿势：准妈妈坐在椅子上，两脚踏平地面，脚尖尽力上翘，翘起后再放下，反复多次，注意脚尖上翘时，脚掌不要离地。
+									<h6><h6>功效：通过脚尖运动，促进血液循环，并增强脚部肌肉。 </h6></h6>
+								</div>
+							</div>
+			</div>
+		</div>
+		</label>
+		</td>
+		<td style="  text-align: center;" width="50px">
+			<label onclick="showTestDateDiettd('motionTestDateStarch8')" id="draglable8" draggable="true" ondragstart="draglabel1(event)"><span class="mexerciseName2">游泳</span>
+									 <div class="problem" style="display: none;">
+										 <div  class="frametipstyle11">
+							<label > </label>
+			<div class="zujiancontent11">
+
+				<div class="conten_top11">
+					<div class="top_left11"><img height="28px" src="images/youyong2.png"></div>
+					<div><label style="padding: 7px 5px; font-weight:normal; font-size: 12px;" class="mexerciseName2">游泳</label></div>
+				</div>
+				<div class="conten_botton11 mex_effect2">
+					姿势：准妈妈坐在椅子上，两脚踏平地面，脚尖尽力上翘，翘起后再放下，反复多次，注意脚尖上翘时，脚掌不要离地。
+					<h6><h6>功效：通过脚尖运动，促进血液循环，并增强脚部肌肉。 </h6></h6>
+				</div>
+			</div>
+			</div>
+			</div>
+			</label><br />
+		</td>
+		</tr>
+		<tr>
+			<td style="  text-align: center;" width="50px">
+				<label onclick="showTestDateDiettd('motionTestDateStarch9')" id="draglable9" draggable="true" ondragstart="draglabel1(event)"><span class="mexerciseName3">有氧运动</span>
+													             <div class="problem" style="display: none;">
+												                     <div class="frametipstyle11"        >
+						<label      > </label>
+				<div class="zujiancontent11">
+
+					<div class="conten_top11">
+						<div class="top_left11">
+							<img height="28px" src="images/youyangyundong2.png"></div>
+						<div><label class="yundongtiptitle_div mexerciseName3" style="padding: 7px 5px; font-weight:normal; font-size: 12px;">有氧运动</label></div>
+					</div>
+					<div class="conten_botton11 mex_effect3">
+						姿势：准妈妈坐在椅子上，两脚踏平地面，脚尖尽力上翘，翘起后再放下，反复多次，注意脚尖上翘时，脚掌不要离地
+						<h6><h6>功效：通过脚尖运动，促进血液循环，并增强脚部肌肉。 </h6></h6>
+
+					</div>
+
+				</div>
+				</div>
+				</div>
+				</label>
+			</td>
+			<td style="  text-align: center;" width="50px"><label onclick="showTestDateDiettd('motionTestDateStarch10')" id="draglable10" draggable="true" ondragstart="draglabel1(event)"><span class="mexerciseName4">瑜伽</span>
+													             <div class="problem" style="display: none;">
+												                     	<div  class="frametipstyle11">
+																						<label > </label>
+				<div class="zujiancontent11">
+					<div class="conten_top11">
+						<div class="top_left11"><img height="28px" src="images/yujia2.png"></div>
+						<div><label style="padding: 7px 5px; font-weight:normal; font-size: 12px;" class="mexerciseName4">瑜伽</label></div>
+					</div>
+					<div class="conten_botton11 mex_effect4">
+						姿势：准妈妈坐在椅子上，两脚踏平地面，脚尖尽力上翘，翘起后再放下，反复多次，注意脚尖上翘时，脚掌不要离地。
+						<h6><h6>功效：通过脚尖运动，促进血液循环，并增强脚部肌肉。 </h6></h6>
+					</div>
+				</div>
+				</div>
+				</div>
+				</label>
+			</td>
+		</tr>
+		</table>
+		</div>
+		</div>
+
+		<div class="tb5" id="tb5" onclick="showrecord()">
+			<img style="float: left;margin-left: 22px;" src="images/basketball.png" />
+			<div style="float: left;margin-left: 19px;"><label style="line-height: 35px; font-weight:normal;cursor: pointer;">运动记录</label></div>
+			<!--<img src="images/ri.png" width="6px" class="ri" id="ri5" style="transform:rotate(270deg); float: right; margin-right: 13px; margin-top: 10px;" />-->
+		</div>
+
+		</div>
+		</div>
+		<!--膳食指南-->
+		<div class="tool" id="tool9">
+			<div class="left_title9" id="tool9_contenshanshititle">膳食指南
+				<div style="display: none;"><img onclick="closeparentsbox(event)" width="18px" height="18px" src="images/yundongzuoxiright1.png"></div>
+			</div>
+			<div class="tool_content9" id="tool9_contenshanshi">
+				<div id="dragDiettds" draggable="true" ondragstart="draglabel1(event)" class="tool9_shang" style="cursor: pointer;"> <img src="images/ssfenxiwenjuanimg1.png" alt="" width="20px" /><label style="cursor: pointer;">膳食分析问卷</label>
+					<div class="problem">
+						<div class="problem_html" id="shanshiwenjuan1">
+							<!--<div>
+								您好，您已开始进行膳食分析问卷，共计5个小问题，预计花费3分钟完成，现在开始咯~</div>
+							<div class="problem_box">-->
+							<!--<span>Q1：</span><span class="problems">是否吃腌制食品？</span>
+								<br />
+								<div class="problem_but_3k">
+									<button value="是">是</button>
+									<button value="不是">不是</button>
+									<button value="偶尔">偶尔</button>
+								</div>-->
+							<!--</div>-->
+						</div>
+
+						<!--<div class="problem_html" id="shanshiwenjuan2" style="display: none;">
+							<div>
+								<div class="progress_pater">
+									<div class="progress_boy" style="width: 55%;"></div>
+								</div>您已完成5小题，还有5小题哟~</div>
+
+							<div class="problem_box">
+								Q6：常吃刚宰杀的猪、牛、羊肉？
+								<br />
+								<div class="problem_but_3k" onclick="button_getbackvalues6(event)">
+									<button value="是">是</button>
+									<button value="不是">不是</button>
+									<button value="偶尔">偶尔</button>
+								</div>
+							</div>
+							<div class="problem_box">
+								Q7：喜欢边看电视边吃东西 ？
+								<br />
+								<div class="problem_but_3k" onclick="button_getbackvalues7(event)">
+									<button value="是">是</button>
+									<button value="不是">不是</button>
+									<button value="偶尔">偶尔</button>
+								</div>
+							</div>
+							<div class="problem_box">
+								Q8：吃东西不考虑营养价值，爱吃就猛吃？
+								<br />
+								<div class="problem_but_3k" onclick="button_getbackvalues8(event)">
+									<button value="是">是</button>
+									<button value="不是">不是</button>
+									<button value="偶尔">偶尔</button>
+								</div>
+							</div>
+							<div class="problem_box">
+								Q9：喜欢喝茶？
+								<br />
+								<div class="problem_but_3k" onclick="button_getbackvalues9(event)">
+									<button value="是">是</button>
+									<button value="不是">不是</button>
+									<button value="偶尔">偶尔</button>
+								</div>
+							</div>
+							<div class="problem_box">
+								Q10：吃烧烤类食品？
+								<br />
+								<div class="problem_but_3k" onclick="button_getbackvalues10(event)">
+									<button value="是">是</button>
+									<button value="不是">不是</button>
+									<button value="偶尔">偶尔</button>
+								</div>
+							</div>
+						</div>-->
+					</div>
+
+				</div>
+				<div class="tool9_zhong">
+					<label> 膳食推荐</label>
+					<div class="tool9_table">
+						<table style="margin: 0 auto;width: 100%;line-height: 40px;text-align: left;padding-left: 30px;background: white;">
+							<tr>
+								<td id="dragDiettd1" draggable="true" ondragstart="draglabel1(event)" onclick="showTestDateDiettd('dietTestDateStarch1')">
+									<img src="images/shanshituijian1.png" alt="" width="20px" style="margin-right: 5px;" />高糖
+									<div class="problem" style="display: none;">
+										<a href="#" style="text-decoration:none; color:#333;">
+											<div class="shanshituijiansamestyle">
+												<div class="top_tip22">
+													<label>饮食要注意，高淀粉的尤其要注意摄入量</label>
+												</div>
+
+												<div class="zujiancontent22">
+													<div class="zujiancontenmingcheng">
+														<img height="25px" width="31px" src="images/shanshituijian1.png">
+														<span>高糖</span>
+														<br />
+													</div>
+
+													<div class="conten_botton22">
+
+														<label>
+															<div class="contenbotton_intro" >
+																
+										 根据食物中含糖量的多少，人们将其分为高糖、低糖和无糖食物三大类。含糖量较高的食.......			</div></label>
+
+														<div class="sstuijianshouchangparents">
+															<div class="sstuijianshouchang">
+																<!--<label><span style="color: #76B0FF;cursor: pointer;">转发</span></label>
+																<label><span style="color: #76B0FF;cursor: pointer;">收藏</span></label>-->
+																<label onclick="skip2('../receiveDoctorSend/highglucose')"><span style="color: #76B0FF;cursor: pointer;"> 打开</span></label>
+															</div>
+														</div>
+
+													</div>
+												</div>
+										</a>
+
+										</div>
+
+								</td>
+								<td id="dragDiettd2" draggable="true" ondragstart="draglabel1(event)" onclick="showTestDateDiettd('dietTestDateStarch2')">
+									<img src="images/shanshituijian2.png" alt="" width="20px" style="margin-right: 5px;" />高淀粉
+									<div class="problem" style="display: none;">
+										<a href="#" style="text-decoration:none; color:#333;">
+											<div class="shanshituijiansamestyle">
+												<div class="top_tip22">
+													<label>饮食要注意，高淀粉的尤其要注意摄入量</label>
+												</div>
+
+												<div class="zujiancontent22">
+													<div class="zujiancontenmingcheng">
+														<img height="25px" width="31px" src="images/shanshituijian2.png">
+														<span>高淀粉</span>
+														<br />
+													</div>
+
+													<div class="conten_botton22">
+
+														<label>
+															<div class="contenbotton_intro" >所谓淀粉类食物，主要指富含碳水化合物的食物，以及根茎类蔬菜。富含碳水化合物的食物有大.......</div></label>
+
+														<div class="sstuijianshouchangparents">
+															<div class="sstuijianshouchang">
+																<!--<label><span style="color: #76B0FF;cursor: pointer;">转发</span></label>
+																<label><span style="color: #76B0FF;cursor: pointer;">收藏</span></label>-->
+																<label onclick="skip2('../receiveDoctorSend/highstarch')"><span style="color: #76B0FF;cursor: pointer;">打开</span></label></div>
+														</div>
+													</div>
+
+												</div>
+											</div>
+										</a>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td id="dragDiettd3" draggable="true" ondragstart="draglabel1(event)" onclick="showTestDateDiettd('dietTestDateStarch3')">
+									<img src="images/shanshituijian3.png" alt="" width="20px" style="margin-right: 5px;" />高脂肪
+									<div class="problem" style="display: none;">
+										<a href="#" style="text-decoration:none; color:#333;">
+											<div class="shanshituijiansamestyle">
+												<div class="top_tip22">
+													<label>饮食要注意，高淀粉的尤其要注意摄入量</label>
+												</div>
+
+												<div class="zujiancontent22">
+													<div class="zujiancontenmingcheng">
+														<img height="25px" width="31px" src="images/shanshituijian3.png">
+														<span>高脂肪</span>
+														<br />
+													</div>
+
+													<div class="conten_botton22">
+
+														<label>
+															<div class="contenbotton_intro" >
+																
+												高脂肪饮食是指饮食中包括高脂肪食物的一种饮食方式，比如植物中的核桃、芝麻、花生，油.......</div></label>
+
+														<div class="sstuijianshouchangparents">
+															<div class="sstuijianshouchang">
+																<!--<label><span style="color: #76B0FF;cursor: pointer;">转发</span></label>
+																<label><span style="color: #76B0FF;cursor: pointer;">收藏</span></label>-->
+																<label onclick="skip2('../receiveDoctorSend/highfat')"><span style="color: #76B0FF;cursor: pointer;">打开</span></label></div>
+														</div>
+													</div>
+
+												</div>
+											</div>
+										</a>
+
+									</div>
+								</td>
+								<td id="dragDiettd4" draggable="true" ondragstart="draglabel1(event)" onclick="showTestDateDiettd('dietTestDateStarch4')">
+									<img src="images/shanshituijian4.png" alt="" width="20px" style="margin-right: 5px;" />高寒
+									<div class="problem" style="display: none;">
+										<a href="#" style="text-decoration:none; color:#333;">
+											<div class="shanshituijiansamestyle">
+												<div class="top_tip22">
+													<label>饮食要注意，高淀粉的尤其要注意摄入量</label>
+												</div>
+
+												<div class="zujiancontent22">
+													<div class="zujiancontenmingcheng">
+														<img height="25px" width="31px" src="images/shanshituijian4.png">
+														<span>高寒</span>
+														<br />
+													</div>
+
+													<div class="conten_botton22">
+
+														<label>
+															<div class="contenbotton_intro" >
+																
+															寒性食物有助于清火、解毒，可用来辅助治疗火热病证。凡是面红目赤、狂躁妄动、神.......		</div></label>
+
+														<div class="sstuijianshouchangparents">
+															<div class="sstuijianshouchang">
+																<!--<label><span style="color: #76B0FF;cursor: pointer;">转发</span></label>
+																<label><span style="color: #76B0FF;cursor: pointer;">收藏</span></label>-->
+																<label onclick="skip2('../receiveDoctorSend/Alpine')"><span style="color: #76B0FF;cursor: pointer;">打开</span></label></div>
+														</div>
+													</div>
+
+												</div>
+											</div>
+										</a>
+
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td id="dragDiettd5" draggable="true" ondragstart="draglabel1(event)" onclick="showTestDateDiettd('dietTestDateStarch5');">
+									<img src="images/shanshituijian5.png" alt="" width="20px" style="margin-right: 5px;" />辛辣
+									<div class="problem" style="display: none;">
+										<a href="#" style="text-decoration:none; color:#333;">
+											<div class="shanshituijiansamestyle">
+												<div class="top_tip22">
+													<label>饮食要注意，高淀粉的尤其要注意摄入量</label>
+												</div>
+
+												<div class="zujiancontent22">
+													<div class="zujiancontenmingcheng">
+														<img height="25px" width="31px" src="images/shanshituijian5.png">
+														<span>辛辣</span>
+														<br />
+													</div>
+
+													<div class="conten_botton22">
+
+														<label>
+															<div class="contenbotton_intro" >
+											辛辣的食物包括辣椒、花椒、大蒜、芥末、胡椒、生姜、烟酒及含酒精饮料等的统称。经常.......</div></label>
+
+														<div class="sstuijianshouchangparents">
+															<div class="sstuijianshouchang">
+																<!--<label><span style="color: #76B0FF;cursor: pointer;">转发</span></label>
+																<label><span style="color: #76B0FF;cursor: pointer;">收藏</span></label>-->
+																<label onclick="skip2('../receiveDoctorSend/Pungent')"><span style="color: #76B0FF;cursor: pointer;">打开</span></label></div>
+														</div>
+													</div>
+
+												</div>
+											</div>
+										</a>
+									</div>
+								</td>
+								<td id="dragDiettd6" draggable="true" ondragstart="draglabel1(event)" onclick="showTestDateDiettd('dietTestDateStarch6')">
+									<img src="images/shanshituijianimg6.png" alt="" width="20px" style="margin-right: 5px;" />纤维
+									<div class="problem" style="display: none;">
+										<a href="#" style="text-decoration:none; color:#333;">
+											<div class="shanshituijiansamestyle">
+												<div class="top_tip22">
+													<label>饮食要注意，高淀粉的尤其要注意摄入量</label>
+												</div>
+
+												<div class="zujiancontent22">
+													<div class="zujiancontenmingcheng">
+														<img height="25px" width="31px" src="images/shanshituijianimg6.png">
+														<span>纤维</span>
+														<br />
+													</div>
+
+													<div class="conten_botton22">
+
+														<label>
+															<div class="contenbotton_intro" >
+																
+																含膳食纤维的包括谷类（特别是一些粗粮）、豆类、一些蔬菜和水果。可以在加餐时多.......</div></label>
+
+														<div class="sstuijianshouchangparents">
+															<div class="sstuijianshouchang">
+																<!--<label><span style="color: #76B0FF;cursor: pointer;">转发</span></label>
+																<label><span style="color: #76B0FF;cursor: pointer;">收藏</span></label>-->
+																<label onclick="skip2('../receiveDoctorSend/fibre')"><span style="color: #76B0FF;cursor: pointer;">打开</span></label></div>
+														</div>
+													</div>
+
+												</div>
+											</div>
+										</a>
+
+									</div>
+								</td>
+							</tr>
+
+						</table>
+						</div>
+
+					</div>
+					<!--<div class="tool9_xia">
+						<label> 膳食宝塔</label>
+						<div class="tool9_xiatable">
+							<table style="margin: 0 auto;width: 100%;line-height: 40px;text-align: left;padding-left: 30px;background: white;">
+								<tr>
+									<td id="dragDiettd7" draggable="true" ondragstart="draglabel1(event)" onclick="showTestDateDiettd('dietTestDateStarch7')">
+										<img src="images/imgshanshibaota1.png" alt="" width="30px" height="30px" style="margin-right: 5px;" />孕前期
+										<div class="problem" style="display: none;">
+											<a href="#" style="text-decoration:none; color:#333;">
+												<div class="shanshituijiansamestyle2">
+													<div class="shtop_tip">
+														<label>饮食要注意，可以参考膳食宝塔的内容合理搭配膳食</label>
+													</div>
+
+													<div class="shzujiancontent" style=" height: 249px; width: 200px; margin: 0 auto; ">
+														
+
+														<img onclick="showbigimg_fn(event)" width="200px" height="249px" src="images/shanshibaotaimg.png" />
+
+													</div>
+												</div>
+											</a>
+
+										</div>
+									</td>
+
+								</tr>
+								<tr>
+									<td id="dragDiettd8" draggable="true" ondragstart="draglabel1(event)" onclick="showTestDateDiettd('dietTestDateStarch8')">
+										<img src="images/imgshanshibaota1.png" alt="" width="30px" height="30px" style="margin-right: 5px;" />孕早期
+										<div class="problem" style="display: none;">
+											<a href="#" style="text-decoration:none; color:#333;">
+												<div class="shanshituijiansamestyle2">
+													<div class="shtop_tip">
+														<label>饮食要注意，可以参考膳食宝塔的内容合理搭配膳食</label>
+													</div>
+
+													<div class="shzujiancontent" style=" height: 249px; width: 200px; margin: 0 auto; ">
+														
+
+														<img onclick="showbigimg_fn(event)" width="200px" height="249px" src="images/shanshibaotaimg1.png" />
+
+													</div>
+												</div>
+											</a>
+
+										</div>
+									</td>
+
+								</tr>
+								<tr>
+									<td id="dragDiettd9" draggable="true" ondragstart="draglabel1(event)" onclick="showTestDateDiettd('dietTestDateStarch9');">
+										<img src="images/imgshanshibaota1.png" alt="" width="30px" height="30px" style="margin-right: 5px;" />孕中、晚期
+										<div class="problem" style="display: none;">
+											<a href="#" style="text-decoration:none; color:#333;">
+												<div class="shanshituijiansamestyle2">
+													<div class="shtop_tip">
+														<label>饮食要注意，可以参考膳食宝塔的内容合理搭配膳食</label>
+													</div>
+
+													<div class="shzujiancontent" style=" height: 249px; width: 200px; margin: 0 auto; ">
+														
+
+														<img onclick="showbigimg_fn(event)" width="200px" height="249px" src="images/shanshibaotaimg2.png" />
+
+													</div>
+												</div>
+											</a>
+
+										</div>
+									</td>
+
+								</tr>
+
+							</table>
+						</div>
+
+					</div>
+					-->
+					<!-- 膳食习惯  -->
+					<div class="dietary_habit" onclick="showhabit();" style="width: 90%;height: 40px;margin: 0 auto;padding-top: 10px;border-top: 1px solid #F2F2F2;">
+						<img style="float: left;" src="images/u14203.png" width="30px" />
+						<div style="float: left;margin-left: 15px;"><label style="font-weight:normal;cursor: pointer;">膳食习惯</label></div>
+						<!--<img src="images/ri.png" width="6px" class="ri" id="ri5" style="transform:rotate(270deg); float: right; margin-right: 13px; margin-top: 10px;" />-->
+					</div>
+
+				</div>
+			</div>
+
+			<!--关键字查询医嘱-->
+			<div id="myAdviceModal" class="modal fade" tabindex="-1" role="dialog">
+				<div class="modal-dialog" role="document">
+					<!--<div class="modal-content">
+						<div class="checkreport_close weekly_close">
+							<img id="searchAdvice_close" src="../images/guanbi.png" />
+						</div>
+						<div class="moreAdvice-modal-content">
+							<div class="modal-content-right">
+								<input id="search_keyword" type="text" />
+								<button class="common-color" type="button" onclick="searchKnowledge()">搜索</button>
+								<table class="advice-table1">
+									<tr>
+										<td>血糖</td>
+										<td>饮食</td>
+										<td>少盐</td>
+										<td>运动</td>
+										<td>左侧卧</td>
+										<td>血压监测</td>
+									</tr>
+								</table>
+								<div class="table2-div">
+									<table class="advice-table2"></table>
+								</div>
+								<div class="addAdvice_warmTip">双击指定医嘱可快速添加</div>
+							</div>
+
+						</div>
+					</div>-->
+					<!--<div class="modal-content" style="min-width: 600px;">
+						<div class="modal-header">
+							<button type="button" class="close close2" data-dismiss="modal" aria-label="Close"><!--<span aria-hidden="true">&times;</span><img src="../images/guanbi.png"/></button>
+							<p class="modal-title" id="myModalLabel">搜索引擎</p>
+						</div>
+						<div class="modal-body">
+							<div class="row">
+								<div class="col-md-9"><input id="search_box" class="form-control" /></div>
+								<div class="col-md-3">
+									<div class="col-md-11"><button id="search1" type="button" class="btn btn-primary form-control">搜索一下</button></div>
+								</div>
+							</div>
+							
+							<div class="row" id="keyword_div">
+								<div class="col-md-12">
+
+								</div>
+							</div>
+							
+							<div id="show_div" class="row">
+
+							</div>
+
+							
+							<div id="page" class="row">
+								<div class="col-md-8"></div>
+								<div class="col-md-2">
+									<button class="btn btn-default" id="prev">上一页</button>
+								</div>
+								<div class="col-md-2">
+									<button class="btn btn-primary" id="next">下一页</button>
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<a href="">双击点击医嘱可以快速添加</a>
+						</div>
+					</div>-->
+
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal-dialog -->
+			</div>
+
+		</div>
+
+		<div id="tool">
+			<img src="images/u277.png" alt="" onclick="openTool('tool2')" />
+			<img src="images/u275.png" alt="" onclick="openTool('tool3')" />
+			<img src="images/u283.png" alt="" width="28px" onclick="openTool('tool4')" />
+			<img src="images/u281.png" alt="" onclick="openTool('tool5')" />
+			<img src="images/u279.png" alt="" onclick="openTool('tool7')" />
+			<img src="images/u285.png" alt="" onclick="openTool('tool9')" />
+			<img src="images/u287.png" alt="" onclick="openTool('tool8')" />
+		</div>
+		</div>
+
+		</div>
+		<!--如何知道自己的排卵日-->
+		<div class="dietTestDate  fetaleducationstyle" id="fetaleducation1">
+			<div class="dietcloseimg"><img src="../images/guanbi.png" /></div>
+
+			<div class="fetaleducation_title">
+				<label><h3 class="health_title1">孕十二周应当注意什么？</h3></label>
+
+			</div>
+			<div class="fetaleducation_zhong health_content1" style="margin: 15px;padding: 10px;">
+
+				<p>
+					一般来说，从每月排卵前3天至排卵后1天，是准妈妈最容易受孕的时期，因此医学上称为易孕阶段。准爸爸和准妈妈如果抓住这个时机，就可以增加受孕机率。但是如何才能知道什么时候是自己的排卵日呢？北京玛丽妇婴医院专家介绍如下两种方法。
+				</p>
+				<p> 1、日程推算法<br /> 　　一般来说，准妈妈的排卵日是在下次月经来潮前12-16天（平均为14天）。 　　具体的日期可以通过日程推算法来计算。主要方法是根据以往12个以上的月经周期记录，来推算出目前周期中的“易孕期”和“不易受孕期”。公式如下，请参考： <br />　　1）以往最短周期天数-19=排卵前“不易受孕期”的末一天。次日就是“易孕期”的第一天。 　<br />　2）以往最长周期天数-10=排卵后“易孕期”的末一天。这样可以算出“易孕期”的具体日期。 　　一般月经时间正常的女性通常周期为28天。准妈妈可以根据自己月经的情况进行日程计算。 </p>
+				<div style="text-align: center;">
+					<img width="50%" height="260px" src="images/yunfuketangfloatimg1.png"><br />
+				</div>
+				2、基本体温测量法 <br /> 　　体温法是一种比较觉的测量排卵日的方法，因为一般来说，女性在排卵这天身体的基础体温会突然下降，而后几天体温则比基础体温上升0.3-0.5度。 　　建议准妈妈购买一个体温计，每天在睡觉前甩到35℃以下，测量的方法就是每天一醒来（8个小时睡眠后）不做任何运动，立即测量体温，因为任何动作都可能使体温升高而产生误差，所以必须在不运动的情况下完成测量，至少持续14天，最好是一起坚持测量下去，并记录下来、画出曲线图，以便掌握体温上升、下降的规律，来确定自己的排卵日。
+
+			</div>
+		</div>
+		<!--如何知道自己的排卵日-->
+		<div class="dietTestDate  fetaleducationstyle" id="fetaleducation2">
+			<div class="dietcloseimg"><img src="../images/guanbi.png" /></div>
+			<div class="fetaleducation_title">
+				<label><h3 class="health_title1">如何知道自己的排卵日health</h3></label>
+
+			</div>
+			<div class="fetaleducation_zhong health_content1" style="margin: 15px;padding: 10px;">
+
+				<p>
+					一般来说，从每月排卵前3天至排卵后1天，是准妈妈最容易受孕的时期，因此医学上称为易孕阶段。准爸爸和准妈妈如果抓住这个时机，就可以增加受孕机率。但是如何才能知道什么时候是自己的排卵日呢？北京玛丽妇婴医院专家介绍如下两种方法。
+				</p>
+				<p> 1、日程推算法<br /> 　　一般来说，准妈妈的排卵日是在下次月经来潮前12-16天（平均为14天）。 　　具体的日期可以通过日程推算法来计算。主要方法是根据以往12个以上的月经周期记录，来推算出目前周期中的“易孕期”和“不易受孕期”。公式如下，请参考： <br />　　1）以往最短周期天数-19=排卵前“不易受孕期”的末一天。次日就是“易孕期”的第一天。 　<br />　2）以往最长周期天数-10=排卵后“易孕期”的末一天。这样可以算出“易孕期”的具体日期。 　　一般月经时间正常的女性通常周期为28天。准妈妈可以根据自己月经的情况进行日程计算。 </p>
+				<div style="text-align: center;">
+					<img width="50%" height="260px" src="images/yunfuketangfloatimg1.png"><br />
+				</div>
+				2、基本体温测量法 <br /> 　　体温法是一种比较觉的测量排卵日的方法，因为一般来说，女性在排卵这天身体的基础体温会突然下降，而后几天体温则比基础体温上升0.3-0.5度。 　　建议准妈妈购买一个体温计，每天在睡觉前甩到35℃以下，测量的方法就是每天一醒来（8个小时睡眠后）不做任何运动，立即测量体温，因为任何动作都可能使体温升高而产生误差，所以必须在不运动的情况下完成测量，至少持续14天，最好是一起坚持测量下去，并记录下来、画出曲线图，以便掌握体温上升、下降的规律，来确定自己的排卵日。
+			</div>
+		</div>
+		<!--叶酸缺乏-->
+		<div class="dietTestDate  fetaleducationstyle" id="fetaleducation3">
+			<div class="dietcloseimg"><img src="../images/guanbi.png" /></div>
+			<div class="fetaleducation2_shang">
+				<div class="fetaledu2shang_left"><img src="images/yunfuketyesuanimg1.png"></div>
+				<div class="fetaledu2shang_right">
+					<label class="disease_title1">孕早期叶酸缺乏导致胎儿畸形</label>
+				</div>
+			</div>
+			<div class="fetaleducation2_xia disease_content1">
+				<h6>补充叶酸提前和定量</h6>
+				<h6> 在孕前三个月开始，每日补充400微克的叶酸是比较适宜的量，过量的叶酸会掩盖维生素b12缺乏的症状，干扰锌的代谢，引起孕妇锌缺乏。每日最大补 充量不能超过1000微克即1毫克。叶酸是一种水溶性b族维生素，孕妇对叶酸的需求量比正常人高4倍。孕早期是胎儿器官系统分化，胎盘形成的关键时期，细 胞生长，分裂十分旺盛。此时叶酸缺乏可导致胎儿畸形。如在我国发生率约为3.8‰的神经管畸形，包括无脑儿，脊柱裂等，另外还可发生早期的自然流产。 </h6>
+				<h6>片剂摄取+食物摄取双管齐下</h6>
+				<h6>叶酸这种营养素是比较特殊的，它不像其他营养素摄入足够量的食物就能充分补足。食物中的叶酸是不容易吸收的，其吸收率和转化率都很低。肝脏类的食物 含叶酸较多，比如猪肝、鸡肝、鸭肝等，还有就是深绿色的蔬菜以及豆类，例如菠菜含有丰富的叶酸，每100克菠菜的叶酸含量高达347微克，名列蔬菜之首。 食物中天然叶酸的吸收率较低，加上烹调过程中损失，育龄妇女叶酸缺乏较为普遍，初步估计大约有1/3的妇女有不同程度的缺乏，这种状况可以通过叶酸补充剂的方法得到纠正和改善。</h6>
+
+			</div>
+		</div>
+
+		<!--叶酸缺乏-->
+		<div class="dietTestDate  fetaleducationstyle" id="fetaleducation4">
+			<div class="dietcloseimg"><img src="../images/guanbi.png" /></div>
+			<div class="fetaleducation2_shang">
+				<div class="fetaledu2shang_left"><img src="images/yunfuketyesuanimg1.png"></div>
+				<div class="fetaledu2shang_right">
+					<label class="disease_title2">孕早期叶酸缺乏导致胎儿畸形</label>
+				</div>
+			</div>
+			<div class="fetaleducation2_xia disease_content2">
+				<h6>补充叶酸提前和定量</h6>
+				<h6> 在孕前三个月开始，每日补充400微克的叶酸是比较适宜的量，过量的叶酸会掩盖维生素b12缺乏的症状，干扰锌的代谢，引起孕妇锌缺乏。每日最大补 充量不能超过1000微克即1毫克。叶酸是一种水溶性b族维生素，孕妇对叶酸的需求量比正常人高4倍。孕早期是胎儿器官系统分化，胎盘形成的关键时期，细 胞生长，分裂十分旺盛。此时叶酸缺乏可导致胎儿畸形。如在我国发生率约为3.8‰的神经管畸形，包括无脑儿，脊柱裂等，另外还可发生早期的自然流产。 </h6>
+				<h6>片剂摄取+食物摄取双管齐下</h6>
+				<h6>叶酸这种营养素是比较特殊的，它不像其他营养素摄入足够量的食物就能充分补足。食物中的叶酸是不容易吸收的，其吸收率和转化率都很低。肝脏类的食物 含叶酸较多，比如猪肝、鸡肝、鸭肝等，还有就是深绿色的蔬菜以及豆类，例如菠菜含有丰富的叶酸，每100克菠菜的叶酸含量高达347微克，名列蔬菜之首。 食物中天然叶酸的吸收率较低，加上烹调过程中损失，育龄妇女叶酸缺乏较为普遍，初步估计大约有1/3的妇女有不同程度的缺乏，这种状况可以通过叶酸补充剂的方法得到纠正和改善。</h6>
+
+			</div>
+		</div>
+
+		<!--足尖运动-->
+		<div class="dietTestDate  dietTestdatestyle" id="motionTestDateStarch1">
+			<div class="dietcloseimg"><img src="../images/guanbi.png" /></div>
+			<div class="diettest_con2">
+				<img height="35px" width="39px" src="images/zujianyundong.png">
+				<span class="exerciseName1">足尖运动</span>
+			</div>
+			<div class="dietcon_botton">
+				<div class="dietconb_xia ex_effect1">
+					姿势：准妈妈坐在椅子上，两脚踏平地面，脚尖尽力上翘，翘起后再放下，反复多次，注意脚尖上翘时，脚掌不要离地。
+					<h6>功效：通过脚尖运动，促进血液循环，并增强脚部肌肉。 </h6> </div>
+			</div>
+		</div>
+		<!--四肢运动-->
+		<div class="dietTestDate  dietTestdatestyle" id="motionTestDateStarch2">
+			<div class="dietcloseimg"><img src="../images/guanbi.png" /></div>
+			<div class="diettest_con2">
+				<img height="35px" width="39px" src="images/sizhiyundong2.png">
+				<span class="exerciseName2">四肢运动</span>
+			</div>
+			<div class="dietcon_botton">
+				<div class="dietconb_xia ex_effect2">
+					姿势：准妈妈坐在椅子上，两脚踏平地面，脚尖尽力上翘，翘起后再放下，反复多次，注意脚尖上翘时，脚掌不要离地。
+					<h6>功效：通过脚尖运动，促进血液循环，并增强脚部肌肉。 </h6> </div>
+			</div>
+		</div>
+		<!--舒展背部-->
+		<div class="dietTestDate  dietTestdatestyle" id="motionTestDateStarch3">
+			<div class="dietcloseimg"><img src="../images/guanbi.png" /></div>
+			<div class="diettest_con2">
+				<img height="35px" width="39px" src="images/shuzhanbeibu2.png">
+				<span class="exerciseName3">舒展背部</span>
+			</div>
+			<div class="dietcon_botton">
+				<div class="dietconb_xia ex_effect3">
+					姿势：准妈妈坐在椅子上，两脚踏平地面，脚尖尽力上翘，翘起后再放下，反复多次，注意脚尖上翘时，脚掌不要离地。
+					<h6>功效：通过脚尖运动，促进血液循环，并增强脚部肌肉。 </h6> </div>
+			</div>
+		</div>
+		<!--盆骨运动-->
+		<div class="dietTestDate  dietTestdatestyle" id="motionTestDateStarch4">
+			<div class="dietcloseimg"><img src="../images/guanbi.png" /></div>
+			<div class="diettest_con2">
+				<img height="35px" width="39px" src="images/penguyundong2.png">
+				<span class="exerciseName4">盆骨运动</span>
+			</div>
+			<div class="dietcon_botton">
+				<div class="dietconb_xia ex_effect4">
+					姿势：准妈妈坐在椅子上，两脚踏平地面，脚尖尽力上翘，翘起后再放下，反复多次，注意脚尖上翘时，脚掌不要离地。
+					<h6>功效：通过脚尖运动，促进血液循环，并增强脚部肌肉。 </h6> </div>
+			</div>
+		</div>
+		<!--伸展运动-->
+		<div class="dietTestDate  dietTestdatestyle" id="motionTestDateStarch5">
+			<div class="dietcloseimg"><img src="../images/guanbi.png" /></div>
+			<div class="diettest_con2">
+				<img height="35px" width="39px" src="images/shenzhanyundong2.png">
+				<span class="exerciseName5">伸展运动</span>
+			</div>
+			<div class="dietcon_botton">
+				<div class="dietconb_xia ex_effect5">
+					姿势：准妈妈坐在椅子上，两脚踏平地面，脚尖尽力上翘，翘起后再放下，反复多次，注意脚尖上翘时，脚掌不要离地。
+					<h6>功效：通过脚尖运动，促进血液循环，并增强脚部肌肉。 </h6> </div>
+			</div>
+		</div>
+
+		<!--裸关节运动-->
+		<div class="dietTestDate  dietTestdatestyle" id="motionTestDateStarch6">
+			<div class="dietcloseimg"><img src="../images/guanbi.png" /></div>
+			<div class="diettest_con2">
+				<img height="35px" width="39px" src="images/huaiguanjieyundong2.png">
+				<span class="exerciseName6">裸关节运动</span>
+			</div>
+			<div class="dietcon_botton">
+				<div class="dietconb_xia ex_effect6">
+					姿势：准妈妈坐在椅子上，两脚踏平地面，脚尖尽力上翘，翘起后再放下，反复多次，注意脚尖上翘时，脚掌不要离地。
+					<h6>功效：通过脚尖运动，促进血液循环，并增强脚部肌肉。 </h6> </div>
+			</div>
+		</div>
+		<!--走路-->
+		<div class="dietTestDate  dietTestdatestyle" id="motionTestDateStarch7">
+			<div class="dietcloseimg"><img src="../images/guanbi.png" /></div>
+			<div class="diettest_con2">
+				<img height="35px" width="39px" src="images/zoulusanbu2.png">
+				<span class="mexerciseName1">走路散步</span>
+			</div>
+			<div class="dietcon_botton">
+				<div class="dietconb_xia mex_effect1">
+					姿势：准妈妈坐在椅子上，两脚踏平地面，脚尖尽力上翘，翘起后再放下，反复多次，注意脚尖上翘时，脚掌不要离地。
+					<h6>功效：通过脚尖运动，促进血液循环，并增强脚部肌肉。 </h6> </div>
+			</div>
+		</div>
+		<!--游泳-->
+		<div class="dietTestDate  dietTestdatestyle" id="motionTestDateStarch8">
+			<div class="dietcloseimg"><img src="../images/guanbi.png" /></div>
+			<div class="diettest_con2">
+				<img height="35px" width="39px" src="images/youyong2.png">
+				<span class="mexerciseName2">游泳</span>
+			</div>
+			<div class="dietcon_botton">
+				<div class="dietconb_xia mex_effect2">
+					姿势：准妈妈坐在椅子上，两脚踏平地面，脚尖尽力上翘，翘起后再放下，反复多次，注意脚尖上翘时，脚掌不要离地。
+					<h6>功效：通过脚尖运动，促进血液循环，并增强脚部肌肉。 </h6> </div>
+			</div>
+		</div>
+		<!--有氧运动-->
+		<div class="dietTestDate  dietTestdatestyle" id="motionTestDateStarch9">
+			<div class="dietcloseimg"><img src="../images/guanbi.png" /></div>
+			<div class="diettest_con2">
+				<img height="35px" width="39px" src="images/youyangyundong2.png">
+				<span class="mexerciseName3 ">有氧运动</span>
+			</div>
+			<div class="dietcon_botton">
+				<div class="dietconb_xia mex_effect3">
+					姿势：准妈妈坐在椅子上，两脚踏平地面，脚尖尽力上翘，翘起后再放下，反复多次，注意脚尖上翘时，脚掌不要离地。
+					<h6>功效：通过脚尖运动，促进血液循环，并增强脚部肌肉。 </h6> </div>
+			</div>
+		</div>
+		<!--瑜伽-->
+		<div class="dietTestDate  dietTestdatestyle" id="motionTestDateStarch10">
+			<div class="dietcloseimg"><img src="../images/guanbi.png" /></div>
+			<div class="diettest_con2">
+				<img height="35px" width="39px" src="images/yujia2.png">
+				<span class="mexerciseName4">瑜伽</span>
+			</div>
+			<div class="dietcon_botton">
+				<div class="dietconb_xia mex_effect4">
+					姿势：准妈妈坐在椅子上，两脚踏平地面，脚尖尽力上翘，翘起后再放下，反复多次，注意脚尖上翘时，脚掌不要离地。
+					<h6>功效：通过脚尖运动，促进血液循环，并增强脚部肌肉。 </h6> </div>
+			</div>
+		</div>
+		<!--运动记录-->
+		<div class="dietTestDate  dietTestdatestyle" id="motionTestDateStarch11">
+			<div class="dietcloseimg"><img src="../images/guanbi.png" /></div>
+			<div class="diettest_con2">
+				<span class="">运动记录</span>
+			</div>
+			<div class="dietcon_botton" style="padding: 10px 50px 40px 50px;">
+				<div class="dietconb_xia" style="max-height: 400px;overflow: auto;overflow-x: hidden;margin: 0 auto;padding: 0 0 10px 0;border-top:1px solid lightgray;border-bottom:1px solid lightgray;">
+					<div id="frame" style="text-align: center;">
+						<!--<div class="line">
+							<div class="sports_date">2017/11/14</div>
+							<div class="sports_name">走路（慢）</div>
+							<div class="sports_time">30分钟</div>
+						</div>
+						<div class="line2">
+							<div class="sports_date">2017/11/14</div>
+							<div class="sports_name">走路（慢）</div>
+							<div class="sports_time">30分钟</div>
+						</div>-->
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--高糖-->
+		<div class="dietTestDate  dietTestdatestyle" id="dietTestDateStarch1">
+			<div class="dietcloseimg"><img src="../images/guanbi.png" /></div>
+			<div class="diettest_con2">
+				<img height="35px" width="39px" src="images/shanshituijian1.png">
+				<span>高糖</span>
+			</div>
+			<div class="dietcon_botton">
+				<div class="dietconb_xia"> 根据食物中含糖量的多少，人们将其分为高糖、低糖和无糖食物三大类。含糖量较高的食物主要包括食用糖和各种谷物。低糖食物主要包括有蔬菜、水果和肉类。无糖食物主要包括各种食用植物油。如果孕妇长期高脂肪膳食，势必增加女儿罹患生殖系统癌瘤的危险。长期多吃高脂肪食物，会使大肠内的胆酸和中性胆固醇浓度增加，同时，高脂肪食物能增加催乳激素的合成，促使发生乳腺癌，不利母婴健康。 </div>
+
+				<div class="shanshiboton_litem">
+					<label style="color: red;	font-weight: normal; font-size: 18px;  margin-left: 10px;"> 忌 多 吃</label>
+					<table>
+						<tr id="sugar_imglist">
+							<td><img width="90px" height="60px" src="images/shiwutuijianimg1.png"></td>
+							<td><img width="90px" height="60px" src="images/shiwutuijianimg2.png"></td>
+							<td><img width="90px" height="60px" src="images/shiwutuijianimg3.png"></td>
+							<td><img width="90px" height="60px" src="images/shiwutuijianimg4.png"></td>
+							<td><img width="90px" height="60px" src="images/shiwutuijianimg5.png"></td>
+							<td><img width="90px" height="60px" src="images/shiwutuijianimg6.png"></td>
+							<td><img width="90px" height="60px" src="images/shiwutuijianimg7.png"></td>
+
+						</tr>
+
+						<tr id="sugar_foodlist">
+							<td>全麦面包</td>
+							<td>麦麸饼干</td>
+							<td>红薯</td>
+							<td>菠萝干</td>
+							<td>胡萝卜</td>
+							<td>芹菜</td>
+							<td>南瓜</td>
+						</tr>
+					</table>
+
+				</div>
+			</div>
+		</div>
+		<!--高淀粉-->
+		<div class="dietTestDate  dietTestdatestyle" id="dietTestDateStarch2">
+			<div class="dietcloseimg"><img src="../images/guanbi.png" /></div>
+			<div class="diettest_con2">
+				<img height="35px" width="39px" src="images/shanshituijian2.png">
+				<span>高淀粉</span>
+			</div>
+			<div class="dietcon_botton">
+				<div class="dietconb_xia"> 所谓淀粉类食物，主要指富含碳水化合物的食物，以及根茎类蔬菜。富含碳水化合物的食物有大米、玉米、小麦等，根茎类蔬菜则包括土豆、山药、薯类等。此外，各种豆类和香蕉等含淀粉比较多的水果也包括在淀粉类食物中。</div>
+
+				<div class="shanshiboton_litem">
+					<label style="color: red;	font-weight: normal; font-size: 18px;  margin-left: 10px;"> 忌 多 吃</label>
+					<table>
+						<tr id="starch_imglist">
+							<td><img width="90px" height="60px" src="images/shiwutuijianimg1.png"></td>
+							<td><img width="90px" height="60px" src="images/shiwutuijianimg2.png"></td>
+							<td><img width="90px" height="60px" src="images/shiwutuijianimg3.png"></td>
+							<td><img width="90px" height="60px" src="images/shiwutuijianimg4.png"></td>
+							<td><img width="90px" height="60px" src="images/shiwutuijianimg5.png"></td>
+							<td><img width="90px" height="60px" src="images/shiwutuijianimg6.png"></td>
+							<td><img width="90px" height="60px" src="images/shiwutuijianimg7.png"></td>
+
+						</tr>
+
+						<tr id="starch_foodlist">
+							<td>全麦面包</td>
+							<td>麦麸饼干</td>
+							<td>红薯</td>
+							<td>菠萝干</td>
+							<td>胡萝卜</td>
+							<td>芹菜</td>
+							<td>南瓜</td>
+						</tr>
+					</table>
+
+				</div>
+			</div>
+		</div>
+		<!--高脂肪-->
+		<div class="dietTestDate  dietTestdatestyle" id="dietTestDateStarch3">
+			<div class="dietcloseimg"><img src="../images/guanbi.png" /></div>
+			<div class="diettest_con2">
+				<img height="35px" width="39px" src="images/shanshituijian3.png">
+				<span>高脂肪</span>
+			</div>
+			<div class="dietcon_botton">
+				<div class="dietconb_xia"> 高脂肪饮食是指饮食中包括高脂肪食物的一种饮食方式，比如植物中的核桃、芝麻、花生，油炸食品、肥肉、动物内脏、奶油制品等都属于高脂肪食物。长期食用高脂肪垃圾食品或可诱发多种慢性疾病。大量研究表明，如果长期吃得太油腻，不只会造成肥胖和心脑血管疾病，还会让骨头变细和变脆。有研究者就发现，连续7个月的高脂肪饮食会让机体骨骼中的矿物质大量流失，从而出现骨质疏松症的表现。</div>
+
+				<div class="shanshiboton_litem">
+					<label style="color: red;	font-weight: normal; font-size: 18px;  margin-left: 10px;"> 忌 多 吃</label>
+					<table>
+						<tr id="fat_imglist">
+							<td><img width="90px" height="60px" src="images/shiwutuijianimg1.png"></td>
+							<td><img width="90px" height="60px" src="images/shiwutuijianimg2.png"></td>
+							<td><img width="90px" height="60px" src="images/shiwutuijianimg3.png"></td>
+							<td><img width="90px" height="60px" src="images/shiwutuijianimg4.png"></td>
+							<td><img width="90px" height="60px" src="images/shiwutuijianimg5.png"></td>
+							<td><img width="90px" height="60px" src="images/shiwutuijianimg6.png"></td>
+							<td><img width="90px" height="60px" src="images/shiwutuijianimg7.png"></td>
+
+						</tr>
+
+						<tr id="fat_foodlist">
+							<td>全麦面包</td>
+							<td>麦麸饼干</td>
+							<td>红薯</td>
+							<td>菠萝干</td>
+							<td>胡萝卜</td>
+							<td>芹菜</td>
+							<td>南瓜</td>
+						</tr>
+					</table>
+
+				</div>
+			</div>
+		</div>
+		<!--高寒-->
+		<div class="dietTestDate  dietTestdatestyle" id="dietTestDateStarch4">
+			<div class="dietcloseimg"><img src="../images/guanbi.png" /></div>
+			<div class="diettest_con2">
+				<img height="35px" width="39px" src="images/shanshituijian4.png">
+				<span>高寒</span>
+			</div>
+			<div class="dietcon_botton">
+				<div class="dietconb_xia">寒性食物有助于清火、解毒，可用来辅助治疗火热病证。凡是面红目赤、狂躁妄动、神昏谵语、颈项强直、口舌糜烂、牙龈肿痛、口干渴、喜冷饮、小便短赤、大便燥结、舌红苔黄燥、脉数的等实火病症，可以之为原料烹制食用，有助于清火祛病。 寒凉刺激虽然并不能直接导致出生后婴儿的肠胃功能，但过食寒凉也会刺激母体肠胃，即使未怀孕的正常人也是不提倡的。 </div>
+
+				<div class="shanshiboton_litem">
+					<label style="color: red;	font-weight: normal; font-size: 18px;  margin-left: 10px;"> 忌 多 吃</label>
+					<table>
+						<tr id="cold_imglist">
+							<td><img width="90px" height="60px" src="images/shiwutuijianimg1.png"></td>
+							<td><img width="90px" height="60px" src="images/shiwutuijianimg2.png"></td>
+							<td><img width="90px" height="60px" src="images/shiwutuijianimg3.png"></td>
+							<td><img width="90px" height="60px" src="images/shiwutuijianimg4.png"></td>
+							<td><img width="90px" height="60px" src="images/shiwutuijianimg5.png"></td>
+							<td><img width="90px" height="60px" src="images/shiwutuijianimg6.png"></td>
+							<td><img width="90px" height="60px" src="images/shiwutuijianimg7.png"></td>
+
+						</tr>
+
+						<tr id="cold_foodlist">
+							<td>全麦面包</td>
+							<td>麦麸饼干</td>
+							<td>红薯</td>
+							<td>菠萝干</td>
+							<td>胡萝卜</td>
+							<td>芹菜</td>
+							<td>南瓜</td>
+						</tr>
+					</table>
+
+				</div>
+			</div>
+		</div>
+		<!--辛辣-->
+		<div class="dietTestDate  dietTestdatestyle" id="dietTestDateStarch5">
+			<div class="dietcloseimg"><img src="../images/guanbi.png" /></div>
+			<div class="diettest_con2">
+				<img height="35px" width="39px" src="images/shanshituijian5.png">
+				<span>辛辣</span>
+			</div>
+			<div class="dietcon_botton">
+				<div class="dietconb_xia">辛辣的食物包括辣椒、花椒、大蒜、芥末、胡椒、生姜、烟酒及含酒精饮料等的统称。经常吃的都有蒜，葱，辣椒，胡椒，姜，芥末，洋葱等。这些食物不但具有很大的刺激作用，而且还具有“发散”作用，过多食用，容易“耗气”，可能导致气虚，致使免疫力降低。另外，绝不能见了清火药就吃，而应在医生指导下服用。</div>
+
+				<div class="shanshiboton_litem">
+					<label style="color: red;	font-weight: normal; font-size: 18px;  margin-left: 10px;">忌 多 吃</label>
+					<table>
+						<tr id="spicy_imglist">
+							<td><img width="90px" height="60px" src="images/shiwutuijianimg1.png"></td>
+							<td><img width="90px" height="60px" src="images/shiwutuijianimg2.png"></td>
+							<td><img width="90px" height="60px" src="images/shiwutuijianimg3.png"></td>
+							<td><img width="90px" height="60px" src="images/shiwutuijianimg4.png"></td>
+							<td><img width="90px" height="60px" src="images/shiwutuijianimg5.png"></td>
+							<td><img width="90px" height="60px" src="images/shiwutuijianimg6.png"></td>
+							<td><img width="90px" height="60px" src="images/shiwutuijianimg7.png"></td>
+
+						</tr>
+
+						<tr id="spicy_foodlist">
+							<td>全麦面包</td>
+							<td>麦麸饼干</td>
+							<td>红薯</td>
+							<td>菠萝干</td>
+							<td>胡萝卜</td>
+							<td>芹菜</td>
+							<td>南瓜</td>
+						</tr>
+					</table>
+
+				</div>
+			</div>
+		</div>
+		<!--纤维-->
+		<div class="dietTestDate  dietTestdatestyle" id="dietTestDateStarch6">
+			<div class="dietcloseimg"><img src="../images/guanbi.png" /></div>
+			<div class="diettest_con2">
+				<img height="35px" width="39px" src="images/shanshituijianimg6.png">
+				<span>纤维</span>
+			</div>
+			<div class="dietcon_botton">
+				<div class="dietconb_xia">含膳食纤维的包括谷类（特别是一些粗粮）、豆类、一些蔬菜和水果。可以在加餐时多吃一些全麦面包、麦麸饼干、红薯、菠萝片、消化饼等点心，可以补充膳食纤维，以防治便秘和痔疮。 胡萝卜含有丰富的的水溶性纤维，而且能够提高孕妈自身的免疫力。同时，富含维生素A的胡萝卜还能为胎宝宝的视力发育提供必要的营养。 芹菜富含非水溶性纤维，有降压、调整肠胃蠕动、改善脑部功能、舒缓情绪等作用，芹菜食用方法多，可凉拌、炒食、熬汤、榨汁等。 南瓜所含果胶还可以保护胃肠道粘膜，免受粗糙食品刺激，维持“胃”动力。
+				</div>
+
+				<div class="shanshiboton_litem">
+					<label style="color: red;	font-weight: normal; font-size: 18px;  margin-left: 10px;">宜吃</label>
+					<table>
+						<tr id="fibre_imglist">
+							<td><img width="90px" height="60px" src="images/shiwutuijianimg1.png"></td>
+							<td><img width="90px" height="60px" src="images/shiwutuijianimg2.png"></td>
+							<td><img width="90px" height="60px" src="images/shiwutuijianimg3.png"></td>
+							<td><img width="90px" height="60px" src="images/shiwutuijianimg4.png"></td>
+							<td><img width="90px" height="60px" src="images/shiwutuijianimg5.png"></td>
+							<td><img width="90px" height="60px" src="images/shiwutuijianimg6.png"></td>
+							<td><img width="90px" height="60px" src="images/shiwutuijianimg7.png"></td>
+
+						</tr>
+
+						<tr id="fibre_foodlist">
+							<td>全麦面包</td>
+							<td>麦麸饼干</td>
+							<td>红薯</td>
+							<td>菠萝干</td>
+							<td>胡萝卜</td>
+							<td>芹菜</td>
+							<td>南瓜</td>
+						</tr>
+					</table>
+
+				</div>
+			</div>
+		</div>
+		<!--膳食习惯-->
+		<div class="dietTestDate  dietTestdatestyle" id="dietTestDateStarch7">
+			<div class="dietcloseimg"><img src="../images/guanbi.png" /></div>
+			<div class="diettest_con2">
+				<span class="">膳食习惯</span>
+			</div>
+			<div class="dietcon_botton" style="">
+				<div class="dietconb_xia" style="max-height: 400px;overflow: auto;overflow-x: hidden;margin: 0 auto;">
+					<div class="h_left">
+						<!--<div class="h_line">
+							<div class="h_img"><img src="images/u14396.png"/></div>
+							<div class="h_span"><span>吃腌制食品</span></div>
+						</div>
+						<div class="h_line">
+							<div class="h_img"><img src="images/u14396.png"/> </div>
+							<div class="h_span"><span>常吃完盘中所有的食物</span></div>
+						</div>
+						<div class="h_line">
+							<div class="h_img"><img src="images/u14396.png"/> </div>
+							<div class="h_span"><span>常吃方便面</span></div>
+						</div>
+						<div class="h_line">
+							<div class="h_img"><img src="images/u14396.png"/> </div>
+							<div class="h_span"><span>喜欢吃买来的馒头、挂面等面食，认为颜色越白越好认为颜色越白越好</span></div>
+						</div>
+						<div class="h_line">
+							<div class="h_img"><img src="images/u14396.png"/> </div>
+							<div class="h_span"><span>喜欢吃动物内脏</span></div>
+						</div>-->
+					</div>
+					<div class="h_right">
+						<!--<div class="h_line">
+							<div class="h_img"><img src="images/u14394.png"/></div>
+							<div class="h_span"><span>每天都坚持喝一杯牛奶或酸奶</span></div>
+						</div>
+						<div class="h_line">
+							<div class="h_img"><img src="images/u14394.png"/></div>
+							<div class="h_span"><span>喜欢吃全麦面或杂粮</span></div>
+						</div>
+						<div class="h_line">
+							<div class="h_img"><img src="images/u14394.png"/></div>
+							<div class="h_span"><span>在每3天的食谱中，都会安排胡萝卜、西红柿</span></div>
+						</div>-->
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!--孕前期-->
+		<div class="dietTestDate1" id="dietTestDateStarch7">
+			<div class="dietcloseimg1"><img src="../images/guanbi.png" /></div>
+			<img width="400px" height="650px" src="images/shanshibaotaimg.png" />
+		</div>
+		<!--孕早期-->
+		<div class="dietTestDate1" id="dietTestDateStarch8">
+			<div class="dietcloseimg1"><img src="../images/guanbi.png" /></div>
+			<img width="400px" height="650px" src="images/shanshibaotaimg1.png" />
+		</div>
+
+		<!--孕中、晚期-->
+		<div class="dietTestDate1" id="dietTestDateStarch9">
+			<div class="dietcloseimg1"><img src="../images/guanbi.png" /></div>
+			<img width="400px" height="650px" src="images/shanshibaotaimg2.png" />
+		</div>
+
+		<div id="div_report" class="modalMove">
+			<div class="report_close">
+				<img id="report_close" src="../images/guanbi.png" />
+			</div>
+			<label id="report_name">血常规报告单</label>
+			<div id="report_main" class="table-overflow">
+				<table id="report_table">
+					<tr id="tr_tittle">
+						<td></td>
+						<td>指标名称</td>
+						<td>简称</td>
+						<td>结果</td>
+						<td>单位</td>
+						<td>参考值</td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" id="check1" /></td>
+						<td>白细胞</td>
+						<td>WBC</td>
+						<td style="color: red;" id="WBC">10.0↑</td>
+						<td>*10^9/L</td>
+						<td>3.5-3.9</td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" id="check2" /></td>
+						<td>红细胞</td>
+						<td>RBC</td>
+						<td style="color: red;">3.78↓</td>
+						<td>*10^12/L</td>
+						<td>3.8-5.1</td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" id="check3" /></td>
+						<td>血红蛋白</td>
+						<td>HGB</td>
+						<td style="color: red;">112↓</td>
+						<td>g/L</td>
+						<td>115-150</td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" id="check4" /></td>
+						<td>红细胞压积</td>
+						<td>HCT</td>
+						<td style="color: red;">34.1↓</td>
+						<td>%</td>
+						<td>35-45</td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" id="check5" /></td>
+						<td>平均红细胞体积</td>
+						<td>MCV</td>
+						<td>90.2</td>
+						<td>fL</td>
+						<td>82-100</td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" /></td>
+						<td>平均红细胞血红蛋白量</td>
+						<td>MCH</td>
+						<td>29.6</td>
+						<td>pg</td>
+						<td>27-34</td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" /></td>
+						<td>平均红细胞血红蛋白浓度</td>
+						<td>MCHC</td>
+						<td>328</td>
+						<td>g/L</td>
+						<td>316-354</td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" /></td>
+						<td>血小板计数</td>
+						<td>PLT</td>
+						<td>202</td>
+						<td>*10^9/L</td>
+						<td>125-350</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td>
+							<div style="cursor:pointer;" class="click-to-see" data-toggle="modal" data-target="#myMo" onclick="showMoreImg(0)">点击查看原始报告单</div>
+						</td>
+					</tr>
+				</table>
+
+			</div>
+			<div id="readReport"></div>
+			<label id="report_tips" style="color: red;margin-top: 30px;">提示：选择指标后 点击绘图处可查看历史曲线波动情况，一次最多可选三个指标进行查看。</label>
+			<div class="report_bottom">
+				<div class="left">
+					<img src="images/u33551.png" id="makeEchart" />
+				</div>
+
+				<div class="report_buttons">
+					<button id="mark" class="markBut" onclick="mark2(this,'report_main')"><!--<img src="images/u4408.png" /> -->标记</button>
+					<button id="send" onclick="signSend('report_main');">标记保存，发送</button>
+				</div>
+			</div>
+		</div>
+		<!--个人基础信息-->
+		<div id="div_baseMsg" class="modalMove">
+			<div class="baseMsg_close">
+				<img id="baseMsg_close" src="../images/guanbi.png" />
+			</div>
+			<div class="baseMsg_main">
+				<div class="baseMsg_left">
+					<img src="images/u16210.jpg" width="70px" />
+				</div>
+				<div class="baseMsg_right">
+					<label class="graName" style="width: 385px;">姓名：<span class="graName">王大花</span></label><span style="color: blue;">当前孕况：<span id="graStatus"style="color: blue;"></span></span>
+					<div class="baseMsg_cont">
+						<div class="baseMsg_cont1">
+							<label>年龄：</label><span class="graAge"></span><br />
+							<label>末次月经：</label><span id="span_endDate" class="enddate"></span><br />
+							<label>预  产  期：</label><span class="expectedDate"></span><br />
+							<label>孕周：</label><span class="buildWeeks"></span><br />
+							<label>产妇血型（ABO/Rh)：</label><span id="mbloodtype"></span>/<span id="mRh"></span><br />
+							<label>丈夫血型（ABO/Rh)：</label><span id="fbloodtype"></span>/<span id="fRh"></span>
+						</div>
+						<div class="baseMsg_cont2">
+							<label>孕  育  史：</label><span class="mhistory"></span><br />
+							<label>高危得分：</label><span class="hriskscore" style="color: red;"></span><br />
+							<label>高危等级：</label><span class="hrisklevel" style="color: red;"></span><br />
+							<label>高危因素：</label><label class="hriskdata" style="color: red;"></label>
+
+						</div>
+					</div>
+					<label>当前孕周上传报告：</label><br /> 已上传：
+					<span class="inCheck"></span><br /> 未上传：
+					<span class="notCheck"></span><br />
+					<!--<label style="color: red;">提醒：红色标记为未完成检查项目</label>-->
+				</div>
+			</div>
+		</div>
+		<!--体重-->
+		<div class="testData" id="weightData">
+			<div class="close dragBox" style="width: 100%;">
+				<img src="../images/guanbi.png" style="float: right;" />
+			</div>
+			<div id='fetal'>
+				<div id="weightDiv" class="EDiv">
+					<h3>体重趋势图</h3>
+					<div style="position: relative;">
+						<div style="float: left;margin-right: 10px;margin-top: 5px;">
+							<img src="images/u143733.png" />
+						</div>
+						<strong style="color: red;">测量意义：</strong>孕期监测体重是一件非常重要的事情，既可以及时发现营养是否充足，又可以防止因能量摄入过量导致的妊娠合并症和巨大儿。
+					</div>
+					<table style="line-height: 25px;">
+						<tr>
+							<td>正常范围：49kg-51.3kg</td>
+							<!--<td style="color: red;">偏低0.5kg</td>
+							<td>当前体重：48.5kg <br />BMI：18.9</td>
+							<td>孕期已减少：0.5kg <br />本周推荐增重：0.5kg</td>-->
+						</tr>
+					</table>
+
+					<div class="echart" style="height: 310px;position: relative;">
+
+						<div id="chart7"></div>
+					</div>
+
+					<div style="margin-top:10px;">
+						<div style="float: left;margin-right: 13px;margin-top:14px;height: 50px;">
+							<img src="images/u143735.png" />
+						</div>
+						<div><strong style="color: #A4D31B;">测量建议：</strong> 测量时，脱去外衣、鞋子、帽，测量前半小时禁止饮水，尽量排空大小便。垂直站立于磅秤上，上肢自然下垂，不能碰触其他物体，以免影响准确性。（请确保每周的固定时间（比如清晨）、固定状态（比如进早餐前），进行测量体重。持续监测。更能精确地体现孕妇增重指标的变化趋势。）
+						</div>
+					</div>
+					<div class="table-overflow">
+						<table class="table-bordered table-for-weight" id="fetalMinute">
+							<tr>
+								<td>孕周</td>
+								<td>体重</td>
+								<td>BMI</td>
+								<td>体重增长上限</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				<div id="but">
+					<button id="mark" class="markBut" onclick="mark2(this,'weightDiv')">标记</button>
+					<button id="send" onclick="signSend('weightDiv');">标记保存，发送</button>
+				</div>
+				<div id="sum">
+					本周体重：
+					<input class="weightJuggment" type="radio" name="ex" style="position: relative;top: 2px;" />
+					<span>正常</span>
+					<input class="weightJuggment" type="radio" name="ex" style="position: relative;top: 2px;" />
+					<span>异常</span>
+					<input class="weightJuggmentInput" type="text" style="width:400px;height:21px;overflow: auto;" />
+				</div>
+			</div>
+		</div>
+
+		<!--胎动-->
+		<div class="testData" id="fetalMovementData">
+			<div class="close dragBox" style="width: 100%;">
+				<img src="../images/guanbi.png" style="float: right;" />
+			</div>
+			<div id='fetal'>
+				<div id="fetalMovementDiv" class="EDiv">
+					<h3>胎动趋势图</h3>
+					<div style="position: relative;">
+						<div style="float: left;margin-right: 10px;margin-top: 5px;">
+							<img src="images/u143733.png" />
+						</div>
+						<strong style="color: red;">测量意义：</strong> 胎动正常，表示胎盘功能良好，输送给胎儿的氧气充足，胎儿在子宫内生长发育健全，很愉快地活动着。观察早期妊娠的胎动，有利于对妊娠预后情况的估计。
+					</div>
+					<div class="echart" style="display: flex;height: 230px;position: relative;">
+						<div id="echart20" style="width: 350px !important;height: 285px;flex: 1;"></div>
+						<div id="echart19" style="width: 350px !important;height: 285px;flex: 1;"></div>
+					</div>
+					<div style="margin-top:10px;">
+						<div style="float: left;margin-right: 13px;margin-top:3px;">
+							<img src="images/u143735.png" />
+						</div>
+						<div>
+							<strong style="color: #A4D31B;">测量方法：</strong> 每天早、中、晚固定三个时段动，各记录一次胎动，每次一小时；保持在安静的环境中，一个相对固定的时间和良好的心态；身体采用左侧卧位，专心感受胎动，每动一次，就记录一次，以确保准确无误；一连串的胎动只记录1次。
+						</div>
+					</div>
+					<div class="table-overflow">
+						<table class="table-bordered table-for-fetalMovement" id="fetalMinute">
+							<tr>
+								<td>日期</td>
+								<td>单次胎动次数</td>
+								<td>12小时估算次数</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+
+				<div id="but">
+					<button id="mark" class="markBut" onclick="mark2(this,'fetalMovementDiv')">标记</button>
+					<button id="send" onclick="signSend('fetalMovementDiv');">标记保存，发送</button>
+				</div>
+				<div id="sum">
+					本周胎动：
+					<input class="featalMovementJuggment" type="radio" name="ex" style="position: relative;top: 2px;" />
+					<span>正常</span>
+					<input class="featalMovementJuggment" type="radio" name="ex" style="position: relative;top: 2px;" />
+					<span>异常</span>
+					<input class="featalMovementJuggmentInput" type="text" />
+				</div>
+			</div>
+		</div>
+
+		<!--体温ok-->
+		<div class="testData" id="temperatureData">
+			<div class="close dragBox" style="width: 100%;">
+				<img src="../images/guanbi.png" style="float: right;" />
+			</div>
+			<div id='fetal'>
+				<div id="temperatureDiv" class="EDiv">
+					<h3>体温趋势图</h3>
+					<table style="position: relative;">
+						<tr>
+							<td><img src="images/tw.png" />&nbsp;&nbsp;<span style="color: red;font-size: 16px;">36.6</span></td>
+							<!--<td style="color: #33CC00;font-size: 16px;">正常 </td>-->
+							<td>正常温度：低于37℃</td>
+						</tr>
+					</table>
+					<div class="echart" style="height: 290px;position: relative;">
+						<div id='chart4'></div>
+					</div>
+				</div>
+				<div id="but">
+					<button id="mark" class="markBut" style="position: relative;" onclick="mark2(this,'temperatureDiv')">标记</button>
+					<button id="send" style="position: relative;" onclick="signSend('temperatureDiv');">标记保存，发送</button>
+				</div>
+				<div id="sum">
+					本周体温：
+					<input class="temperatureJuggment" type="radio" name="ex" style="position: relative;top: 2px;" />
+					<span>正常</span>
+					<input class="temperatureJuggment" type="radio" name="ex" style="position: relative;top: 2px;" />
+					<span>异常</span>
+					<input class="temperatureJuggmentInput" type="text" id="text" />
+				</div>
+			</div>
+		</div>
+
+		<!--血脂ok-->
+		<div class="testData" id="bloodfatDate">
+			<div class="close dragBox" style="width: 100%;">
+				<img src="../images/guanbi.png" style="float: right;" />
+			</div>
+			<div id='fetal'>
+				<div id="bloodfatDiv" class="EDiv">
+					<h3>血脂趋势图</h3>
+					<div style="margin-left: 46px;position: relative;color: #5AAA8D;">正常范围： CHOL：2.80-5.98mmol/L HDL：0.90-1.55mmol/L TRIG：0.56-1.70mmol/L LDL：0-3.0mmol/L</div>
+					<div class="echart" style="height: 300px;position: relative;">
+						<div id="chart5"></div>
+					</div>
+				</div>
+
+				<div id="but">
+					<button id="mark" class="markBut" onclick="mark2(this,'bloodfatDiv')">标记</button>
+					<button id="send" onclick="signSend('bloodfatDiv');">标记保存，发送</button>
+				</div>
+
+				<div id="sum">
+					本周血脂：
+					<input class="bloodfatJuggment" type="radio" name="ex" style="position: relative;top: 2px;" />
+					<span>正常</span>
+					<input class="bloodfatJuggment" type="radio" name="ex" style="position: relative;top: 2px;" />
+					<span>异常</span>
+					<input class="bloodfatJuggmentInput" type="text" />
+				</div>
+			</div>
+		</div>
+
+		<!--腹围-->
+		<div class="testData" id="circumferenceDate">
+			<div class="close dragBox" style="width: 100%;">
+				<img src="../images/guanbi.png" style="float: right;" />
+			</div>
+			<div id='fetal'>
+				<div id="circumferenceDiv" class="EDiv">
+					<h3>腹围趋势图</h3>
+					<div style="position: relative;margin-bottom: 15px;">
+						<div style="float: left;margin-right: 10px;margin-top: -3px;">
+							<img src="images/u143733.png" />
+						</div>
+						<strong style="color: red;">测量意义：</strong> 测量意义：孕妇的腹围与胎儿的大小有很密切的关系，到后期通过测量宫高和腹围，可以估计胎儿的体重。
+					</div>
+					<div class="echart" style="height: 300px;position: relative;">
+						<div id="chart12"></div>
+					</div>
+					<div style="margin-top:10px;">
+						<div style="float: left;margin-right: 13px;margin-top:-3px;">
+							<img src="images/u143735.png" />
+						</div>
+						<div><strong style="color: #A4D31B;">腹围自测方式：</strong> 将衣服解开，完全暴露腹部，用软皮尺测量，以肚脐为准，水平绕腹一周。
+						</div>
+					</div>
+					<div class="table-overflow">
+						<table class="table-bordered table-for-circumference" id="fetalMinute">
+							<tr>
+								<td>孕周</td>
+								<td>腹围cm</td>
+								<td>参考值 标准cm</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				<div id="but">
+					<button id="mark" class="markBut" onclick="mark2(this,'circumferenceDiv')">标记</button>
+					<button id="send" onclick="signSend('circumferenceDiv');">标记保存，发送</button>
+				</div>
+				<div id="sum">
+					本周腹围：
+					<input class="circumferenceJuggment" type="radio" name="ex" style="position: relative;top: 2px;" />
+					<span>正常</span>
+					<input class="circumferenceJuggment" type="radio" name="ex" style="position: relative;top: 2px;" />
+					<span>异常</span>
+					<input class="circumferenceJuggmentInput" type="text" />
+				</div>
+			</div>
+		</div>
+
+		<!--尿液-->
+		<div class="testData" id="urineDate">
+			<div class="close dragBox" style="width: 100%;">
+				<img src="../images/guanbi.png" style="float: right;" />
+			</div>
+			<div id='fetal'>
+				<div id="urineDiv" class="EDiv">
+					<h3>尿液趋势图</h3>
+					<div class="table-overflow">
+						<table class="table-bordered" id="fetalMinute" style="position: relative;top: 10px;">
+							<tr>
+								<td>日期</td>
+								<td>时段</td>
+								<td>白细胞</td>
+								<td>亚硝酸盐</td>
+								<td>尿糖</td>
+								<td>胆红素</td>
+								<td>维生素C</td>
+								<td>PH值</td>
+								<td>潜血</td>
+								<td>酮体</td>
+								<td>尿胆原</td>
+								<td>尿蛋白</td>
+								<td>尿比重</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>早餐前</td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>午餐前</td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>晚餐前</td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				<div id="but">
+					<button id="mark" class="markBut" onclick="mark2(this,'urineDiv')">标记</button>
+					<button id="send" onclick="signSend('urineDiv');">标记保存，发送</button>
+				</div>
+				<div id="sum">
+					本周尿液：
+					<input class="urineJuggment" type="radio" name="ex" style="position: relative;top: 2px;" />
+					<span>正常</span>
+					<input class="urineJuggment" type="radio" name="ex" style="position: relative;top: 2px;" />
+					<span>异常</span>
+					<input class="urineJuggmentInput" type="text" />
+				</div>
+			</div>
+		</div>
+
+		<!--血氧-->
+		<div class="testData" id="bloodoxygenDate">
+			<div class="close dragBox" style="width: 100%;">
+				<img src="../images/guanbi.png" style="float: right;" />
+			</div>
+			<div id='fetal'>
+				<div id="bloodoxygenDiv" class="EDiv">
+					<h3>血氧趋势图</h3>
+					<div style="margin-left: 46px;position: relative;top: 10px;">正常范围参考值：脉率60-120bpm，血氧饱和度95%-100%</div>
+					<div style="position: relative;top: 17px;left: 120px;font-size: 16px;">血氧饱和度趋势图分析</div>
+					<div style="position: relative;top:-5px;left: 475px;font-size: 16px;">血氧脉率趋势图分析</div>
+					<div class="echart" style="display: flex;height: 200px;position: relative;">
+						<div id="echart21" style="width: 350px !important;height: 295px;flex: 1;"></div>
+						<div id="echart22" style="width: 350px !important;height: 295px;flex: 1;"></div>
+					</div>
+				</div>
+
+				<div id="but">
+					<button id="mark" class="markBut" style="position: relative;" onclick="mark2(this,'bloodoxygenDiv')">标记</button>
+					<button id="send" style="position: relative;" onclick="signSend('bloodoxygenDiv');">标记保存，发送</button>
+				</div>
+
+				<div id="sum">
+					本周血氧：
+					<input class="bloodoxygenJuggment" type="radio" name="ex" style="position: relative;top: 2px;" />
+					<span>正常</span>
+					<input class="bloodoxygenJuggment" type="radio" name="ex" style="position: relative;top: 2px;" />
+					<span>异常</span>
+					<input class="bloodoxygenJuggmentInput" type="text" />
+				</div>
+			</div>
+		</div>
+
+		<!--运动-->
+		<div class="testData" id="sportsDate">
+			<div class="close dragBox" style="width: 100%;">
+				<img src="../images/guanbi.png" style="float: right;" />
+			</div>
+			<div id='fetal'>
+				<div id="sportsDiv" class="EDiv">
+					<h3>运动记录</h3>
+					<div class="echart" style="position: relative;top: 10px;">
+						<img src="images/yundong.png" width="700px" height="310px" style="margin-bottom: 20px;" />
+					</div>
+				</div>
+				<div id="but">
+					<button id="mark" class="markBut" onclick="mark2(this,'sportsDiv')">标记</button>
+					<button id="send" onclick="signSend('sportsDiv');">标记保存，发送</button>
+				</div>
+				<div id="sum">
+					本周运动：
+					<input class="sportsJuggment" type="radio" name="ex" style="position: relative;top: 2px;" />
+					<span>正常</span>
+					<input class="sportsJuggment" type="radio" name="ex" style="position: relative;top: 2px;" />
+					<span>异常</span>
+					<input class="sportsJuggmentInput" type="text" />
+				</div>
+			</div>
+		</div>
+
+		<!--宫高-->
+		<div class="testData" id="uterineDate">
+			<div class="close dragBox" style="width: 100%;">
+				<img src="../images/guanbi.png" style="float: right;" />
+			</div>
+			<div id='fetal'>
+				<div id="uterineDiv" class="EDiv">
+
+					<h3>宫高趋势图</h3>
+					<div style="position: relative;">
+						<div style="float: left;margin-right: 10px;margin-top: 5px;">
+							<img src="images/u143733.png" />
+						</div>
+						<strong style="color: red;">测量意义：</strong> 测量意义：宫高测量可以估计胎儿体重，有助动态观察胎儿发育。及时发现胎儿宫内发育迟缓、巨大儿或羊水过多等妊娠异常，使其有可能通过及时治疗得到纠正。
+					</div>
+					<div class="echart" style="height: 305px;position: relative;">
+						<div id="chart13"></div>
+					</div>
+					<div style="margin-top:10px;">
+						<div style="float: left;margin-right: 13px;margin-top:3px;">
+							<img src="images/u143735.png" />
+						</div>
+						<div>
+							<strong style="color: #A4D31B;">宫高自测方式：</strong> 宫高自测方式：测量之前请排空尿液并仰卧，用软尺测量耻骨联合上缘中点至宫底的距离。（耻骨联合上缘位置：位于人体的正前方，顺着小腹往下，碰到靠近阴部的位置硬硬的骨头处。子宫底位置：半卧位后圆圆小腹的上缘。）
+						</div>
+					</div>
+					<div class="table-overflow">
+						<table class="table-bordered table-for-fundalheight" id="fetalMinute">
+							<tr>
+								<td>孕周</td>
+								<td>宫高cm</td>
+								<td>参考值 标准cm</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+
+				<div id="but">
+					<button id="mark" class="markBut" onclick="mark2(this,'uterineDiv')">标记</button>
+					<button id="send" onclick="signSend('uterineDiv');">标记保存，发送</button>
+				</div>
+				<div id="sum">
+					本周宫高：
+					<input class="uterineJuggment" type="radio" name="ex" style="position: relative;top: 2px;" />
+					<span>正常</span>
+					<input class="uterineJuggment" type="radio" name="ex" style="position: relative;top: 2px;" />
+					<span>异常</span>
+					<input class="uterineJuggmentInput" type="text" />
+				</div>
+			</div>
+
+		</div>
+
+		<!--血糖-->
+		<div class="testData" id="bloodsugarDate">
+			<div style="height: 43px;overflow: hidden;">
+				<ul class="nav nav-tabs dragBox">
+					<li class="active">
+						<div class="li_line"></div>
+						<a href="#bs1" data-toggle="tab" style="font-size: 14px;">点测血糖趋势图</a>
+					</li>
+					<!--<li>
+						<div class="li_line"></div>
+						<a href="#bs2" data-toggle="tab" style="font-size: 14px;">动态血糖趋势图</a>
+					</li>-->
+					<li style="float: right;">
+						<div class="close" style="width: 100%;">
+							<img src="../images/guanbi.png" style="float: right;" />
+						</div>
+					</li>
+				</ul>
+			</div>
+
+			<div id='fetal'>
+				<div class="tab-content">
+					<!--血糖的第一张曲线图-->
+					<div class="tab-pane active" id="bs1">
+						<div id="bloodsugarDiv1" class="EDiv">
+
+							<div style="margin: 10px 0;margin-top: 15px;">
+								<div style="float: left;margin-right: 10px;margin-top: 3px;">
+									<img src="images/u143733.png" />
+								</div>
+								<strong style="color: red;">测量意义：</strong> GDM对新生儿可造成低血糖病、新生儿呼吸窘迫综合征、新生儿红细胞增多症和高胆红素血症等，定时监测血糖变化，防治妊娠糖尿病发生。
+							</div>
+							<div style="margin-left: 46px;margin-top: 15px;">
+								本周血糖<span style="font-size: 18px;color: red;">&nbsp;&nbsp;&nbsp;</span> <span style="margin-left: 120px;">参考范围：餐前＜5.1，餐后＜8.5，睡前＜5.1</span>
+							</div>
+
+							<div class="echart" style="height: 360px;">
+								<div id="chart1"></div>
+							</div>
+							<div style="margin-top:10px;line-height: 20px;">
+								<div style="float: left;margin-right: 13px;margin-top:-3px;height: 70px;">
+									<img src="images/u143735.png" />
+								</div>
+								<div><strong style="color: #A4D31B;">测量方法：</strong> <br />1.筛查首选空腹时检测的血糖数据；<br /> 2.早餐前采集的血样。至少8-10小时未进任何食物，饮水除外；<br /> 3.使用专业的仪器：血糖仪进行检测。
+
+								</div>
+							</div>
+						</div>
+						<div id="but">
+							<button id="mark" class="markBut" onclick="mark2(this,'bloodsugarDiv1')">标记</button>
+							<button id="send" onclick="signSend('bloodsugarDiv1');">标记保存，发送</button>
+						</div>
+						<div id="sum">
+							本周血糖：
+							<input class="bloodsugarJuggment" type="radio" name="ex" style="position: relative;top: 2px;" />
+							<span>正常</span>
+							<input class="bloodsugarJuggment" type="radio" name="ex" style="position: relative;top: 2px;" />
+							<span>异常</span>
+							<input class="bloodsugarJuggmentInput" type="text" />
+						</div>
+					</div>
+					<!--血糖的第二张曲线图-->
+					<div id="bs2" class="tab-pane">
+						<div id="bloodsugarDiv2" class="EDiv">
+
+							<div style="margin: 10px 0;margin-top: 15px;">
+								<div style="float: left;margin-right: 10px;margin-top: 3px;">
+									<img src="images/u143733.png" />
+								</div>
+								<strong style="color: red;">测量意义：</strong> 全面的反应GDM患者的血糖情况，更好的指导临床治疗，促使GDM患者血糖达标，避免遗漏无症状高血糖和低血糖。为妊娠糖尿病疗效和血糖控制水平提供方便可靠的评估手段。
+							</div>
+							<div class="echart" style="margin-top: 20px;height: 380px;">
+								<div id="chart15"></div>
+							</div>
+							<div style="margin-top:10px;">
+								<div style="float: left;margin-right: 13px;margin-top:-3px;">
+									<img src="images/u143735.png" />
+								</div>
+								<div><strong style="color: #A4D31B;">测量方法：</strong> 测量方法：连续测量72小时，记录每个参比血糖 。避免大量出汗、浸水、淋雨、强电磁场和强烈撞击、皮肤瘙痒。
+								</div>
+							</div>
+						</div>
+						<div id="but">
+							<button id="mark" class="markBut" onclick="mark2(this,'bloodsugarDiv2')">标记</button>
+							<button id="send" onclick="signSend('bloodsugarDiv2');">标记保存，发送</button>
+						</div>
+						<div id="sum">
+							本周血糖：
+							<input class="bloodsugar2Juggment" type="radio" name="ex" style="position: relative;top: 2px;" />
+							<span>正常</span>
+							<input class="bloodsugar2Juggment" type="radio" name="ex" style="position: relative;top: 2px;" />
+							<span>异常</span>
+							<input class="bloodsugar2JuggmentInput" type="text" />
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+		<!--血压-->
+		<div class="testData" id="bloodpressureDate">
+			<div style="height: 43px;overflow: hidden;">
+				<ul class="nav nav-tabs dragBox">
+					<li class="active">
+						<div class="li_line"></div>
+						<a href="#bp1" data-toggle="tab" style="font-size: 14px;">点测血压趋势图</a>
+					</li>
+					<!--<li>
+						<div class="li_line"></div>
+						<a href="#bp2" data-toggle="tab" style="font-size: 14px;">动态血压趋势图</a>
+					</li>-->
+					<li style="float: right;">
+						<div class="close" style="width: 100%;">
+							<img src="../images/guanbi.png" style="float: right;" />
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div id='fetal'>
+				<div class="tab-content">
+					<div id="bp1" class="tab-pane active">
+						<div id="bloodpressureDiv1" class="EDiv">
+
+							<div style="margin: 10px 0;margin-top: 15px;">
+								<div style="float: left;margin-right: 10px;margin-top: 3px;height: 50px;">
+									<img src="images/u143733.png" />
+								</div>
+								<strong style="color: red;">监测意义：</strong> 孕前进行血压测量，可以及早发现一些潜在疾患，早日治疗、早日康复，減少怀孕期间并发症的发生。孕期血压异常可能会引起妊娠相关的合并症，比如先兆子痫、子痫等。因此定期监测血压，对及时发现血压异常变化、保障母子健康十分重要
+							</div>
+							<div style="margin-left: 46px;margin-top: 15px;">
+								本周血压<span style="font-size: 18px;color: red;">&nbsp;&nbsp;&nbsp;</span> <span style="margin-left: 120px;">正常范围：收缩压90-139mmHg；舒张压60-89mmHg</span>
+							</div>
+							<div class="echart" style="height: 340px;position: relative;">
+								<div id="chart9"></div>
+							</div>
+							<div style="margin-top:10px;">
+								<div style="float: left;margin-right: 13px;margin-top:-3px;height: 85px;">
+									<img src="images/u143735.png" />
+								</div>
+								<div><strong style="color: #A4D31B;">测量方法：</strong>
+									<br />1.被测量者至少安静休息5分钟，在测量前30分钟内禁止吸烟和饮咖啡，排空膀胱；<br /> 2.被测量者取坐位，最好坐靠背椅；裸露右上臂，肘部置于与心脏同一水平；
+									<br /> 3.将袖带紧贴缚在被测者上臂上，袖带下缘应在肘弯上2.5cm，然后按照仪器使用说明书严格操作，并读数；
+									<br /> 4.如果测量结果异常，请在不同日期不同时间。至少监测3次。
+								</div>
+							</div>
+						</div>
+						<div id="but">
+							<button id="mark" class="markBut" onclick="mark2(this,'bloodpressureDiv1')">标记</button>
+							<button id="send" onclick="signSend('bloodpressureDiv1');">标记保存，发送</button>
+						</div>
+						<div id="sum">
+							本周血压：
+							<input class="bloodpressureJuggment" type="radio" name="ex" style="position: relative;top: 2px;" />
+							<span>正常</span>
+							<input class="bloodpressureJuggment" type="radio" name="ex" style="position: relative;top: 2px;" />
+							<span>异常</span>
+							<input class="bloodpressureJuggmentInput" type="text" />
+						</div>
+					</div>
+
+					<div id="bp2" class="tab-pane">
+						<div id="bloodpressureDiv2" class="EDiv">
+
+							<div style="margin: 10px 0;margin-top: 15px;">
+								<div style="float: left;margin-right: 10px;margin-top: 3px;">
+									<img src="images/u143733.png" />
+								</div>
+								<strong style="color: red;">监测意义：</strong> 对结果可疑及高危妊娠人群定期重复监测科早期诊断治疗，改善母儿预后；对妊娠中期孕妇进行24h动态血压监测可早期诊断白大衣性高血压，及早进行临床干预，可增加正常分娩率。促进母儿健康。
+							</div>
+							<div style="margin-left: 46px;margin-top: 15px;">
+								本周血压<span style="font-size: 18px;color: red;">&nbsp;&nbsp;&nbsp;持续升高  </span> <span style="margin-left: 120px;">正常范围：收缩压90-139mmHg；舒张压60-89mmHg</span>
+							</div>
+							<div class="echart" style="margin-top: 15px;height: 380px;">
+
+							</div>
+							<div style="margin-top:10px;">
+								<div style="float: left;margin-right: 13px;margin-top:-3px;">
+									<img src="images/u143735.png" />
+								</div>
+								<div><strong style="color: #A4D31B;">测量方法：</strong> 连续测量24小时，记录每个血压参数
+								</div>
+							</div>
+						</div>
+						<div id="but">
+							<button id="mark" class="markBut" onclick="mark2(this,'bloodpressureDiv2')">标记</button>
+							<button id="send" onclick="signSend('bloodpressureDiv2');">标记保存，发送</button>
+						</div>
+						<div id="sum">
+							本周血压：
+							<input class="bloodpressure2Juggment" type="radio" name="ex" style="position: relative;top: 2px;" />
+							<span>正常</span>
+							<input class="bloodpressure2Juggment" type="radio" name="ex" style="position: relative;top: 2px;" />
+							<span>异常</span>
+							<input class="bloodpressure2JuggmentInput" type="text" />
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+		<!--胎心（大）-->
+		<div class="testData" id="fetalLargeData">
+			<div class="close dragBox" style="width: 100%;">
+				<img src="../images/guanbi.png" style="float: right;" />
+			</div>
+			<div id='fetal'>
+				<div id="fetalLargeDiv" class="EDiv">
+
+					<h3>胎心曲线图</h3>
+					<div style="position: relative;top: 10px;">
+						<div style="float: left;margin-right: 10px;margin-top: 5px;">
+							<img src="images/u143733.png" />
+						</div>
+						<strong style="color: red;">测量意义：</strong> 胎心是判断胎儿健康状况的重要指标之一，正常情况下胎儿的心跳是成人的2倍，为120-160次/分钟。了解胎动时、宫缩时胎心的反应，以推测宫内胎儿有无缺氧。
+					</div>
+					<table style="line-height: 25px;">
+						<!--<tr>
+							<td>胎心率基线：<span>135-145bpm</span></td>
+							<td>醒睡周期： <span>明显</span></td>
+						</tr>
+						<tr>
+							<td>波形： <span>平滑</span></td>
+							<td>胎动：<span>2次；</span>加速：<span>2次</span></td>
+						</tr>-->
+						<tr>
+							<td><strong>本例分析结果：</strong>总得分=<span id="l_sumScore">9</span>分</td>
+							<td></td>
+						</tr>
+					</table>
+					<div class="table-overflow">
+						<table class="table-bordered" id="fetalMinuteT">
+							<tr>
+								<td>NST评分</td>
+								<td>0分</td>
+								<td>1分</td>
+								<td>2分</td>
+								<td>结果</td>
+								<td>得分</td>
+							</tr>
+							<tr>
+								<td style="width: 200px !important;">胎心率基线 （心拍数/分）</td>
+								<td>＜100</td>
+								<td>100-119＞160</td>
+								<td>120-160</td>
+								<td id="l_fline"></td>
+								<td id="l_flineScore"></td>
+							</tr>
+							<tr>
+								<td style="width: 200px !important;">振幅摆动范围（心拍数/分）</td>
+								<td>＜5</td>
+								<td>5-9＞30</td>
+								<td>10-30</td>
+								<td id="l_fwave"></td>
+								<td id="l_fwaveScore"></td>
+							</tr>
+							<tr>
+								<td style="width: 200px !important;">胎动时FHR上升时间</td>
+								<td>＜10”</td>
+								<td>10-14”</td>
+								<td>＞15”</td>
+								<td id="l_frise"></td>
+								<td id="l_friseScore"></td>
+							</tr>
+							<tr>
+								<td style="width: 200px !important;">胎动时FHR改变</td>
+								<td>+＜10或慢</td>
+								<td>10-14</td>
+								<td>＞15</td>
+								<td id="l_fchange"></td>
+								<td id="l_fchangeScore"></td>
+							</tr>
+							<tr>
+								<td style="width: 200px !important;">胎动次数</td>
+								<td>0</td>
+								<td>1-2</td>
+								<td>3</td>
+								<td id="l_fmove"></td>
+								<td id="l_fmoveScore"></td>
+							</tr>
+						</table>
+					</div>
+					<div class="echart" style="height: 340px;">
+						<div id="echart17" style="width:700px !important;height: 380px !important;position: relative;top: -30px;left: 10px;"></div>
+					</div>
+
+					<div style="margin-top:10px;">
+						<div style="float: left;margin-right: 13px;margin-top:-3px;">
+							<img src="images/u143735.png" />
+						</div>
+						<div><strong style="color: #A4D31B;">测量建议：</strong> 对于孕28周以后的孕妇，胎儿分化完全，可以加长监护的时间和次数。每日20分钟连续测量。
+						</div>
+					</div>
+				</div>
+				<div id="but">
+					<button id="mark" class="markBut" onclick="mark2(this,'fetalLargeDiv')">标记</button>
+					<button id="send" onclick="signSend('fetalLargeDiv');">标记保存，发送</button>
+				</div>
+				<div id="sum">
+					本周胎心：
+					<input class="featalHeartJuggment" type="radio" name="ex" style="position: relative;top: 2px;" />
+					<span>正常</span>
+					<input class="featalHeartJuggment" type="radio" name="ex" style="position: relative;top: 2px;" />
+					<span>异常</span>
+					<input class="featalHeartJuggmentInput" type="text" />
+				</div>
+			</div>
+
+		</div>
+
+		<!--心电-->
+		<div class="testData" id="electrocardioDate">
+			<div class="close dragBox" style="width: 100%;">
+				<img src="../images/guanbi.png" style="float: right;" />
+			</div>
+			<div id='fetal'>
+				<div id="electrocardioDiv" class="EDiv">
+					<h3>心电趋势图</h3>
+					<div class="echart" style="position: relative;top: 10px;">
+					</div>
+					<div class="table-overflow">
+						<table class="table-bordered" id="fetalMinute">
+							<tr>
+								<td>上传时间</td>
+								<td>结论</td>
+							</tr>
+							<tr>
+								<td>2017/7/15</td>
+								<td>窦性心律</td>
+							</tr>
+							<tr>
+								<td>&nbsp;</td>
+								<td></td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				<div id="but">
+					<button id="mark" class="markBut" onclick="mark2(this,'electrocardioDiv')">标记</button>
+					<button id="send" onclick="signSend('electrocardioDiv');">标记保存，发送</button>
+				</div>
+				<div id="sum">
+					本周心电：
+					<input class="electrocardioJuggment" type="radio" name="ex" style="position: relative;top: 2px;" />
+					<span>正常</span>
+					<input class="electrocardioJuggment" type="radio" name="ex" style="position: relative;top: 2px;" />
+					<span>异常</span>
+					<input class="electrocardioJuggmentInput" type="text" />
+				</div>
+			</div>
+		</div>
+
+		<!--胎心（xiao）-->
+		<div class="testData" id="fetalSmData">
+			<div class="close dragBox" style="width: 100%;">
+				<img src="../images/guanbi.png" style="float: right;" />
+			</div>
+			<div id='fetal'>
+				<div id="fetalSmDiv" class="EDiv">
+					<h3>胎心曲线图</h3>
+					<div style="position: relative;top: 10px;">
+						<div style="float: left;margin-right: 10px;margin-top: 5px;">
+							<img src="images/u143733.png" />
+						</div>
+						<strong style="color: red;">测量意义：</strong> 胎心是判断胎儿健康状况的重要指标之一，正常情况下胎儿的心跳是成人的2倍，为120-160次/分钟。了解胎动时、宫缩时胎心的反应，以推测宫内胎儿有无缺氧。
+					</div>
+					<table style="line-height: 25px;margin-bottom: 20px;">
+						<!--<tr>
+							<td>胎心率基线：<span>135-145bpm</span></td>
+							<td>醒睡周期： <span>明显</span></td>
+						</tr>
+						<tr>
+							<td>波形： <span>平滑</span></td>
+							<td>胎动：<span>2次；</span>加速：<span>2次</span></td>
+						</tr>-->
+						<!--<tr>
+							<td><strong>本例分析结果：</strong><span>总评分=<span id="s_sumScore">9</span>分</span></td>
+							<td></td>
+						</tr>-->
+					</table>
+					<div class="table-overflow">
+						<table class="table-bordered" id="fetalMinuteT">
+							<!--<tr>
+								<td>NST评分</td>
+								<td>0分</td>
+								<td>1分</td>
+								<td>2分</td>
+								<td>结果</td>
+								<td>得分</td>
+							</tr>
+							<tr>
+								<td>胎心率基线 （心拍数/分）</td>
+								<td>＜100</td>
+								<td>100-119＞160</td>
+								<td>120-160</td>
+								<td id="s_fline"></td>
+								<td id="s_flineScore"></td>
+							</tr>
+							<tr>
+								<td>振幅摆动范围（心拍数/分）</td>
+								<td>＜5</td>
+								<td>5-9＞30</td>
+								<td>10-30</td>
+								<td id="s_fwave"></td>
+								<td id="s_fwaveScore"></td>
+							</tr>
+							<tr>
+								<td>胎动时FHR上升时间</td>
+								<td>＜10”</td>
+								<td>10-14”</td>
+								<td>＞15”</td>
+								<td id="s_frise"></td>
+								<td id="s_friseScore"></td>
+							</tr>
+							<tr>
+								<td>胎动时FHR改变</td>
+								<td>+＜10或慢</td>
+								<td>10-14</td>
+								<td>＞15</td>
+								<td id="s_fchange"></td>
+								<td id="s_fchangeScore"></td>
+							</tr>
+							<tr>
+								<td>胎动次数</td>
+								<td>0</td>
+								<td>1-2</td>
+								<td>3</td>
+								<td id="s_fmove"></td>
+								<td id="s_fmoveScore"></td>
+							</tr>-->
+						</table>
+					</div>
+					<div class="echart" style="height: 270px;">
+						<div id="echart18" style="width: 760px;height: 300px;position: relative;top: -30px;left: -15px;"></div>
+					</div>
+
+					<div style="margin-top:10px;">
+						<div style="float: left;margin-right: 13px;margin-top:-3px;">
+							<img src="images/u143735.png" />
+						</div>
+						<div><strong style="color: #A4D31B;">测量建议：</strong> 孕15~28周 每天测3次，每次至少5分钟。</div>
+					</div>
+				</div>
+				<div id="but">
+					<button id="mark" class="markBut" onclick="mark2(this,'fetalSmDiv')">标记</button>
+					<button id="send" onclick="signSend('fetalSmDiv');">标记保存，发送</button>
+				</div>
+				<div id="sum">
+					本周胎心：
+					<input class="featalHeart2Juggment" type="radio" name="ex" style="position: relative;top: 2px;" />
+					<span>正常</span>
+					<input class="featalHeart2Juggment" type="radio" name="ex" style="position: relative;top: 2px;" />
+					<span>异常</span>
+					<input class="featalHeart2JuggmentInput" type="text" />
+				</div>
+			</div>
+		</div>
+		<div id="div"></div>
+		<div id="modal_for_weekly">
+			<div style="top: -13px;">
+				<img class="img_close_button" src="../images/guanbi.png" />
+			</div>
+			<div class="class_main">
+				<div class="main_content">
+					<!--begin Tab-Control 选项卡-->
+					<div class="right-Tab-Control">
+						<ul class="nav nav-tabs nva-tabs-ul">
+							<li class="active">
+								<div class="li_line"></div>
+								<a id="main-information" href="#panel-978065" data-toggle="tab">摘要</a>
+							</li>
+							<li id="">
+								<div class="li_line"></div>
+								<a href="#panel-978066" data-toggle="tab">基本信息</a>
+							</li>
+							<li id="">
+								<div class="li_line"></div>
+								<a href="#panel-978067" data-toggle="tab">检查信息</a>
+							</li>
+							<li id="self-test-information">
+								<div class="li_line"></div>
+								<a href="#panel-978068" data-toggle="tab" onclick="selectFirstTap()">自测信息</a>
+							</li>
+							<li id="">
+								<div class="li_line"></div>
+								<a href="#panel-978069" data-toggle="tab">风险模型</a>
+							</li>
+						</ul>
+						<div class="tab-content contents">
+							<div class="tab-pane active data-show inner-div" id="panel-978065">
+								<div class="li_line div-line"></div>
+								<div class="three-part-div">
+									<div class="div-left">
+										<table>
+											<tr>
+												<td class='graName' id="graName"></td>
+												<td></td>
+											</tr>
+											<tr>
+												<td>年龄：</td>
+												<td class="graAge"></td>
+											</tr>
+											<tr>
+												<td>预产期：</td>
+												<td class="expectedDate"></td>
+											</tr>
+											<tr>
+												<td>&nbsp;</td>
+												<td></td>
+											</tr>
+											<tr>
+												<td>&nbsp;</td>
+												<td></td>
+											</tr>
+											<tr>
+												<td>高危得分：</td>
+												<td style="color: red;" id="risk_score_for_basic"></td>
+											</tr>
+											<tr>
+												<td>高危等级：</td>
+												<td style="color: red;" id="risk_leave"></td>
+											</tr>
+											<tr>
+												<td>风险因子：</td>
+												<td></td>
+											</tr>
+										</table>
+										<textarea id="risk_factor2" style="color: red;">	
+										</textarea>
+									</div>
+									<div class="div-middle">
+										<div id="checkEchart">
+										</div>
+										<div class="div-title">异常指标：</div>
+										<table id="table_abnormal_detail">
+
+										</table>
+
+									</div>
+									<div class="div-right">
+										<div class="div-title">医嘱建议：</div>
+										<div id="doctor_advice" class="doctor-advice-div"></div>
+									</div>
+								</div>
+							</div>
+							<div class="tab-pane examine inner-div" id="panel-978066">
+								<div class="li_line div-line"></div>
+								<div class="inner-div basic-information">
+									<div class="div-title title1">围产信息：</div>
+									<table>
+										<tr>
+											<td>检查日期：</td>
+											<td id="cehcDate"></td>
+											<td>预产期：</td>
+											<td class="expectedDate"></td>
+											<td>孕周：</td>
+											<td class="buildWeeks"></td>
+											<td>出生日期：</td>
+											<td id="birthDate"></td>
+										</tr>
+										<tr>
+											<td>年龄：</td>
+											<td class="graAge"></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+										</tr>
+									</table>
+									<hr />
+									<div class="div-title title2">体格检查：</div>
+									<table>
+										<tr>
+											<td>身高(cm):</td>
+											<td id="statures"></td>
+											<td>体重(kg):</td>
+											<td id="weights"></td>
+											<td>BMI:</td>
+											<td id="bmis"></td>
+											<td>血压(mmhg):</td>
+											<td id="booldPressure"></td>
+										</tr>
+										<tr>
+											<td>心脏：</td>
+											<td id="heart"></td>
+											<td>肺部：</td>
+											<td id="lung"></td>
+											<td>外阴：</td>
+											<td id="vulva"></td>
+											<td>宫颈：</td>
+											<td id="cervixUteri"></td>
+										</tr>
+										<tr>
+											<td>子宫：</td>
+											<td id="uterus"></td>
+											<td>阴道：</td>
+											<td id="vagina"></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+										</tr>
+									</table>
+									<hr />
+									<div class="div-title title3">病史：</div>
+									<table class="table-move-right">
+										<tr>
+											<td>孕妇既往史：</td>
+											<td id="gHistory"></td>
+											<td>男方血型(ABO):</td>
+											<td id="manBlood"></td>
+											<td>女方家族史：</td>
+											<td id="womanHistory"></td>
+											<td>男方家族史：</td>
+											<td id="manHistory"></td>
+										</tr>
+										<tr>
+											<td>女方个人史：</td>
+											<td id="womanPersonage"></td>
+											<td>男方个人史：</td>
+											<td id="manPersonage"></td>
+											<td>孕产史：</td>
+											<td id="pregnancyBirth"></td>
+											<td></td>
+											<td></td>
+										</tr>
+									</table>
+									<hr />
+									<div class="div-title title4">主诉：</div>
+									<table class="table-move-right">
+										<tr>
+											<td style="color: red;" id="symptomName"></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+										</tr>
+									</table>
+								</div>
+								<!-- end 选项卡 panel-978066  -->
+							</div>
+							<div class="tab-pane data-show inner-div" id="panel-978067">
+								<div class="class_firstDiagnos_main">
+									<div class="li_line div-line"></div>
+									<div class="class_firstDiagnose_tab_examineProject_info">
+										<div class="class_firstDiagnose_project_title">已查项目</div>
+										<span id="checkProjectHaveDone"></span>
+										<div style='height:10px; clear: both;width:100%;'></div>
+										<div class="changePageContainer"><img id="checkProjectChange" src="images/changePage.png" width="35px"></div>
+										<div class="no-anyProject">暂无</div>
+										<!--end ECG electrocardio-->
+									</div>
+
+								</div>
+							</div>
+							<div class="tab-pane examine" id="panel-978068">
+								<ul id="myTab" class="nav nav-tabs">
+									<li class="bloodsugar-tab-pane self-test" onclick="">
+										<a id="bloodsugar-tab-pane" href="#panel-bloodsugar" data-toggle="tab">
+											血糖趋势分布图
+										</a>
+									</li>
+									<li class="bloodpressure-tab-pane self-test" onclick="">
+										<a id='bloodpressure-tab-pane' href="#panel-bloodpressure" data-toggle="tab">
+											血压变化趋势图
+										</a>
+									</li>
+									<li class="weight-tab-pane self-test" onclick="">
+										<a id="weight-tab-pane" href="#panel-weight" data-toggle="tab">
+											体重变化趋势图
+										</a>
+									</li>
+									<li class="fetalHeart-tab-pane self-test" onclick="">
+										<a id="fetalHeart-tab-pane" href="#panel-fetalHeart" data-toggle="tab">
+											胎心变化趋势图
+										</a>
+									</li>
+									<li class="fetalMovement-tab-pane self-test" onclick="">
+										<a id="fetalMovement-tab-pane" href="#panel-fetalMovement" data-toggle="tab">
+											胎动变化趋势图
+										</a>
+									</li>
+									<li class="abdominalCircumference-tab-pane self-test" onclick="">
+										<a id="abdominalCircumference-tab-pane" href="#panel-abdominalCircumference" data-toggle="tab">
+											腹围变化趋势图
+										</a>
+									</li>
+									<li class="fundalHeight-tab-pane self-test" onclick="">
+										<a id="fundalHeight-tab-pane" href="#panel-fundalHeight" data-toggle="tab">
+											宫高变化趋势图
+										</a>
+									</li>
+									<li class="electrocardio-tab-pane self-test" onclick="">
+										<a id="electrocardio-tab-pane" href="#panel-electrocardio" data-toggle="tab">
+											心电变化趋势图
+										</a>
+									</li>
+									<li class="temperature-tab-pane self-test" onclick="">
+										<a id="temperature-tab-pane" href="#panel-temperature" data-toggle="tab">
+											体温变化趋势图
+										</a>
+									</li>
+									<li class="bloodfat-tab-pane self-test" onclick="">
+										<a id="bloodfat-tab-pane" href="#panel-bloodfat" data-toggle="tab">
+											血脂变化趋势图
+										</a>
+									</li>
+									<li class="bloodoxygen-tab-pane self-test" onclick="">
+										<a id="bloodoxygen-tab-pane" href="#panel-bloodoxygen" data-toggle="tab">
+											血氧变化趋势图
+										</a>
+									</li>
+								</ul>
+								<div id="selfTest-TabContent" class="tab-content">
+									<div class="tab-pane" id="panel-bloodsugar">
+										<!-- begin 血糖总体趋势分析图  -->
+										<div id="bloodsugarEchart1" class="blood-total">
+											<div class="bloodsugar-div-left">
+												<div class="bloodsugar-title">
+													血糖总体趋势分析图
+												</div>
+												<div id="echart1"></div>
+											</div>
+											<div class="bloodsugar-div-right">
+												<label class="first-label">参与评估记录数量：<span id="dataQuantity">0</span></label> <br />
+												<table class="first-table">
+													<tr>
+														<td>
+															<label>最高血糖值：</label>
+															<label><span id="max">0</span>mmol/L</label>
+														</td>
+														<td><label>测得高血糖次数：</label>
+															<label><span id="more" style="color: red;">8</span>次</label>
+														</td>
+													</tr>
+													<tr>
+														<td>
+															<label>最低血糖值：</label>
+															<label><span id="min">0</span>mmol/L</label>
+														</td>
+														<td>
+															<label>测得低血糖次数：</label>
+															<label><span id="less" style="color: red;">2</span>次</label>
+														</td>
+													</tr>
+													<tr>
+														<td>
+															<label>平均血糖值：</label>
+															<label><span id="ave">0</span>mmol/L</label>
+														</td>
+													</tr>
+												</table>
+											</div>
+										</div>
+										<!-- end 血糖总体趋势分析图  -->
+										<div id="bloodsugarEchart2" class="blood-total">
+											<div class="bloodsugar-div-left">
+												<div class="bloodsugar-title">
+													血糖每日分布趋势图
+												</div>
+												<div id="echart2"></div>
+											</div>
+											<div class="bloodsugar-div-right">
+												<table class="second-table">
+													<tr>
+														<td></td>
+														<td>早餐前</td>
+														<td>早餐后</td>
+														<td>午餐前</td>
+														<td>午餐后</td>
+														<td>晚餐前</td>
+														<td>晚餐后</td>
+														<td>夜间</td>
+													</tr>
+													<tr>
+														<td>偏低</td>
+														<td><span id="td11">0</span>%</td>
+														<td><span id="td12">0</span>%</td>
+														<td><span id="td13">0</span>%</td>
+														<td><span id="td14">0</span>%</td>
+														<td><span id="td15">0</span>%</td>
+														<td><span id="td16">0</span>%</td>
+														<td><span id="td17">0</span>%</td>
+													</tr>
+													<tr>
+														<td>正常</td>
+														<td><span id="td21">0</span>%</td>
+														<td><span id="td22">0</span>%</td>
+														<td><span id="td23">0</span>%</td>
+														<td><span id="td24">0</span>%</td>
+														<td><span id="td25">0</span>%</td>
+														<td><span id="td26">0</span>%</td>
+														<td><span id="td27">0</span>%</td>
+													</tr>
+													<tr>
+														<td>偏高</td>
+														<td><span id="td31">0</span>%</td>
+														<td><span id="td32">0</span>%</td>
+														<td><span id="td33">0</span>%</td>
+														<td><span id="td34">0</span>%</td>
+														<td><span id="td35">0</span>%</td>
+														<td><span id="td36">0</span>%</td>
+														<td><span id="td37">0</span>%</td>
+													</tr>
+												</table>
+											</div>
+											<!-- end 血糖每日分布趋势图  -->
+										</div>
+										<div id="bloodsugarEchart3" class="blood-total">
+											<div class="bloodsugar-div-left">
+												<div class="bloodsugar-title">
+													血糖时段分析趋势图
+												</div>
+												<div id="echart3" style="width: 100%;height: 360px;"></div>
+											</div>
+											<div class="bloodsugar-div-right">
+												<label class="first-label">时段血糖平均值：
+												<table class="first-table">
+													<tr>
+														<td>
+															<label>空腹：</label>
+												<label><span id="timedata1">0</span>mmol/L</label>
+												</td>
+												<td>
+													<label>早餐前：</label>
+													<label><span id="timedata2">0</span>mmol/L</label>
+												</td>
+												</tr>
+												<tr>
+													<td>
+														<label>早餐后：</label>
+														<label><span id="timedata3">0</span>mmol/L</label>
+													</td>
+													<td>
+														<label>午餐前：</label>
+														<label><span id="timedata4">0</span>mmol/L</label>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														<label>午餐后：</label>
+														<label><span id="timedata5">0</span>mmol/L</label>
+													</td>
+													<td>
+														<label>晚餐前：</label>
+														<label><span id="timedata6">0</span>mmol/L</label>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														<label>晚餐后：</label>
+														<label><span id="timedata7">0</span>mmol/L</label>
+													</td>
+													<td>
+														<label>夜间：</label>
+														<label><span id="timedata8">0</span>mmol/L</label>
+													</td>
+												</tr>
+												</table>
+											</div>
+
+											<!-- end 血糖时段分析趋势图  -->
+										</div>
+										<img id="bloodsugarChange" src="images/changePage.png" width="35px" style="margin-left: 500px;">
+									</div>
+									<div class="tab-pane" id="panel-bloodpressure">
+										<div class="blood-total">
+											<div class="bloodsugar-div-left">
+												<div class="electrocardio-photo">
+													本周血压趋势分析图
+												</div>
+												<div id="echart9"></div>
+											</div>
+											<div class="electrocardio-photo">
+												<div class="bloodpressure-title">
+													和上周比较
+												</div>
+												<div id="echart10"></div>
+											</div>
+										</div>
+										<div class="blood-total">
+											<div class="bloodsugar-div-left">
+												<div class="electrocardio-photo">
+													周报总结
+												</div>
+												<table class="first-table for-bloodpressure">
+													<tr>
+														<td>
+															<label>最高收缩压压值：</label>
+															<label><span id="max1">0</span>mmol/L</label>
+														</td>
+														<td><label>测得高血压次数：</label>
+															<label><span id="more1" style="color: red;">8</span>次</label>
+														</td>
+													</tr>
+													<tr>
+														<td>
+															<label>最低舒张压值：</label>
+															<label><span id="min1">0</span>mmol/L</label>
+														</td>
+														<td>
+															<label>测得低血压次数：</label>
+															<label><span id="less1" style="color: red;">2</span>次</label>
+														</td>
+													</tr>
+													<tr>
+														<td>
+															<label>平均血压值：</label>
+															<label><span id="ave1">0</span>mmol/L</label>
+														</td>
+													</tr>
+												</table>
+											</div>
+										</div>
+
+									</div>
+									<div class="tab-pane" id="panel-weight">
+										<div id="weightEcharts1" class="blood-total">
+											<div class="bloodsugar-div-left">
+												<div class="bloodsugar-title">
+													孕妇体重趋势分析图
+												</div>
+												<div id="echart7"></div>
+											</div>
+											<div class="bloodsugar-div-right">
+												<label class="first-label">参与评估记录数量：<span id="dataQuantity2">0</span></label> <br />
+												<table class="first-table">
+													<tr>
+														<td>
+															<label>最高体重值：</label>
+															<label><span id="max2">0</span>kg</label>
+														</td>
+														<td><label>测得超重次数：</label>
+															<label><span id="more2" style="color: red;">8</span>次</label>
+														</td>
+													</tr>
+													<tr>
+														<td>
+															<label>最低体重值：</label>
+															<label><span id="min2">0</span>kg</label>
+														</td>
+														<td>
+															<label>测得低重次数：</label>
+															<label><span id="less2" style="color: red;">2</span>次</label>
+														</td>
+													</tr>
+													<tr>
+														<td>
+															<label>平均体重值：</label>
+															<label><span id="ave2">0</span>kg</label>
+														</td>
+													</tr>
+												</table>
+											</div>
+										</div>
+										<!--<div id="weightEcharts2" class="blood-total">
+											<div class="bloodsugar-div-left">
+												<div class="bloodsugar-title">
+													胎儿体重趋势分析图
+												</div>
+												<div id="echart8"></div>
+											</div>
+										</div>
+										<img id="weightChange" src="images/changePage.png" width="35px" style="margin-left: 500px;">-->
+									</div>
+									<div class="tab-pane" id="panel-electrocardio">
+										<div id="" class="electrocardio-inner-div">
+											<div class="electrocardio-photo">
+												本次心电上传结果 <br/><img src="images/u4266.png" width="80%" height="150px" />
+											</div>
+											<div class="electrocardio-photo">历次心电上传结果一览</div>
+											<table id="electrocardio_table" class="second-table electrocardio-table" border="" cellspacing="" cellpadding="">
+												<tr>
+													<td>
+														上传时间
+													</td>
+													<td>
+														心率
+													</td>
+													<td>
+														QT间期
+													</td>
+													<td>
+														P波宽度
+													</td>
+													<td>
+														QTc间期
+													</td>
+													<td>
+														Q波宽度
+													</td>
+													<td>
+														QRS宽度
+													</td>
+													<td>
+														ST段
+													</td>
+													<td>
+														R波幅度
+													</td>
+													<td>
+														结论
+													</td>
+												</tr>
+											</table>
+										</div>
+									</div>
+									<div class="tab-pane" id="panel-temperature">
+										<!-- begin 体温总体趋势分析图  -->
+										<div class="blood-total">
+											<div class="bloodsugar-div-left">
+												<div class="bloodsugar-title">
+													体温总体趋势分析图
+												</div>
+												<div id="echart4"></div>
+											</div>
+											<div class="bloodsugar-div-right">
+												<label class="first-label">参与评估记录数量：<span id="dataQuantity3">0</span></label> <br />
+												<table class="first-table">
+													<tr>
+														<td>
+															<label>最高体温值：</label>
+															<label><span id="max3">0</span>℃</label>
+														</td>
+														<td><label>测得高体温次数：</label>
+															<label><span id="more3" style="color: red;">0</span>次</label>
+														</td>
+													</tr>
+													<tr>
+														<td>
+															<label>最低体温值：</label>
+															<label><span id="min3">0</span>℃</label>
+														</td>
+														<td>
+															<label>测得低体温次数：</label>
+															<label><span id="less3" style="color: red;">2</span>次</label>
+														</td>
+													</tr>
+													<tr>
+														<td>
+															<label>平均体温值：</label>
+															<label><span id="ave3">36</span>℃</label>
+														</td>
+													</tr>
+												</table>
+											</div>
+										</div>
+										<!-- end 体温总体趋势分析图  -->
+									</div>
+									<div class="tab-pane" id="panel-bloodfat">
+										<div class="blood-total">
+											<div class="bloodsugar-div-left">
+												<div class="bloodsugar-title">
+													血脂趋势分析图
+												</div>
+												<div id="echart5"></div>
+											</div>
+										</div>
+									</div>
+									<div class="tab-pane" id="panel-fetalHeart">
+										<!-- begin 胎心总体趋势分析图  -->
+										<div class="blood-total">
+											<div class="bloodsugar-div-left">
+												<div class="bloodsugar-title">
+													胎心趋势分析图
+												</div>
+												<div id="echart16"></div>
+											</div>
+											<div class="bloodsugar-div-right">
+												<div class="class_firstDiagnose_project_container" style="margin-top: 80px;">
+													<!--left-->
+
+													<div class="div_NST_data">
+														<div style="flex: 1;">胎心率基线：<span>120</span>-<span>145</span>bpm</div>
+														<div style="flex: 1;">醒睡周期：<span>明显</span></div>
+													</div>
+													<div class="div_NST_data">
+														<div style="flex: 2;">波形：<span>平滑</span></div>
+														<div style="flex: 1;">胎动：<span>>3次</span></div>
+														<div style="flex: 1;">加速：<span>>3次</span></div>
+													</div>
+													<div class="div_NST_data div_NST_color fischer_color">本例分析结果：<span>fischer评分=<span>10</span>分</span>
+													</div>
+													<div class="class_firstDiagnose_table_container">
+														<table id="urine_table2">
+															<tr class="tr_firstDiagnose_width">
+																<td>NST评分</td>
+																<td>0分</td>
+																<td>1分</td>
+																<td>2分</td>
+																<td>得分</td>
+															</tr>
+															<tr class="tr_firstDiagnose_width">
+																<td>胎心率基线 （心拍数/分）</td>
+																<td>
+																	<100</td>
+																		<td>100-119、>160</td>
+																		<td>120-160</td>
+																		<td>2</td>
+															</tr>
+															<tr class="tr_firstDiagnose_width">
+																<td>振幅摆动范围（心拍数/分）</td>
+																<td>
+																	<5</td>
+																		<td>5-9、>30</td>
+																		<td>10-30</td>
+																		<td>2</td>
+															</tr>
+															<tr class="tr_firstDiagnose_width">
+																<td>胎动时FHR上升时间</td>
+																<td>＜10"</td>
+																<td>10-14"</td>
+																<td>＞15"</td>
+																<td>2</td>
+															</tr>
+															<tr class="tr_firstDiagnose_width">
+																<td>胎动时FHR改变</td>
+																<td>
+																	<10</td>
+																		<td>10-14</td>
+																		<td>>15</td>
+																		<td>2</td>
+															</tr>
+															<tr class="tr_firstDiagnose_width">
+																<td>胎动次数</td>
+																<td>0</td>
+																<td>1-2</td>
+																<td>3</td>
+																<td>2</td>
+															</tr>
+														</table>
+													</div>
+
+												</div>
+											</div>
+										</div>
+										<!-- end 胎心总体趋势分析图  -->
+									</div>
+									<div class="tab-pane" id="panel-fetalMovement">
+										<div class="blood-total">
+											<div class="bloodsugar-div-left">
+												<div class="bloodsugar-title">
+													胎动趋势分析图
+												</div>
+												<div id="echart11"></div>
+											</div>
+											<div class="">
+												<div class="bloodsugar-title">
+													胎动单次趋势分析图
+												</div>
+												<div id="echart14"></div>
+											</div>
+										</div>
+									</div>
+									<div class="tab-pane" id="panel-abdominalCircumference">
+										<div class="blood-total">
+											<div class="bloodsugar-div-left">
+												<div class="bloodsugar-title">
+													腹围趋势分析图
+												</div>
+												<div id="echart12"></div>
+											</div>
+										</div>
+									</div>
+									<div class="tab-pane" id="panel-fundalHeight">
+										<div class="blood-total">
+											<div class="bloodsugar-div-left">
+												<div class="bloodsugar-title">
+													宫高趋势分析图
+												</div>
+												<div id="echart13"></div>
+											</div>
+										</div>
+									</div>
+									<div class="tab-pane" id="panel-bloodoxygen">
+										<div class="blood-total">
+											<div class="bloodsugar-div-left">
+												<div class="bloodsugar-title">
+													血氧饱和度趋势分析图
+												</div>
+												<div id="echart6"></div>
+											</div>
+											<div class="">
+												<div class="bloodsugar-title">
+													血氧脉率趋势分析图
+												</div>
+												<div id="echart15"></div>
+											</div>
+										</div>
+									</div>
+									<div class="tab-pane" id="no-selftest" style="margin-top: 8px;">
+										暂无
+									</div>
+								</div>
+								<!-- end 选项卡 panel-978066  -->
+							</div>
+							<div class="tab-pane data-show" id="panel-978069">
+
+								<!--风险模型start-->
+								<div class="div_RiskModel">
+									<!--风险模型雷达图-->
+									<div id="div-modelChart" style="margin-left: -30px;">
+
+									</div>
+
+									<!--风险模型结果信息-->
+									<div id="risk_result">
+
+									</div>
+								</div>
+								<!--end-->
+							</div>
+						</div>
+					</div>
+					<!--end Tab-Control-->
+				</div>
+			</div>
+		</div>
+
+		<!--显示报告 指标历史数据-->
+		<div id="modal_for_Report" class="modal fade modalMove" tabindex="-3" role="dialog">
+			<div class="modal-dialog report_modal_div" role="document">
+				<div class="modal-content report-modal-content" style="min-width:650px;height: 410px;">
+					<div class="img_close" style="position:relative;right: 12px;top: 8px;cursor: pointer;z-index: 99;" onclick="closeMove()"><img src="../images/guanbi.png" /></div>
+					<div id="report_charts" style="min-width: 500px;height: 350px;">
+
+					</div>
+					<div class="report_buttons">
+						<button id="ech_mark"><!--<img src="images/u4408.png" /> -->标记</button>
+						<button id="ech_send">标记保存，发送</button>
+					</div>
+				</div>
+				<!-- /.modal-content -->
+			</div>
+			<!-- /.modal-dialog -->
+
+		</div>
+		<!--健康周报浮动框--wuwj-->
+		<div class="swiper-container modalMove">
+			<div style="height: 35px;width: 102%;">
+				<div id="img_close_weekreport" class="img_close3" style="top: -2px;right: 8px;cursor: pointer;z-index: 99;"><img src="../images/guanbi.png" /></div>
+			</div>
+			<div id="div_type" style="position: absolute;top: 15px;left: 10px;">周报记录</div>
+			<iframe id="iframe_report1" frameborder="0" height="560px" width="640px" class="iframeReport " src=""></iframe>
+		</div>
+		<!--问诊记录浮动框--wuwj-->
+		<div class="div_interrogation modalMove">
+			<div class="divInterrogation">
+				<div id="div_type" class="div_record_date2">2017/8/5问诊记录</div>
+				<div id="img_div_interrogation_close" class="img_close3" style="position: relative;top: 42px;right: -9px;"><img src="../images/guanbi.png" /></div>
+				<div id="div_table">
+					<form>
+						<table border="0" class="tableMainInter">
+							<tr>
+								<td id="td_logo" rowspan="14" valign="top"><img src="images/u16210.jpg" width="100px" style="margin: 10px 10px 10px;"></td>
+								<td id="td_name" class="graName" width="70px">王大花</td>
+								<td class="tdFontSize tdContent"></td>
+								<td id="td_week" class="tdFontSize" width="70px">孕周：</td>
+								<td id="td_week_detils" class="tdFontSize tdContent recordgravidaweek">19周</td>
+								<td id="td_interrogation_date" class="tdFontSize" width="70px">问诊时间：</td>
+								<td id="td_interrogation_date_detial" class="tdFontSize tdContent"><span id="span_record_date">2017/8/5</span></td>
+							</tr>
+							<tr>
+								<td id="td_age_title" class="tdFontSize" width="70px">年&nbsp;&nbsp;&nbsp;&nbsp;龄</td>
+								<td id="td_age_detail" class="tdFontSize tdContent graAge">25</td>
+								<td id="td_inoculation_history_title" class="tdFontSize" width="70px">末次月经：</td>
+								<td id="td_inoculation_history_detail" class="tdFontSize tdContent  enddate">2017/2/12</td>
+								<td id="td_inoculation_history_title" class="tdFontSize" width="70px">预产期：</td>
+								<td id="td_inoculation_history_detail" class="tdFontSize tdContent expectedDate">2017/10/5</td>
+							</tr>
+							<tr>
+								<td id="td_endDate_title" class="tdFontSize" colspan="6"><span class="spanTitle">自述症状：</span></td>
+							</tr>
+							<tr>
+								<td id="td_endDate_title" class="tdFontSize tdcol6Content td td_rationalsymptom" colspan="6">
+
+								</td>
+							</tr>
+							<tr>
+								<td id="td_endDate_title" class="tdFontSize" colspan="6"><span class="spanTitle">院检报告异常数据：</span></td>
+							</tr>
+							<tr>
+								<td colspan="6">
+									<table id="table_Abnormal_report">
+										<tr>
+											<td id="td_endDate_title" width="120px" class="tdFontSize">名称</td>
+											<td id="td_endDate_detail" class="tdFontSize">结果</td>
+										</tr>
+
+									</table>
+								</td>
+							</tr>
+							<tr id="family_self_test">
+								<td id="td_endDate_title" class="tdFontSize" colspan="6"><span style=" display:block;margin-top: 13px;" class="spanTitle">家庭自测异常数据：</span></td>
+							</tr>
+							<tr>
+								<td id="td_endDate_title" class="tdFontSize" colspan="6"><span class="spanTitle">风险因子：</span></td>
+							</tr>
+							<tr>
+								<td id="td_endDate_title" class="tdFontSize tdRedWord tdcol6Content" colspan="6">有潜在妊娠高血压风险。</td>
+							</tr>
+							<tr>
+								<td id="td_endDate_title" class="tdFontSize" colspan="6"><span class="spanTitle">诊断结果：</span></td>
+							</tr>
+							<tr>
+								<td id="td_endDate_title" class="tdFontSize tdcol6Content td_doctor_Advice" colspan="6">孕妇有妊娠高血压风险，血压略有偏高，应时刻注意在家监测血压，如血压持续升高需立即就医，与医生确认相关降压措施。保持良好的作息习惯，注意饮食平衡，注意盐分的摄入，补充综合维生素；在家可进行适当有氧运动，如散步、瑜伽等，注意运动时间不超过30分钟为宜。如持续偏高，配合降压药进行降压</td>
+							</tr>
+						</table>
+					</form>
+				</div>
+			</div>
+		</div>
+		<!--医嘱记录浮动框--wuwj-->
+		<div class="div_advice modalMove">
+			<div class="divAdvice">
+				<div id="div_type" class="div_doctor_Advice_Date">2017/8/25医嘱记录</div>
+				<div id="img_div_advice_close" class="img_close3" style="position: relative;top: 43px;right: -9px;"><img src="../images/guanbi.png" /></div>
+				<div id="div_table">
+					<form>
+						<table border="0" class="tableMainAdvice">
+							<tr>
+								<td id="td_logo" rowspan="6" valign="top"><img src="images/u16210.jpg" width="100px" style="margin: 10px 10px 10px;"></td>
+								<td id="td_name" class="graName" width="70px">王大花</td>
+								<td class="tdFontSize"></td>
+								<td id="td_week" class="tdFontSize" width="80px">孕周：</td>
+								<td id="td_week_detils" class="tdFontSize tdcontent recordgravidaweek2">19周</td>
+								<td id="td_interrogation_date" class="tdFontSize" width="80px">下发时间：</td>
+								<td id="td_interrogation_date_detial" class="tdFontSize tdcontent td_Advice_Date">2017/8/5</td>
+							</tr>
+							<tr>
+								<td id="td_age_title" class="tdFontSize" width="70px">年&nbsp;&nbsp;&nbsp;&nbsp;龄</td>
+								<td id="td_age_detail" class="tdFontSize tdcontent graAge">25</td>
+								<td id="td_inoculation_history_title" class="tdFontSize" width="80px">末次月经：</td>
+								<td id="td_inoculation_history_detail" class="tdFontSize tdcontent enddate">2017/2/12</td>
+								<td id="td_inoculation_history_title" class="tdFontSize" width="80px">预产期：</td>
+								<td id="td_inoculation_history_detail" class="tdFontSize tdcontent expectedDate">2017/10/5</td>
+							</tr>
+							<tr>
+								<td id="td_endDate_title" class="tdFontSize" colspan="6"><span class="spanTitle">医嘱内容：</span></td>
+							</tr>
+							<tr>
+								<td id="td_endDate_title" class="tdFontSize" colspan="6">
+									<div class="td_Doctor_Advice2" style="width:600px;word-wrap:break-word!important;">
+
+									</div>
+								</td>
+							</tr>
+							<tr id="tr_prescriptionimg">
+								<td id="td_endDate_title" class="tdFontSize " colspan="6"><span class="spanTitle">原始处方：</span></td>
+							</tr>
+
+						</table>
+					</form>
+				</div>
+			</div>
+		</div>
+		<!--用药记录浮动框--wuwj-->
+		<div class="div_container" style="display: block;">
+			<div class="class_serious_risk div_border modalMove">
+				<div id="div_type">用药记录</div>
+				<div id="img_firstDiagnos_serious_close" class="img_close" style="right: -9px;top: -6px;"><img src="../images/guanbi.png" /></div>
+				<div id="div_table">
+					<form>
+						<table border="0">
+							<tr>
+								<td id="td_logo" rowspan="3" valign="top"><img src="images/u16210.jpg" width="100px" style="margin: 10px 10px 10px;"></td>
+								<td id="td_name" class="graName" width="70px">王大花</td>
+								<td id="td_week" class="tdFontSize" width="150px">当前孕周：<span class="weeks"></span></td>
+							</tr>
+							<tr>
+								<td id="td_age_title" class="tdFontSize tdTitleWidth">年龄</td>
+								<td id="td_age_detail" class="tdFontSize tdContentWidth graAge"></td>
+								<td id="td_inoculation_history_title" class="tdFontSize tdTitleWidth">孕育史：<span class="mhistory"></span></td>
+								<td id="td_inoculation_history_detail" class="tdFontSize tdContentWidth"></td>
+							</tr>
+							<tr>
+								<td id="td_endDate_title" class="tdFontSize  tdTitleWidth">末次月经：</td>
+								<td id="td_endDate_detail" class="tdFontSize tdContentWidth enddate"></td>
+								<td id="td_expectDate_title" class="tdFontSize  tdTitleWidth">预产期：</td>
+								<td id="td_expectDate_detail" class="tdFontSize tdContentWidth expectedDate"></td>
+							</tr>
+						</table>
+					</form>
+					<from>
+						<table class="tablePreDetail">
+
+						</table>
+					</from>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade modalMove" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div style="width: 100%; height: auto;">
+				<div class="" style="width: 80%; height: auto; margin: 0 auto;">
+					<div class="modal-header" style="border: none;">
+						<div class="class_firstDiagnose_popup">
+							<!--<div class="class_firstDiagnose_popup_left">
+								<a href="#carousel-345482" class="a_firstDiagnose_href" data-slide="prev"><span class="glyphicon" style="line-height:300px;"><img src="images/right_arrows.png"></span></a>
+							</div>-->
+							<div class="class_firstDiagnose_popup_middle" id="div_firstDiagnose_container" style="display: none;">
+
+								<div class="carousel slide" id="carousel-345482" style="height: auto;">
+									<div class="checkreport_close checkreport_close_div">
+										<img id="checkreport_close" src="../images/guanbi.png" />
+									</div>
+									<div class="carousel-inner div_firstDiagnose_show1">
+										<div id="bloodRutineItem" class="item reportItem">
+											<!--bloodRoutineExamination 血常规-->
+											<img id="bloodRutineImg" src="images/blood_img.jpg" width="100%" height="70%" />
+										</div>
+										<div id="liverAndKidneyItem" class="item reportItem">
+											<!--liverAndKidney 肝肾-->
+											<img id="liverAndKidneyImg" src="images/liver_and_kidney.jpg" width="100%" height="70%" />
+										</div>
+										<div id="bloodTypeItem" class="item reportItem">
+											<!-- bloodTypeScreening 血型-->
+											<img id="bloodTypeImg" src="images/blood_type_screening.jpg" width="100%" height="70%" />
+										</div>
+										<div id="featalHeartItem" class="item reportItem">
+											<img id="liverAndKidneyImg" src="images/fetalHeartReport.jpg" width="100%" height="70%" />
+										</div>
+										<div id="BscanItem" class="item reportItem">
+											<!--BModeUltrasound  b超-->
+											<img id="BscanImg" src="images/Bultrasound_img.jpg" width="100%" height="70%" />
+										</div>
+										<div id="urineRutine" class="item reportItem">
+											<!--routineUrineTest 尿常规-->
+											<img id="urineRutineImg" src="images/routine_test.JPG" width="100%" height="70%" />
+										</div>
+										<div id="HIVItem" class="item reportItem">
+											<!-- bloodTransfusion  输血八项-->
+											<img id="liverAndKidneyImg" src="images/blood_transfusion.jpg" width="100%" height="70%" />
+										</div>
+										<div id="electrocardioItem" class="item reportItem">
+											<!--electrocardio  心电-->
+											<img id="liverAndKidneyImg" src="images/electrocardio_show.jpg" width="100%" height="70%" />
+										</div>
+										<div id="GDMItem" class="item reportItem">
+											<img id="liverAndKidneyImg" src="images/GDM.jpg" width="100%" height="70%" />
+										</div>
+										<div id="NIPTItem" class="item reportItem">
+											<img id="liverAndKidneyImg" src="images/NIPT.jpg" width="100%" height="70%" />
+										</div>
+									</div>
+								</div>
+							</div>
+							<!--<div class="class_firstDiagnose_popup_right">
+								<a href="#carousel-345482" class="a_firstDiagnose_href" data-slide="next"><span class="glyphicon" style="line-height:300px;"><img src="images/left_arrows.png"></span></a>
+							</div>-->
+						</div>
+					</div>
+
+				</div>
+				<!-- /.modal-content -->
+			</div>
+			<!-- /.modal -->
+		</div>
+		<!--
+        	作者：zhongjl@yunjimedical.com
+        	时间：2017-10-31
+        -->
+		<div id="alert" class="modal fade" tabindex="-1" role="dialog">
+			<div class="modal-dialog" role="document">
+				<div class="modal_content">
+					<!--退出提示框-->
+					<div class="alert_frame" style="width: 500px;">
+						<div class="title11">
+							<img id="close" src="images/close11.png" width="20px" style="float: right;margin: 5px 10px 0 0;cursor: pointer;">
+						</div>
+						<div class="content11" style="">
+							<div class="warning_div">
+								<img src="images/warning.png" width="50px" />
+								<div style="margin-top: 20px;">提示：确定要退出远程问诊吗?</div>
+							</div>
+							<div class="btn_div">
+								<button id="submit11">确定</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<button id="cancel11">取消</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- /.modal-content -->
+			</div>
+			<!-- /.modal-dialog -->
+		</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="../js/getLogin.js"></script>
+	<script type="text/javascript" src="../utils/js/drag.js"></script>
+	<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../js/bootstrap-datetimepicker.js"></script>
+	<script type="text/javascript" src="js/swiper-3.4.2.min.js"></script>
+	<!--<script type="text/javascript" src="../firstDiagnose/js/firstDiagnose_yet_bookbuilding_info.js"></script>-->
+	<script type="text/javascript" src="../js/doubleCalculateExactly.js"></script>
+	<script type="text/javascript" src="../js/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="../utils/js/ajax_util.js"></script>
+	<script type="text/javascript" src="js/chat.js"></script>
+	<script type="text/javascript" src="js/recorder.js"></script>
+	<script type="text/javascript" src="js/check_report.js"></script>
+	<script type="text/javascript" src="js/interrogation.js"></script>
+	<script type="text/javascript" src="js/lrz.bundle.js"></script>
+	<script type="text/javascript" src="js/e-charts.js"></script>
+	<script type="text/javascript" src="../js/echarts.min.js"></script>
+	<script type="text/javascript" src="js/FetalHeartData.js"></script>
+	<!--<script type="text/javascript" src="js/initSDK.js"></script>-->
+	<!--胎心监护 测试分析 js @yinzx-->
+	<script type="text/javascript" src="js/testdata.js"></script>
+	<script type="text/javascript" src="../js/DateFormat.js"></script>
+	<script type="text/javascript" src="js/getcharts.js"></script>
+	<script type="text/javascript" src="js/prescription_history.js"></script>
+	<script type="text/javascript" src="js/inquiry_history.js"></script>
+	<!--<script type="text/javascript" src="js/findKnowledge.js"></script>-->
+	<script type="text/javascript" src="js/drag.js"></script>
+	<script type="text/javascript" src="js/screenshotSend.js"></script>
+	<script type="text/javascript" src="js/check_weekly.js"></script>
+	<script type="text/javascript" src="js/basic.js"></script>
+	<script type="text/javascript" src="js/hypertension.js"></script>
+	<script type="text/javascript" src="../js/topNavigationSetData.js"></script>
+	<script type="text/javascript" src="js/mark.js"></script>
+	<script type="text/javascript" src="js/inquiryState.js"></script>
+	<script type="text/javascript" src="js/pharmacy.js"></script>
+	<script type="text/javascript" src="js/calendar.js"></script>
+	<script type="text/javascript" src="js/ExerciseAndFood.js"></script>
+	<script type="text/javascript" src="js/monthlyInterrAndAdvice.js"></script>
+	<script type="text/javascript" src="js/selfTestJuggment.js"></script>
+	<script type="text/javascript" src="../js/Util.js"></script>
+	<script type="text/javascript" src="js/interrogation_repost.js"></script>
+	<!--膳食报告发送问题的js-->
+	<script type="text/javascript" src="js/showProblem.js"></script>
+	<!--发送医嘱需要的js-->
+	<script src="js/editAdivce.js"></script>
+	<script type="text/javascript" src="js/page.js"></script>
+	<script src="js/classifyAdivce.js"></script>
+	<script type="text/javascript" src="../userList/function/js/fastSearch.js"></script>
+	<script type="text/javascript" src="../userList/function/js/pageUtil.js"></script>
+	<!--风险模型需要的js-->
+	<!--<script src="js/RiskModel-Util-ForWeekly.js"></script>-->
+	<script src="../doctorAdviceManager/js/RiskModel-Util.js"></script>
+	<script src="../doctorAdviceManager/js/RiskModel-Util2.js"></script>
+	<script type="text/javascript" src="js/html2canvas.js"></script>
+	<script src="../js/checkEcharts.js"></script>
+	<script>
+		$(function() {
+			$('#btn_search').trigger('click');
+		})
+	</script>
+
+</html>

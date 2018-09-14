@@ -1,0 +1,76 @@
+html,
+body{
+	width: 100%;
+	height: 100%;
+	overflow-y: hidden;
+}
+
+.main_div{
+	width: 100%;
+	min-width: 1420px;
+	height: 100%;
+}
+
+.main_title{
+	width: 100%;
+	height: 60px;
+}
+#top1{
+	font-family: "微软雅黑";
+}
+
+#right_item ul li {
+	float: left;
+	list-style: none;
+	margin-right: 20px;
+	margin-top: 20px;
+	cursor: pointer;
+}
+
+#right_item img{
+	width: 18px;
+	margin-bottom: 3px;
+	margin-right: 4px;
+}
+
+.main_content{
+	width: 100%;
+	height: 93%;
+	border-left: none;
+	border-top: none;
+	display: flex;
+}
+
+.content_left{
+	float: left;
+	width: 180px;
+	height: 100%;
+	background-color: rgba(250,250,245,1);
+	font-family: "微软雅黑";
+	color: #5794E7;
+}
+
+.chooser{
+	padding-top: 30px;
+}
+
+.chooser li{
+	width: 100%;
+	margin-bottom: 10px;
+}
+
+.chooser img{
+	margin-right: 10px;
+}
+
+.nav-tabs{
+	border: none;
+}
+
+.nav-tabs>li>a{
+	border: none;
+	border-radius: inherit;
+	cursor: pointer;
+}
+
+

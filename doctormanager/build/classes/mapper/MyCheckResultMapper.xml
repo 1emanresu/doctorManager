@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.yunji.doctormanager.dao.MyCheckResultMapper" >
+  <resultMap id="BaseResultMap" type="cn.yunji.doctormanager.entity.MyCheckResult" >
+    <id column="mcrId" property="mcrid" jdbcType="INTEGER" />
+    <result column="mId" property="mid" jdbcType="CHAR" />
+    <result column="checkProjectId" property="checkprojectid" jdbcType="INTEGER" />
+    <result column="resultId" property="resultid" jdbcType="INTEGER" />
+    <result column="resultdate" property="resultdate" jdbcType="DATE" />
+    <result column="weeks" property="weeks" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    mcrId, mId, checkProjectId, resultId, resultdate, weeks
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from mycheckresult
+    where mcrId = #{mcrid,jdbcType=INTEGER}
+  </select>
+  
+  <!-- @author wuwj 根据孕周查询自测过的项目 -->
+  <select id="findmycheckedByweeks" resultType="java.util.HashMap" >
+    select checkProjectId from mycheckresult 
+    where mid = #{0,jdbcType=CHAR} and (weeks between #{1,jdbcType=INTEGER} and #{2,jdbcType=INTEGER}) 
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from mycheckresult
+    where mcrId = #{mcrid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.yunji.doctormanager.entity.MyCheckResult" >
+    insert into mycheckresult (mcrId, mId, checkProjectId, 
+      resultId, resultdate, weeks
+      )
+    values (#{mcrid,jdbcType=INTEGER}, #{mid,jdbcType=CHAR}, #{checkprojectid,jdbcType=INTEGER}, 
+      #{resultid,jdbcType=INTEGER}, #{resultdate,jdbcType=DATE}, #{weeks,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.yunji.doctormanager.entity.MyCheckResult" >
+    insert into mycheckresult
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="mcrid != null" >
+        mcrId,
+      </if>
+      <if test="mid != null" >
+        mId,
+      </if>
+      <if test="checkprojectid != null" >
+        checkProjectId,
+      </if>
+      <if test="resultid != null" >
+        resultId,
+      </if>
+      <if test="resultdate != null" >
+        resultdate,
+      </if>
+      <if test="weeks != null" >
+        weeks,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="mcrid != null" >
+        #{mcrid,jdbcType=INTEGER},
+      </if>
+      <if test="mid != null" >
+        #{mid,jdbcType=CHAR},
+      </if>
+      <if test="checkprojectid != null" >
+        #{checkprojectid,jdbcType=INTEGER},
+      </if>
+      <if test="resultid != null" >
+        #{resultid,jdbcType=INTEGER},
+      </if>
+      <if test="resultdate != null" >
+        #{resultdate,jdbcType=DATE},
+      </if>
+      <if test="weeks != null" >
+        #{weeks,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.yunji.doctormanager.entity.MyCheckResult" >
+    update mycheckresult
+    <set >
+      <if test="mid != null" >
+        mId = #{mid,jdbcType=CHAR},
+      </if>
+      <if test="checkprojectid != null" >
+        checkProjectId = #{checkprojectid,jdbcType=INTEGER},
+      </if>
+      <if test="resultid != null" >
+        resultId = #{resultid,jdbcType=INTEGER},
+      </if>
+      <if test="resultdate != null" >
+        resultdate = #{resultdate,jdbcType=DATE},
+      </if>
+      <if test="weeks != null" >
+        weeks = #{weeks,jdbcType=INTEGER},
+      </if>
+    </set>
+    where mcrId = #{mcrid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.yunji.doctormanager.entity.MyCheckResult" >
+    update mycheckresult
+    set mId = #{mid,jdbcType=CHAR},
+      checkProjectId = #{checkprojectid,jdbcType=INTEGER},
+      resultId = #{resultid,jdbcType=INTEGER},
+      resultdate = #{resultdate,jdbcType=DATE},
+      weeks = #{weeks,jdbcType=INTEGER}
+    where mcrId = #{mcrid,jdbcType=INTEGER}
+  </update>
+</mapper>

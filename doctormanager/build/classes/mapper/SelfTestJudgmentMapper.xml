@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.yunji.doctormanager.dao.SelfTestJudgmentMapper" >
+  <resultMap id="BaseResultMap" type="cn.yunji.doctormanager.entity.SelfTestJudgment" >
+    <id column="sId" property="sid" jdbcType="INTEGER" />
+    <result column="qId" property="qid" jdbcType="INTEGER" />
+    <result column="sname" property="sname" jdbcType="CHAR" />
+    <result column="Judgment" property="judgment" jdbcType="CHAR" />
+    <result column="illustration" property="illustration" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    sId, qId, sname, Judgment, illustration
+  </sql>
+  <!-- luoyc 根据qid查询所有医生对自测结果的判断结果-->
+  <select id="selectByQid" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from selftestjudgment
+    where qId = #{qId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from selftestjudgment
+    where sId = #{sid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.yunji.doctormanager.entity.SelfTestJudgment" >
+    insert into selftestjudgment (sId, qId, sname, 
+      Judgment, illustration)
+    values (#{sid,jdbcType=INTEGER}, #{qid,jdbcType=INTEGER}, #{sname,jdbcType=CHAR}, 
+      #{judgment,jdbcType=CHAR}, #{illustration,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.yunji.doctormanager.entity.SelfTestJudgment" >
+    insert into selftestjudgment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sid != null" >
+        sId,
+      </if>
+      <if test="qid != null" >
+        qId,
+      </if>
+      <if test="sname != null" >
+        sname,
+      </if>
+      <if test="judgment != null" >
+        Judgment,
+      </if>
+      <if test="illustration != null" >
+        illustration,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sid != null" >
+        #{sid,jdbcType=INTEGER},
+      </if>
+      <if test="qid != null" >
+        #{qid,jdbcType=INTEGER},
+      </if>
+      <if test="sname != null" >
+        #{sname,jdbcType=CHAR},
+      </if>
+      <if test="judgment != null" >
+        #{judgment,jdbcType=CHAR},
+      </if>
+      <if test="illustration != null" >
+        #{illustration,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.yunji.doctormanager.entity.SelfTestJudgment" >
+    update selftestjudgment
+    <set >
+      <if test="qid != null" >
+        qId = #{qid,jdbcType=INTEGER},
+      </if>
+      <if test="sname != null" >
+        sname = #{sname,jdbcType=CHAR},
+      </if>
+      <if test="judgment != null" >
+        Judgment = #{judgment,jdbcType=CHAR},
+      </if>
+      <if test="illustration != null" >
+        illustration = #{illustration,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where sId = #{sid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.yunji.doctormanager.entity.SelfTestJudgment" >
+    update selftestjudgment
+    set qId = #{qid,jdbcType=INTEGER},
+      sname = #{sname,jdbcType=CHAR},
+      Judgment = #{judgment,jdbcType=CHAR},
+      illustration = #{illustration,jdbcType=VARCHAR}
+    where sId = #{sid,jdbcType=INTEGER}
+  </update>
+</mapper>

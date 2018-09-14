@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.yunji.doctormanager.dao.PregnancyHistoryMapper" >
+  <resultMap id="BaseResultMap" type="cn.yunji.doctormanager.entity.PregnancyHistory" >
+    <id column="PHId" property="phid" jdbcType="INTEGER" />
+    <result column="mId" property="mid" jdbcType="CHAR" />
+    <result column="gravidity" property="gravidity" jdbcType="INTEGER" />
+    <result column="parity" property="parity" jdbcType="INTEGER" />
+    <result column="stillbirth" property="stillbirth" jdbcType="INTEGER" />
+    <result column="oaf" property="oaf" jdbcType="INTEGER" />
+    <result column="mature" property="mature" jdbcType="INTEGER" />
+    <result column="prematureBirth" property="prematurebirth" jdbcType="INTEGER" />
+    <result column="abortion" property="abortion" jdbcType="INTEGER" />
+    <result column="children" property="children" jdbcType="INTEGER" />
+    <!--@wangzw 添加6个字段 -->
+    <result column="heart" property="heart" jdbcType="INTEGER" />
+    <result column="lung" property="lung" jdbcType="INTEGER" />
+    <result column="vulva" property="vulva" jdbcType="INTEGER" />
+    <result column="cervixUteri" property="cervixUteri" jdbcType="INTEGER" />
+    <result column="uterus" property="uterus" jdbcType="INTEGER" />
+    <result column="vagina" property="vagina" jdbcType="INTEGER" />
+    <result column="abdominal" property="abdominal" jdbcType="INTEGER" />
+    
+  </resultMap>
+  <sql id="Base_Column_List" >
+    PHId, mId, gravidity, parity, stillbirth, oaf, mature, prematureBirth, abortion, 
+    children,heart,lung,vulva,cervixUteri,uterus,vagina,abdominal
+  </sql>
+  <!--@wangzw  查询孕妇的既往史信息 -->
+    <select id="selectHistoryGradeInfo" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from pregnancyhistory
+    where mid = #{0}
+  </select>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from pregnancyhistory
+    where PHId = #{phid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from pregnancyhistory
+    where PHId = #{phid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.yunji.doctormanager.entity.PregnancyHistory" >
+    insert into pregnancyhistory (PHId, mId, gravidity, 
+      parity, stillbirth, oaf, 
+      mature, prematureBirth, abortion, 
+      children)
+    values (#{phid,jdbcType=INTEGER}, #{mid,jdbcType=CHAR}, #{gravidity,jdbcType=INTEGER}, 
+      #{parity,jdbcType=INTEGER}, #{stillbirth,jdbcType=INTEGER}, #{oaf,jdbcType=INTEGER}, 
+      #{mature,jdbcType=INTEGER}, #{prematurebirth,jdbcType=INTEGER}, #{abortion,jdbcType=INTEGER}, 
+      #{children,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.yunji.doctormanager.entity.PregnancyHistory" >
+    insert into pregnancyhistory
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="phid != null" >
+        PHId,
+      </if>
+      <if test="mid != null" >
+        mId,
+      </if>
+      <if test="gravidity != null" >
+        gravidity,
+      </if>
+      <if test="parity != null" >
+        parity,
+      </if>
+      <if test="stillbirth != null" >
+        stillbirth,
+      </if>
+      <if test="oaf != null" >
+        oaf,
+      </if>
+      <if test="mature != null" >
+        mature,
+      </if>
+      <if test="prematurebirth != null" >
+        prematureBirth,
+      </if>
+      <if test="abortion != null" >
+        abortion,
+      </if>
+      <if test="children != null" >
+        children,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="phid != null" >
+        #{phid,jdbcType=INTEGER},
+      </if>
+      <if test="mid != null" >
+        #{mid,jdbcType=CHAR},
+      </if>
+      <if test="gravidity != null" >
+        #{gravidity,jdbcType=INTEGER},
+      </if>
+      <if test="parity != null" >
+        #{parity,jdbcType=INTEGER},
+      </if>
+      <if test="stillbirth != null" >
+        #{stillbirth,jdbcType=INTEGER},
+      </if>
+      <if test="oaf != null" >
+        #{oaf,jdbcType=INTEGER},
+      </if>
+      <if test="mature != null" >
+        #{mature,jdbcType=INTEGER},
+      </if>
+      <if test="prematurebirth != null" >
+        #{prematurebirth,jdbcType=INTEGER},
+      </if>
+      <if test="abortion != null" >
+        #{abortion,jdbcType=INTEGER},
+      </if>
+      <if test="children != null" >
+        #{children,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.yunji.doctormanager.entity.PregnancyHistory" >
+    update pregnancyhistory
+    <set >
+      <if test="mid != null" >
+        mId = #{mid,jdbcType=CHAR},
+      </if>
+      <if test="gravidity != null" >
+        gravidity = #{gravidity,jdbcType=INTEGER},
+      </if>
+      <if test="parity != null" >
+        parity = #{parity,jdbcType=INTEGER},
+      </if>
+      <if test="stillbirth != null" >
+        stillbirth = #{stillbirth,jdbcType=INTEGER},
+      </if>
+      <if test="oaf != null" >
+        oaf = #{oaf,jdbcType=INTEGER},
+      </if>
+      <if test="mature != null" >
+        mature = #{mature,jdbcType=INTEGER},
+      </if>
+      <if test="prematurebirth != null" >
+        prematureBirth = #{prematurebirth,jdbcType=INTEGER},
+      </if>
+      <if test="abortion != null" >
+        abortion = #{abortion,jdbcType=INTEGER},
+      </if>
+      <if test="children != null" >
+        children = #{children,jdbcType=INTEGER},
+      </if>
+    </set>
+    where PHId = #{phid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.yunji.doctormanager.entity.PregnancyHistory" >
+    update pregnancyhistory
+    set mId = #{mid,jdbcType=CHAR},
+      gravidity = #{gravidity,jdbcType=INTEGER},
+      parity = #{parity,jdbcType=INTEGER},
+      stillbirth = #{stillbirth,jdbcType=INTEGER},
+      oaf = #{oaf,jdbcType=INTEGER},
+      mature = #{mature,jdbcType=INTEGER},
+      prematureBirth = #{prematurebirth,jdbcType=INTEGER},
+      abortion = #{abortion,jdbcType=INTEGER},
+      children = #{children,jdbcType=INTEGER}
+    where PHId = #{phid,jdbcType=INTEGER}
+  </update>
+   <select id="queryByMid" resultMap="BaseResultMap"  parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from pregnancyhistory
+    where mId = #{value}
+  </select>
+  <update id="updateByMid" parameterType="cn.yunji.doctormanager.entity.PregnancyHistory" >
+    update pregnancyhistory
+    <set >
+      <if test="gravidity != null" >
+        gravidity = #{gravidity,jdbcType=INTEGER},
+      </if>
+      <if test="parity != null" >
+        parity = #{parity,jdbcType=INTEGER},
+      </if>
+      <if test="stillbirth != null" >
+        stillbirth = #{stillbirth,jdbcType=INTEGER},
+      </if>
+      <if test="oaf != null" >
+        oaf = #{oaf,jdbcType=INTEGER},
+      </if>
+      <if test="mature != null" >
+        mature = #{mature,jdbcType=INTEGER},
+      </if>
+      <if test="prematurebirth != null" >
+        prematureBirth = #{prematurebirth,jdbcType=INTEGER},
+      </if>
+      <if test="abortion != null" >
+        abortion = #{abortion,jdbcType=INTEGER},
+      </if>
+      <if test="children != null" >
+        children = #{children,jdbcType=INTEGER},
+      </if>
+    </set>
+    where mId = #{mid,jdbcType=CHAR}
+  </update>
+</mapper>

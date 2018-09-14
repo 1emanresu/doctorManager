@@ -1,0 +1,326 @@
+input,
+select,
+button{
+	outline: none;
+}
+/*--------------------------编辑提醒弹出框---------------------------------*/
+.write_remind_frame{
+	border: 1px solid gainsboro;
+	border-radius: 5px;
+	font-family: "微软雅黑";
+}
+.modal_content {
+	border-radius: 5px;
+	background-color: rgb(242, 242, 242);
+}
+
+.write_remind_title{
+	height: 40px;
+	line-height: 40px;
+	background-color: rgb(242, 242, 242);
+	border-top-right-radius:5px;
+	border-top-left-radius:5px ;
+}
+.write_remind_content{
+	height: auto;
+	background-color: white;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+.write_remind_div{
+	height: auto;
+	padding: 10px 30px;
+	font-size: 14px;
+}
+.write_remind_div span{
+	font-size: 14px;
+}
+.write_remind_div select{
+	border-radius: 5px;
+}
+.up{
+	padding: 10px 0 10px 20px;
+	border-bottom: 1px solid gainsboro;
+}
+.choose{
+	width: 120px;
+	height: 28px;
+	border: 1px solid lightgray;
+	background-color: white;
+	color: gray;
+}
+.middle{
+	padding: 15px 20px;
+	border-bottom: 1px solid gainsboro;
+}
+.down{
+	padding: 15px 20px;
+}
+.down button{
+	width: 100px;
+	height: 30px;
+	border: 1px solid lightgray;
+	border-radius: 5px;
+	background-color: white;
+	color: gray;
+}
+.write_remind_btn{
+	padding: 0 25px 15px 0;
+	text-align: right;
+}
+.write_remind_btn button{
+	width: 100px;
+	height: 30px;
+	background-color: #5794E7;
+	border: none;
+	font-family: "微软雅黑";
+	border-radius: 5px;
+	color: white;
+	cursor: pointer;
+}
+.write_remind_btn button:hover{
+	background-color: dodgerblue;
+}
+/*--------------------------------------------------------------------------------*/
+
+
+/*--------------------------发送提醒弹出框---------------------------------*/
+.modal-dialog{
+	width: 650px;
+	margin: 50px auto;
+}
+.alert_frame{
+	border: 1px solid gainsboro;
+	border-radius: 5px;
+	font-family: "微软雅黑";
+}
+.modal_content {
+	border-radius: 5px;
+	background-color: rgb(242, 242, 242);
+}
+
+.title11{
+	height: 40px;
+	line-height: 40px;
+	background-color: rgb(242, 242, 242);
+	border-top-right-radius:5px;
+	border-top-left-radius:5px ;
+}
+.content11{
+	height: auto;
+	background-color: white;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+.warning_div{
+	height: auto;
+	padding: 10px 20px 10px 100px;
+	font-size: 14px;
+}
+.line{
+	height: 35px;
+	line-height: 35px;
+}
+.line span{
+	font-size: 14px;
+}
+.remind_name{
+	float: left;
+	width: 50%;
+	height: 100%;
+	/*padding-left: 10%;*/
+	font-size: 14px;
+}
+.remind_rule{
+	float: left;
+	width: 50%;
+	height: 100%;
+	font-size: 16px;
+}
+.btn_div{
+	text-align: center;
+}
+
+.btn_div button{
+	width: 100px;
+	height: 30px;
+	background-color: #5794E7;
+	border: none;
+	font-family: "微软雅黑";
+	border-radius: 5px;
+	color: white;
+	cursor: pointer;
+}
+.btn_div button:hover{
+	background-color: dodgerblue;
+}
+/*--------------------------------------------------------------------------------*/
+
+
+/*----------------------------------删除弹出框--------------------------------*/
+.modal-dialog2{
+	width: 500px;
+	margin: 250px auto;
+}
+.delete_frame{
+	border: 1px solid gainsboro;
+	border-radius: 5px;
+	font-family: "微软雅黑";
+}
+.modal_content2{
+	border-radius: 5px;
+	background-color: rgb(242, 242, 242);
+}
+
+.title22{
+	height: 30px;
+	background-color: gainsboro;
+	border-top-right-radius:5px;
+	border-top-left-radius:5px ;
+}
+.content22{
+	height: 200px;
+	background-color: rgba(250,250,240,1);
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+.warning_div2{
+	height: 130px;
+	padding: 20px;
+	text-align: center;
+}
+.btn_div2{
+	text-align: center;
+}
+
+.btn_div2 button{
+	width: 100px;
+	height: 30px;
+	background-color: #5794E7;
+	border: none;
+	font-family: "微软雅黑";
+	border-radius: 5px;
+	color: white;
+	cursor: pointer;
+}
+.btn_div2 button:hover{
+	background-color: dodgerblue;
+}
+/*--------------------------------------------------------------------------------*/
+
+.button_div button{
+	float: left;
+	width: 130px;
+	margin: 10px 30px 0 0!important;
+	font-family: "微软雅黑";
+}
+.button_div button:focus{
+	background-color: dodgerblue;
+}
+.remind_manage{
+	padding: 20px 70px;
+}
+#add:focus{
+	background-color: dodgerblue;
+}
+.remind_list{
+	width: 100%;
+	height: auto;
+	margin-top: 30px;
+}
+.list_title{
+	width: 100%;
+	height: 55px;
+	border-radius: 5px 5px 0 0;
+	background-color: rgba(233,236,236,1);
+	line-height: 55px;
+	text-align: center;
+}
+.list_name,
+.list_operation{
+	float: left;
+	width: 14%;
+	height: 55px;
+	font-size: 14px;
+}
+.list_content{
+	float: left;
+	width: 70%;
+	height: 55px;
+	font-size: 14px;
+}
+.list_operation a{
+	cursor: pointer;
+}
+.list_body{
+	width: 100%;
+	height: auto;
+	line-height: 55px;
+	text-align: center;
+}
+.body_content{
+	height: 55px;
+	border-bottom: 1px solid lightgray;
+}
+
+
+/*-------------------------------发送提醒记录框------------------------------------------------------*/
+.col{
+	display: flex;
+	width: 100%;
+	margin-bottom: 15px;
+	/*height: 45px;*/
+
+}
+.col_title{
+	float: left;
+	width: 20%;
+	margin-right: 15px;
+	text-align: right;
+	font-size: 14px;
+}
+.col_content{
+	float: left;
+	width: 75%;
+	font-size: 14px;
+}
+.r_test{
+	display: flex;
+	width: 100%;
+	padding-bottom: 10px;
+}
+.test_content{
+	float: left;
+	width: 80%;
+	font-size: 14px;
+}
+.test_title{
+	float: left;
+	width: 15%;
+	margin-right: 5px;
+	font-size: 14px;
+}
+.send{
+	float: left;
+	width: 70px;
+	height: 25px;
+	margin-right: 20px;
+	border-radius: 5px;
+	background-color: #F2F2F2;
+	line-height: 25px;
+	text-align: center;
+}
+.button{
+	width: 100%;
+	padding-top: 10px;
+	text-align: center;
+}
+#send_again{
+	width: 100px;
+	height: 30px;
+	background-color: #5794E7;
+	border: 1px solid #5794E7;
+	border-radius: 5px;
+	color: white;
+}
+/*----------------------------------------------------------------------------------------------------------*/

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>产科电子信息管理平台——健康周报</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" href="css/weeklyTemplate.css" /> 
+	</head>
+	<body>
+		<div class="top_weekReport_info">
+			<div class="top_weekReport_img">
+				<img src="images/weekreport/topInfo_img.png" />
+				<div class="top_weekReport_char">
+					<span id="gName"></span>第<span id="gWeek"></span>周健康报告
+				</div>
+			</div>
+		</div>
+		<div class="middle_weekReport_container">
+			<div class="number_weekReport_hint">
+				<div class="div_weekReport_serial">
+					<div class="hint_weekReport_container">
+						<div class="div_weekReport_circle">01</div>
+					</div>
+					<div class="hint_weekReport_info">你本周应该关注的重点</div>
+				</div>
+			</div>
+			<div class="clear_weekReport_float"></div>
+			<div class="middle_personage_show">
+				<div class="div_weekReport_antenatal">
+					<div class="img_weekReport_antenatal">
+						<img src="images/weekreport/antenatalCare_img.png" />
+					</div>
+					<div class="content_weekReport_antenatal">
+						<p style="white-space:nowrap;"><span class="font_weekReport_style">重点关注</span></p>
+						<p id="p_keyAttention" class="p_weekReport_width"></p>
+					</div>
+				</div>
+				<div class="div_weekReport_antenatal">
+					<div class="img_weekReport_antenatal">
+						<img src="images/weekreport/illness_img.png" />
+					</div>
+					<div class="content_weekReport_antenatal">
+						<p style="white-space:nowrap;"><span class="font_weekReport_style">产检要点</span></p>
+						<p id="p_checkReport" class="p_weekReport_width"></p>
+					</div>
+				</div>
+				<div class="div_weekReport_antenatal">
+					<div class="img_weekReport_antenatal">
+						<img src="images/weekreport/illness_img.png" />
+					</div>
+					<div class="content_weekReport_antenatal">
+						<p style="white-space:nowrap;"><span class="font_weekReport_style">存在风险</span></p>
+						<p id="p_symptom" class="p_weekReport_width p_report_keyPoint"></p>
+						<div id="div_symptomDetail" class="middle_personage_show3 div_disease_detail">
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="middle_weekReport_container2">
+			<div class="number_weekReport_hint2">
+				<div class="div_weekReport_serial2">
+					<div class="hint_weekReport_info2">你上周产检完成情况</div>
+					<div class="hint_weekReport_container2">
+						<div class="div_weekReport_circle2">02</div>
+					</div>
+				</div>
+			</div>
+			<div class="clear_weekReport_float"></div>
+			<div class="self_weekReport_testing div_selfTest">
+				<div class="self_weekReport_detalis">
+					<img src="images/weekreport/self_info.png" />
+					<span class="font_weekReport_style">自测项目</span>
+				</div>
+			</div>
+			<div class="div_weekReport_table div_selfTest">
+				<table id="selfTestDetail">
+					<tr>
+						<td>项目</td>
+						<td>目前状况</td>
+						<td>参考值</td>
+					</tr>
+				</table>
+			</div>
+			<div class="self_weekReport_testing div_checkProject">
+				<div class="self_weekReport_detalis">
+					<img src="images/weekreport/antenatalCare_img.png" />
+					<span class="font_weekReport_style">院检项目 </span>
+				</div>
+			</div>
+			<div class="div_weekReport_table div_checkProject">
+				<div class="div_weekReport_suggest">
+					<table id="table_checkProject">
+					<tr>
+						<td>项目</td>
+						<td>结果</td>
+					</tr>
+				</table>
+				</div>
+			</div>
+			<div class="self_weekReport_testing div_selfDescription">
+				<div class="self_weekReport_detalis">
+					<img src="images/weekreport/antenatalCare_img.png" />
+					<span class="font_weekReport_style">症状自诉 </span> </span>
+				</div>
+			</div>
+			<div id="div_selfDescription">
+				
+			</div>
+			<div class="self_weekReport_testing div_prescription">
+				<div class="self_weekReport_detalis">
+					<img src="images/weekreport/medicine.png" width="50" />
+					<span class="font_weekReport_style">用药记录 </span></span>
+				</div>
+			</div>
+			<div class="div_weekReport_table div_prescription">
+				<table id="table_prescription">
+					<tr>
+						<td>药品名</td>
+						<td>方法</td>
+						<td>用量</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div class="middle_weekReport_container3">
+			<div class="number_weekReport_hint3">
+				<div class="div_weekReport_serial3">
+					<div class="hint_weekReport_container">
+						<div class="div_weekReport_circle">03</div>
+					</div>
+					<div class="hint_weekReport_info">你的健康数据分析</div>
+				</div>
+			</div>
+			<div class="clear_weekReport_float3"></div>
+			<p><span class="font_weekReport_style abnormal_analysis">异常分析 </span></p>
+			<div class="middle_personage_show3">
+				<div class="p_weekReport_container">
+					<p><span class="font_weekReport_style">医嘱建议 </span> </p>
+					<div id="doctor_advice" class="div_weekReport_disple">
+						
+					</div>
+
+				</div>
+			</div>
+		</div>
+		<div class="middle_weekReport_container4">
+			<div class="number_weekReport_hint2">
+				<div class="div_weekReport_serial2">
+					<div class="hint_weekReport_info2">你应该这样做</div>
+					<div class="hint_weekReport_container2">
+						<div class="div_weekReport_circle2">04</div>
+					</div>
+				</div>
+			</div>
+			<div class="clear_weekReport_float"></div>
+			<div class="self_weekReport_testing">
+				<div class="self_weekReport_detalis">
+					<img src="images/weekreport/eat.png" width="40" />
+					<span class="font_weekReport_style">饮食要点 </span>
+				</div>
+			</div>
+			<div class="div_weekReport_table4">
+				<div class="middle_personage_show3">
+					<div class="p_weekReport_container">
+						<div class="div_weekReport_disple">
+							<div class="div_weekReport_posi">
+								<div class="div_weekReport_triangle"></div>
+								<p>宜吃</p>
+								<p id="eatYes"></p>
+							</div>
+						</div>
+					</div>
+					<div class="p_weekReport_container">
+						<div class="div_weekReport_disple">
+							<div class="div_weekReport_posi">
+								<div class="div_weekReport_triangle"></div>
+								<p>忌吃</p>
+								<p id="eatNo"></p>
+							</div>
+						</div>
+					</div>
+					<div class="p_weekReport_container">
+						<div class="div_weekReport_disple">
+							<div class="div_weekReport_posi">
+								<div class="div_weekReport_triangle"></div>
+								<p>营养补充重点</p>
+								<p id="nutritional"></p>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+
+			<div class="self_weekReport_testing">
+				<div class="self_weekReport_detalis">
+					<img src="images/weekreport/exercise.png" width="40" />
+					<span class="font_weekReport_style">运动要点 </span>
+				</div>
+			</div>
+			<div class="middle_personage_show3">
+				<div class="p_weekReport_container">
+					<div class="div_weekReport_disple">
+						<div id="div_exerciseYes" class="div_weekReport_posi">
+							<div class="div_weekReport_triangle"></div>
+							<p>适合做</p>
+						</div>
+					</div>
+				</div>
+				<div class="p_weekReport_container">
+					<div class="div_weekReport_disple">
+						<div id="div_exerciseNo" class="div_weekReport_posi">
+							<div class="div_weekReport_triangle"></div>
+							<p>不适合做</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="self_weekReport_testing">
+				<div class="self_weekReport_detalis">
+					<img src="images/weekreport/nurse.png" width="40" />
+					<span class="font_weekReport_style">护理要点 </span>
+				</div>
+			</div>
+			<div id="div_nursingDetail" class="middle_personage_show3">
+				<div id="div_nursingTip"></div>
+				
+
+			</div>
+			<div class="self_weekReport_testing">
+				<div class="self_weekReport_detalis">
+					<img src="images/weekreport/inTtheHeart.png" width="40" />
+					<span class="font_weekReport_style">心理要点 </span> </span>
+				</div>
+			</div>
+			<div id="div_essentialsdescribe" class="div_weekReport_table"></div>
+		</div>
+
+		<script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="../js/getLogin.js"></script>
+		<script type="text/javascript" src="js/weeklyTemplate2.js"></script>
+	</body>
+
+</html>

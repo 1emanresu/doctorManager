@@ -1,0 +1,25 @@
+div.error {
+	position: absolute;
+	/*width:fit-content;
+	width:-webkit-fit-content;
+	width:-moz-fit-content;*/
+	padding: 4px 5px;
+	font-size: 14px;
+	color: #FFFFFF;
+	background-color: #434A54;
+	padding: 4px 7px;
+	border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    z-index: 999;
+}
+div.error::before {
+    content: " ";
+    position: absolute;
+    bottom: 100%;  /* 提示工具头部 */
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent #434A54 transparent;
+}

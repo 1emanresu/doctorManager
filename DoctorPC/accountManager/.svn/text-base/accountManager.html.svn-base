@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="Pragma" content="no-cache">
+		<meta http-equiv="Window-target" content="_top">
+		<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+		<title>产科电子信息管理平台——账户管理</title>
+		<link rel="stylesheet" href="../css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="../css/bootstrap-table.css" />
+		<link rel="stylesheet" type="text/css" href="../css/comm.css" />
+		<link rel="stylesheet" type="text/css" href="css/accountManager.css"/>
+		<style>
+			.nav-tabs>li>a{
+				border: none;
+			}
+			.nav-tabs>li>a:hover{
+				background-color: #f5f7fa;
+			}
+			.form-control{
+				border: 1px solid darkgray;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="class_main">
+			<div class="top_Nav">
+				<div class="Nav_img"><img src="../images/header_home.png" /></div>
+				<div class="Nav_content">
+					您当前的位置： <span id="adviceOrWeekly">账户管理</span>
+				</div>
+			</div>
+			<!-- 主要内容 -->
+			<div class="main_content">
+				<div class="content_search" style="">
+					<div class="active5" style="width: 45%;">
+						<div class="neiceng">
+							<span>所属医院：</span>
+						</div>
+						<select name="" class="hospital" id="hospital" class="select-hospital">
+							<option value="-1">全部</option>
+						</select>
+					</div>
+					<!--病例-->
+					<div class="active5" style="margin-left: -35px;width: 45%;">
+						<div class="neiceng">
+							<span>医生姓名：</span>
+						</div>
+						<input type="text" class="form-control dname" placeholder="请输入姓名" />
+					</div>
+					<!--button-->
+					<div class=" btn-class">
+						<div class="btn11">
+							<button id="queryInfo" onclick="search()" class="btn btn-default btn-block" style="margin-right: 25px;margin-left: -130px;">查询</button>
+						</div> 
+
+						<button id="queryReset" onclick="resetInput()" class="btn btn-default btn-block" style="margin-top: -28px;margin-right: 8px;">重置</button>
+
+					</div>
+				</div>
+				<div class="right-Tab-Control">
+					<ul class="nav nav-tabs nva-tabs-ul">
+						<li class="active" id="this_advice">
+							<div class="class_li_line"></div>
+							<a href="#panel-978065" data-toggle="tab" style="color: #666666;">医生详细列表</a>
+						</li>
+						<li id="advice_record">
+							<div class="class_li_line"></div>
+							<a href="#panel-978066" data-toggle="tab" style="color: #666666;">创建账户</a>
+						</li>
+					</ul>
+					<div class="tab-content contents">
+						<div class="tab-pane active  data-show" id="panel-978065">
+							<table id="user_list"></table>
+						</div>
+						<div class="tab-pane" id="panel-978066">
+
+							<div class="div_add_popup_input" id='addDoctorBox' >
+								<form id="doctorForm" name="doctorForm">
+									<!--员工编号-->
+									<div class="flexs">
+										<div class="lab">
+											<span>员工编号</span>
+										</div>
+										<div class="inp">
+											<input type="text" class="office form-control controller-input" placeholder="请输入员工编号" />
+										</div>
+									</div>
+									<!--用户名称-->
+									<div class="flexs">
+										<div class="lab">
+											<span>用户名称</span>
+										</div>
+										<div class="inp">
+											<input type="text" name="dname" id="dname" class="form-control controller-input" placeholder="请输入用户名称" />
+										</div>
+									</div>
+									<!--职位名称-->
+									<div class="flexs">
+										<div class="lab">
+											<span>职位名称</span>
+										</div>
+										<div class="inp">
+											<select class="position">
+											</select>
+										</div>
+									</div>
+
+									<!--联系电话-->
+									<div class="flexs">
+										<div class="lab">
+											<span>联系电话</span>
+										</div>
+										<div class="inp">
+											<input type="tel" name="username" id="username" maxlength="11" class="form-control controller-input" placeholder="请输入联系电话" />
+										</div>
+									</div>
+
+									<!--办公电话-->
+									<div class="flexs">
+										<div class="lab">
+											<span>办公电话</span>
+										</div>
+										<div class="inp">
+											<input type="tel" name="fixedTelephone" id="fixedTelephone" class="form-control controller-input" placeholder="请输入办公电话" />
+										</div>
+									</div>
+
+									<!--所属医院-->
+									<div class="flexs">
+										<div class="lab">
+											<span>所属医院</span>
+										</div>
+										<div class="inp">
+											<select class="hospital" id="hospital2">
+											</select>
+										</div>
+									</div>
+
+									<!--初始密码-->
+									<div class="flexs">
+										<div class="lab">
+											<span>初始密码</span>
+										</div>
+										<div class="inp">
+											<input type="password" name="password" id="password" class="form-control controller-input" placeholder="请输入初始密码" />
+										</div>
+									</div>
+
+									<!--保存按钮-->
+									<div class="flexs" style="padding-top: 15px;padding-left: 100px;">
+										<div>
+											<button class="btn btn-default btn-block qx" onclick='document.getElementById("doctorForm").reset();' style="width: 65px;float: left;margin-right: 35px;">重置</button>
+											<button class="btn btn-primary btn-block qd" style="width: 65px;" onclick="addAccount()">保存</button>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="../js/getLogin.js"></script>
+		<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="../utils/js/util.js"></script>
+		<script type="text/javascript" src="../js/bootstrap-table.js"></script>
+		<script type="text/javascript" src="../js/bootstrap-table-zh-CN.js"></script>
+		<script type="text/javascript" src="../utils/js/bootstrapTable.js"></script>
+		<script type="text/javascript" src="../js/Util.js"></script>
+		<script type="text/javascript" src="js/accountManagerment.js"></script>
+	</body>
+
+</html>

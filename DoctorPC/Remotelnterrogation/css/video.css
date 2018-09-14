@@ -1,0 +1,26 @@
+/*背景图片样式*/
+body {
+	height: 100%;
+	width: 100%;
+    overflow: auto;
+    background: #4e5359 url(../images/bg_page.png) no-repeat no-repeat 0 0;
+    background-size: cover;
+    background-position: 0% 0%;
+}
+/*视频窗口div样式*/
+.div_manager{
+	width: 100%;
+	margin-top: 8%;
+}
+.video_view{
+	width: 50%;
+	float: left;
+}
+.self{
+	width: 800px;
+	float: right;
+}
+.other{
+	width: 800px;
+	float: left;
+}

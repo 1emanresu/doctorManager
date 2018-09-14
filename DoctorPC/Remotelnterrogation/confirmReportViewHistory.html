@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>产科电子信息管理平台——求助问诊</title>
+		<link rel="stylesheet" href="../../../common/UI_kit/css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/confirmReport.css" />
+		<style>
+			.thisBack1 span,.thisBack2 span{
+				cursor: pointer;
+			}
+			.thisBack1 span:hover,.thisBack2 span:hover{
+				text-decoration: none;
+				color: cornflowerblue;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- 头部 导航路径-->
+		<div class="top_Nav top_Nav_forView">
+			<div class="Nav_content">
+				您当前的位置：<span class="thisBack1" style="display: none;"><span  onclick="window.location.href = '../userList/interrogationModule/inquiryManager.html'">问诊管理</span>
+				<img src="../images/u2929.png" /> <span  onclick="turnBack()">问诊报告记录</span>
+				
+				<img src="../images/u2929.png" /> 查看问诊记录
+				</span> 
+				<span class="thisBack2">
+					<span  onclick="window.location.href = 'interrogation.html'">远程问诊</span>
+				<img src="../images/u2929.png" /> <span  onclick="window.location.href = 'confirmReport.html'">求助问诊</span>
+				<img src="../images/u2929.png" /> <span  onclick="turnBack()">问诊报告记录</span>
+				<img src="../images/u2929.png" /> 查看问诊记录
+				</span>
+			</div>
+		</div>
+		<img src="images/woman.png" width="35px" class="top-left-img">
+		<div class="all_content">
+			<div class="doctor-advice-title"><div class="viewTitle"><span class="gName"></span>孕<span class="recordWeek"></span>周问诊报告</div></div>
+			<div class="basicInfo-container">
+				<div class="div-basicInfo">姓名：<span class="gName"></span></div>
+				<div class="div-basicInfo">问诊孕周：<span class="recordWeek"></span></div>
+				<div class="div-basicInfo">问诊时间：<span class="recordDay"></span></div>
+			</div>
+			<div class="basicInfo-container">
+				<div class="div-basicInfo">年龄：<span class="age"></span></div>
+				<div class="div-basicInfo">末次月经：<span class="endDate"></span></div>
+				<div class="div-basicInfo">预产期：<span class="expectedDate"></span></div>
+			</div>
+			<div class="self_description">
+				<div class="second-class-title second-class-title2">自觉症状：</div>
+				<table id="selfDescriptionTable" class="self_description_table">
+					
+				</table>
+			</div>
+			<div class="div-for-usual self_description">
+				<div class="second-class-title second-class-title2">本周自测项目：<span id="selfTest"></span></div>
+				<div id="haveNone"></div>
+				<table id="selfTestTable" class="table-for-usual self_test_table">
+					<tr>
+						<td>自测项目</td>
+						<td>本周测量结果</td>
+						<td>说明</td>
+					</tr>
+				</table>
+			</div>
+			<div id="abnormityinfoReport" class="second-class-title abnormal_index second-class-title2">院检报告异常指标：</div>
+			<div class="abnormal-analysis">
+				<div class="second-class-title second-class-title2">
+					异常指标分析：
+				</div>
+				<div id="abnormal-analysis">
+					
+				</div>
+			</div>
+			<div>
+				<div class="second-class-title second-class-title2">医嘱建议：</div>
+				<div id="doctor_advice_forview">
+					
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="../js/getLogin.js"></script>
+	<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../js/topNavigationSetData.js"></script>
+	<script type="text/javascript" src="js/confirmReportForviewhistory.js" ></script>
+	<script type="text/javascript" src="js/viewHistory.js"></script>
+
+</html>

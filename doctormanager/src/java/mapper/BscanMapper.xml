@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.yunji.doctormanager.dao.BscanMapper" >
+  <resultMap id="BaseResultMap" type="cn.yunji.doctormanager.entity.Bscan" >
+    <id column="bid" property="bid" jdbcType="INTEGER" />
+    <result column="mId" property="mid" jdbcType="CHAR" />
+    <result column="checkProjectId" property="checkprojectid" jdbcType="INTEGER" />
+    <result column="hospitalName" property="hospitalname" jdbcType="CHAR" />
+    <result column="bpiclink" property="bpiclink" jdbcType="CHAR" />
+    <result column="piclevel" property="piclevel" jdbcType="CHAR" />
+    <result column="bladder" property="bladder" jdbcType="CHAR" />
+    <result column="way" property="way" jdbcType="CHAR" />
+    <result column="checkpoint" property="checkpoint" jdbcType="CHAR" />
+    <result column="probefrequency" property="probefrequency" jdbcType="CHAR" />
+    <result column="BPD" property="bpd" jdbcType="INTEGER" />
+    <result column="CRL" property="crl" jdbcType="INTEGER" />
+    <result column="femurL" property="femurl" jdbcType="INTEGER" />
+    <result column="humerusL" property="humerusl" jdbcType="INTEGER" />
+    <result column="fetalHeartRate" property="fetalheartrate" jdbcType="INTEGER" />
+    <result column="fetalMovement" property="fetalmovement" jdbcType="INTEGER" />
+    <result column="fetalHeart" property="fetalheart" jdbcType="INTEGER" />
+    <result column="amnioticFluid" property="amnioticfluid" jdbcType="INTEGER" />
+    <result column="placentalThickness" property="placentalthickness" jdbcType="INTEGER" />
+    <result column="placentalPosition" property="placentalposition" jdbcType="INTEGER" />
+    <result column="leftOvary" property="leftovary" jdbcType="INTEGER" />
+    <result column="checkDate" property="checkdate" jdbcType="TIMESTAMP" />
+    <result column="rightOvary" property="rightovary" jdbcType="INTEGER" />
+    <result column="NT" property="nt" jdbcType="DECIMAL" />
+    <result column="NF" property="nf" jdbcType="DECIMAL" />
+    <result column="nasalBone" property="nasalbone" jdbcType="INTEGER" />
+    <result column="fetusNumber" property="fetusnumber" jdbcType="INTEGER" />
+    <result column="weeks" property="weeks" jdbcType="INTEGER" />
+    <result column="bdescription" property="bdescription" jdbcType="VARCHAR" />
+    <result column="btip" property="btip" jdbcType="VARCHAR" />
+    <result column="week" property="week" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    bid, mId, checkProjectId, hospitalName, bpiclink, piclevel, BPD, bladder, way, checkpoint, 
+    probefrequency, CRL, femurL, humerusL, fetalHeartRate, 
+    fetalMovement, fetalHeart, amnioticFluid, placentalThickness, placentalPosition, 
+    leftOvary, checkDate, rightOvary, NT, NF, nasalBone, fetusNumber, weeks, bdescription, 
+    btip, week
+  </sql>
+  
+  <!-- 获取B超描述及提示信息 -->
+  <select id="queryBscanTip" resultType="java.util.HashMap">
+    SELECT 
+    bdescription, btip 
+    FROM bscan 
+    WHERE `week` = #{week,jdbcType=INTEGER}
+  </select>
+  <!-- 根据孕妇ID查询结果 -->
+  <select id="findByMid" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from bscan
+    where mId = #{mid,jdbcType=CHAR}
+  </select>
+  <!-- 根据孕周、mid、 检查项目id查看B超报告 -->
+  <select id="findByMidAndWeeks" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from bscan
+    where mId = #{mId,jdbcType=CHAR}
+    and checkProjectId = #{checkProjectId,jdbcType=INTEGER}
+    and week = #{weeks,jdbcType=INTEGER}
+  </select>
+  <!-- 根据mid、 检查项目id查看报告 按时间升序排序 -->
+  <select id="findByMidAndProject" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from bscan
+    where mId = #{mId,jdbcType=CHAR}
+    and checkProjectId = #{checkProjectId,jdbcType=INTEGER}
+    order by checkDate
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from bscan
+    where bid = #{bid,jdbcType=INTEGER}
+  </select>
+  <select id="selectNewReport" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from bscan
+    where mid = #{mid,jdbcType=CHAR}
+    order by checkdate desc
+  </select>
+  <select id="selectTipByMidandWeek" resultMap="BaseResultMap" parameterType="cn.yunji.doctormanager.entity.Bscan" >
+    select 
+    bdescription, btip
+    from bscan
+    where mid = #{mid} and week = #{week}
+  </select>
+  <!-- <select id="findByMid" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from bscan
+    where mid = #{mid,jdbcType=CHAR}
+    order by checkdate desc
+  </select> -->
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from bscan
+    where bid = #{bid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.yunji.doctormanager.entity.Bscan" >
+    insert into bscan (bid, mId, checkProjectId, 
+      hospitalName, bpiclink, BPD, 
+      CRL, femurL, humerusL, 
+      fetalHeartRate, fetalMovement, fetalHeart, 
+      amnioticFluid, placentalThickness, placentalPosition, 
+      leftOvary, checkDate, rightOvary, 
+      NT, NF, nasalBone, 
+      fetusNumber, weeks, bdescription, 
+      btip, week)
+    values (#{bid,jdbcType=INTEGER}, #{mid,jdbcType=CHAR}, #{checkprojectid,jdbcType=INTEGER}, 
+      #{hospitalname,jdbcType=CHAR}, #{bpiclink,jdbcType=CHAR}, #{bpd,jdbcType=INTEGER}, 
+      #{crl,jdbcType=INTEGER}, #{femurl,jdbcType=INTEGER}, #{humerusl,jdbcType=INTEGER}, 
+      #{fetalheartrate,jdbcType=INTEGER}, #{fetalmovement,jdbcType=INTEGER}, #{fetalheart,jdbcType=INTEGER}, 
+      #{amnioticfluid,jdbcType=INTEGER}, #{placentalthickness,jdbcType=INTEGER}, #{placentalposition,jdbcType=INTEGER}, 
+      #{leftovary,jdbcType=INTEGER}, #{checkdate,jdbcType=TIMESTAMP}, #{rightovary,jdbcType=INTEGER}, 
+      #{nt,jdbcType=DECIMAL}, #{nf,jdbcType=DECIMAL}, #{nasalbone,jdbcType=INTEGER}, 
+      #{fetusnumber,jdbcType=INTEGER}, #{weeks,jdbcType=INTEGER}, #{bdescription,jdbcType=VARCHAR}, 
+      #{btip,jdbcType=VARCHAR}, #{week,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.yunji.doctormanager.entity.Bscan" >
+    insert into bscan
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="bid != null" >
+        bid,
+      </if>
+      <if test="mid != null" >
+        mId,
+      </if>
+      <if test="checkprojectid != null" >
+        checkProjectId,
+      </if>
+      <if test="hospitalname != null" >
+        hospitalName,
+      </if>
+      <if test="bpiclink != null" >
+        bpiclink,
+      </if>
+      <if test="piclevel != null" >
+        piclevel,
+      </if>
+      <if test="bladder != null" >
+        bladder,
+      </if>
+      <if test="way != null" >
+        way,
+      </if>
+      <if test="checkpoint != null" >
+        checkpoint,
+      </if>
+       <if test="probefrequency != null" >
+        probefrequency,
+      </if>
+      
+      <if test="bpd != null" >
+        BPD,
+      </if>
+      <if test="crl != null" >
+        CRL,
+      </if>
+      <if test="femurl != null" >
+        femurL,
+      </if>
+      <if test="humerusl != null" >
+        humerusL,
+      </if>
+      <if test="fetalheartrate != null" >
+        fetalHeartRate,
+      </if>
+      <if test="fetalmovement != null" >
+        fetalMovement,
+      </if>
+      <if test="fetalheart != null" >
+        fetalHeart,
+      </if>
+      <if test="amnioticfluid != null" >
+        amnioticFluid,
+      </if>
+      <if test="placentalthickness != null" >
+        placentalThickness,
+      </if>
+      <if test="placentalposition != null" >
+        placentalPosition,
+      </if>
+      <if test="leftovary != null" >
+        leftOvary,
+      </if>
+      <if test="checkdate != null" >
+        checkDate,
+      </if>
+      <if test="rightovary != null" >
+        rightOvary,
+      </if>
+      <if test="nt != null" >
+        NT,
+      </if>
+      <if test="nf != null" >
+        NF,
+      </if>
+      <if test="nasalbone != null" >
+        nasalBone,
+      </if>
+      <if test="fetusnumber != null" >
+        fetusNumber,
+      </if>
+      <if test="weeks != null" >
+        weeks,
+      </if>
+      <if test="bdescription != null" >
+        bdescription,
+      </if>
+      <if test="btip != null" >
+        btip,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="bid != null" >
+        #{bid,jdbcType=INTEGER},
+      </if>
+      <if test="mid != null" >
+        #{mid,jdbcType=CHAR},
+      </if>
+      <if test="checkprojectid != null" >
+        #{checkprojectid,jdbcType=INTEGER},
+      </if>
+      <if test="hospitalname != null" >
+        #{hospitalname,jdbcType=CHAR},
+      </if>
+      <if test="bpiclink != null" >
+        #{bpiclink,jdbcType=CHAR},
+      </if>
+       <if test="piclevel != null" >
+        #{piclevel,jdbcType=CHAR},
+      </if>
+       <if test="bladder != null" >
+        #{bladder,jdbcType=CHAR},
+      </if>
+       <if test="way != null" >
+        #{way,jdbcType=CHAR},
+      </if>
+       <if test="checkpoint != null" >
+        #{checkpoint,jdbcType=CHAR},
+      </if>
+       <if test="probefrequency != null" >
+        #{probefrequency,jdbcType=CHAR},
+      </if>
+      <if test="bpd != null" >
+        #{bpd,jdbcType=INTEGER},
+      </if>
+      <if test="crl != null" >
+        #{crl,jdbcType=INTEGER},
+      </if>
+      <if test="femurl != null" >
+        #{femurl,jdbcType=INTEGER},
+      </if>
+      <if test="humerusl != null" >
+        #{humerusl,jdbcType=INTEGER},
+      </if>
+      <if test="fetalheartrate != null" >
+        #{fetalheartrate,jdbcType=INTEGER},
+      </if>
+      <if test="fetalmovement != null" >
+        #{fetalmovement,jdbcType=INTEGER},
+      </if>
+      <if test="fetalheart != null" >
+        #{fetalheart,jdbcType=INTEGER},
+      </if>
+      <if test="amnioticfluid != null" >
+        #{amnioticfluid,jdbcType=INTEGER},
+      </if>
+      <if test="placentalthickness != null" >
+        #{placentalthickness,jdbcType=INTEGER},
+      </if>
+      <if test="placentalposition != null" >
+        #{placentalposition,jdbcType=INTEGER},
+      </if>
+      <if test="leftovary != null" >
+        #{leftovary,jdbcType=INTEGER},
+      </if>
+      <if test="checkdate != null" >
+        #{checkdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rightovary != null" >
+        #{rightovary,jdbcType=INTEGER},
+      </if>
+      <if test="nt != null" >
+        #{nt,jdbcType=DECIMAL},
+      </if>
+      <if test="nf != null" >
+        #{nf,jdbcType=DECIMAL},
+      </if>
+      <if test="nasalbone != null" >
+        #{nasalbone,jdbcType=INTEGER},
+      </if>
+      <if test="fetusnumber != null" >
+        #{fetusnumber,jdbcType=INTEGER},
+      </if>
+      <if test="weeks != null" >
+        #{weeks,jdbcType=INTEGER},
+      </if>
+      <if test="bdescription != null" >
+        #{bdescription,jdbcType=VARCHAR},
+      </if>
+      <if test="btip != null" >
+        #{btip,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.yunji.doctormanager.entity.Bscan" >
+    update bscan
+    <set >
+      <if test="mid != null" >
+        mId = #{mid,jdbcType=CHAR},
+      </if>
+      <if test="checkprojectid != null" >
+        checkProjectId = #{checkprojectid,jdbcType=INTEGER},
+      </if>
+      <if test="hospitalname != null" >
+        hospitalName = #{hospitalname,jdbcType=CHAR},
+      </if>
+      <if test="bpiclink != null" >
+        bpiclink = #{bpiclink,jdbcType=CHAR},
+      </if>
+       <if test="piclevel != null" >
+        piclevel = #{piclevel,jdbcType=CHAR},
+      </if>
+       <if test="bladder != null" >
+        bladder = #{bladder,jdbcType=CHAR},
+      </if>
+       <if test="way != null" >
+        way = #{way,jdbcType=CHAR},
+      </if>
+       <if test="checkpoint != null" >
+        checkpoint = #{checkpoint,jdbcType=CHAR},
+      </if>
+       <if test="probefrequency != null" >
+        probefrequency = #{probefrequency,jdbcType=CHAR},
+      </if>
+      <if test="bpd != null" >
+        BPD = #{bpd,jdbcType=INTEGER},
+      </if>
+      <if test="crl != null" >
+        CRL = #{crl,jdbcType=INTEGER},
+      </if>
+      <if test="femurl != null" >
+        femurL = #{femurl,jdbcType=INTEGER},
+      </if>
+      <if test="humerusl != null" >
+        humerusL = #{humerusl,jdbcType=INTEGER},
+      </if>
+      <if test="fetalheartrate != null" >
+        fetalHeartRate = #{fetalheartrate,jdbcType=INTEGER},
+      </if>
+      <if test="fetalmovement != null" >
+        fetalMovement = #{fetalmovement,jdbcType=INTEGER},
+      </if>
+      <if test="fetalheart != null" >
+        fetalHeart = #{fetalheart,jdbcType=INTEGER},
+      </if>
+      <if test="amnioticfluid != null" >
+        amnioticFluid = #{amnioticfluid,jdbcType=INTEGER},
+      </if>
+      <if test="placentalthickness != null" >
+        placentalThickness = #{placentalthickness,jdbcType=INTEGER},
+      </if>
+      <if test="placentalposition != null" >
+        placentalPosition = #{placentalposition,jdbcType=INTEGER},
+      </if>
+      <if test="leftovary != null" >
+        leftOvary = #{leftovary,jdbcType=INTEGER},
+      </if>
+      <if test="checkdate != null" >
+        checkDate = #{checkdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rightovary != null" >
+        rightOvary = #{rightovary,jdbcType=INTEGER},
+      </if>
+      <if test="nt != null" >
+        NT = #{nt,jdbcType=DECIMAL},
+      </if>
+      <if test="nf != null" >
+        NF = #{nf,jdbcType=DECIMAL},
+      </if>
+      <if test="nasalbone != null" >
+        nasalBone = #{nasalbone,jdbcType=INTEGER},
+      </if>
+      <if test="fetusnumber != null" >
+        fetusNumber = #{fetusnumber,jdbcType=INTEGER},
+      </if>
+      <if test="weeks != null" >
+        weeks = #{weeks,jdbcType=INTEGER},
+      </if>
+      <if test="bdescription != null" >
+        bdescription = #{bdescription,jdbcType=VARCHAR},
+      </if>
+      <if test="btip != null" >
+        btip = #{btip,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where bid = #{bid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.yunji.doctormanager.entity.Bscan" >
+    update bscan
+    set mId = #{mid,jdbcType=CHAR},
+      checkProjectId = #{checkprojectid,jdbcType=INTEGER},
+      hospitalName = #{hospitalname,jdbcType=CHAR},
+      
+      bpiclink = #{bpiclink,jdbcType=CHAR},
+      piclevel = #{piclevel,jdbcType=CHAR},
+      bladder = #{bladder,jdbcType=CHAR},
+      way = #{way,jdbcType=CHAR},
+      checkpoint = #{checkpoint,jdbcType=CHAR},
+      probefrequency = #{probefrequency,jdbcType=CHAR},
+      BPD = #{bpd,jdbcType=INTEGER},
+      CRL = #{crl,jdbcType=INTEGER},
+      femurL = #{femurl,jdbcType=INTEGER},
+      humerusL = #{humerusl,jdbcType=INTEGER},
+      fetalHeartRate = #{fetalheartrate,jdbcType=INTEGER},
+      fetalMovement = #{fetalmovement,jdbcType=INTEGER},
+      fetalHeart = #{fetalheart,jdbcType=INTEGER},
+      amnioticFluid = #{amnioticfluid,jdbcType=INTEGER},
+      placentalThickness = #{placentalthickness,jdbcType=INTEGER},
+      placentalPosition = #{placentalposition,jdbcType=INTEGER},
+      leftOvary = #{leftovary,jdbcType=INTEGER},
+      checkDate = #{checkdate,jdbcType=TIMESTAMP},
+      rightOvary = #{rightovary,jdbcType=INTEGER},
+      NT = #{nt,jdbcType=DECIMAL},
+      NF = #{nf,jdbcType=DECIMAL},
+      nasalBone = #{nasalbone,jdbcType=INTEGER},
+      fetusNumber = #{fetusnumber,jdbcType=INTEGER},
+      weeks = #{weeks,jdbcType=INTEGER},
+      bdescription = #{bdescription,jdbcType=VARCHAR},
+      btip = #{btip,jdbcType=VARCHAR}
+    where bid = #{bid,jdbcType=INTEGER}
+  </update>
+</mapper>

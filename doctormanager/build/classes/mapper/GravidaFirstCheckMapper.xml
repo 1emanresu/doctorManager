@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.yunji.doctormanager.dao.GravidaFirstCheckMapper" >
+  <resultMap id="BaseResultMap" type="cn.yunji.doctormanager.entity.GravidaFirstCheck" >
+    <id column="gfcid" property="gfcid" jdbcType="INTEGER" />
+    <result column="mId" property="mid" jdbcType="CHAR" />
+    <result column="weight" property="weight" jdbcType="INTEGER" />
+    <result column="dpressure" property="dpressure" jdbcType="INTEGER" />
+    <result column="spressure" property="spressure" jdbcType="INTEGER" />
+    <result column="heart" property="heart" jdbcType="INTEGER" />
+    <result column="lung" property="lung" jdbcType="INTEGER" />
+    <result column="vulva" property="vulva" jdbcType="INTEGER" />
+    <result column="cervixUteri" property="cervixuteri" jdbcType="INTEGER" />
+    <result column="vagina" property="vagina" jdbcType="INTEGER" />
+    <result column="uterus" property="uterus" jdbcType="INTEGER" />
+    <result column="checkDate" property="checkdate" jdbcType="DATE" />
+    <result column="complaint" property="complaint" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    gfcid, mId, weight, dpressure, spressure, heart, lung, vulva, cervixUteri, vagina, 
+    uterus, checkDate, complaint
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from gravidafirstcheck
+    where gfcid = #{gfcid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from gravidafirstcheck
+    where gfcid = #{gfcid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.yunji.doctormanager.entity.GravidaFirstCheck" >
+    insert into gravidafirstcheck (gfcid, mId, weight, 
+      dpressure, spressure, heart, 
+      lung, vulva, cervixUteri, 
+      vagina, uterus, checkDate, 
+      complaint)
+    values (#{gfcid,jdbcType=INTEGER}, #{mid,jdbcType=CHAR}, #{weight,jdbcType=INTEGER}, 
+      #{dpressure,jdbcType=INTEGER}, #{spressure,jdbcType=INTEGER}, #{heart,jdbcType=INTEGER}, 
+      #{lung,jdbcType=INTEGER}, #{vulva,jdbcType=INTEGER}, #{cervixuteri,jdbcType=INTEGER}, 
+      #{vagina,jdbcType=INTEGER}, #{uterus,jdbcType=INTEGER}, #{checkdate,jdbcType=DATE}, 
+      #{complaint,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.yunji.doctormanager.entity.GravidaFirstCheck" >
+    insert into gravidafirstcheck
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="gfcid != null" >
+        gfcid,
+      </if>
+      <if test="mid != null" >
+        mId,
+      </if>
+      <if test="weight != null" >
+        weight,
+      </if>
+      <if test="dpressure != null" >
+        dpressure,
+      </if>
+      <if test="spressure != null" >
+        spressure,
+      </if>
+      <if test="heart != null" >
+        heart,
+      </if>
+      <if test="lung != null" >
+        lung,
+      </if>
+      <if test="vulva != null" >
+        vulva,
+      </if>
+      <if test="cervixuteri != null" >
+        cervixUteri,
+      </if>
+      <if test="vagina != null" >
+        vagina,
+      </if>
+      <if test="uterus != null" >
+        uterus,
+      </if>
+      <if test="checkdate != null" >
+        checkDate,
+      </if>
+      <if test="complaint != null" >
+        complaint,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="gfcid != null" >
+        #{gfcid,jdbcType=INTEGER},
+      </if>
+      <if test="mid != null" >
+        #{mid,jdbcType=CHAR},
+      </if>
+      <if test="weight != null" >
+        #{weight,jdbcType=INTEGER},
+      </if>
+      <if test="dpressure != null" >
+        #{dpressure,jdbcType=INTEGER},
+      </if>
+      <if test="spressure != null" >
+        #{spressure,jdbcType=INTEGER},
+      </if>
+      <if test="heart != null" >
+        #{heart,jdbcType=INTEGER},
+      </if>
+      <if test="lung != null" >
+        #{lung,jdbcType=INTEGER},
+      </if>
+      <if test="vulva != null" >
+        #{vulva,jdbcType=INTEGER},
+      </if>
+      <if test="cervixuteri != null" >
+        #{cervixuteri,jdbcType=INTEGER},
+      </if>
+      <if test="vagina != null" >
+        #{vagina,jdbcType=INTEGER},
+      </if>
+      <if test="uterus != null" >
+        #{uterus,jdbcType=INTEGER},
+      </if>
+      <if test="checkdate != null" >
+        #{checkdate,jdbcType=DATE},
+      </if>
+      <if test="complaint != null" >
+        #{complaint,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.yunji.doctormanager.entity.GravidaFirstCheck" >
+    update gravidafirstcheck
+    <set >
+      <if test="mid != null" >
+        mId = #{mid,jdbcType=CHAR},
+      </if>
+      <if test="weight != null" >
+        weight = #{weight,jdbcType=INTEGER},
+      </if>
+      <if test="dpressure != null" >
+        dpressure = #{dpressure,jdbcType=INTEGER},
+      </if>
+      <if test="spressure != null" >
+        spressure = #{spressure,jdbcType=INTEGER},
+      </if>
+      <if test="heart != null" >
+        heart = #{heart,jdbcType=INTEGER},
+      </if>
+      <if test="lung != null" >
+        lung = #{lung,jdbcType=INTEGER},
+      </if>
+      <if test="vulva != null" >
+        vulva = #{vulva,jdbcType=INTEGER},
+      </if>
+      <if test="cervixuteri != null" >
+        cervixUteri = #{cervixuteri,jdbcType=INTEGER},
+      </if>
+      <if test="vagina != null" >
+        vagina = #{vagina,jdbcType=INTEGER},
+      </if>
+      <if test="uterus != null" >
+        uterus = #{uterus,jdbcType=INTEGER},
+      </if>
+      <if test="checkdate != null" >
+        checkDate = #{checkdate,jdbcType=DATE},
+      </if>
+      <if test="complaint != null" >
+        complaint = #{complaint,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where gfcid = #{gfcid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.yunji.doctormanager.entity.GravidaFirstCheck" >
+    update gravidafirstcheck
+    set mId = #{mid,jdbcType=CHAR},
+      weight = #{weight,jdbcType=INTEGER},
+      dpressure = #{dpressure,jdbcType=INTEGER},
+      spressure = #{spressure,jdbcType=INTEGER},
+      heart = #{heart,jdbcType=INTEGER},
+      lung = #{lung,jdbcType=INTEGER},
+      vulva = #{vulva,jdbcType=INTEGER},
+      cervixUteri = #{cervixuteri,jdbcType=INTEGER},
+      vagina = #{vagina,jdbcType=INTEGER},
+      uterus = #{uterus,jdbcType=INTEGER},
+      checkDate = #{checkdate,jdbcType=DATE},
+      complaint = #{complaint,jdbcType=VARCHAR}
+    where gfcid = #{gfcid,jdbcType=INTEGER}
+  </update>
+  <!-- yinzx 按mid查询孕妇首检信息 -->
+  <select id="findByMid" resultType="java.util.HashMap">
+	 select
+ gf.mId, gf.weight, gf.dpressure, gf.spressure, gf.heart, gf.lung, gf.vulva, gf.cervixUteri, gf.vagina, 
+    gf.uterus, gf.checkDate, gf.complaint,g.gHigh,g.expectedConfinement,g.endDate,g.birthYears,g.pregnancyBirth
+   from gravidafirstcheck gf left join gravidainfo g
+   on gf.mId=g.mId
+   where gf.mId=#{mid,jdbcType=CHAR}
+  </select>
+ 
+</mapper>

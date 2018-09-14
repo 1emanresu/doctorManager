@@ -1,0 +1,35 @@
+.standard_table table{
+	margin-left: 30px;
+	margin-top: 5px;
+}
+.span_colorBlue{
+	color: rgb(15,15,208);
+}
+.span_colorLight{
+	color: rgb(255,161,19);
+}
+.span_colorMiddle{
+	color:rgb(255,113,19);
+}
+.span_colorHeigh{
+	color: rgb(255,60,12);
+}
+.span_colorVery{
+	color: rgb(255,0,0);
+}
+
+.balexia_detailmodel table tr td{
+	  border:1px #000000 solid;
+	   text-align: center;
+	   height:25px ;
+}
+.balexia_detailmodel table tr th{
+	 
+}
+.balexia_detailmodel{
+	width: 100%;
+	
+}
+.balexia_detailmodel table {
+	margin-left: 25px;
+}

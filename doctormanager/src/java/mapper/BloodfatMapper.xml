@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.yunji.doctormanager.dao.BloodfatMapper" >
+  <resultMap id="BaseResultMap" type="cn.yunji.doctormanager.entity.Bloodfat" >
+    <id column="bId" property="bid" jdbcType="INTEGER" />
+    <result column="mId" property="mid" jdbcType="CHAR" />
+    <result column="checkProjectId" property="checkprojectid" jdbcType="INTEGER" />
+    <result column="bDate" property="bdate" jdbcType="TIMESTAMP" />
+    <result column="CHOL" property="chol" jdbcType="CHAR" />
+    <result column="HDL" property="hdl" jdbcType="CHAR" />
+    <result column="TRIG" property="trig" jdbcType="CHAR" />
+    <result column="LDL" property="ldl" jdbcType="CHAR" />
+    <result column="HDLC" property="hdlc" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    bId, mId, checkProjectId, bDate, CHOL, HDL, TRIG, LDL, HDLC
+  </sql>
+  <select id="find" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from bloodfat
+    where mId = #{mid,jdbcType=CHAR}
+  </select>
+  <!-- luoyc 根据日期范围查询指定孕妇血脂数据 -->
+  <select id="findByDateRange" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from bloodfat
+    where mid=#{0} and bDate between #{1} and #{2}
+  </select>
+  <insert id="insert" parameterType="cn.yunji.doctormanager.entity.Bloodfat" >
+    insert into bloodfat ( mId, bDate, 
+      chol, hdl, trig, ldl, 
+      HDLC,checkProjectId)
+    values (#{mid,jdbcType=CHAR}, #{bdate,jdbcType=DATE}, 
+      #{chol,jdbcType=CHAR}, #{hdl,jdbcType=CHAR}, #{trig,jdbcType=CHAR}, #{ldl,jdbcType=CHAR}, 
+      #{hdlc,jdbcType=CHAR},#{checkprojectid,jdbcType=INTEGER})
+  </insert>
+  <update id="update" parameterType="cn.yunji.doctormanager.entity.Bloodfat" >
+    update bloodfat
+    set
+      chol = #{chol,jdbcType=CHAR},
+      hdl = #{hdl,jdbcType=CHAR},
+      trig = #{trig,jdbcType=CHAR},
+      ldl = #{ldl,jdbcType=CHAR},
+      HDLC = #{hdlc,jdbcType=CHAR}
+    where mId = #{mid,jdbcType=CHAR} and bDate = #{bdate,jdbcType=DATE}
+  </update>
+  <select id="findToday" parameterType="cn.yunji.doctormanager.entity.Bloodfat" resultType="cn.yunji.doctormanager.entity.Bloodfat">
+		select * from bloodfat where mId=#{mid,jdbcType=CHAR} and bDate=#{bdate,jdbcType=DATE}
+  </select>
+</mapper>

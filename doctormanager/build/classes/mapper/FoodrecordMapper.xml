@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.yunji.doctormanager.dao.FoodrecordMapper" >
+  <resultMap id="BaseResultMap" type="cn.yunji.doctormanager.entity.Foodrecord" >
+    <id column="frid" property="frid" jdbcType="INTEGER" />
+    <result column="mId" property="mid" jdbcType="CHAR" />
+    <result column="recordDate" property="recorddate" jdbcType="TIMESTAMP" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    frid, mId, recordDate, content
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from foodrecord
+    where frid = #{frid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from foodrecord
+    where frid = #{frid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.yunji.doctormanager.entity.Foodrecord" >
+    insert into foodrecord (frid, mId, recordDate, 
+      content)
+    values (#{frid,jdbcType=INTEGER}, #{mid,jdbcType=CHAR}, #{recorddate,jdbcType=TIMESTAMP}, 
+      #{content,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.yunji.doctormanager.entity.Foodrecord" >
+    insert into foodrecord
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="frid != null" >
+        frid,
+      </if>
+      <if test="mid != null" >
+        mId,
+      </if>
+      <if test="recorddate != null" >
+        recordDate,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="frid != null" >
+        #{frid,jdbcType=INTEGER},
+      </if>
+      <if test="mid != null" >
+        #{mid,jdbcType=CHAR},
+      </if>
+      <if test="recorddate != null" >
+        #{recorddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.yunji.doctormanager.entity.Foodrecord" >
+    update foodrecord
+    <set >
+      <if test="mid != null" >
+        mId = #{mid,jdbcType=CHAR},
+      </if>
+      <if test="recorddate != null" >
+        recordDate = #{recorddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where frid = #{frid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.yunji.doctormanager.entity.Foodrecord" >
+    update foodrecord
+    set mId = #{mid,jdbcType=CHAR},
+      recordDate = #{recorddate,jdbcType=TIMESTAMP},
+      content = #{content,jdbcType=VARCHAR}
+    where frid = #{frid,jdbcType=INTEGER}
+  </update>
+</mapper>

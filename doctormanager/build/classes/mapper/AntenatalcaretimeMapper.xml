@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.yunji.doctormanager.dao.AntenatalcaretimeMapper" >
+  <resultMap id="BaseResultMap" type="cn.yunji.doctormanager.entity.Antenatalcaretime" >
+    <id column="aid" property="aid" jdbcType="INTEGER" />
+    <result column="mId" property="mid" jdbcType="CHAR" />
+    <result column="firstAntenatalCareTime" property="firstantenatalcaretime" jdbcType="DATE" />
+    <result column="secondAntenatalCareTime" property="secondantenatalcaretime" jdbcType="DATE" />
+    <result column="thirdAntenatalCareTime" property="thirdantenatalcaretime" jdbcType="DATE" />
+    <result column="forthAntenatalCareTime" property="forthantenatalcaretime" jdbcType="DATE" />
+    <result column="fifthAntenatalCareTime" property="fifthantenatalcaretime" jdbcType="DATE" />
+    <result column="sixthAntenatalCareTime" property="sixthantenatalcaretime" jdbcType="DATE" />
+    <result column="seventhAntenatalCareTime" property="seventhantenatalcaretime" jdbcType="DATE" />
+    <result column="firstExtendCheckprojectId" property="firstExtendCheckprojectId" jdbcType="CHAR" />
+    <result column="secondExtendCheckprojectId" property="secondExtendCheckprojectId" jdbcType="CHAR" />
+    <result column="thirdExtendCheckprojectId" property="thirdExtendCheckprojectId" jdbcType="CHAR" />
+    <result column="fourthExtendCheckprojectId" property="fourthExtendCheckprojectId" jdbcType="CHAR" />
+    <result column="fifthExtendCheckprojectId" property="fifthExtendCheckprojectId" jdbcType="CHAR" />
+    <result column="sixthExtendCheckprojectId" property="sixthExtendCheckprojectId" jdbcType="CHAR" />
+    <result column="sevenExtendCheckprojectId" property="sevenExtendCheckprojectId" jdbcType="CHAR" />
+    
+  </resultMap>
+  <sql id="Base_Column_List" >
+    aid, mId, firstAntenatalCareTime, secondAntenatalCareTime, thirdAntenatalCareTime, 
+    forthAntenatalCareTime, fifthAntenatalCareTime, sixthAntenatalCareTime, seventhAntenatalCareTime,
+    firstExtendCheckprojectId, secondExtendCheckprojectId, thirdExtendCheckprojectId, fourthExtendCheckprojectId,
+    fifthExtendCheckprojectId, sixthExtendCheckprojectId, sevenExtendCheckprojectId
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from antenatalcaretime
+    where aid = #{aid,jdbcType=INTEGER}
+  </select>
+  <!--@wangzw 查询产检 -->
+    <select id="queryAntenatalcaretime" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from antenatalcaretime
+    where mid = #{0}
+  </select>
+  
+  <!--@author wuwj 查询第一次附加产检项目 -->
+  <select id="findfirstExtendCheckprojectId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select firstExtendCheckprojectId from antenatalcaretime where firstAntenatalCareTime = #{0} and mId = #{1};
+  </select>
+  
+  <!--@author wuwj 查询第二次附加产检项目 -->
+  <select id="findsecondExtendCheckprojectId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select secondExtendCheckprojectId from antenatalcaretime where secondAntenatalCareTime = #{0} and mId = #{1};
+  </select>
+  
+  <!--@author wuwj 查询第三次附加产检项目 -->
+  <select id="findthirdExtendCheckprojectId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select thirdExtendCheckprojectId from antenatalcaretime where thirdAntenatalCareTime = #{0} and mId = #{1};
+  </select>
+  
+  <!--@author wuwj 查询第四次附加产检项目 -->
+  <select id="findfourthExtendCheckprojectId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select fourthExtendCheckprojectId from antenatalcaretime where forthAntenatalCareTime = #{0} and mId = #{1};
+  </select>
+  
+  <!--@author wuwj 查询第五次附加产检项目 -->
+  <select id="findfifthExtendCheckprojectId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select fifthExtendCheckprojectId from antenatalcaretime where fifthAntenatalCareTime = #{0} and mId = #{1};
+  </select>
+  
+  <!--@author wuwj 查询第六次附加产检项目 -->
+  <select id="findsixthExtendCheckprojectId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select sixthExtendCheckprojectId from antenatalcaretime where sixthAntenatalCareTime = #{0} and mId = #{1};
+  </select>
+  
+  <!--@author wuwj 查询第七次附加产检项目 -->
+  <select id="findsevenExtendCheckprojectId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select sevenExtendCheckprojectId from antenatalcaretime where seventhAntenatalCareTime = #{0} and mId = #{1};
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from antenatalcaretime
+    where aid = #{aid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.yunji.doctormanager.entity.Antenatalcaretime" >
+    insert into antenatalcaretime (aid, mId, firstAntenatalCareTime, 
+      secondAntenatalCareTime, thirdAntenatalCareTime, 
+      forthAntenatalCareTime, fifthAntenatalCareTime, 
+      sixthAntenatalCareTime, seventhAntenatalCareTime
+      )
+    values (#{aid,jdbcType=INTEGER}, #{mid,jdbcType=CHAR}, #{firstantenatalcaretime,jdbcType=DATE}, 
+      #{secondantenatalcaretime,jdbcType=DATE}, #{thirdantenatalcaretime,jdbcType=DATE}, 
+      #{forthantenatalcaretime,jdbcType=DATE}, #{fifthantenatalcaretime,jdbcType=DATE}, 
+      #{sixthantenatalcaretime,jdbcType=DATE}, #{seventhantenatalcaretime,jdbcType=DATE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.yunji.doctormanager.entity.Antenatalcaretime" >
+    insert into antenatalcaretime
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="aid != null" >
+        aid,
+      </if>
+      <if test="mid != null" >
+        mId,
+      </if>
+      <if test="firstantenatalcaretime != null" >
+        firstAntenatalCareTime,
+      </if>
+      <if test="secondantenatalcaretime != null" >
+        secondAntenatalCareTime,
+      </if>
+      <if test="thirdantenatalcaretime != null" >
+        thirdAntenatalCareTime,
+      </if>
+      <if test="forthantenatalcaretime != null" >
+        forthAntenatalCareTime,
+      </if>
+      <if test="fifthantenatalcaretime != null" >
+        fifthAntenatalCareTime,
+      </if>
+      <if test="sixthantenatalcaretime != null" >
+        sixthAntenatalCareTime,
+      </if>
+      <if test="seventhantenatalcaretime != null" >
+        seventhAntenatalCareTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="aid != null" >
+        #{aid,jdbcType=INTEGER},
+      </if>
+      <if test="mid != null" >
+        #{mid,jdbcType=CHAR},
+      </if>
+      <if test="firstantenatalcaretime != null" >
+        #{firstantenatalcaretime,jdbcType=DATE},
+      </if>
+      <if test="secondantenatalcaretime != null" >
+        #{secondantenatalcaretime,jdbcType=DATE},
+      </if>
+      <if test="thirdantenatalcaretime != null" >
+        #{thirdantenatalcaretime,jdbcType=DATE},
+      </if>
+      <if test="forthantenatalcaretime != null" >
+        #{forthantenatalcaretime,jdbcType=DATE},
+      </if>
+      <if test="fifthantenatalcaretime != null" >
+        #{fifthantenatalcaretime,jdbcType=DATE},
+      </if>
+      <if test="sixthantenatalcaretime != null" >
+        #{sixthantenatalcaretime,jdbcType=DATE},
+      </if>
+      <if test="seventhantenatalcaretime != null" >
+        #{seventhantenatalcaretime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.yunji.doctormanager.entity.Antenatalcaretime" >
+    update antenatalcaretime
+    <set >
+      <if test="mid != null" >
+        mId = #{mid,jdbcType=CHAR},
+      </if>
+      <if test="firstantenatalcaretime != null" >
+        firstAntenatalCareTime = #{firstantenatalcaretime,jdbcType=DATE},
+      </if>
+      <if test="secondantenatalcaretime != null" >
+        secondAntenatalCareTime = #{secondantenatalcaretime,jdbcType=DATE},
+      </if>
+      <if test="thirdantenatalcaretime != null" >
+        thirdAntenatalCareTime = #{thirdantenatalcaretime,jdbcType=DATE},
+      </if>
+      <if test="forthantenatalcaretime != null" >
+        forthAntenatalCareTime = #{forthantenatalcaretime,jdbcType=DATE},
+      </if>
+      <if test="fifthantenatalcaretime != null" >
+        fifthAntenatalCareTime = #{fifthantenatalcaretime,jdbcType=DATE},
+      </if>
+      <if test="sixthantenatalcaretime != null" >
+        sixthAntenatalCareTime = #{sixthantenatalcaretime,jdbcType=DATE},
+      </if>
+      <if test="seventhantenatalcaretime != null" >
+        seventhAntenatalCareTime = #{seventhantenatalcaretime,jdbcType=DATE},
+      </if>
+    </set>
+    where aid = #{aid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.yunji.doctormanager.entity.Antenatalcaretime" >
+    update antenatalcaretime
+    set mId = #{mid,jdbcType=CHAR},
+      firstAntenatalCareTime = #{firstantenatalcaretime,jdbcType=DATE},
+      secondAntenatalCareTime = #{secondantenatalcaretime,jdbcType=DATE},
+      thirdAntenatalCareTime = #{thirdantenatalcaretime,jdbcType=DATE},
+      forthAntenatalCareTime = #{forthantenatalcaretime,jdbcType=DATE},
+      fifthAntenatalCareTime = #{fifthantenatalcaretime,jdbcType=DATE},
+      sixthAntenatalCareTime = #{sixthantenatalcaretime,jdbcType=DATE},
+      seventhAntenatalCareTime = #{seventhantenatalcaretime,jdbcType=DATE}
+    where aid = #{aid,jdbcType=INTEGER}
+  </update>
+</mapper>

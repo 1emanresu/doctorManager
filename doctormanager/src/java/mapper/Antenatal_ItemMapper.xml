@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.yunji.doctormanager.dao.Antenatal_ItemMapper">
+	<resultMap id="BaseResultMap" type="cn.yunji.doctormanager.entity.Antenatal_Item">
+		<id column="itemId" property="itemid" jdbcType="INTEGER" />
+		<result column="antenatalBeginWeeks" property="antenatalbeginweeks"
+			jdbcType="CHAR" />
+		<result column="itemName" property="itemname" jdbcType="CHAR" />
+		<result column="checkProjectId" property="checkprojectid"
+			jdbcType="INTEGER" />
+		<result column="antenatalEndWeeks" property="antenatalendweeks"
+			jdbcType="CHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		itemId, antenatalBeginWeeks, itemName, checkProjectId, antenatalEndWeeks
+	</sql>
+
+	<!-- @author zhangqt 参数孕周，以孕周查询应做的检查 -->
+	<select id="queryByWeeks" resultType="java.util.HashMap"
+		parameterType="java.lang.Integer">
+		select c.riskname,c.checktype from antenatal_item a
+		left join checkproject c on a.checkProjectId =c.checkProjectId
+		where a.antenatalBeginWeeks &lt;= #{0} and a.antenatalEndWeeks &gt; #{1}
+	</select>
+
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from antenatal_item
+		where itemId = #{itemid,jdbcType=INTEGER}
+	</select>
+
+	<!-- @author wuwj 根据孕周查询必检项目 -->
+	<select id="findallcheckprojectbyweeks" resultType="java.util.HashMap"
+		parameterType="java.lang.Integer">
+		select
+		checkprojectid,antenatalBeginWeeks,antenatalEndWeeks
+		from antenatal_item
+		where antenatalBeginWeeks &lt;= #{0} and antenatalEndWeeks >= #{0}
+	</select>
+
+	<!-- @author wuwj 查询孕程的开始与结束孕周 -->
+	<select id="findbeginandendweeks" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select * from antenatal_item
+		where antenatalBeginWeeks &lt;= #{0} and antenatalEndWeeks > #{0} limit 1
+	</select>
+
+	<!-- @author wuwj 根据孕周查询检查过的项目 -->
+	<select id="findcheckedprojectbyweeks" resultType="java.util.HashMap">
+		select c.checkProjectId from antenatal_item a join checkresult c
+		where a.antenatalBeginWeeks &lt;= #{0,jdbcType = INTEGER} and
+		a.antenatalEndWeeks >= #{0,jdbcType = INTEGER} and (c.gWeeks between
+		a.antenatalBeginWeeks and a.antenatalEndWeeks)
+		and c.mId = #{1,jdbcType = CHAR}
+		group by c.checkProjectId asc;
+	</select>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from antenatal_item
+		where itemId = #{itemid,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="cn.yunji.doctormanager.entity.Antenatal_Item">
+		insert into antenatal_item (itemId, antenatalBeginWeeks, itemName,
+		checkProjectId, antenatalEndWeeks)
+		values (#{itemid,jdbcType=INTEGER}, #{antenatalbeginweeks,jdbcType=CHAR},
+		#{itemname,jdbcType=CHAR},
+		#{checkprojectid,jdbcType=INTEGER}, #{antenatalendweeks,jdbcType=CHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="cn.yunji.doctormanager.entity.Antenatal_Item">
+		insert into antenatal_item
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="itemid != null">
+				itemId,
+			</if>
+			<if test="antenatalbeginweeks != null">
+				antenatalBeginWeeks,
+			</if>
+			<if test="itemname != null">
+				itemName,
+			</if>
+			<if test="checkprojectid != null">
+				checkProjectId,
+			</if>
+			<if test="antenatalendweeks != null">
+				antenatalEndWeeks,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="itemid != null">
+				#{itemid,jdbcType=INTEGER},
+			</if>
+			<if test="antenatalbeginweeks != null">
+				#{antenatalbeginweeks,jdbcType=CHAR},
+			</if>
+			<if test="itemname != null">
+				#{itemname,jdbcType=CHAR},
+			</if>
+			<if test="checkprojectid != null">
+				#{checkprojectid,jdbcType=INTEGER},
+			</if>
+			<if test="antenatalendweeks != null">
+				#{antenatalendweeks,jdbcType=CHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="cn.yunji.doctormanager.entity.Antenatal_Item">
+		update antenatal_item
+		<set>
+			<if test="antenatalbeginweeks != null">
+				antenatalBeginWeeks = #{antenatalbeginweeks,jdbcType=CHAR},
+			</if>
+			<if test="itemname != null">
+				itemName = #{itemname,jdbcType=CHAR},
+			</if>
+			<if test="checkprojectid != null">
+				checkProjectId = #{checkprojectid,jdbcType=INTEGER},
+			</if>
+			<if test="antenatalendweeks != null">
+				antenatalEndWeeks = #{antenatalendweeks,jdbcType=CHAR},
+			</if>
+		</set>
+		where itemId = #{itemid,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="cn.yunji.doctormanager.entity.Antenatal_Item">
+		update antenatal_item
+		set antenatalBeginWeeks = #{antenatalbeginweeks,jdbcType=CHAR},
+		itemName = #{itemname,jdbcType=CHAR},
+		checkProjectId = #{checkprojectid,jdbcType=INTEGER},
+		antenatalEndWeeks = #{antenatalendweeks,jdbcType=CHAR}
+		where itemId = #{itemid,jdbcType=INTEGER}
+	</update>
+</mapper>

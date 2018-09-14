@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.yunji.doctormanager.dao.PermissionMapper" >
+  <resultMap id="BaseResultMap" type="cn.yunji.doctormanager.entity.Permission" >
+    <id column="permissionId" property="permissionid" jdbcType="INTEGER" />
+    <result column="permissionName" property="permissionname" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    permissionId, permissionName
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from permission
+    where permissionId = #{permissionid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from permission
+    where permissionId = #{permissionid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.yunji.doctormanager.entity.Permission" >
+    insert into permission (permissionId, permissionName)
+    values (#{permissionid,jdbcType=INTEGER}, #{permissionname,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.yunji.doctormanager.entity.Permission" >
+    insert into permission
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="permissionid != null" >
+        permissionId,
+      </if>
+      <if test="permissionname != null" >
+        permissionName,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="permissionid != null" >
+        #{permissionid,jdbcType=INTEGER},
+      </if>
+      <if test="permissionname != null" >
+        #{permissionname,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.yunji.doctormanager.entity.Permission" >
+    update permission
+    <set >
+      <if test="permissionname != null" >
+        permissionName = #{permissionname,jdbcType=CHAR},
+      </if>
+    </set>
+    where permissionId = #{permissionid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.yunji.doctormanager.entity.Permission" >
+    update permission
+    set permissionName = #{permissionname,jdbcType=CHAR}
+    where permissionId = #{permissionid,jdbcType=INTEGER}
+  </update>
+</mapper>

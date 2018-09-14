@@ -1,0 +1,408 @@
+/*发送医嘱 css @author yinzx*/
+body{
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+* {
+	padding: 0px;
+	margin: 0px;
+	font-size: 12px;
+	color: #696969;
+	
+}
+.ax_default,.primary_button{
+	cursor: pointer;
+}
+textarea:focus {
+    outline: none;
+}
+label{
+	font-weight: normal;
+}
+.class_main {
+	min-width: 1024px;
+	margin: 10px 0;
+}
+
+.top_Nav {
+	width: 100%;
+	padding: 5px 10px 5px 10px;
+	border-bottom: 1px solid #D7D7D7;
+}
+
+.top_Nav .Nav_img {
+	margin-right: 10px;
+	float: left;
+}
+
+.top_Nav .Nav_content img {
+	margin: 0px 5px;
+}
+
+.content_riskTip {
+	height: 80px;
+	width: 95%;
+	margin: 15px auto;
+	margin-top: 25px;
+	border: 1px solid #E4E4E4;
+	border-top-left-radius: 10px;
+	border-bottom-left-radius: 10px;
+	border-right: none;
+}
+
+.riskTip_title {
+	height: 80px;
+	width: 20%;
+	float: left;
+	padding-top: 30px;
+	text-align: center;
+	
+	border-right: 1px solid #E4E4E4;
+}
+.riskTip_title label{
+	font-weight: 800;
+}
+.riskTip_content {
+	float: left;
+	height: 78px;
+	width: 80%;
+	padding: 15px;
+	line-height: 25px;
+	overflow-y: scroll;
+}
+
+.riskTip_content_p {
+	color: red;
+}
+
+/* 选项卡：本次医嘱、医嘱记录*/
+.nva-tabs-ul {
+	background-color: #EAEEF1;
+}
+
+.nva-tabs-ul li a {
+	color: #000000;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	font-size: 12px;
+}
+
+.nav-tabs {
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+.nva-tabs-ul li {
+	width: 20%;
+	text-align: center;
+}
+
+.right-Tab-Control {
+	width: 95%;
+	margin: 0 auto;
+	border-radius: 5px;
+	margin: 10px auto;
+	margin-top: 10px;
+}
+.li_line {
+	width: 96%;
+	height: 5px;
+    margin: 0 auto;
+}
+li.active .li_line {
+	background: linear-gradient(to right, #1f67fa, #2dd7c6);
+}
+/*本次医嘱*/
+.thisAdvice_content{
+	width: 100%;
+	height: 100px;/*150*/
+	resize: none;
+	border-color: #E4E4E4;
+	border-top:none ;
+	border-bottom:none ;
+	padding: 20px 10px 10px 10px;
+	line-height: 20px;
+}
+.seeAdvice_content{
+	border-bottom: 1px solid #E4E4E4;
+	border-bottom-left-radius:10px ;
+	border-bottom-right-radius:10px ;
+}
+.div_morebtn{
+	float: right;
+	border: 1px solid red;
+	width: 100%;
+	height: 40px;
+	margin-top: -5px;
+	text-align: right;
+	border-color: #E4E4E4;
+	border-top: none;
+	line-height:40px;  
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+}
+.div_morebtn a{
+	margin-right: 20px;
+	color:#6FA0E4 ;
+	text-decoration: none;
+	cursor: pointer;
+}
+/*医嘱记录*/
+#advice_record{
+	max-height: 193px;
+	overflow:auto;
+}
+.advice_record{
+	width: 100%;
+	height: 250px;
+	overflow-y: auto;
+	border: 1px solid #E4E4E4;
+	border-top:none ;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+}
+.advice_record_table{
+	width: 100%;
+}
+.advice_record_table td{
+	border: 1px solid #E4E4E4;
+	padding: 3px;
+	text-align: center;
+	line-height: 25px;
+	height: 30px;
+}
+.advice_record_table .td1{
+	width: 90px;
+}
+/*温馨提示*/
+.content_warmTip,
+.content_Notice{
+	width: 95%;
+	margin: 0 auto;
+	padding: 0px 5px;
+	margin-top: 50px;
+}
+.content_warmTip span,
+.content_warmTip label
+{
+	color:#6FA0E4 ;
+}
+.Notice_title{
+	width: 130px;
+	height: 170px;
+	float: left;
+	padding-top: 6px;
+}
+.Notice_content{
+	height: 170px;
+	line-height: 30px;
+}
+.Notice_content input{
+	width: 25px;
+	height: 15px;
+	vertical-align: text-bottom;
+}
+.Notice_content select{
+	margin-left: 10px;
+	height: 25px;
+	
+}
+.Notice_send{
+	width: 100%;
+	height: 100px;
+	line-height: 30px;
+	padding-top: 10px;
+	position: absolute;
+	top: -84px;
+	right: 170px;
+}
+.send_title{
+	width: 130px;
+	height: 100px;
+	float: left;
+	padding-top: 30px;
+	text-align: right;
+	padding-right: 18px;
+}
+.send_content input{
+	width: 25px;
+	height: 15px;
+	vertical-align: text-bottom;
+}
+.send_content label{
+	
+	width: 70px;
+}
+.content_submit{
+	width: 95%;
+	margin: 10px auto;
+	padding-left: 400px;
+	margin-top: 20px;
+}
+.content_submit button{
+	width: 100px;
+	height: 25px;
+	margin-left: 20px;
+}
+.content_submit button:hover{
+	background-color: #006DCC!important;
+	border: 1px solid #006DCC!important;
+	color: white;
+}
+.data-show{
+	position: relative;
+}
+/*添加更多医嘱弹出框*/
+
+.moreAdvice-modal-content {
+	display: flex;
+}
+
+.modal-content-left {
+	flex: 1;
+}
+
+.modal-content-right input {
+	width: 22vw;
+	border: 1px solid gainsboro;
+	border-right-color: white;
+	height: 30px;
+	font-size: 14px;
+}
+
+.modal-content-right button {
+	width: 9vw;
+	margin-left: -4px;
+	height: 30px;
+}
+.advice-table1{
+	margin-left: 15px;
+}
+.modal-content-right {
+	flex: 1;
+}
+
+.modal-content-left textarea {
+	width: 90%;
+	border: none;
+	height: 45vh;
+	margin-left: 2vw;
+	font-size: 14px;
+	background-color: rgb(242, 242, 242);
+	resize: none;
+}
+
+.modal-content {
+	padding-top: 40px;
+	height: 60vh;
+	width: 70vw;
+	position: fixed;
+	margin-top: 90px;
+	left: -8vw;
+	background-color: rgb(242, 242, 242);
+}
+
+.advice-color-change {
+	FILTER: progid:DXImageTransform.Microsoft.Gradient(gradientType=0, startColorStr=#2dd7c6, endColorStr=#1f67fa);
+	/*IE*/
+	background: -moz-linear-gradient(top, #2dd7c6, #1f67fa));
+	/*火狐*/
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#2dd7c6), to(#1f67fa));
+	/*谷歌*/
+	color: white;
+	height: 30px;
+	border-radius: 5px;
+	font-size: 14px;
+	width: 120px;
+	border: none;
+	margin-right: 40px;
+	margin-top: 5px;
+}
+
+.advice-color-no-change {
+	border: 1px solid #666666;
+	color: #666666;
+	height: 30px;
+	border-radius: 5px;
+	font-size: 14px;
+	width: 120px;
+	margin-right: 40px;
+	background-color: white;
+	margin-top: 5px;
+}
+
+.button-div {
+	margin-top: 20px;
+	margin-left: 15vw;
+}
+
+.common-color {
+	FILTER: progid:DXImageTransform.Microsoft.Gradient(gradientType=0, startColorStr=#2dd7c6, endColorStr=#1f67fa);
+	/*IE*/
+	background: -moz-linear-gradient(top, #2dd7c6, #1f67fa));
+	/*火狐*/
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#2dd7c6), to(#1f67fa));
+	/*谷歌*/
+	color: white;
+	font-size: 14px;
+	border: none;
+}
+
+.addAdvice_warmTip{
+	color:#6FA0E4 ;
+	float: right;
+	margin-right: 30px;
+}
+
+.advice-table1 {
+	margin-top: 5px;
+}
+
+.advice-table1 td {
+	border-right: 1px solid rgb(204, 204, 204);
+	padding: 0 10px;
+	color: rgb(204, 204, 204);
+	cursor: pointer;
+}
+
+.advice-table1 td:last-child {
+	border: none;
+	padding-right: 0px;
+}
+
+.advice-table1 td:first-child {
+	padding-left: 0px;
+}
+
+.table2-div {
+	margin-top: 5px;
+	margin-right: 10px;
+	border: 1px solid rgb(169, 169, 169);
+	background-color: white;
+	padding-left: 2px;
+	height: 38vh;
+	overflow-y: scroll;
+}
+
+/*
+ * zhongjl
+ * 解决只能点字体才能触发按钮
+ * 2017/10/30
+ */
+/*begin*/
+#cancel{
+	display: inline-block;
+	width: 96px;
+	height: 24px;
+	color: white;
+}
+
+#u3648 span{
+	display: inline-block;
+	width: 96px;
+	height: 24px;
+	color: white;
+}
+/*end*/

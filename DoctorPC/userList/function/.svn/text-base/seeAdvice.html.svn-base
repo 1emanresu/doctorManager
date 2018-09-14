@@ -1,0 +1,145 @@
+<!--发送医嘱@author yinzx-->
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="Pragma" content="no-cache">
+		<meta http-equiv="Window-target" content="_top">
+		<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+		<title>产科电子信息管理平台——查看医嘱</title>
+		
+		<link rel="stylesheet" href="../../css/bootstrap.min.css" />
+		<link rel="stylesheet" href="../css/sendAdvice.css">
+		<link rel="stylesheet" type="text/css" href="../css/comm.css"/>
+		<style>
+			.nav-tabs>li>a{
+				border-radius:0;
+				margin: 0;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="class_main">
+			<!-- 头部 导航路径-->
+			<div class="top_Nav">
+				<div class="Nav_img"><img src="images/header_home.png" /></div>
+				<div class="Nav_content">
+					您当前的位置：查看医嘱
+				</div>
+			</div>
+			<!-- 主要内容 -->
+			<div class="main_content">
+				<!-- 风险提示-->
+				<div class="content_riskTip">
+					<div class="riskTip_title">
+						<label> 风险提示</label>
+					</div>
+					<div class="riskTip_content" id="riskTip_content">
+						
+					</div>
+				</div>
+
+				<!--begin Tab-Control-->
+				<div class="right-Tab-Control" >
+					<ul class="nav nav-tabs nva-tabs-ul">
+						<li class="active">
+							<div class="class_li_line" onclick=""></div>
+							<a href="#panel-978065" data-toggle="tab">本次医嘱</a>
+						</li>
+						<li  >
+							<div class="class_li_line"></div>
+							<a href="#panel-978066" data-toggle="tab">医嘱记录</a>
+						</li>
+					</ul>
+					<div class="tab-content contents">
+						<div class="tab-pane active  data-show" id="panel-978065">
+							<textarea name="" id="thisAdvice_content" class="thisAdvice_content seeAdvice_content" placeholder="请输入医嘱"></textarea>
+
+						</div>
+						<div class="tab-pane  examine " id="panel-978066">
+							<!--医嘱记录-->
+							<div id='advice_record' class="" >
+								<table id="advice_history" class="advice_record_table">
+									<tr>
+										<td class="td1">医嘱下发日期</td>
+										<td class="td2">医嘱内容</td>
+										<td class="td3">处方</td>
+										
+									</tr>
+									<!--<tr>
+										<td>2017/5/22</td>
+										<td>夜间休息时请注意按左侧卧位休息；密切监测母儿状态：每日测体重、血压、尿蛋白，注意主观症状，如主观症状持续严重，请及时到医院进行进一步检查。在饮食上减少动物脂肪的摄入，炒菜最好以植物油为主，每日20～25克。饱和脂肪酸(如猪油、牛羊油、椰子油，棕榈油等)的供热能应低于10%。经常散步、游泳或森林浴，增强抗病力，但同时要注意掌握以运动后感到舒适为原则。</td>
+										<td><img src="images/u307573.png" /></td>
+									</tr>
+									<tr>
+										<td></td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr>
+										<td></td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr>
+										<td></td>
+										<td></td>
+										<td></td>
+									</tr>-->
+								</table>
+							</div>
+
+							<!-- end 选项卡 panel-978066  -->
+						</div>
+
+					</div>
+
+					<!--end Tab-Control-->
+				</div>
+				<!-- 温馨小贴士-->
+				<div class="content_warmTip">
+					<label>温馨小贴士：</label>
+					<span>为了对确诊妊娠高血压患者给予及时的生活指导和干预性治疗，降低妊娠期的高危风险；为了患者有效的进行家庭监护，医师可考虑对患者下发较严格的措施要求哦~：）</span>	
+				</div>
+				<!--建议-->
+				<div class="content_Notice">
+					<div class="Notice_title">
+						<label>家庭检测项目建议：</label>
+					</div>
+					<div class="Notice_content">
+						 <br />
+		
+					</div>
+					<div class="Notice_send">
+						<div class="send_title">
+						    <label>发送至：</label><br />
+						    <label>提醒方式：</label>
+					    </div>
+					    <div class="send_content"> 
+						    <br />
+						    <label id="people0"></label>
+						    <label id="people1"></label>
+						    <label id="people2"></label>
+						    <label id="people3"></label>
+						    <br />
+						    <label id="way0"></label>
+						    <label id="way1"></label>
+						    <label id="way2"></label>
+					    </div>
+					    
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+	<script type="text/javascript" src="../../js/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="../../js/getLogin.js"></script>
+	<script type="text/javascript" src="../../js/bootstrap.min.js"></script>	
+	<script type="text/javascript" src="js/seeAdvice.js"></script>
+	<script type="text/javascript" src="../../js/topNavigationSetData.js" ></script>
+	</body>
+
+</html> 

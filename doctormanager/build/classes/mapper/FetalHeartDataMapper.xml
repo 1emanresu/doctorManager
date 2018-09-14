@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.yunji.doctormanager.dao.FetalHeartDataMapper" >
+  <resultMap id="BaseResultMap" type="cn.yunji.doctormanager.entity.FetalHeartData" >
+    <id column="fdid" property="fdid" jdbcType="INTEGER" />
+    <result column="fetalheartid" property="fetalheartid" jdbcType="INTEGER" />
+    <result column="mId" property="mid" jdbcType="CHAR" />
+    <result column="FHRlist" property="fhrlist" jdbcType="VARCHAR" />
+    <result column="FMlist" property="fmlist" jdbcType="VARCHAR" />
+    <result column="UClist" property="uclist" jdbcType="VARCHAR" />
+    <result column="t" property="t" jdbcType="INTEGER" />
+    <result column="startTime" property="starttime" jdbcType="TIMESTAMP" />
+    <result column="endTime" property="endtime" jdbcType="TIMESTAMP" />
+    <result column="lengthTime" property="lengthtime" jdbcType="INTEGER" />
+     <result column="audio" property="audio" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    fdid, fetalheartid, mId, FHRlist, FMlist, UClist, t, startTime, endTime, lengthTime,audio
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from fetalheartdata
+    where fdid = #{fdid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from fetalheartdata
+    where fdid = #{fdid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.yunji.doctormanager.entity.FetalHeartData" >
+    insert into fetalheartdata (fdid, fetalheartid, mId, 
+      FHRlist, FMlist, UClist, 
+      t, startTime, endTime, 
+      lengthTime,audio)
+    values (#{fdid,jdbcType=INTEGER}, #{fetalheartid,jdbcType=INTEGER}, #{mid,jdbcType=CHAR}, 
+      #{fhrlist,jdbcType=VARCHAR}, #{fmlist,jdbcType=VARCHAR}, #{uclist,jdbcType=VARCHAR}, 
+      #{t,jdbcType=INTEGER}, #{starttime,jdbcType=TIMESTAMP}, #{endtime,jdbcType=TIMESTAMP}, 
+      #{lengthtime,jdbcType=INTEGER},#{audio,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.yunji.doctormanager.entity.FetalHeartData" >
+    insert into fetalheartdata
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="fdid != null" >
+        fdid,
+      </if>
+      <if test="fetalheartid != null" >
+        fetalheartid,
+      </if>
+      <if test="mid != null" >
+        mId,
+      </if>
+      <if test="fhrlist != null" >
+        FHRlist,
+      </if>
+      <if test="fmlist != null" >
+        FMlist,
+      </if>
+      <if test="uclist != null" >
+        UClist,
+      </if>
+      <if test="t != null" >
+        t,
+      </if>
+      <if test="starttime != null" >
+        startTime,
+      </if>
+      <if test="endtime != null" >
+        endTime,
+      </if>
+      <if test="lengthtime != null" >
+        lengthTime,
+      </if>
+      <if test="audio != null" >
+        audio,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="fdid != null" >
+        #{fdid,jdbcType=INTEGER},
+      </if>
+      <if test="fetalheartid != null" >
+        #{fetalheartid,jdbcType=INTEGER},
+      </if>
+      <if test="mid != null" >
+        #{mid,jdbcType=CHAR},
+      </if>
+      <if test="fhrlist != null" >
+        #{fhrlist,jdbcType=VARCHAR},
+      </if>
+      <if test="fmlist != null" >
+        #{fmlist,jdbcType=VARCHAR},
+      </if>
+      <if test="uclist != null" >
+        #{uclist,jdbcType=VARCHAR},
+      </if>
+      <if test="t != null" >
+        #{t,jdbcType=INTEGER},
+      </if>
+      <if test="starttime != null" >
+        #{starttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endtime != null" >
+        #{endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lengthtime != null" >
+        #{lengthtime,jdbcType=INTEGER},
+      </if>
+      <if test="audio != null" >
+        #{audio,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.yunji.doctormanager.entity.FetalHeartData" >
+    update fetalheartdata
+    <set >
+      <if test="fetalheartid != null" >
+        fetalheartid = #{fetalheartid,jdbcType=INTEGER},
+      </if>
+      <if test="mid != null" >
+        mId = #{mid,jdbcType=CHAR},
+      </if>
+      <if test="fhrlist != null" >
+        FHRlist = #{fhrlist,jdbcType=VARCHAR},
+      </if>
+      <if test="fmlist != null" >
+        FMlist = #{fmlist,jdbcType=VARCHAR},
+      </if>
+      <if test="uclist != null" >
+        UClist = #{uclist,jdbcType=VARCHAR},
+      </if>
+      <if test="t != null" >
+        t = #{t,jdbcType=INTEGER},
+      </if>
+      <if test="starttime != null" >
+        startTime = #{starttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endtime != null" >
+        endTime = #{endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lengthtime != null" >
+        lengthTime = #{lengthtime,jdbcType=INTEGER},
+      </if>
+      <if test="audio != null" >
+        audio = #{audio,jdbcType=CHAR},
+      </if>
+    </set>
+    where fdid = #{fdid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.yunji.doctormanager.entity.FetalHeartData" >
+    update fetalheartdata
+    set fetalheartid = #{fetalheartid,jdbcType=INTEGER},
+      mId = #{mid,jdbcType=CHAR},
+      FHRlist = #{fhrlist,jdbcType=VARCHAR},
+      FMlist = #{fmlist,jdbcType=VARCHAR},
+      UClist = #{uclist,jdbcType=VARCHAR},
+      t = #{t,jdbcType=INTEGER},
+      startTime = #{starttime,jdbcType=TIMESTAMP},
+      endTime = #{endtime,jdbcType=TIMESTAMP},
+      lengthTime = #{lengthtime,jdbcType=INTEGER},
+       audio = #{audio,jdbcType=CHAR}
+    where fdid = #{fdid,jdbcType=INTEGER}
+  </update>
+   <select id="findByMid" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from fetalheartdata
+    where  mId = #{mid,jdbcType=CHAR}
+  </select>
+  <!-- luoyc 根据日期范围查询指定孕妇胎心数据 -->
+  <select id="findByDateRange" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from fetalheartdata
+    where mid=#{0} and endTime between #{1} and #{2}
+  </select>
+   <select id="findSmallByMid" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from fetalheartdata
+    where UClist like 'null'
+    and FHRlist != 'null'
+    and  mId = #{mid,jdbcType=CHAR}
+     order by endTime desc
+  </select>
+  <select id="findLargeByMid" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from fetalheartdata
+    where UClist != 'null'
+    and FHRlist != 'null'
+    and  mId = #{mid,jdbcType=CHAR}
+     order by endTime desc
+  </select>
+  <select id="findAll"  resultType="java.util.HashMap" >
+   SELECT
+    fh.fdid, fh.fetalheartid, fh.mId, fh.FHRlist, fh.FMlist, fh.UClist, fh.t, 
+    fh.startTime, fh.endTime, fh.lengthTime,fh.audio, g.gname,f.age,g.enddate,p.gravidity,p.parity
+    FROM fetalheartdata fh
+    LEFT JOIN gravidainfo g ON g.mid = fh.mid
+    LEFT JOIN familymember f ON f.mid = fh.mid
+    LEFT JOIN pregnancyhistory p ON p.mid = fh.mid
+    where f.relationid=1
+  </select>
+ 
+</mapper>

@@ -1,0 +1,166 @@
+* {
+	padding: 0px;
+	margin: 0px;
+	font-size: 12px;
+	color: #696969;
+}
+
+.class_main {
+	width: 1100px;
+}
+
+.top_Nav {
+	margin-top: 7px;
+	line-height: 30px;
+	padding-left: 12px;
+	border-bottom: gainsboro solid 1px;
+}
+
+.pro,
+.pro2,
+.pro3 {
+	width: 100%;
+	padding: 1px 20px;
+	clear: both;
+}
+
+.pro2 table tr td {
+	text-align: center;
+	border: gainsboro solid 1px;
+	line-height: 30px;
+}
+
+.pro_left {
+	float: left;
+	width: 50%;
+	height: auto;
+	display: none;
+}
+
+.pro_right {
+	width: 49%;
+	float: right;
+	height: auto;
+	display: none;
+}
+
+.pro3_left {
+	width: 49%;
+	float: left;
+	height: 350px;
+	border: gainsboro solid 1px;
+	border-radius: 5px;
+	padding: 5px 10px;
+}
+
+.pro3_right {
+	width: 50%;
+	height: 350px;
+	float: right;
+}
+
+.select_div {
+	border: white solid 1px;
+	height: 35px;
+}
+
+.select_div ul {
+	padding-left: 0;
+}
+
+.select_div ul li {
+	list-style: none;
+	float: left;
+	line-height: 35px;
+	color: gainsboro;
+	font-size: 14px;
+}
+
+.span {
+	margin: 0 10px;
+}
+
+#butt1 .but1 {
+	margin-top: 15px;
+	margin-left: -10px;
+	border: none;
+	border-radius: 5px;
+	width: 130px;
+	line-height: 28px;
+	color: white;
+	background: #169BD5;
+}
+
+#butt1 .but2 {
+	margin-left: 10px;
+	border: gainsboro solid 1px;
+	border-radius: 5px;
+	width: 130px;
+	line-height: 28px;
+	background: white;
+}
+
+#butt2 {
+	float: right;
+}
+
+#butt2 .but3 {
+	outline: none;
+	margin-top: 15px;
+	margin-left: -10px;
+	border: none;
+	border-radius: 20px;
+	width: 130px;
+	line-height: 23px;
+	color: white;
+	background: #8CB6EF;
+}
+
+#butt2 .but4 {
+	outline: none;
+	margin-top: 15px;
+	margin-left: 10px;
+	border: none;
+	border-radius: 20px;
+	width: 130px;
+	line-height: 23px;
+	color: white;
+	background: #8CB6EF;
+}
+
+.img_firstDiagnose_position {
+	position: absolute;
+	top: 9px;
+	right: 15px;
+	cursor: pointer;
+}
+
+.close {
+	opacity: 1 !important;
+}
+
+.advice-table1 {
+	margin: 15px;
+}
+
+.advice-table1 td {
+	border-right: 1px solid rgb(204, 204, 204);
+	padding: 0 10px;
+	color: rgb(204, 204, 204);
+}
+
+#search_keyword{
+	margin-left: 15px;
+}
+.advice-table1 td:last-child {
+	border: none;
+	padding-right: 0px;
+}
+
+.advice-table1 td:first-child {
+	padding-left: 0px;
+}
+.content_Notice{
+	height: 10px;
+	margin-top: 10px;
+}

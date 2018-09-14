@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.yunji.doctormanager.dao.ReminderMapper" >
+  <resultMap id="BaseResultMap" type="cn.yunji.doctormanager.entity.Reminder" >
+    <id column="rId" property="rid" jdbcType="INTEGER" />
+    <result column="mId" property="mid" jdbcType="CHAR" />
+    <result column="doctorId" property="doctorid" jdbcType="INTEGER" />
+    <result column="daId" property="daid" jdbcType="INTEGER" />
+    <result column="sendingWays" property="sendingways" jdbcType="CHAR" />
+    <result column="acceptedPeople" property="acceptedpeople" jdbcType="CHAR" />
+    <result column="selfTestDetails" property="selftestdetails" jdbcType="VARCHAR" />
+    <result column="uploaddate" property="uploadDate" jdbcType="TIMESTAMP"/>
+    <result column="monitoringSuggestion" property="monitoringsuggestion" jdbcType="VARCHAR" />
+    <result column="remindContent" property="remindcontent" jdbcType="VARCHAR" />
+    <result column="remindName" property="remindname" jdbcType="CHAR" />
+    <result column="reportReminder" property="reportReminder" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    rId, mId, doctorId, daId, sendingWays, acceptedPeople, selfTestDetails,monitoringSuggestion,uploaddate,remindContent,remindName,reportReminder
+  </sql>
+  <!--luoyc 查询指定孕妇的最近一次自测提醒信息  -->
+  <select id="findByMid" resultMap="BaseResultMap">
+	    select * from reminder
+	    where mid=#{0} and selfTestDetails !='' order by uploaddate desc limit 1
+  </select>
+  <!--luoyc 根据日期范围，查询指定孕妇的提醒信息  -->
+  <select id="findByDateRange" resultMap="BaseResultMap">
+	    select * from reminder
+	    where mid=#{0} and uploadDate between #{1} and #{2}
+  </select>
+  <select id="selectByDaid" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from reminder
+    where daId = #{daid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from reminder
+    where rId = #{rid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.yunji.doctormanager.entity.Reminder" >
+    insert into reminder ( mId, doctorId, 
+      daId, sendingWays, acceptedPeople, 
+      selfTestDetails,monitoringSuggestion,reportReminder)
+    values ( #{mid,jdbcType=CHAR}, #{doctorid,jdbcType=INTEGER}, 
+      #{daid,jdbcType=INTEGER}, #{sendingways,jdbcType=CHAR}, #{acceptedpeople,jdbcType=CHAR}, 
+      #{selftestdetails,jdbcType=VARCHAR},#{monitoringsuggestion,jdbcType=VARCHAR},#{reportReminder,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.yunji.doctormanager.entity.Reminder" >
+  
+  	<selectKey keyProperty="count" order="BEFORE" resultType="int">
+  		select count(*) as count from reminder where mId = #{mid,jdbcType=CHAR}
+  	</selectKey>
+  	
+  	<if test="count==0">
+	    insert into reminder
+	    <trim prefix="(" suffix=")" suffixOverrides="," >
+	      <if test="rid != null" >
+	        rId,
+	      </if>
+	      <if test="mid != null" >
+	        mId,
+	      </if>
+	      <if test="doctorid != null" >
+	        doctorId,
+	      </if>
+	      <if test="daid != null" >
+	        daId,
+	      </if>
+	      <if test="sendingways != null" >
+	        sendingWays,
+	      </if>
+	      <if test="acceptedpeople != null" >
+	        acceptedPeople,
+	      </if>
+	      <if test="selftestdetails != null" >
+	        selfTestDetails,
+	      </if>
+	      <if test="monitoringsuggestion != null" >
+	        monitoringSuggestion,
+	      </if>
+	      <if test="remindcontent != null" >
+	        remindContent,
+	      </if>
+	      <if test="remindname != null" >
+	        remindName,
+	      </if>
+	      <if test="reportReminder != null" >
+	        reportReminder,
+	      </if>
+	    </trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides="," >
+	      <if test="rid != null" >
+	        #{rid,jdbcType=INTEGER},
+	      </if>
+	      <if test="mid != null" >
+	        #{mid,jdbcType=CHAR},
+	      </if>
+	      <if test="doctorid != null" >
+	        #{doctorid,jdbcType=INTEGER},
+	      </if>
+	      <if test="daid != null" >
+	        #{daid,jdbcType=INTEGER},
+	      </if>
+	      <if test="sendingways != null" >
+	        #{sendingways,jdbcType=CHAR},
+	      </if>
+	      <if test="acceptedpeople != null" >
+	        #{acceptedpeople,jdbcType=CHAR},
+	      </if>
+	      <if test="selftestdetails != null" >
+	        #{selftestdetails,jdbcType=VARCHAR},
+	      </if>
+	      <if test="monitoringsuggestion != null" >
+	        #{monitoringsuggestion,jdbcType=CHAR},
+	      </if>
+	      <if test="remindcontent != null" >
+	        #{remindcontent,jdbcType=VARCHAR},
+	      </if>
+	      <if test="remindname != null" >
+	        #{remindname,jdbcType=CHAR},
+	      </if>
+	      <if test="reportReminder != null" >
+	        #{reportReminder,jdbcType=CHAR},
+	      </if>
+	    </trim>
+    </if>
+    
+    <if test="count>0">
+    	update reminder
+	  	<set>
+	      <if test="mid != null" >
+	        mId = #{mid,jdbcType=CHAR},
+	      </if>
+	      <if test="doctorid != null" >
+	        doctorId = #{doctorid,jdbcType=INTEGER},
+	      </if>
+	      <if test="daid != null" >
+	        daId = #{daid,jdbcType=INTEGER},
+	      </if>
+	      <if test="sendingways != null" >
+	        sendingWays = #{sendingways,jdbcType=CHAR},
+	      </if>
+	      <if test="acceptedpeople != null" >
+	        acceptedPeople = #{acceptedpeople,jdbcType=CHAR},
+	      </if>
+	      <if test="selftestdetails != null" >
+	        selfTestDetails = #{selftestdetails,jdbcType=CHAR},
+	      </if>
+	      <if test="monitoringsuggestion != null" >
+	        monitoringsuggestion = #{monitoringsuggestion,jdbcType=CHAR},
+	      </if>
+	      <if test="uploadDate != null" >
+	        uploaddate = #{uploadDate,jdbcType=CHAR},
+	      </if>
+	      <if test="remindcontent != null" >
+	        remindContent = #{remindcontent,jdbcType=CHAR},
+	      </if>
+	      <if test="remindname != null" >
+	        remindName = #{remindname,jdbcType=CHAR},
+	      </if>
+	    </set>
+	    where mId = #{mid,jdbcType=CHAR}
+    </if>
+    
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.yunji.doctormanager.entity.Reminder" >
+    update reminder
+    <set>
+      <if test="mid != null" >
+        mId = #{mid,jdbcType=CHAR},
+      </if>
+      <if test="doctorid != null" >
+        doctorId = #{doctorid,jdbcType=INTEGER},
+      </if>
+      <if test="daid != null" >
+        daId = #{daid,jdbcType=INTEGER},
+      </if>
+      <if test="sendingways != null" >
+        sendingWays = #{sendingways,jdbcType=CHAR},
+      </if>
+      <if test="acceptedpeople != null" >
+        acceptedPeople = #{acceptedpeople,jdbcType=CHAR},
+      </if>
+      <if test="selftestdetails != null" >
+        selfTestDetails = #{selftestdetails,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where rId = #{rid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.yunji.doctormanager.entity.Reminder" >
+    update reminder
+    set mId = #{mid,jdbcType=CHAR},
+      doctorId = #{doctorid,jdbcType=INTEGER},
+      daId = #{daid,jdbcType=INTEGER},
+      sendingWays = #{sendingways,jdbcType=CHAR},
+      acceptedPeople = #{acceptedpeople,jdbcType=CHAR},
+      selfTestDetails = #{selftestdetails,jdbcType=VARCHAR}
+    where rId = #{rid,jdbcType=INTEGER}
+  </update>
+  <!--zhongjl 用于发送提醒模块，用acceptedpeople=1区分，根据mid查询 -->
+  <select id="selectReminder" resultMap="BaseResultMap">
+  	select 
+  	<include refid="Base_Column_List"></include>
+  	from reminder 
+  	where acceptedpeople = 1
+  </select>
+  <!-- 根据提醒名称删除 -->
+  <delete id="deleteByName" parameterType="java.lang.String" >
+    delete from reminder
+    where remindname = #{remindname,jdbcType=CHAR}
+  </delete>
+  <!-- 根据提醒名称更新 -->
+  <update id="updateByName" parameterType="cn.yunji.doctormanager.entity.Reminder" >
+  	update reminder
+  	<set>
+      <if test="mid != null" >
+        mId = #{mid,jdbcType=CHAR},
+      </if>
+      <if test="doctorid != null" >
+        doctorId = #{doctorid,jdbcType=INTEGER},
+      </if>
+      <if test="daid != null" >
+        daId = #{daid,jdbcType=INTEGER},
+      </if>
+      <if test="sendingways != null" >
+        sendingWays = #{sendingways,jdbcType=CHAR},
+      </if>
+      <if test="acceptedpeople != null" >
+        acceptedPeople = #{acceptedpeople,jdbcType=CHAR},
+      </if>
+      <if test="selftestdetails != null" >
+        selfTestDetails = #{selftestdetails,jdbcType=CHAR},
+      </if>
+      <if test="monitoringsuggestion != null" >
+        monitoringsuggestion = #{monitoringsuggestion,jdbcType=CHAR},
+      </if>
+      <if test="remindcontent != null" >
+        remindContent = #{remindcontent,jdbcType=CHAR},
+      </if>
+      <if test="remindname != null" >
+        remindName = #{remindname,jdbcType=CHAR},
+      </if>
+    </set>
+    where remindName = #{remindname,jdbcType=CHAR} 
+  </update>
+  <!-- 根据提醒名称查询 -->
+  <select id="selectByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	select 
+  	<include refid="Base_Column_List"></include>
+  	from reminder
+  	where remindname = #{remindname,jdbcType=CHAR}
+  </select>
+  <select id="selectByMid" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	select 
+  	<include refid="Base_Column_List"></include>
+  	from reminder
+  	where mId = #{mid,jdbcType=CHAR}
+  </select>
+</mapper>

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.yunji.doctormanager.dao.ExerciseMapper" >
+  <resultMap id="BaseResultMap" type="cn.yunji.doctormanager.entity.Exercise" >
+    <id column="exerciseId" property="exerciseid" jdbcType="INTEGER" />
+    <result column="exerciseName" property="exercisename" jdbcType="CHAR" />
+    <result column="attribute" property="attribute" jdbcType="VARCHAR" />
+    <result column="filterCondition" property="filtercondition" jdbcType="VARCHAR" />
+    <result column="effect" property="effect" jdbcType="VARCHAR" />
+    <result column="exerciseType" property="exercisetype" jdbcType="INTEGER" />
+    <result column="taboo" property="taboo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    exerciseId, exerciseName, attribute, filterCondition, effect, exerciseType, taboo
+  </sql>
+  <!-- luoyc 根据主键数组查询 -->
+  <select id="selectByPrimaryKeys" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from exercise
+    <if test="ids != null">  
+        where exerciseid in(  
+            <foreach collection="ids" item="exerciseid" index="index" separator="," >    
+                #{exerciseid,jdbcType=INTEGER}   
+            </foreach>  
+        )     
+    </if> 
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from exercise
+    where exerciseId = #{exerciseid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from exercise
+    where exerciseId = #{exerciseid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.yunji.doctormanager.entity.Exercise" >
+    insert into exercise (exerciseId, exerciseName, attribute, 
+      filterCondition, effect, exerciseType, 
+      taboo)
+    values (#{exerciseid,jdbcType=INTEGER}, #{exercisename,jdbcType=CHAR}, #{attribute,jdbcType=VARCHAR}, 
+      #{filtercondition,jdbcType=VARCHAR}, #{effect,jdbcType=VARCHAR}, #{exercisetype,jdbcType=INTEGER}, 
+      #{taboo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.yunji.doctormanager.entity.Exercise" >
+    insert into exercise
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="exerciseid != null" >
+        exerciseId,
+      </if>
+      <if test="exercisename != null" >
+        exerciseName,
+      </if>
+      <if test="attribute != null" >
+        attribute,
+      </if>
+      <if test="filtercondition != null" >
+        filterCondition,
+      </if>
+      <if test="effect != null" >
+        effect,
+      </if>
+      <if test="exercisetype != null" >
+        exerciseType,
+      </if>
+      <if test="taboo != null" >
+        taboo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="exerciseid != null" >
+        #{exerciseid,jdbcType=INTEGER},
+      </if>
+      <if test="exercisename != null" >
+        #{exercisename,jdbcType=CHAR},
+      </if>
+      <if test="attribute != null" >
+        #{attribute,jdbcType=VARCHAR},
+      </if>
+      <if test="filtercondition != null" >
+        #{filtercondition,jdbcType=VARCHAR},
+      </if>
+      <if test="effect != null" >
+        #{effect,jdbcType=VARCHAR},
+      </if>
+      <if test="exercisetype != null" >
+        #{exercisetype,jdbcType=INTEGER},
+      </if>
+      <if test="taboo != null" >
+        #{taboo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.yunji.doctormanager.entity.Exercise" >
+    update exercise
+    <set >
+      <if test="exercisename != null" >
+        exerciseName = #{exercisename,jdbcType=CHAR},
+      </if>
+      <if test="attribute != null" >
+        attribute = #{attribute,jdbcType=VARCHAR},
+      </if>
+      <if test="filtercondition != null" >
+        filterCondition = #{filtercondition,jdbcType=VARCHAR},
+      </if>
+      <if test="effect != null" >
+        effect = #{effect,jdbcType=VARCHAR},
+      </if>
+      <if test="exercisetype != null" >
+        exerciseType = #{exercisetype,jdbcType=INTEGER},
+      </if>
+      <if test="taboo != null" >
+        taboo = #{taboo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where exerciseId = #{exerciseid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.yunji.doctormanager.entity.Exercise" >
+    update exercise
+    set exerciseName = #{exercisename,jdbcType=CHAR},
+      attribute = #{attribute,jdbcType=VARCHAR},
+      filterCondition = #{filtercondition,jdbcType=VARCHAR},
+      effect = #{effect,jdbcType=VARCHAR},
+      exerciseType = #{exercisetype,jdbcType=INTEGER},
+      taboo = #{taboo,jdbcType=VARCHAR}
+    where exerciseId = #{exerciseid,jdbcType=INTEGER}
+  </update>
+  
+  <select id="findMicroSports" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from exercise
+    where exerciseType = 0
+  </select>
+   <select id="findModerateSports" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from exercise
+    where exerciseType = 1
+  </select>
+</mapper>

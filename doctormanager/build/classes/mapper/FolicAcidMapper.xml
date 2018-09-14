@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.yunji.doctormanager.dao.FolicAcidMapper">
+	<resultMap id="BaseResultMap" type="cn.yunji.doctormanager.entity.FolicAcid">
+		<id column="FAId" property="faid" jdbcType="INTEGER" />
+		<result column="mId" property="mid" jdbcType="CHAR" />
+		<result column="dosage" property="dosage" jdbcType="INTEGER" />
+		<result column="drugName" property="drugname" jdbcType="CHAR" />
+		<result column="dreDate" property="dreDate" jdbcType="DATE" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		FAId, mId, dosage, drugName,dreDate
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from folicacid
+		where FAId = #{faid,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from folicacid
+		where FAId = #{faid,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="cn.yunji.doctormanager.entity.FolicAcid">
+		insert into folicacid (FAId, mId, dosage,
+		drugName,dreDate)
+		values (#{faid,jdbcType=INTEGER}, #{mid,jdbcType=CHAR},
+		#{dosage,jdbcType=INTEGER},
+		#{drugname,jdbcType=CHAR},#{dreDate,jdbcType=DATE})
+	</insert>
+	<insert id="insertSelective" parameterType="cn.yunji.doctormanager.entity.FolicAcid">
+		insert into folicacid
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="faid != null">
+				FAId,
+			</if>
+			<if test="mid != null">
+				mId,
+			</if>
+			<if test="dosage != null">
+				dosage,
+			</if>
+			<if test="drugname != null">
+				drugName,
+			</if>
+			<if test="dreDate != null">
+				dreDate,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="faid != null">
+				#{faid,jdbcType=INTEGER},
+			</if>
+			<if test="mid != null">
+				#{mid,jdbcType=CHAR},
+			</if>
+			<if test="dosage != null">
+				#{dosage,jdbcType=INTEGER},
+			</if>
+			<if test="drugname != null">
+				#{drugname,jdbcType=CHAR},
+			</if>
+			<if test="dreDate != null">
+				#{dreDate,jdbcType=DATE},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="cn.yunji.doctormanager.entity.FolicAcid">
+		update folicacid
+		<set>
+			<if test="mid != null">
+				mId = #{mid,jdbcType=CHAR},
+			</if>
+			<if test="dosage != null">
+				dosage = #{dosage,jdbcType=INTEGER},
+			</if>
+			<if test="drugname != null">
+				drugName = #{drugname,jdbcType=CHAR},
+			</if>
+			<if test="dreDate != null">
+				drugName = #{dreDate,jdbcType=DATE},
+			</if>
+		</set>
+		where FAId = #{faid,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="cn.yunji.doctormanager.entity.FolicAcid">
+		update folicacid
+		set mId = #{mid,jdbcType=CHAR},
+		dosage = #{dosage,jdbcType=INTEGER},
+		drugName = #{drugname,jdbcType=CHAR},
+		dreDate = #{dreDate,jdbcType=DATE}
+		where FAId = #{faid,jdbcType=INTEGER}
+	</update>
+	<update id="updateByMid" parameterType="cn.yunji.doctormanager.entity.FolicAcid">
+		update folicacid
+		set
+		dosage = #{dosage,jdbcType=INTEGER},
+		drugName = #{drugname,jdbcType=CHAR},
+		dreDate = #{dreDate,jdbcType=DATE}
+		where MId = #{mid,jdbcType=CHAR}
+	</update>
+	<select id="findByMid" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from folicacid
+		where mid=#{value}
+	</select>
+
+	<select id="queryByMid" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from folicacid
+		where mid=#{0} order by dreDate
+	</select>
+
+</mapper>

@@ -1,0 +1,557 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.yunji.doctormanager.dao.AbnormityinfoMapper">
+	<resultMap id="BaseResultMap" type="cn.yunji.doctormanager.entity.Abnormityinfo">
+		<id column="abnormityid" property="abnormityid" jdbcType="INTEGER" />
+		<result column="highRiskResultTypeId" property="highriskresulttypeid"
+			jdbcType="INTEGER" />
+		<result column="cid" property="cid" jdbcType="INTEGER" />
+		<result column="mId" property="mid" jdbcType="CHAR" />
+		<result column="hospitalId" property="hospitalid" jdbcType="CHAR" />
+		<result column="checkDate" property="checkdate" jdbcType="TIMESTAMP" />
+		<result column="uploadDate" property="uploadDate" jdbcType="TIMESTAMP" />
+		<result column="score" property="score" jdbcType="INTEGER" />
+		<result column="abnormity" property="abnormity" jdbcType="CHAR" />
+		<result column="deviation" property="deviation" jdbcType="DOUBLE" />
+		<result column="checkprojectid" property="checkprojectid" jdbcType="INTEGER" />
+		<result column="resultid" property="resultid" jdbcType="INTEGER" />
+		<result column="weeks" property="weeks" jdbcType="INTEGER" />
+		<association property="gravidaInfo"
+			select="cn.yunji.doctormanager.dao.GravidaInfoMapper.selectByPrimaryKey"
+			column="mId"></association>
+		<association property="checkindex"
+			select="cn.yunji.doctormanager.dao.CheckindexMapper.selectByPrimaryKey"
+			column="cId"></association>
+	</resultMap> 
+	<!-- 原始勿改 -->
+	<resultMap id="ResultMap" type="cn.yunji.doctormanager.entity.Abnormityinfo">
+		<id column="abnormityid" property="abnormityid" jdbcType="INTEGER" />
+		<result column="highRiskResultTypeId" property="highriskresulttypeid" 
+			jdbcType="INTEGER" />
+		<result column="cid" property="cid" jdbcType="INTEGER" />
+		<result column="mId" property="mid" jdbcType="CHAR" />
+		<result column="hospitalId" property="hospitalid" jdbcType="CHAR" />
+		<result column="checkDate" property="checkdate" jdbcType="TIMESTAMP" />
+		<result column="uploadDate" property="uploadDate" jdbcType="TIMESTAMP" />
+		<result column="score" property="score" jdbcType="INTEGER" />
+		<result column="abnormity" property="abnormity" jdbcType="CHAR" />
+		<result column="deviation" property="deviation" jdbcType="DOUBLE" />
+		<result column="checkprojectid" property="checkprojectid" jdbcType="INTEGER" />
+		<result column="resultid" property="resultid" jdbcType="INTEGER" />
+		<result column="weeks" property="weeks" jdbcType="INTEGER" />
+		<association property="checkindex"
+			select="cn.yunji.doctormanager.dao.CheckindexMapper.selectByPrimaryKey"
+			column="cId"></association>
+	</resultMap>
+	 
+	<!-- luoyc 2017-09-20  关联检查项目和检查指标的结果集 -->
+	<resultMap id="ResultMapAssCPandCI" type="cn.yunji.doctormanager.entity.Abnormityinfo">
+		<id column="abnormityid" property="abnormityid" jdbcType="INTEGER" />
+		<result column="highRiskResultTypeId" property="highriskresulttypeid" 
+			jdbcType="INTEGER" />
+		<result column="cid" property="cid" jdbcType="INTEGER" />
+		<result column="mId" property="mid" jdbcType="CHAR" />
+		<result column="hospitalId" property="hospitalid" jdbcType="CHAR" />
+		<result column="checkDate" property="checkdate" jdbcType="TIMESTAMP" />
+		<result column="uploadDate" property="uploadDate" jdbcType="TIMESTAMP" />
+		<result column="score" property="score" jdbcType="INTEGER" />
+		<result column="abnormity" property="abnormity" jdbcType="CHAR" />
+		<result column="deviation" property="deviation" jdbcType="DOUBLE" />
+		<result column="checkprojectid" property="checkprojectid" jdbcType="INTEGER" />
+		<result column="resultid" property="resultid" jdbcType="INTEGER" />
+		<result column="weeks" property="weeks" jdbcType="INTEGER" />
+		<association property="checkindex"
+			select="cn.yunji.doctormanager.dao.CheckindexMapper.selectByPrimaryKey"
+			column="cId"></association>
+		<association property="checkproject"
+			select="cn.yunji.doctormanager.dao.CheckProjectMapper.selectByPrimaryKey"
+			column="checkprojectid"></association>
+	</resultMap>
+	 
+	<sql id="Base_Column_List">
+		abnormityid, highRiskResultTypeId, cid, mId, hospitalId,
+		checkDate, score,resultid,uploadDate,checkprojectid,
+		abnormity,deviation, weeks
+	</sql>
+	<!--luoyc 根据时间范围获取异常条数  -->
+	<select id="findByDateRangeCount" resultType="java.util.HashMap">
+	    select count(ai.resultid) quantity,cp.riskname cname,ai.resultid rid from abnormityinfo ai 
+	    LEFT JOIN checkproject cp ON cp.checkProjectId =ai.checkProjectId
+	    where ai.mid=#{0} and ai.uploadDate between #{1} and #{2}  and ai.resultid is not null group by ai.resultid
+    </select>
+	<!--luoyc 根据结果ID获取异常 -->
+	<select id="findByResultId" resultMap="ResultMap">
+	    select * from abnormityinfo
+	    where resultid=#{0}
+    </select>
+	<!--luoyc 根据日期范围，查询指定孕妇某个指标的的异常信息  -->
+	<select id="findByCpidAndMid" resultMap="BaseResultMap">
+	    select * from abnormityinfo
+	    where mid=#{0} and checkprojectid=#{1} and uploadDate between #{2} and #{3}
+    </select>
+	<!--luoyc 根据日期范围，查询指定孕妇的异常信息  -->
+	<select id="findByDateRange" resultMap="ResultMapAssCPandCI">
+	    select * from abnormityinfo
+	    where mid=#{0} and uploadDate between #{1} and #{2}
+    </select>
+    
+    <!--zhangqt 查询指定孕妇的异常信息  -->
+	<select id="queryByMidAll" resultMap="ResultMapAssCPandCI">
+	    select * from abnormityinfo
+	    where mid=#{0} 
+    </select>
+    
+	<select id="queryByCheckProjectId" resultType="java.util.HashMap"
+		parameterType="cn.yunji.doctormanager.entity.Abnormityinfo">
+		SELECT ai.*, ci.cname, hrrt.highRiskResultType,
+		kl.knowledge
+		FROM abnormityinfo ai
+		LEFT JOIN checkindex ci ON ai.cid =
+		ci.cid
+		LEFT JOIN checkproject cp ON cp.checkProjectId =
+		ci.checkProjectId
+		LEFT JOIN knowledge kl ON kl.cid = ai.cid AND
+		kl.highRiskResultTypeId =
+		ai.highRiskResultTypeId
+		LEFT JOIN
+		highriskresulttype hrrt ON ai.highRiskResultTypeId =
+		hrrt.highRiskResultTypeId
+		WHERE ai.mId = #{mid,jdbcType=CHAR}
+		AND
+		ai.checkDate = #{checkdate,jdbcType=TIMESTAMP}
+		AND cp.checkProjectId =
+		#{checkProjectId,jdbcType=INTEGER}
+	</select>
+	<!-- luoyc 按孕周查询查询孕妇的所有异常并给出相应的医嘱和判断标准 -->
+	<select id="findByWeeks" resultType="java.util.HashMap"
+		parameterType="java.util.HashMap">
+		select
+		ai.score,ai.checkdate,ai.weeks,ai.abnormity,ci.cname,ci.cbegin,ci.cend,ci.cunit,ci.referencevalue,k.knowledge,hr.cbegin
+		difference from abnormityinfo ai
+		left join checkindex ci on
+		ai.cid=ci.cid
+		left join highriskrtandard hr on ai.cid=hr.cid and
+		ai.score=hr.highriskscore
+		left join knowledge k on ai.cid=k.cid and
+		ai.highRiskResultTypeId=k.highRiskResultTypeId
+		where ai.mid =#{mid} and
+		ai.weeks between #{sWeeks} and #{eWeeks}
+	</select>
+	<!--@wangzw 查询收缩压的异常信息 -->
+	<select id="findShouAll" resultType="java.util.HashMap"
+		parameterType="java.util.HashMap">
+		select a.*,h.* from
+
+		abnormityinfo a
+		inner join
+		highRiskResultType h on
+		h.highRiskResultTypeId=a.highRiskResultTypeId
+		where a.cid=#{0} and a.mid=#{1};
+	</select>
+	<!--@wangzw 查询孕妇所有异常信息 -->
+	<select id="findByMid" resultType="java.util.HashMap"
+		parameterType="java.lang.String">
+		select a.*,h.* from abnormityinfo a
+		inner join
+		highRiskResultType h on
+		h.highRiskResultTypeId=a.highRiskResultTypeId
+		where a.mid=#{0};
+	</select>
+	<!-- zhang -->
+	<select id="queryByWeeks" resultType="java.util.HashMap"
+		parameterType="java.util.HashMap">
+		select ai.*,ci.cname,kl.knowledge from abnormityinfo ai
+		LEFT JOIN checkindex ci ON ai.cid = ci.cid
+		LEFT JOIN checkproject cp ON
+		cp.checkProjectId = ci.checkProjectId
+		LEFT JOIN knowledge kl ON kl.cid
+		= ai.cid AND kl.highRiskResultTypeId =
+		ai.highRiskResultTypeId
+		where
+		ai.mid =#{mid} and cp.checkProjectId = #{checkProjectId}
+		and
+		ai.weeks
+		between #{sWeeks} and #{eWeeks}
+	</select>
+
+	<!-- zhang -->
+	<select id="queryByDate" resultType="java.util.HashMap"
+		parameterType="java.util.HashMap">
+		select ai.*,ci.cname,kl.knowledge from abnormityinfo ai
+		LEFT JOIN checkindex ci ON ai.cid = ci.cid
+		LEFT JOIN checkproject cp ON
+		cp.checkProjectId = ci.checkProjectId
+		LEFT JOIN knowledge kl ON kl.cid
+		= ai.cid AND kl.highRiskResultTypeId =
+		ai.highRiskResultTypeId
+		where
+		ai.mid =#{mid} and cp.checkProjectId = #{checkProjectId}
+		and
+		ai.checkDate between #{sDate} and #{eDate}
+	</select>
+
+
+	<!-- zhang -->
+	<select id="queryByMid" resultMap="BaseResultMap"
+		parameterType="cn.yunji.doctormanager.entity.Abnormityinfo">
+		select
+		<include refid="Base_Column_List" />
+		from abnormityinfo
+		where mId = #{mid} and checkDate= #{checkDate} and
+		cid = #{cid}
+	</select>
+
+	<!-- king strat -->
+	<select id="queryByAll" resultType="java.util.HashMap">
+		select
+		ai.*,g.gHigh,c.cname,c.cunit,h.hospitalName,f.Name,f.Age,f.WorkUnit
+		from abnormityinfo ai
+		LEFT JOIN gravidaInfo g ON ai. mId = g. mId
+		LEFT
+		JOIN familyMember f on g.mId= f.Mid and relationid =1
+		LEFT JOIN
+		hospital h on ai.hospitalId = h.hospitalId
+		LEFT JOIN checkindex c on
+		ai.cid= c.cid
+		where checkDate='2017-05-06'
+	</select>
+    
+    
+	<!--@wuwj 查询风险因子-->
+	<select id="findrisk" resultType="java.util.HashMap" parameterType="java.lang.String">
+		select a.checkdate,a.weeks,a.abnormity,a.deviation,c.cname,c.cunit 
+		from abnormityinfo a join highriskresulttype h join checkindex c 
+		where a.highriskresulttypeid = h.highriskresulttypeid and a.cid = c.cid and a.mid = #{0};
+	</select>
+    <!--@yinzx  查询医嘱管理患者列表-->
+    <select id="findPatientList" resultType="java.util.HashMap">
+	select g.mid, a.hospitalId,
+		a.checkDate,a.score,a.resultid, a.cid,a.uploadDate,a.checkprojectid,
+		a.abnormity,a.deviation,  g.medicalRecordNo,g.gname,g.birthYears,g.gHigh,
+		g.patienttypeid ,h.highRiskResultType,v.voderName,g.endDate
+    from gravidainfo  g  LEFT join  abnormityinfo a   on g.mid=a.mid
+    left join highRiskResultType h  on  h.highRiskResultTypeId=a.highRiskResultTypeId
+    LEFT join viporder v on g.mid =v.mid 
+    where 
+    g.patienttypeid=#{patienttypeid,jdbcType=INTEGER}
+    and g.adviceState=#{adviceState,jdbcType=INTEGER}
+    and CURRENT_DATE <![CDATA[<]]> v.edate
+    <if test="vipgradeid != null"> 
+    and v.vipId=#{vipgradeid,jdbcType=INTEGER}
+	</if>
+	<if test="highTypeId != null"> 
+    and a.highRiskResultTypeId=#{highTypeId,jdbcType=INTEGER}
+	</if>
+	<if test="sweeks != null">
+		 and g.endDate between #{sweeks,jdbcType=DATE}  and #{eweeks,jdbcType=DATE}
+	</if>
+	<if test="medicalNo != null"> 
+	and g.medicalRecordNo  like  concat(concat('%',#{medicalNo,jdbcType=CHAR}),'%')
+	</if>
+    group by g.mid
+    limit #{pageNo,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER};
+	</select>
+	 <!--@yinzx  查询周报管理患者列表-->
+    <select id="findWeeklyList" resultType="java.util.HashMap">
+	select g.mid, a.hospitalId,
+		a.checkDate,a.score,a.resultid, a.cid,a.uploadDate,a.checkprojectid,
+		a.abnormity,a.deviation, g.medicalRecordNo,g.gname,g.birthYears,g.gHigh,
+		g.patienttypeid ,h.highRiskResultType,v.voderName,g.endDate
+    from gravidainfo  g  LEFT join  abnormityinfo a   on g.mid=a.mid
+    left join highRiskResultType h  on  h.highRiskResultTypeId=a.highRiskResultTypeId
+    LEFT join viporder v on g.mid =v.mid 
+    where 
+    g.patienttypeid=#{patienttypeid,jdbcType=INTEGER}
+    and g.weeklyState=#{weeklyState,jdbcType=INTEGER}
+    and CURRENT_DATE <![CDATA[<]]> v.edate
+    <if test="vipgradeid != null"> 
+    and v.vipId=#{vipgradeid,jdbcType=INTEGER}
+	</if>
+	<if test="highTypeId != null"> 
+    and a.highRiskResultTypeId=#{highTypeId,jdbcType=INTEGER}
+	</if>
+	<if test="sweeks != null">
+		 and g.endDate between #{sweeks,jdbcType=DATE}  and #{eweeks,jdbcType=DATE}
+	</if>
+	<if test="medicalNo != null"> 
+	and g.medicalRecordNo  like  concat(concat('%',#{medicalNo,jdbcType=CHAR}),'%')
+	</if>
+    group by g.mid
+    limit #{pageNo,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER};
+	</select>
+	<!--@yinzx  查询医嘱管理患者总数量-->
+    <select id="getListCount1" resultType="java.lang.Integer">
+	select count(*) from(
+		select count(*)
+		from gravidainfo  g  LEFT join  abnormityinfo a   on g.mid=a.mid
+	    left join highRiskResultType h  on  h.highRiskResultTypeId=a.highRiskResultTypeId
+	    LEFT join viporder v on g.mid =v.mid 
+	    where 
+	    g.patienttypeid=#{patienttypeid,jdbcType=INTEGER}
+	    and g.adviceState=#{adviceState,jdbcType=INTEGER}
+	    and CURRENT_DATE <![CDATA[<]]> v.edate
+	    <if test="vipgradeid != null"> 
+	    and v.vipId=#{vipgradeid,jdbcType=INTEGER}
+		</if>
+		<if test="highTypeId != null"> 
+	    and a.highRiskResultTypeId=#{highTypeId,jdbcType=INTEGER}
+		</if>
+		<if test="sweeks != null">
+			 and g.endDate between #{sweeks,jdbcType=DATE}  and #{eweeks,jdbcType=DATE}
+		</if>
+		<if test="medicalNo != null"> 
+		and g.medicalRecordNo  like  concat(concat('%',#{medicalNo,jdbcType=CHAR}),'%')
+		</if>
+	    group by g.mid
+	    
+     ) t
+	</select>
+	 <!--@yinzx  查询周报管理患者总数量-->
+    <select id="getListCount2" resultType="java.lang.Integer">
+	select count(*) from(
+		select count(*)
+	     from gravidainfo  g  LEFT join  abnormityinfo a   on g.mid=a.mid
+	    left join highRiskResultType h  on  h.highRiskResultTypeId=a.highRiskResultTypeId
+	    LEFT join viporder v on g.mid =v.mid 
+	    where 
+	    g.patienttypeid=#{patienttypeid,jdbcType=INTEGER}
+	    and g.weeklyState=#{weeklyState,jdbcType=INTEGER}
+	    and CURRENT_DATE <![CDATA[<]]> v.edate
+	   
+	    and v.vipId=100
+	    group by a.mid
+    ) t
+	</select>
+	 <!--@yinzx  按mid查询具体异常指标数-->
+    <select id="findCidByMid" resultType="java.util.HashMap" parameterType="java.lang.String">
+	select
+      mId, resultid, cid
+    from abnormityinfo 
+    where  mid=#{value};
+	</select>
+	 <!--@yinzx  按mid、cid、resultid查询异常指标的分数-->
+    <select id="findScoreByCid" resultType="java.lang.Integer" >
+	select
+      score
+    from abnormityinfo 
+    where  mid=#{mid,jdbcType=CHAR}
+    and cid=#{cid,jdbcType=INTEGER}
+    and resultid=#{resultid,jdbcType=INTEGER}
+	</select>
+	<select id="queryByAllDate" resultType="java.util.HashMap">
+		select bl.* ,
+		a.abdominalGirth,b.BPD,b.femurL,f.frateline,f.checkDate,bp.systolic,bp.diastolic,bp.heartrate
+		from bloodsugre bl
+		LEFT JOIN abdominalGirth a on bl.mId=a.mId
+		LEFT JOIN
+		bscan b on bl.mId= b.mId and Date(b.checkDate) ='2017-07-05'
+		LEFT JOIN
+		fetalheart f on bl.mId = f.mId and Date(f.checkDate)
+		='2017-07-05'
+		LEFT
+		JOIN bloodpressure bp on bl.mId = bp.mId and Date(bp.bDate) =
+		'2017-07-05'
+		where Date(wDate) = '2017-07-05'
+		GROUP by mid
+	</select>
+
+	<select id="queryByWCheckDate" resultType="java.util.HashMap">
+		select pregnancy from
+		weightTest where mid=#{mid} and wDate BETWEEN
+		'2017-05-25' and
+		'2017-05-26'
+	</select>
+	<select id="queryByCCheckDate" resultType="java.util.HashMap">
+		select actualClick
+		from countQuickening where mid=#{mid} and cDate BETWEEN
+		'2017-05-26'
+		and '2017-05-27';
+	</select>
+
+	<select id="queryByCids" resultType="java.util.HashMap">
+		select highRiskResultTypeId,cid,abnormity from abnormityinfo where cid
+		in
+		<foreach collection="array" item="cid" index="index" open="("
+			close=")" separator=",">
+			#{cid}
+		</foreach>
+	</select>
+
+	<select id="querybyCidHightTypeId" resultType="java.util.HashMap">
+		select knowledge
+		from knowledge where cid=#{0} and
+		highRiskResultTypeId=#{1}
+	</select>
+	<!--king end -->
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from abnormityinfo
+		where abnormityid = #{abnormityid,jdbcType=INTEGER}
+	</select>
+	<!--通过mid查出对应的孕妇异常信息 mcally.ly -->
+	<select id="selectByPrimaryKey2" resultMap="ResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from abnormityinfo
+		where mid = #{mid,jdbcType=CHAR}
+	</select>
+	<!--通过mid查出对应的孕妇异常信息 mcally.ly -->
+	<select id="selectByMid" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from abnormityinfo
+		where mid = #{mid,jdbcType=CHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		abnormityinfo
+		where abnormityid = #{abnormityid,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="cn.yunji.doctormanager.entity.Abnormityinfo">
+		insert into abnormityinfo
+		(abnormityid, highRiskResultTypeId,
+		cid, mId, hospitalId, checkDate,
+		score, abnormity, deviation, weeks)
+		values
+		(#{abnormityid,jdbcType=INTEGER},
+		#{highriskresulttypeid,jdbcType=INTEGER},
+		#{cid,jdbcType=INTEGER},
+		#{mid,jdbcType=CHAR}, #{hospitalid,jdbcType=CHAR},
+		#{checkdate,jdbcType=TIMESTAMP},
+		#{score,jdbcType=INTEGER},
+		#{abnormity,jdbcType=DOUBLE}, #{deviation,jdbcType=DOUBLE},
+		#{weeks,jdbcType=INTEGER})
+	</insert>
+	<insert id="insertSelective" parameterType="cn.yunji.doctormanager.entity.Abnormityinfo">
+		insert into abnormityinfo
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="abnormityid != null">
+				abnormityid,
+			</if>
+			<if test="highriskresulttypeid != null">
+				highRiskResultTypeId,
+			</if>
+			<if test="cid != null">
+				cid,
+			</if>
+			<if test="mid != null">
+				mId,
+			</if>
+			<if test="hospitalid != null">
+				hospitalId,
+			</if>
+			<if test="checkdate != null">
+				checkDate,
+			</if>
+			<if test="score != null">
+				score,
+			</if>
+			<if test="abnormity != null">
+				abnormity,
+			</if>
+			<if test="deviation != null">
+				deviation,
+			</if>
+			<if test="weeks != null">
+				weeks,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="abnormityid != null">
+				#{abnormityid,jdbcType=INTEGER},
+			</if>
+			<if test="highriskresulttypeid != null">
+				#{highriskresulttypeid,jdbcType=INTEGER},
+			</if>
+			<if test="cid != null">
+				#{cid,jdbcType=INTEGER},
+			</if>
+			<if test="mid != null">
+				#{mid,jdbcType=CHAR},
+			</if>
+			<if test="hospitalid != null">
+				#{hospitalid,jdbcType=CHAR},
+			</if>
+			<if test="checkdate != null">
+				#{checkdate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="score != null">
+				#{score,jdbcType=INTEGER},
+			</if>
+			<if test="abnormity != null">
+				#{abnormity,jdbcType=DOUBLE},
+			</if>
+			<if test="deviation != null">
+				#{deviation,jdbcType=DOUBLE},
+			</if>
+			<if test="weeks != null">
+				#{weeks,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="cn.yunji.doctormanager.entity.Abnormityinfo">
+		update abnormityinfo
+		<set>
+			<if test="highriskresulttypeid != null">
+				highRiskResultTypeId =
+				#{highriskresulttypeid,jdbcType=INTEGER},
+			</if>
+			<if test="cid != null">
+				cid = #{cid,jdbcType=INTEGER},
+			</if>
+			<if test="mid != null">
+				mId = #{mid,jdbcType=CHAR},
+			</if>
+			<if test="hospitalid != null">
+				hospitalId = #{hospitalid,jdbcType=CHAR},
+			</if>
+			<if test="checkdate != null">
+				checkDate = #{checkdate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="score != null">
+				score = #{score,jdbcType=INTEGER},
+			</if>
+			<if test="abnormity != null">
+				abnormity = #{abnormity,jdbcType=DOUBLE},
+			</if>
+			<if test="deviation != null">
+				deviation = #{deviation,jdbcType=DOUBLE},
+			</if>
+			<if test="weeks != null">
+				weeks = #{weeks,jdbcType=INTEGER},
+			</if>
+		</set>
+		where abnormityid = #{abnormityid,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="cn.yunji.doctormanager.entity.Abnormityinfo">
+		update
+		abnormityinfo
+		set highRiskResultTypeId =
+		#{highriskresulttypeid,jdbcType=INTEGER},
+		cid =
+		#{cid,jdbcType=INTEGER},
+		mId = #{mid,jdbcType=CHAR},
+		hospitalId =
+		#{hospitalid,jdbcType=CHAR},
+		checkDate =
+		#{checkdate,jdbcType=TIMESTAMP},
+		score = #{score,jdbcType=INTEGER},
+		abnormity = #{abnormity,jdbcType=DOUBLE},
+		deviation =
+		#{deviation,jdbcType=DOUBLE},
+		weeks =
+		#{weeks,jdbcType=INTEGER}
+		where abnormityid =
+		#{abnormityid,jdbcType=INTEGER}
+	</update>
+	<!--hongwx 根据孕周范围查询指定孕妇的异常信息  -->
+    <select id="selectByWeeks" resultMap="ResultMapAssCPandCI">
+        select * from abnormityinfo
+        where mid=#{mid,jdbcType=CHAR} and checkDate between #{begintime,jdbcType=CHAR} and #{endtime,jdbcType=CHAR} 
+        order by checkDate desc
+    </select>
+</mapper>

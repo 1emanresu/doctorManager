@@ -1,0 +1,1952 @@
+<!--医嘱管理  妊娠高血压@author Luoyc-->
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="Pragma" content="no-cache">
+		<meta http-equiv="Window-target" content="_top">
+		<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+		<title>产科电子信息管理平台——孕妇详情</title>
+		<link rel="stylesheet" href="../css/bootstrap.min.css" />
+		<!--周报审核 通用样式 yinzx-->
+		<link rel="stylesheet" type="text/css" href="css/firstDiagnose_yet_bookbuilding_info.css" />
+		<link rel="stylesheet" href="css/doctorAdvice_general.css" />
+		<link rel="stylesheet" type="text/css" href="../css/comm.css" />
+		<link rel="stylesheet" href="css/updateclose.css" />
+		<link rel="stylesheet" href="css/sendAdvice_timeArrow.css" />
+		<!--样式库需要引进的-->
+		<link rel="stylesheet" href="css/RiskModel-Util.css">
+		<link rel="stylesheet" href="../userList/css/changeAdvice.css">
+		<link rel="stylesheet" href="../fastSearch/css/fastSearch.css">
+		<!--单独抽取控制此页面的样式 @Author hongwx-->
+		<link rel="stylesheet" href="css/onlyThis.css">
+		<style type="text/css">
+			#checkEchart{
+				width: 100%;
+				height: 250px;
+			}
+		</style>
+	</head>
+	<!-- 头部 导航路径-->
+	<div class="top_Nav">
+		<div class="Nav_img"><img src="../images/header_home.png" /></div>
+		<div class="Nav_content">
+			您当前的位置： <span onclick="turnBack()" class="fontsomething"></span>
+			<img src="../images/u2929.png" /> 个人档案
+		</div>
+	</div>
+	<!-- 按查看方式切换 -->
+	<!-- 主要内容 -->
+	<div class="top-ul">
+		<div class="active" id="view_by_weeks">
+			<a href="#panel-978063" data-toggle="tab" class="active-a">按孕周查看</a>
+		</div>
+		<div id="view_by_project">
+			<a href="#panel-978064" data-toggle="tab" class="active-a">按项目查看</a>
+		</div>
+	</div>
+	<div class="main_content">
+		<!--begin Tab-Control 选项卡-->
+		<div class="first-tap-control">
+			<div class="tab-content contents">
+				<div class="tab-pane active  data-show" id="panel-978063">
+					<!--时间戳-->
+					<div class="top">
+						<div id="arrows">
+							<!--<button id="btn1" class="btn-many"><img src="../Remotelnterrogation/images/u524.png" width="100%"/></button>-->
+							<div style="position: absolute;left: 15%;">
+								<button id="btn2" class="btn-many"><img src="../Remotelnterrogation/images/u5241.png" width="100%"/></button>
+								<div class="note1 first-span general-color">孕6-13周</div>
+							</div>
+							<div style="left: 25%;position: absolute;">
+								<button id="btn3" class="btn-many"><img src="../Remotelnterrogation/images/u5241.png" width="100%"/></button>
+								<div class="note2 general-color">孕14-20周</div>
+							</div>
+							<div style="left: 35%;position: absolute;">
+								<button id="btn4" class="btn-many"><img src="../Remotelnterrogation/images/u5241.png" width="100%"/></button>
+								<div class="note3 general-color">孕20-24周</div>
+							</div>	
+							<div style="left: 45%;position: absolute;">
+								<button id="btn5" class="btn-many"><img src="../Remotelnterrogation/images/u5241.png" width="100%"/></button>
+								<div class="note4 general-color">孕24-28周</div>
+							</div>	
+							<div style="left: 55%;position: absolute;">
+								<button id="btn6" class="btn-many"><img src="../Remotelnterrogation/images/u5241.png" width="100%"/></button>
+								<div class="note5 general-color">孕28-32周</div>
+							</div>	
+							<div style="left: 65%;position: absolute;">
+								<button id="btn7" class="btn-many"><img src="../Remotelnterrogation/images/u5241.png" width="100%"/></button>
+								<div class="note6 general-color">孕33-36周</div>
+							</div>	
+							<div style="left: 75%;position: absolute;">
+								<button id="btn8" class="btn-many"><img src="../Remotelnterrogation/images/u5241.png" width="100%"/></button>
+								<div class="note7 general-color">孕37-41周</div>
+							</div>	
+							
+							<!--<button id="btn8"><img src="../Remotelnterrogation/images/u524.png" width="100%"/></button>-->
+							<!--<img src="../Remotelnterrogation/images/u3215.png" width="148%" style="margin-top: -6.5%;margin-left: -22%;"/>-->
+							
+								<!--<div class="note0 general-color">备孕</div>-->
+								<!--<div class="note8"></div>-->
+						
+						</div>
+					</div>
+					<!--begin Tab-Control 选项卡-->
+					<div class="right-Tab-Control">
+						<ul class="nav nav-tabs nva-tabs-ul">
+							<li class="active">
+								<div class="li_line"></div>
+								<a id="main-information" href="#panel-978065" data-toggle="tab">摘要</a>
+							</li>
+							<li id="">
+								<div class="li_line"></div>
+								<a href="#panel-978066" data-toggle="tab">基本信息</a>
+							</li>
+							<li id="">
+								<div class="li_line"></div>
+								<a href="#panel-978067" data-toggle="tab">检查信息</a>
+							</li>
+							<li id="self-test-information">
+								<div class="li_line"></div>
+								<a id="a-selfTest" href="#panel-978068" data-toggle="tab" onclick="selectFirstTap()">自测信息</a>
+							</li>
+							<li id="">
+								<div class="li_line"></div>
+								<a href="#panel-978069" data-toggle="tab">风险模型</a>
+							</li>
+						</ul>
+						<div class="tab-content contents">
+							<div class="tab-pane active data-show inner-div" id="panel-978065">
+								<div class="li_line div-line"></div>
+								<div class="three-part-div">
+									<div class="div-left">
+										<table>
+											<tr>
+												<td class='graName'></td>
+												<td></td>
+											</tr>
+											<tr>
+												<td>年龄：</td>
+												<td class="graAge"></td>
+											</tr>
+											<tr>
+												<td>预产期：</td>
+												<td class="expectedDate"></td>
+											</tr>
+											<tr>
+												<td>&nbsp;</td>
+												<td></td>
+											</tr>
+											<tr>
+												<td>&nbsp;</td>
+												<td></td>
+											</tr>
+											<tr>
+												<td>高危得分：</td>
+												<td style="color: red;" id="risk_score_for_basic"></td>
+											</tr>
+											<tr>
+												<td>高危等级：</td>
+												<td style="color: red;" id="risk_leave"></td>
+											</tr>
+											<tr>
+												<td>风险因子：</td>
+												<td></td>
+											</tr>
+										</table>
+										<textarea id="risk_factor2" style="color: red;">	
+												</textarea>
+									</div>
+									<div class="div-middle">
+										<div id="checkEchart">
+										</div>
+										<div class="div-title">异常指标：</div>
+											<table id="table_abnormal_detail">
+
+											</table>
+									</div>
+									<div class="div-right">
+										<div class="div-title">医嘱建议：</div>
+										<div id="doctor_advice" class="doctor-advice-div"></div>
+									</div>
+								</div>
+							</div>
+							<div class="tab-pane examine inner-div" id="panel-978066">
+								<div class="li_line div-line"></div>
+								<div class="inner-div basic-information">
+									<div class="div-title title1">围产信息：</div>
+									<table>
+										<tr>
+											<td>检查日期：</td>
+											<td id="cehcDate"></td>
+											<td>预产期：</td>
+											<td class="expectedDate"></td>
+											<td>孕周：</td>
+											<td class="buildWeeks"></td>
+											<td>出生日期：</td>
+											<td id="birthDate"></td>
+										</tr>
+										<tr>
+											<td>年龄：</td>
+											<td class="graAge"></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+										</tr>
+									</table>
+									<hr />
+									<div class="div-title title2">体格检查：</div>
+									<table>
+										<tr>
+											<td>身高(cm):</td>
+											<td id="statures"></td>
+											<td>体重(kg):</td>
+											<td id="weights"></td>
+											<td>BMI:</td>
+											<td id="bmis"></td>
+											<td>血压(mmhg):</td>
+											<td id="booldPressure"></td>
+										</tr>
+										<tr>
+											<td>心脏：</td>
+											<td id="heart"></td>
+											<td>肺部：</td>
+											<td id="lung"></td>
+											<td>外阴：</td>
+											<td id="vulva"></td>
+											<td>宫颈：</td>
+											<td id="cervixUteri"></td>
+										</tr>
+										<tr>
+											<td>子宫：</td>
+											<td id="uterus"></td>
+											<td>阴道：</td>
+											<td id="vagina"></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+										</tr>
+									</table>
+									<hr />
+									<div class="div-title title3">病史：</div>
+									<table class="table-move-right">
+										<tr>
+											<td>孕妇既往史：</td>
+											<td id="gHistory"></td>
+											<td>男方血型(ABO):</td>
+											<td id="manBlood"></td>
+											<td>女方家族史：</td>
+											<td id="womanHistory"></td>
+											<td>男方家族史：</td>
+											<td id="manHistory"></td>
+										</tr>
+										<tr>
+											<td>女方个人史：</td>
+											<td id="womanPersonage"></td>
+											<td>男方个人史：</td>
+											<td id="manPersonage"></td>
+											<td>孕产史：</td>
+											<td id="pregnancyBirth"></td>
+											<td></td>
+											<td></td>
+										</tr>
+									</table>
+									<hr />
+									<div class="div-title title4">主诉：</div>
+									<table class="table-move-right">
+										<tr>
+											<td style="color: red;" id="symptomName"></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+										</tr>
+									</table>
+								</div>
+								<!-- end 选项卡 panel-978066  -->
+							</div>
+							<div class="tab-pane data-show inner-div" id="panel-978067">
+								<div class="class_firstDiagnos_main">
+									<div class="li_line div-line"></div>
+									<div class="class_firstDiagnose_tab_examineProject_info">
+										<span id="checkProjectHaveDone"></span>
+										<div class="div-HaveDone"></div>
+										<div id="div-checkProjectChange" style="width: 100%;">
+											<div class="changePageContainer"><img id="checkProjectChange" src="../Remotelnterrogation/images/changePage.png" width="35px"></div>
+										</div>
+										<div class="no-anyProject">暂无</div>
+										<!--end ECG electrocardio-->
+									</div>
+
+								</div>
+							</div>
+							<div class="tab-pane examine" id="panel-978068">
+								<ul id="myTab" class="nav nav-tabs">
+									<li class="bloodsugar-tab-pane self-test" onclick="">
+										<a id="bloodsugar-tab-pane" href="#panel-bloodsugar" data-toggle="tab">
+											血糖趋势分布图
+										</a>
+									</li>
+									<li class="bloodpressure-tab-pane self-test" onclick="">
+										<a id='bloodpressure-tab-pane' href="#panel-bloodpressure" data-toggle="tab">
+											血压变化趋势图
+										</a>
+									</li>
+									<li class="weight-tab-pane self-test" onclick="">
+										<a id="weight-tab-pane" href="#panel-weight" data-toggle="tab">
+											体重变化趋势图
+										</a>
+									</li>
+									<li class="fetalHeart-tab-pane self-test" onclick="">
+										<a id="fetalHeart-tab-pane" href="#panel-fetalHeart" data-toggle="tab">
+											胎心变化趋势图
+										</a>
+									</li>
+									<li class="fetalMovement-tab-pane self-test" onclick="">
+										<a id="fetalMovement-tab-pane" href="#panel-fetalMovement" data-toggle="tab">
+											胎动变化趋势图
+										</a>
+									</li>
+									<li class="abdominalCircumference-tab-pane self-test" onclick="">
+										<a id="abdominalCircumference-tab-pane" href="#panel-abdominalCircumference" data-toggle="tab">
+											腹围变化趋势图
+										</a>
+									</li>
+									<li class="fundalHeight-tab-pane self-test" onclick="">
+										<a id="fundalHeight-tab-pane" href="#panel-fundalHeight" data-toggle="tab">
+											宫高变化趋势图
+										</a>
+									</li>
+									<li class="electrocardio-tab-pane self-test" onclick="">
+										<a id="electrocardio-tab-pane" href="#panel-electrocardio" data-toggle="tab">
+											心电变化趋势图
+										</a>
+									</li>
+									<li class="temperature-tab-pane self-test" onclick="">
+										<a id="temperature-tab-pane" href="#panel-temperature" data-toggle="tab">
+											体温变化趋势图
+										</a>
+									</li>
+									<li class="bloodfat-tab-pane self-test" onclick="">
+										<a id="bloodfat-tab-pane" href="#panel-bloodfat" data-toggle="tab">
+											血脂变化趋势图
+										</a>
+									</li>
+									<li class="bloodoxygen-tab-pane self-test" onclick="">
+										<a id="bloodoxygen-tab-pane" href="#panel-bloodoxygen" data-toggle="tab">
+											血氧变化趋势图
+										</a>
+									</li>
+								</ul>
+								<div id="selfTest-TabContent" class="tab-content">
+									<div class="tab-pane" id="panel-bloodsugar">
+										<!-- begin 血糖总体趋势分析图  -->
+										<div id="bloodsugarEchart1" class="blood-total">
+											<div class="bloodsugar-div-left">
+												<div class="bloodsugar-title">
+													血糖总体趋势分析图
+												</div>
+												<div id="echart1"></div>
+											</div>
+											<div class="bloodsugar-div-right">
+												<label class="first-label">参与评估记录数量：<span id="dataQuantity">0</span></label> <br />
+												<table class="first-table">
+													<tr>
+														<td>
+															<label>最高血糖值：</label>
+															<label><span id="max">0</span>mmol/L</label>
+														</td>
+														<td><label>测得高血糖次数：</label>
+															<label><span id="more" style="color: red;">8</span>次</label>
+														</td>
+													</tr>
+													<tr>
+														<td>
+															<label>最低血糖值：</label>
+															<label><span id="min">0</span>mmol/L</label>
+														</td>
+														<td>
+															<label>测得低血糖次数：</label>
+															<label><span id="less" style="color: red;">2</span>次</label>
+														</td>
+													</tr>
+													<tr>
+														<td>
+															<label>平均血糖值：</label>
+															<label><span id="ave">0</span>mmol/L</label>
+														</td>
+													</tr>
+												</table>
+											</div>
+										</div>
+										<!-- end 血糖总体趋势分析图  -->
+										<div id="bloodsugarEchart2" class="blood-total">
+											<div class="bloodsugar-div-left">
+												<div class="bloodsugar-title">
+													血糖每日分布趋势图
+												</div>
+												<div id="echart2"></div>
+											</div>
+											<div class="bloodsugar-div-right">
+												<table class="second-table">
+													<tr>
+														<td></td>
+														<td>早餐前</td>
+														<td>早餐后</td>
+														<td>午餐前</td>
+														<td>午餐后</td>
+														<td>晚餐前</td>
+														<td>晚餐后</td>
+														<td>夜间</td>
+													</tr>
+													<tr>
+														<td>偏低</td>
+														<td><span id="td11">0</span>%</td>
+														<td><span id="td12">0</span>%</td>
+														<td><span id="td13">0</span>%</td>
+														<td><span id="td14">0</span>%</td>
+														<td><span id="td15">0</span>%</td>
+														<td><span id="td16">0</span>%</td>
+														<td><span id="td17">0</span>%</td>
+													</tr>
+													<tr>
+														<td>正常</td>
+														<td><span id="td21">0</span>%</td>
+														<td><span id="td22">0</span>%</td>
+														<td><span id="td23">0</span>%</td>
+														<td><span id="td24">0</span>%</td>
+														<td><span id="td25">0</span>%</td>
+														<td><span id="td26">0</span>%</td>
+														<td><span id="td27">0</span>%</td>
+													</tr>
+													<tr>
+														<td>偏高</td>
+														<td><span id="td31">0</span>%</td>
+														<td><span id="td32">0</span>%</td>
+														<td><span id="td33">0</span>%</td>
+														<td><span id="td34">0</span>%</td>
+														<td><span id="td35">0</span>%</td>
+														<td><span id="td36">0</span>%</td>
+														<td><span id="td37">0</span>%</td>
+													</tr>
+												</table>
+											</div>
+											<!-- end 血糖每日分布趋势图  -->
+										</div>
+										<div id="bloodsugarEchart3" class="blood-total">
+											<div class="bloodsugar-div-left">
+												<div class="bloodsugar-title">
+													血糖时段分析趋势图
+												</div>
+												<div id="echart3"></div>
+											</div>
+											<div class="bloodsugar-div-right">
+												<label class="first-label">时段血糖平均值：
+														<table class="first-table">
+															<tr>
+																<td>
+																	<label>空腹：</label>
+												<label><span id="timedata1">0</span>mmol/L</label>
+												</td>
+												<td>
+													<label>早餐前：</label>
+													<label><span id="timedata2">0</span>mmol/L</label>
+												</td>
+												</tr>
+												<tr>
+													<td>
+														<label>早餐后：</label>
+														<label><span id="timedata3">0</span>mmol/L</label>
+													</td>
+													<td>
+														<label>午餐前：</label>
+														<label><span id="timedata4">0</span>mmol/L</label>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														<label>午餐后：</label>
+														<label><span id="timedata5">0</span>mmol/L</label>
+													</td>
+													<td>
+														<label>晚餐前：</label>
+														<label><span id="timedata6">0</span>mmol/L</label>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														<label>晚餐后：</label>
+														<label><span id="timedata7">0</span>mmol/L</label>
+													</td>
+													<td>
+														<label>夜间：</label>
+														<label><span id="timedata8">0</span>mmol/L</label>
+													</td>
+												</tr>
+												</table>
+											</div>
+
+											<!-- end 血糖时段分析趋势图  -->
+										</div>
+										<div class="changePageContainer2"><img id="bloodsugarChange" src="../Remotelnterrogation/images/changePage.png" width="35px"></div>
+									</div>
+									<div class="tab-pane" id="panel-bloodpressure">
+										<div class="blood-total">
+											<div class="bloodsugar-div-left">
+												<div class="electrocardio-photo">
+													本周血压趋势分析图
+												</div>
+												<div id="echart9"></div>
+											</div>
+											<div class="electrocardio-photo">
+												<div class="bloodpressure-title">
+													和上周比较
+												</div>
+												<div id="echart10"></div>
+											</div>
+										</div>
+										<div class="blood-total">
+											<div class="bloodsugar-div-left">
+												<div class="electrocardio-photo">
+													周报总结
+												</div>
+												<table class="first-table for-bloodpressure">
+													<tr>
+														<td>
+															<label>最高收缩压压值：</label>
+															<label><span id="max1">0</span>mmol/L</label>
+														</td>
+														<td><label>测得高血压次数：</label>
+															<label><span id="more1" style="color: red;">8</span>次</label>
+														</td>
+													</tr>
+													<tr>
+														<td>
+															<label>最低舒张压值：</label>
+															<label><span id="min1">0</span>mmol/L</label>
+														</td>
+														<td>
+															<label>测得低血压次数：</label>
+															<label><span id="less1" style="color: red;">2</span>次</label>
+														</td>
+													</tr>
+													<tr>
+														<td>
+															<label>平均血压值：</label>
+															<label><span id="ave1">0</span>mmol/L</label>
+														</td>
+													</tr>
+												</table>
+											</div>
+										</div>
+									</div>
+									<div class="tab-pane" id="panel-weight">
+										<div id="weightEcharts1" class="blood-total">
+											<div class="bloodsugar-div-left">
+												<div class="bloodsugar-title">
+													孕妇体重趋势分析图
+												</div>
+												<div id="echart7"></div>
+											</div>
+											<div class="bloodsugar-div-right">
+												<label class="first-label">参与评估记录数量：<span id="dataQuantity2">0</span></label> <br />
+												<table class="first-table">
+													<tr>
+														<td>
+															<label>最高体重值：</label>
+															<label><span id="max2">0</span>kg</label>
+														</td>
+														<td><label>测得超重次数：</label>
+															<label><span id="more2" style="color: red;">8</span>次</label>
+														</td>
+													</tr>
+													<tr>
+														<td>
+															<label>最低体重值：</label>
+															<label><span id="min2">0</span>kg</label>
+														</td>
+														<td>
+															<label>测得低重次数：</label>
+															<label><span id="less2" style="color: red;">2</span>次</label>
+														</td>
+													</tr>
+													<tr>
+														<td>
+															<label>平均体重值：</label>
+															<label><span id="ave2">0</span>kg</label>
+														</td>
+													</tr>
+												</table>
+											</div>
+										</div>
+									</div>
+									<div class="tab-pane" id="panel-electrocardio">
+										<div id="" class="electrocardio-inner-div">
+											<div class="electrocardio-photo">
+												本次心电上传结果 <br/><img src="../Remotelnterrogation/images/u4266.png" width="80%" height="150px" />
+											</div>
+											<div class="electrocardio-photo">历次心电上传结果一览</div>
+											<table id="electrocardio_table" class="second-table electrocardio-table" border="" cellspacing="" cellpadding="">
+												<tr>
+													<td>
+														上传时间
+													</td>
+													<td>
+														心率
+													</td>
+													<td>
+														QT间期
+													</td>
+													<td>
+														P波宽度
+													</td>
+													<td>
+														QTc间期
+													</td>
+													<td>
+														Q波宽度
+													</td>
+													<td>
+														QRS宽度
+													</td>
+													<td>
+														ST段
+													</td>
+													<td>
+														R波幅度
+													</td>
+													<td>
+														结论
+													</td>
+												</tr>
+											</table>
+										</div>
+									</div>
+									<div class="tab-pane" id="panel-temperature">
+										<!-- begin 体温总体趋势分析图  -->
+										<div class="blood-total">
+											<div class="bloodsugar-div-left">
+												<div class="bloodsugar-title">
+													体温总体趋势分析图
+												</div>
+												<div id="echart4"></div>
+											</div>
+											<div class="bloodsugar-div-right">
+												<label class="first-label">参与评估记录数量：<span id="dataQuantity3">0</span></label> <br />
+												<table class="first-table">
+													<tr>
+														<td>
+															<label>最高体温值：</label>
+															<label><span id="max3">0</span>℃</label>
+														</td>
+														<td><label>测得高体温次数：</label>
+															<label><span id="more3" style="color: red;">0</span>次</label>
+														</td>
+													</tr>
+													<tr>
+														<td>
+															<label>最低体温值：</label>
+															<label><span id="min3">0</span>℃</label>
+														</td>
+														<td>
+															<label>测得低体温次数：</label>
+															<label><span id="less3" style="color: red;">2</span>次</label>
+														</td>
+													</tr>
+													<tr>
+														<td>
+															<label>平均体温值：</label>
+															<label><span id="ave3">36</span>℃</label>
+														</td>
+													</tr>
+												</table>
+											</div>
+										</div>
+										<!-- end 体温总体趋势分析图  -->
+									</div>
+									<div class="tab-pane" id="panel-bloodfat">
+										<div class="blood-total">
+											<div class="bloodsugar-div-left">
+												<div class="bloodsugar-title">
+													血脂趋势分析图
+												</div>
+												<div id="echart5"></div>
+											</div>
+										</div>
+									</div>
+									<div class="tab-pane" id="panel-fetalHeart">
+										<!-- begin 胎心总体趋势分析图  -->
+										<div class="blood-total">
+											<div class="bloodsugar-div-left">
+												<div class="bloodsugar-title">
+													胎心趋势分析图
+												</div>
+												<div id="echart16"></div>
+											</div>
+											<div class="bloodsugar-div-right">
+												<div class="class_firstDiagnose_project_container">
+													<!--left-->
+													<div class="div_NST_data">
+														<div style="flex: 1;">胎心率基线：<span>120</span>-<span>145</span>bpm</div>
+														<div style="flex: 1;">醒睡周期：<span>明显</span></div>
+													</div>
+													<div class="div_NST_data">
+														<div style="flex: 2;">波形：<span>平滑</span></div>
+														<div style="flex: 1;">胎动：<span>>3次</span></div>
+														<div style="flex: 1;">加速：<span>>3次</span></div>
+													</div>
+													<div class="div_NST_data div_NST_color fischer_color">本例分析结果：<span>fischer评分=<span>10</span>分</span>
+													</div>
+													<div class="class_firstDiagnose_table_container">
+														<table id="urine_table2">
+															<tr class="tr_firstDiagnose_width">
+																<td>NST评分</td>
+																<td>0分</td>
+																<td>1分</td>
+																<td>2分</td>
+																<td>得分</td>
+															</tr>
+															<tr class="tr_firstDiagnose_width">
+																<td>胎心率基线 （心拍数/分）</td>
+																<td>
+																	<100</td>
+																		<td>100-119、>160</td>
+																		<td>120-160</td>
+																		<td>2</td>
+															</tr>
+															<tr class="tr_firstDiagnose_width">
+																<td>振幅摆动范围（心拍数/分）</td>
+																<td>
+																	<5</td>
+																		<td>5-9、>30</td>
+																		<td>10-30</td>
+																		<td>2</td>
+															</tr>
+															<tr class="tr_firstDiagnose_width">
+																<td>胎动时FHR上升时间</td>
+																<td>＜10"</td>
+																<td>10-14"</td>
+																<td>＞15"</td>
+																<td>2</td>
+															</tr>
+															<tr class="tr_firstDiagnose_width">
+																<td>胎动时FHR改变</td>
+																<td>
+																	<10</td>
+																		<td>10-14</td>
+																		<td>>15</td>
+																		<td>2</td>
+															</tr>
+															<tr class="tr_firstDiagnose_width">
+																<td>胎动次数</td>
+																<td>0</td>
+																<td>1-2</td>
+																<td>3</td>
+																<td>2</td>
+															</tr>
+														</table>
+													</div>
+
+												</div>
+											</div>
+										</div>
+										<!-- end 胎心总体趋势分析图  -->
+									</div>
+									<div class="tab-pane" id="panel-fetalMovement">
+										<div class="blood-total">
+											<div class="bloodsugar-div-left">
+												<div class="bloodsugar-title">
+													胎动趋势分析图
+												</div>
+												<div id="echart11"></div>
+											</div>
+											<div class="">
+												<div class="bloodsugar-title">
+													胎动单次趋势分析图
+												</div>
+												<div id="echart14"></div>
+											</div>
+										</div>
+									</div>
+									<div class="tab-pane" id="panel-abdominalCircumference">
+										<div class="blood-total">
+											<div class="bloodsugar-div-left">
+												<div class="bloodsugar-title">
+													腹围趋势分析图
+												</div>
+												<div id="echart12"></div>
+											</div>
+										</div>
+									</div>
+									<div class="tab-pane" id="panel-fundalHeight">
+										<div class="blood-total">
+											<div class="bloodsugar-div-left">
+												<div class="bloodsugar-title">
+													宫高趋势分析图
+												</div>
+												<div id="echart13"></div>
+											</div>
+										</div>
+									</div>
+									<div class="tab-pane" id="panel-bloodoxygen">
+										<div class="blood-total">
+											<div class="bloodsugar-div-left">
+												<div class="bloodsugar-title">
+													血氧饱和度趋势分析图
+												</div>
+												<div id="echart6"></div>
+											</div>
+											<div class="">
+												<div class="bloodsugar-title">
+													血氧脉率趋势分析图
+												</div>
+												<div id="echart15"></div>
+											</div>
+										</div>
+									</div>
+									<div class="tab-pane" id="no-selftest">
+										暂无
+									</div>
+								</div>
+								<!-- end 选项卡 panel-978066  -->
+							</div>
+							<div class="tab-pane data-show" id="panel-978069">
+
+								<div class="div_RiskModel">
+									<!--风险模型雷达图-->
+									<div id="div-modelChart">
+										<!--柱图、饼图-->
+										<!--<div id="riskChart">
+									        </div>-->
+										<!--雷达图-->
+										<!--<div id="modelChart">
+									        </div>-->
+									</div>
+
+									<!--风险模型结果信息-->
+									<div id="risk_result">
+
+									</div>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="tab-pane examine" id="panel-978064">
+					<!--<div class="top">
+
+						</div>-->
+					<div class="right-Tab-Control view-byProject">
+						<ul class="nav nav-tabs nva-tabs-ul nva-tabs-ul-project">
+							<li class="active">
+								<div class="li_line"></div>
+								<a href="#panel-978071" data-toggle="tab">基本信息</a>
+							</li>
+							<li id="">
+								<div class="li_line"></div>
+								<a href="#panel-978072" data-toggle="tab">血常规</a>
+							</li>
+							<li id="">
+								<div class="li_line"></div>
+								<a href="#panel-978073" data-toggle="tab">尿常规</a>
+							</li>
+							<li id="">
+								<div class="li_line"></div>
+								<a href="#panel-978074" data-toggle="tab">B超检查</a>
+							</li>
+							<li id="">
+								<div class="li_line"></div>
+								<a href="#panel-978075" data-toggle="tab">胎心监护</a>
+							</li>
+							<li id="">
+								<div class="li_line"></div>
+								<a href="#panel-978076" data-toggle="tab">心电图</a>
+							</li>
+							<li id="">
+								<div class="li_line"></div>
+								<a href="#panel-978077" data-toggle="tab">唐筛</a>
+							</li>
+							<li id="">
+								<div class="li_line"></div>
+								<a href="#panel-978078" data-toggle="tab">NIPT</a>
+							</li>
+						</ul>
+						<div class="tab-content contents">
+							<div class="tab-pane data-show active" id="panel-978071">
+								<!--基本信息 -->
+								<div class="basic-information">
+									<div class="div_doctorAdviceManager_title" id="div-title1">
+										<div class="change-one">
+											<div class="change-one-first">
+												<p class="first-result">首诊结论</p>
+												<p class="second-result">孕程：</p>
+												<div style="float: left;">
+													<select id="pid" onchange="gradeChange();">
+														<!--<option value="0">请选择孕周</option>
+															<option value="1">6-13周</option>
+															<option value="2">14-20周</option>
+															<option value="3">20-24周</option>
+															<option value="4">24-28周</option>
+															<option value="5">28-32周</option>
+															<option value="6">33-36周</option>
+															<option value="7">37-41周</option>-->
+													</select>
+												</div>
+
+											</div>
+											<div class="check-day">
+												<p><span style="margin-right: 55px;">检查日期:</span><span id="checkDates" class="td_doctorAdviceManager_colors"></span></p>
+											</div>
+											<div class="weeks-one">
+												<p><span style="margin-right: 80px;">孕周:</span><span id="weeksTime" class="td_doctorAdviceManager_colors"></span></p>
+											</div>
+											<div class="different">
+												<p><span style="margin-right: 80px;">高危级别:</span><span class="td_doctorAdviceManager_colors2 spanresult">轻度高危</span></p>
+											</div>
+										</div>
+										<div style="width: 100%;">
+											<div class="bad-font">
+												<p>风险因素:</p>
+											</div>
+											<div class="text-one">
+												<textarea id="symptomInfo" class="form-control whatthe" style="height: 55px!important;color: #FF0000;"></textarea>
+											</div>
+										</div>
+
+									</div>
+									<div id="" class="div-border-for-usual">
+										<div class="div-title title2">主诉症状</div>
+										<table>
+											<tr>
+												<td>皮肤瘙痒:</td>
+												<td id="td_doctorAdviceManager_symptoms0"></td>
+												<td>腹痛：</td>
+												<td id="td_doctorAdviceManager_symptoms1"></td>
+												<td>外阴出血：</td>
+												<td style="" id="td_doctorAdviceManager_symptoms2"></td>
+												<td>头昏:</td>
+												<td id="td_doctorAdviceManager_symptoms3"></td>
+											</tr>
+											<tr>
+												<td>发热：</td>
+												<td id="td_doctorAdviceManager_symptoms4"></td>
+												<td>阴道溢液：</td>
+												<td id="td_doctorAdviceManager_symptoms5"></td>
+												<td>呼吸困难：</td>
+												<td id="td_doctorAdviceManager_symptoms6"></td>
+												<td>眼花：</td>
+												<td id="td_doctorAdviceManager_symptoms7"></td>
+											</tr>
+											<tr>
+												<td>其他：</td>
+												<td id="td_doctorAdviceManager_symptoms8"></td>
+												<td></td>
+												<td></td>
+												<td></td>
+												<td></td>
+												<td></td>
+												<td></td>
+											</tr>
+										</table>
+									</div>
+									<div id="" class="div-border-for-usual">
+										<div class="div-title title3 basci-info-title3">一般检查</div>
+										<table>
+											<tr>
+												<td>身高(cm)：</td>
+												<td id="td_doctorAdviceManager_sHisk"></td>
+												<td>体重(kg):</td>
+												<td id="td_doctorAdviceManager_weight"></td>
+												<td>BMI:</td>
+												<td id="td_doctorAdviceManager_BMI"></td>
+												<td>年龄：</td>
+												<td id="td_doctorAdviceManager_Age"></td>
+											</tr>
+											<tr>
+												<td>孕妇既往史：</td>
+												<td id="td_doctorAdviceManager_ji"></td>
+												<td>男方血型(ABO):</td>
+												<td id="td_doctorAdviceManager_blood"></td>
+												<td>女方家族史：</td>
+												<td id="td_doctorAdviceManager_womanF"></td>
+												<td>男方家族史：</td>
+												<td id="td_doctorAdviceManager_manF"></td>
+											</tr>
+											<tr>
+												<td>女方个人史：</td>
+												<td id="td_doctorAdviceManager_womanper"></td>
+												<td>男方个人史:</td>
+												<td id="td_doctorAdviceManager_manper"></td>
+												<td>孕产史：</td>
+												<td id="td_doctorAdviceManager_history"></td>
+												<td>血压(mmHg)：</td>
+												<td id="td_doctorAdviceManager_bloodPressure"></td>
+											</tr>
+											<tr>
+												<td>心脏：</td>
+												<td id="td_doctorAdviceManager_heart"></td>
+												<td>肺部:</td>
+												<td id="td_doctorAdviceManager_lung"></td>
+												<td>外阴：</td>
+												<td id="td_doctorAdviceManager_vulva"></td>
+												<td>宫颈：</td>
+												<td id="td_doctorAdviceManager_cervixUteri"></td>
+											</tr>
+											<tr>
+												<td>子宫：</td>
+												<td id="td_doctorAdviceManager_uteri"></td>
+												<td>阴道:</td>
+												<td id="td_doctorAdviceManager_vagina"></td>
+												<td>宫高：</td>
+												<td id="td_doctorAdviceManager_palaceHisk"></td>
+												<td>腹围：</td>
+												<td id="td_doctorAdviceManager_abdominal"></td>
+											</tr>
+										</table>
+									</div>
+								</div>
+							</div>
+							<div class="tab-pane data-show" id="panel-978072">
+								<!--血常规-->
+								<div class="basic-information">
+									<div class="div_doctorAdviceManager_title" id="div-second-title">
+										<div class="div-none">
+											<div style="float: left;width: 220px;">
+												<p class="div-one-p">首诊结论</p>
+												<p class="div-second-p">孕程：</p>
+												<div style="float: left;">
+													<select id="bloodcount" onchange="changeBlood2(this.value);">
+														<!--<option value="0">请选择孕周</option>
+															<option value="1">6-13周</option>
+															<option value="2">14-20周</option>
+															<option value="3">20-24周</option>
+															<option value="4">24-28周</option>
+															<option value="5">28-32周</option>
+															<option value="6">33-36周</option>
+															<option value="7">37-41周</option>-->
+													</select>
+												</div>
+
+											</div>
+											<div class="check-day-second">
+												<p><span style="margin-right: 55px;">检查日期:</span><span id="bloodCheck" class="blood2_checkdate td_doctorAdviceManager_colors"></span></p>
+											</div>
+											<div class="div-weeks-second">
+												<p><span style="margin-right: 80px;">孕周:</span><span id="blood2_weeks" class="td_doctorAdviceManager_colors"></span></p>
+											</div>
+											<div class="div-none-second">
+												<p><span style="margin-right: 80px;">高危级别:</span><span id="blood2_highRiskResultType" class="td_doctorAdviceManager_colors2 spanresult"></span></p>
+											</div>
+										</div>
+										<div style="width: 100%;">
+											<div class="bad-font-second">
+												<p>风险因素:</p>
+											</div>
+											<div class="div-text-second">
+												<textarea id="blood2_knowledge" class="form-control whatthe" style="height: 55px!important;color: #FF0000;"></textarea>
+											</div>
+										</div>
+									</div>
+									<div id="" class="div-border-for-usual">
+										<div class="div-title title2 bloodRutine-title2" id="blood2-2">血常规</div>
+										<!--<table class="move-right">
+												<tr>
+													<td>姓名:</td>
+													<td id="blood2_name"></td>
+													<td>病案：</td>
+													<td id="blood2_medicalrecord">无</td>
+													<td>费别：</td>
+													<td id="blood2_pay"></td>
+													<td>标本编号:</td>
+													<td id="blood2_sampleid"></td>
+												</tr>
+												<tr>
+													<td>年龄：</td>
+													<td id="blood2_age"></td>
+													<td>申请科室：</td>
+													<td id="blood2_department"></td>
+													<td>送检医师：</td>
+													<td id="blood2_senddoctor"></td>
+													<td>条码编号：</td>
+													<td id="blood2_barcode"></td>
+												</tr>
+												<tr>
+													<td>床号：</td>
+													<td id="blood2_bednum"></td>
+													<td>标本种类：</td>
+													<td id="blood2_sampletype"></td>
+													<td>临床判断：</td>
+													<td id="blood2_clinicaldiagnosis"></td>
+													<td></td>
+													<td></td>
+												</tr>
+											</table>-->
+										<div>
+											<div class="class_firstDiagnose_table_container bloodRutine-table-div">
+												<!--<tr class="tr_firstDiagnose_width tr_firstDiagnose_color">
+															<td>名称</td>
+															<td>简称</td>
+															<td>结果</td>
+															<td>单位</td>
+															<td>参考值</td>
+														</tr>
+														<tr class="tr_firstDiagnose_width">
+															<td>白细胞</td>
+															<td>WBC</td>
+															<td class="WBC2"></td>
+															<td></td>
+															<td></td>
+														</tr>
+														<tr class="tr_firstDiagnose_width">
+															<td>红细胞</td>
+															<td>RBC</td>
+															<td class="RBC2">3.78↓</td>
+															<td>*10^12/L</td>
+															<td>3.8-5.1</td>
+														</tr>
+														<tr class="tr_firstDiagnose_width">
+															<td>血红蛋白</td>
+															<td>HGB</td>
+															<td class="HGB2">112↓</td>
+															<td>g/L</td>
+															<td>115-150</td>
+														</tr>
+														<tr class="tr_firstDiagnose_width">
+															<td>红细胞压积</td>
+															<td>HCT</td>
+															<td class="HCT2">34.1↓</td>
+															<td>%</td>
+															<td>35-45</td>
+														</tr>
+
+														<tr class="tr_firstDiagnose_width">
+															<td>血小板计数</td>
+															<td>PLT</td>
+															<td class="PLT2">202</td>
+															<td>*10^9/L</td>
+															<td>125-350</td>
+														</tr>-->
+												<!--<tr class="tr_firstDiagnose_width">
+															<td></td>
+															<td></td>
+															<td></td>
+															<td></td>
+															<td>
+													<table>
+																<div style="cursor:pointer;" class="click-to-see" data-toggle="modal" data-target="#myMo" onclick="showMoreImg(0)">点击查看原始报告单</div>
+															</td>
+														</tr>-->
+												</table>
+											</div>
+										</div>
+										<!--<table class="move-right ">
+												<tr>
+													<td>核收时间:</td>
+													<td class="blood2_checkdate">2017/06/25</td>
+													<td>报告时间：</td>
+													<td id="blood2_reportdate">2017/06/25</td>
+													<td>检查者：</td>
+													<td id="blood2_examiner">F553</td>
+													<td>审核者:</td>
+													<td id="blood2_auditor">赵飞燕</td>
+												</tr>
+											</table>-->
+										<table class="move-right bloodImg" id="move-right1">
+											<!--<div class="click-to-see" data-toggle="modal" data-target="#myMo" onclick="showMoreImg(0)">点击查看原始报告单</div>-->
+										</table>
+									</div>
+								</div>
+							</div>
+							<div class="tab-pane data-show" id="panel-978073">
+								<!-- 尿常规 -->
+								<div class="basic-information">
+									<div class="div_doctorAdviceManager_title" id="then-text">
+										<div class="div-this">
+											<div class="div-this-one">
+												<p class="div-this-check">首诊结论</p>
+												<p class="div-this-week">孕程：</p>
+												<div style="float: left;">
+													<select id="urinecount" onchange="changeUrine2(this.value);">
+														<!--<option value="1-41">请选择孕周</option>
+															<option value="6-13">6-13周</option>
+															<option value="14-20">14-20周</option>
+															<option value="20-24">20-24周</option>
+															<option value="24-28">24-28周</option>
+															<option value="28-32">28-32周</option>
+															<option value="33-36">33-36周</option>
+															<option value="37-41">37-41周</option>-->
+													</select>
+												</div>
+
+											</div>
+											<div class="div-check-third">
+												<p><span style="margin-right: 55px;">检查日期:</span><span id="urine2-check" class="urine2_checkdate td_doctorAdviceManager_colors"></span></p>
+											</div>
+											<div class="div-weeks-third">
+												<p><span style="margin-right: 80px;">孕周:</span><span id="urine2_weeks" class="td_doctorAdviceManager_colors"></span></p>
+											</div>
+											<div class="div-none-third">
+												<p><span style="margin-right: 80px;">高危级别:</span><span id="urine2_highRiskResultType" class="td_doctorAdviceManager_colors2 spanresult"></span></p>
+											</div>
+										</div>
+										<div style="width: 100%;">
+											<div class="bad-font-third">
+												<p>风险因素:</p>
+											</div>
+											<div class="div-text-third">
+												<textarea id="urine2_knowledge" class="form-control whatthe" style="height: 55px!important;color: #FF0000;"></textarea>
+											</div>
+										</div>
+									</div>
+									<div id="usual-1" class="div-border-for-usual">
+										<div class="div-title title2 bloodRutine-title2" style="margin-top: 5px;">尿常规</div>
+
+										<div>
+											<div class="class_firstDiagnose_table_container bloodRutine-table-div neurineRutine-table">
+												<!--<table id="urine_table2">
+														<tr class="tr_firstDiagnose_width tr_firstDiagnose_color">
+															<td>名称</td>
+															<td>结果</td>
+															<td>参考值</td>
+															<td>名称</td>
+															<td>结果</td>
+															<td>参考值</td>
+														</tr>-->
+												<!-- ajax 动态生成 @yinzx
+															<tr class="tr_firstDiagnose_width">
+																<td>亚硝酸盐</td>
+																<td>-</td>
+																<td>阴性</td>
+																<td>酮体</td>
+																<td>-</td>
+																<td>阴性 umol/L</td>
+															</tr>
+															<tr class="tr_firstDiagnose_width">
+																<td>尿胆原</td>
+																<td>-</td>
+																<td>阴性</td>
+																<td>葡萄糖</td>
+																<td>-</td>
+																<td>umol/L</td>
+															</tr>
+															<tr class="tr_firstDiagnose_width">
+																<td>蛋白质</td>
+																<td>-</td>
+																<td>阴性g/L</td>
+																<td>白细胞</td>
+																<td>-</td>
+																<td>阴性</td>
+															</tr>
+															<tr class="tr_firstDiagnose_width">
+																<td>酸碱度</td>
+																<td>8.0</td>
+																<td>4.5-8.0</td>
+																<td>尿微量白蛋白</td>
+																<td>5</td>
+																<td>0-20ug/L</td>
+															</tr>
+															<tr class="tr_firstDiagnose_width">
+																<td>隐血</td>
+																<td>1+</td>
+																<td>阴性</td>
+																<td>颜色</td>
+																<td>黄</td>
+																<td></td>
+															</tr>
+															<tr class="tr_firstDiagnose_width">
+																<td>尿比重</td>
+																<td>1.015</td>
+																<td>1.003-1.030</td>
+																<td>浑浊度</td>
+																<td>清</td>
+																<td></td>
+															</tr>
+															<tr class="tr_firstDiagnose_width">
+																<td>胆红素</td>
+																<td>-</td>
+																<td>阴性 umol/L</td>
+																<td>红细胞(镜检)</td>
+																<td>++</td>
+																<td>0-3/HP</td>
+															</tr>
+															<tr class="tr_firstDiagnose_width">
+																<td>维生素C</td>
+																<td>-</td>
+																<td>阴性 umol/L</td>
+																<td>白细胞(镜检)</td>
+																<td>3-4</td>
+																<td>0-5/HP</td>
+															</tr>
+															<tr class="tr_firstDiagnose_width">
+																<td></td>
+																<td></td>
+																<td></td>
+																<td></td>
+																<td></td>
+																<td>
+																	<div style="cursor:pointer;"  class="click-to-see" data-toggle="modal" data-target="#myMo"  onclick="showMoreImg(2)" >点击查看原始报告单</div>
+																</td>
+															</tr>-->
+												</table>
+											</div>
+										</div>
+										<!--<table class="move-right ">
+												<tr>
+													<td>核收时间:</td>
+													<td class="urine2_checkdate">2017/06/25</td>
+													<td>报告时间：</td>
+													<td id="urine2_reportdate">2017/06/25</td>
+													<td>检查者：</td>
+													<td id="urine2_examiner">F553</td>
+													<td>审核者:</td>
+													<td id="urine2_auditor">赵飞燕</td>
+												</tr>
+											</table>-->
+										<table class="move-right urineImg" id="move-right1">
+											<!--<div class="click-to-see" data-toggle="modal" data-target="#myMo" onclick="showMoreImg(2)">点击查看原始报告单</div>-->
+										</table>
+									</div>
+								</div>
+							</div>
+							<div class="tab-pane data-show" id="panel-978074">
+								<!-- b超检查 -->
+								<div class="basic-information">
+									<div class="div_doctorAdviceManager_title" style="margin-bottom: 15px;">
+										<div class="div-b-forth">
+											<div class="div-forth-1">
+												<p class="div-check-forth">首诊结论</p>
+												<p class="div-forth-4">孕程：</p>
+												<div style="float: left;">
+													<select id="bscancount" onchange="changeBscan(this.value);">
+														<!--<option value="0">请选择孕周</option>
+															<option value="1">6-13周</option>
+															<option value="2">14-20周</option>
+															<option value="3">20-24周</option>
+															<option value="4">24-28周</option>
+															<option value="5">28-32周</option>
+															<option value="6">33-36周</option>
+															<option value="7">37-41周</option>-->
+													</select>
+												</div>
+											</div>
+											<div class="div-check-forth-1">
+												<p><span style="margin-right: 55px;">检查日期:</span><span id="bscan2_checkdate" class="td_doctorAdviceManager_colors"></span></p>
+											</div>
+											<div class="div-weeks-forth-1">
+												<p><span class="active-span">孕周:</span><span id="bscan2_weeks" class="td_doctorAdviceManager_colors"></span></p>
+											</div>
+											<div class="div-none-forth-1">
+												<p><span class="active-span">高危级别:</span><span id="bscan_highRiskResultType" class="td_doctorAdviceManager_colors2 spanresult"></span></p>
+											</div>
+										</div>
+										<div style="width: 100%;">
+											<div class="bad-font-forth-1">
+												<p>风险因素:</p>
+											</div>
+											<div class="div-text-forth">
+												<textarea id="bscan_knowledge" class="form-control whatthe" style="height: 55px!important;color: #FF0000;"></textarea>
+											</div>
+										</div>
+									</div>
+									<div id="" class="div-border-for-usual">
+										<div class="div-title title2 b-scan-title2">观察记录</div>
+										<div class="bscan-table">
+
+										</div>
+										<!--<table class="bscan-table">-->
+										<!--<tr>
+													<td>双顶径(mm):</td>
+													<td id="bpd2"></td>
+													<td>顶臀长(mm)：</td>
+													<td id="crl2"></td>
+													<td>股骨长度(mm)</td>
+													<td id="femurl2"></td>
+													<td>肱骨长度(mm):</td>
+													<td id="humerusl2"></td>
+												</tr>
+												<tr>
+													<td>胎心率(次/分)：</td>
+													<td id="fetalheartrate2"></td>
+													<td>胎心律：</td>
+													<td>齐</td>
+													<td>胎动：</td>
+													<td id="fetalmovement2"></td>
+													<td>胎心：</td>
+													<td id="fetalheart2"></td>
+												</tr>
+												<tr>
+													<td>羊水(深mm)：</td>
+													<td id="amnioticfluid2"></td>
+													<td>胎盘位置：</td>
+													<td id="placentalposition2"></td>
+													<td>胎盘厚度(mm)</td>
+													<td id="placentalthickness2"></td>
+													<td>左侧卵巢：</td>
+													<td id="leftovary2"></td>
+												</tr>
+												<tr>
+													<td>右侧卵巢：</td>
+													<td id="rightovary2"></td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+												</tr>-->
+										<!--</table>-->
+										<div style="margin-top: 20px;">
+											<div class="div-title title3 b-scan-title">超声描述</div>
+											<table>
+												<tr>
+													<td>NT(mm)：</td>
+													<td id="nt2"></td>
+													<td>NF(mm):</td>
+													<td id="nf2"></td>
+													<td>鼻骨:</td>
+													<td id="nasalbone2"></td>
+													<td></td>
+													<td></td>
+												</tr>
+											</table>
+										</div>
+										<div style="margin-top: 20px;">
+											<div class="div-title title3 b-scan-title">超声提示</div>
+											<table>
+												<tr>
+													<td>胎数：</td>
+													<td id="fetusnumber2"></td>
+													<td>估计孕周:</td>
+													<td id="weeks2"></td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+												</tr>
+											</table>
+										</div>
+										<table class="move-right bscanImg" id="move-right1">
+											<!--<div class="click-to-see" data-toggle="modal" data-target="#myMo" onclick="showMoreImg(1)">点击查看原始报告单</div>-->
+										</table>
+									</div>
+									<!--<div id="" class="div-border-for-usual">
+											<div class="div-title title3 b-scan-title">超声描述</div>
+											<table>
+												<tr>
+													<td>NT(mm)：</td>
+													<td id="nt2">1.5</td>
+													<td>NF(mm):</td>
+													<td id="nf2">1.5</td>
+													<td>鼻骨:</td>
+													<td id="nasalbone2">显示</td>
+													<td></td>
+													<td></td>
+												</tr>
+											</table>
+										</div>-->
+									<!--<div id="" class="div-border-for-usual">
+											<div class="div-title title3 b-scan-title">超声提示</div>
+											<table>
+												<tr>
+													<td>胎数：</td>
+													<td id="fetusnumber2">单胎</td>
+													<td>估计孕周:</td>
+													<td id="weeks2">13周+5</td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+												</tr>
+											</table>
+										</div>-->
+									<!--<div class="click-to-see click-to-see-for-B-scan">
+											<div style="cursor:pointer;" class="click-to-see" data-toggle="modal" data-target="#myMo" onclick="showMoreImg(1)">点击查看原始报告单</div>
+										</div>-->
+								</div>
+							</div>
+							<div class="tab-pane data-show " id="panel-978075">
+								<!--胎心监护-->
+								<div class="div_doctorAdviceManager_main">
+									<div class="div_doctorAdviceManager_title">
+										<div class="div-fifth-first">
+											<div class="div-fifth-second2">
+												<p class="div-p-fifth">首诊结论</p>
+												<p class="div-p2-fifth">孕程：</p>
+												<div style="float: left;">
+													<select id="hfcount" onchange="changeFetalHeart(this.value);">
+														<option value="0">请选择孕周</option>
+														<option value="1">6-13周</option>
+														<option value="2">14-20周</option>
+														<option value="3">20-24周</option>
+														<option value="4">24-28周</option>
+														<option value="5">28-32周</option>
+														<option value="6">33-36周</option>
+														<option value="7">37-41周</option>
+													</select>
+												</div>
+											</div>
+											<div class="div-check-fifth">
+												<p><span style="margin-right: 55px;">检查日期:</span><span id="fh2_checkdate" class="td_doctorAdviceManager_colors"> </span></p>
+											</div>
+											<div class="div-weeks-fifth">
+												<p><span class="div-span-fifth">孕周:</span><span id="fh_weeks" class="td_doctorAdviceManager_colors"> </span></p>
+											</div>
+											<div class="div-none-fifth">
+												<p><span class="div-span-fifth">高危级别:</span><span id="fh_highRiskResultType" class="td_doctorAdviceManager_colors2 spanresult"></span></p>
+											</div>
+										</div>
+										<div style="width: 100%;">
+											<div class="bad-font-fifth">
+												<p>风险因素:</p>
+											</div>
+											<div class="div-text-fifth">
+												<textarea id="fh_knowledge" class="form-control whatthe" style="height: 55px!important;color: #FF0000;"></textarea>
+											</div>
+										</div>
+
+									</div>
+									<div class="div_doctorAdviceManager_title">
+										<div class="div-fifth-2">
+											<p class="p_doctorAdviceManager_size">无刺激实验（NST）</p>
+										</div>
+
+										<div class="fifth-div">
+											<div style="height: 60px;">
+												<div class="div_doctorAdviceManager_content" id="div-fifth-12">
+													<p>胎心率基线：<span id="fh_frateline"></span> bpm</p>
+													<p>波形：<span id="fh_waveshape"></span></p>
+												</div>
+												<div class="div_doctorAdviceManager_content" id="div-fifth-13">
+													<p>醒睡周期：<span id="fh_sleepwakecycle"></span></p>
+													<p>胎动：<span id="fh_fetalmovements"> ＞</span>，加速：<span id="speedupTimes"> ＞</span></p>
+												</div>
+											</div>
+
+											<!--++++-->
+											<div class="div_doctorAdviceManager_content" id="div-fifth-14">
+												<div class="div-fifth-second">
+													<p class="p_doctorAdviceManager_size" id="div-fifth-p-15">无刺激实验结果</p>
+													<select name="" class="div-fifth-select">
+														<option value="0" selected="selected">反应型</option>
+														<option value="1">无反应型</option>
+														<option value="2">可疑型</option>
+														<option value="3">请重新检测</option>
+													</select>
+												</div>
+												<div style="margin-left: -61.8%;">
+													<p class="p_doctorAdviceManager_size">本例分析结果:
+														<span class="span_doctorAdviceManager_color">评分=<span id="Fischer"></span>分</span>
+													</p>
+												</div>
+											</div>
+											<div class="div_doctorAdviceManager_data" style="margin-left: 45px;">
+												<table>
+													<tr class="tr_doctorAdviceManager_border">
+														<td class="td_doctorAdviceManager_width3">NST评分</td>
+														<td>0分</td>
+														<td>1分</td>
+														<td>2分</td>
+														<td>得分</td>
+													</tr>
+													<tr class="tr_doctorAdviceManager_border">
+														<td>胎心率基线 (心拍数/分)</td>
+														<td>＜100</td>
+														<td>100-119＞160</td>
+														<td>120-160</td>
+														<td id="flineScore"></td>
+													</tr>
+													<tr class="tr_doctorAdviceManager_border">
+														<td>振幅摆动范围 (心拍数/分)</td>
+														<td>＜5</td>
+														<td>5-9＞30</td>
+														<td>10-30</td>
+														<td id="fwaveScore"></td>
+													</tr>
+													<tr class="tr_doctorAdviceManager_border">
+														<td>胎动时FHR上升时间 </td>
+														<td>＜10”</td>
+														<td>10-14”</td>
+														<td>＞15”</td>
+														<td id="friseScore"></td>
+													</tr>
+													<tr class="tr_doctorAdviceManager_border">
+														<td>胎动时FHR改变 </td>
+														<td>+＜10或慢</td>
+														<td>10-14</td>
+														<td>＞15”</td>
+														<td id="fchangeScore"></td>
+													</tr>
+													<tr class="tr_doctorAdviceManager_border">
+														<td>胎动次数 </td>
+														<td>0</td>
+														<td>1-2</td>
+														<td>3</td>
+														<td id="fmoveScore"></td>
+													</tr>
+												</table>
+											</div>
+
+											<div class="div_doctorAdviceManager_right">
+												点击查看详细报告单
+											</div>
+										</div>
+										<!--end-->
+									</div>
+
+								</div>
+
+							</div>
+							<div class="tab-pane data-show " id="panel-978076">
+								<!--心电图-->
+								<div class="div_doctorAdviceManager_main">
+									<div class="div_doctorAdviceManager_title">
+										<div class="div-sixth">
+											<div class="div-sixth-first">
+												<p class="div-sixth-p">首诊结论</p>
+												<p class="div-sixth-2p">孕程：</p>
+												<div style="float: left;">
+													<select id="ecgcount" onchange="changeEcg3(this.value);">
+														<!--<option value="0">请选择孕周</option>
+															<option value="1">6-13周</option>
+															<option value="2">14-20周</option>
+															<option value="3">20-24周</option>
+															<option value="4">24-28周</option>
+															<option value="5">28-32周</option>
+															<option value="6">33-36周</option>
+															<option value="7">37-41周</option>-->
+													</select>
+												</div>
+											</div>
+											<div class="div-check-sixth">
+												<p><span style="margin-right: 55px;">检查日期:</span><span id="ecg2_checkdate" class="td_doctorAdviceManager_colors"></span></p>
+											</div>
+											<div class="div-weeks-sixth">
+												<p><span class="div-sixth-span">孕周:</span><span id="ecg_weeks" class="td_doctorAdviceManager_colors"></span></p>
+											</div>
+											<div class="div-none-sixth1">
+												<p><span class="div-sixth-span">高危级别:</span><span id="ecg_highRiskResultType" class="td_doctorAdviceManager_colors2 spanresult"></span></p>
+											</div>
+										</div>
+										<div style="width: 100%;">
+											<div class="div-none-sixth">
+												<p>风险因素:</p>
+											</div>
+											<div class="div-text-sixth">
+												<textarea id="ecg_knowledge" class="form-control whatthe" style="height: 55px!important;color: #FF0000;"></textarea>
+											</div>
+										</div>
+
+									</div>
+									<div class="div_doctorAdviceManager_container2">
+										<div class="left_doctorAdviceManager_content td_doctorAdviceManager_size">心电检查结果</div>
+										<div class="left_doctorAdviceManager_content23">
+											<!--<table>
+													<tr class="tr_doctorAdviceManager_height">
+														<td class="td_doctorAdviceManager_style">心律</td>
+														<td id="heartrate2" class="td_doctorAdviceManager_style2 td_doctorAdviceManager_colors"></td>
+														<td class="td_doctorAdviceManager_style3 ">bpm</td>
+														<td class="td_doctorAdviceManager_style">QT/QTC间期</td>
+														<td id="ecg2_qtc" class="td_doctorAdviceManager_style2 td_doctorAdviceManager_colors"></td>
+														<td class="td_doctorAdviceManager_style3 ">ms</td>
+													</tr>
+													<tr>
+														<td class="td_doctorAdviceManager_style">PR间期</td>
+														<td id="ecg2_pR" class="td_doctorAdviceManager_style2 td_doctorAdviceManager_colors"></td>
+														<td class="td_doctorAdviceManager_style3 ">ms</td>
+														<td class="td_doctorAdviceManager_style">RV5/SVI幅度</td>
+														<td id="ecg2_rv5Sv1" class="td_doctorAdviceManager_style2 td_doctorAdviceManager_colors"></td>
+														<td class="td_doctorAdviceManager_style3 ">mV</td>
+													</tr>
+													<tr>
+														<td class="td_doctorAdviceManager_style">QRS宽度</td>
+														<td id="ecg2_qrs" class="td_doctorAdviceManager_style2 td_doctorAdviceManager_colors"></td>
+														<td class="td_doctorAdviceManager_style3 ">ms</td>
+														<td class="td_doctorAdviceManager_style">RV5+SVI幅度</td>
+														<td id="ecg2_rscount" class="td_doctorAdviceManager_style2 td_doctorAdviceManager_colors"></td>
+														<td class="td_doctorAdviceManager_style3 ">mV</td>
+													</tr>
+												</table>-->
+										</div>
+										<div class="onlyone">
+											<div class="left_doctorAdviceManager_content td_doctorAdviceManager_size">分析结果</div>
+											<div class="left_doctorAdviceManager_content2">
+												<div>
+													<span class="span_doctorAdviceManager_size">诊断:</span>
+													<p id="ecg2_description" class="middle_doctorAdviceManager_p" style="color: red;"></p>
+													<!--<p class="middle_doctorAdviceManager_p">2.心电轴右偏</p>-->
+												</div>
+											</div>
+										</div>
+										<table class="div_doctorAdviceManager_right ecgImg">
+											<!--<div style="cursor:pointer;" class="click-to-see" data-toggle="modal" data-target="#myMo" onclick="showMoreImg(7)">点击查看原始报告单</div>-->
+										</table>
+									</div>
+
+								</div>
+							</div>
+							<!--start-->
+							<div class="tab-pane data-show " id="panel-978077">
+								<!--唐筛-->
+								<div class="div_doctorAdviceManager_main">
+									<div class="div_doctorAdviceManager_title">
+										<div class="div-seventh">
+											<div class="div-seventh-first">
+												<p class="div-seventh-p">首诊结论</p>
+												<p class="div-seventh-p2">孕程：</p>
+												<div style="float: left;">
+													<select id="tscount" onchange="changeTangSrceen(this.value);">
+														<!--<option value="0">请选择孕周</option>
+															<option value="1">6-13周</option>
+															<option value="2">14-20周</option>
+															<option value="3">20-24周</option>
+															<option value="4">24-28周</option>
+															<option value="5">28-32周</option>
+															<option value="6">33-36周</option>
+															<option value="7">37-41周</option>-->
+													</select>
+												</div>
+											</div>
+											<div class="div-check-seventh">
+												<p><span style="margin-right: 55px;">检查日期:</span><span id="ts2_checkdate" class="td_doctorAdviceManager_colors"></span></p>
+											</div>
+											<div class="div-weeks-seventh">
+												<p><span class="div-seventh-span">孕周:</span><span id="ts_weeks" class="td_doctorAdviceManager_colors"> </span></p>
+											</div>
+											<div class="div-none-seventh">
+												<p><span class="div-seventh-span">高危级别:</span><span id="ts_highRiskResultType" class="td_doctorAdviceManager_colors2 spanresult"></span></p>
+											</div>
+										</div>
+										<div style="width: 100%;">
+											<div class="bad-font-seventh">
+												<p>风险因素:</p>
+											</div>
+											<div class="div-text-seventh">
+												<textarea id="ts_knowledge" class="form-control whatthe" style="height: 55px!important;color: #FF0000;"></textarea>
+											</div>
+										</div>
+									</div>
+									<div class="div_doctorAdviceManager_container2">
+										<div class="left_doctorAdviceManager_content1 td_doctorAdviceManager_size" style="line-height: 50px;height: auto;">唐氏筛查</div>
+										<div class="left_doctorAdviceManager_content3">
+
+											<div class="form_doctorAdviceManager_content" style="border: none;">
+												<!--<table>
+														<tr class="tr_doctorAdviceManager_border">
+															<td class="td_doctorAdviceManager_width3">项目名称</td>
+															<td>结果</td>
+															<td>单位</td>
+															<td>MOM值</td>
+															<td>参考值</td>
+														</tr>
+														<tr class="tr_doctorAdviceManager_border">
+															<td>hAFp</td>
+															<td id="ts_hafp"></td>
+															<td>u/ml</td>
+															<td id="ts_hafqMom"></td>
+															<td></td>
+														</tr>
+														<tr class="tr_doctorAdviceManager_border">
+															<td>free-hcg</td>
+															<td id="ts_freeHcg"></td>
+															<td>ng/ml</td>
+															<td id="ts_freeHcgMom"></td>
+															<td></td>
+														</tr>
+														<tr class="tr_doctorAdviceManager_border">
+															<td>NTD风险 </td>
+															<td id="ts_ntd"></td>
+															<td></td>
+															<td></td>
+															<td class="td_doctorAdviceManager_widght"></td>
+														</tr>
+														<tr class="tr_doctorAdviceManager_border">
+															<td>21三体风险 </td>
+															<td id="ts_t21"></td>
+															<td></td>
+															<td></td>
+															<td>1-270 低风险，≥1/270 高风险</td>
+														</tr>
+														<tr class="tr_doctorAdviceManager_border">
+															<td>18三体风险 </td>
+															<td id="ts_t18"></td>
+															<td></td>
+															<td></td>
+															<td>
+																1-350 低风险，≥1/350 高风险</td>
+														</tr>
+													</table>-->
+											</div>
+
+										</div>
+										<div style="clear: left;"></div>
+										<div class="div_doctorAdviceManager_container" style="margin-left: 20px;">
+
+											<table class="div_doctorAdviceManager_table">
+												<tr>
+													<td class="td_doctorAdviceManager_size td_doctorAdviceManager_wdith" style="width: 11.2%;">临床结论</td>
+													<td id="ts_conclusion" style="color: red;"></td>
+												</tr>
+
+											</table>
+											<table class="move-right tangImg" id="move-right1">
+												<!--<div class="click-to-see" data-toggle="modal" data-target="#myMo" onclick="showMoreImg(2)">点击查看原始报告单</div>-->
+											</table>
+										</div>
+
+									</div>
+
+								</div>
+
+							</div>
+							<div class="tab-pane data-show " id="panel-978078">
+								<!--Nipt-->
+								<div class="div_doctorAdviceManager_main">
+									<div class="div_doctorAdviceManager_title">
+										<div class="div-eigth">
+											<div class="div-eigth-first">
+												<p class="div-eigth-p">首诊结论</p>
+												<p class="div-eigth-p2">孕程：</p>
+												<div style="float: left;">
+													<select id="niptcount" onchange="changeNipt(this.value);">
+														<!--<option value="0">请选择孕周</option>
+															<option value="1">6-13周</option>
+															<option value="2">14-20周</option>
+															<option value="3">20-24周</option>
+															<option value="4">24-28周</option>
+															<option value="5">28-32周</option>
+															<option value="6">33-36周</option>
+															<option value="7">37-41周</option>-->
+													</select>
+												</div>
+											</div>
+											<div class="div-check-eigth" style="">
+												<p><span style="margin-right: 55px;">检查日期:</span><span id="nipt2_checkdate" class="td_doctorAdviceManager_colors"></span></p>
+											</div>
+											<div class="div-weeks-eigth">
+												<p><span class="div-eigth-span">孕周:</span><span id="nipt_weeks" class="td_doctorAdviceManager_colors"></span></p>
+											</div>
+											<div class="div-none-eigth">
+												<p><span class="div-eigth-span">高危级别:</span><span id="nipt_highRiskResultType" class="td_doctorAdviceManager_colors2 spanresult"></span></p>
+											</div>
+										</div>
+										<div style="width: 100%;">
+											<div class="bad-font-eigth">
+												<p>风险因素:</p>
+											</div>
+											<div class="div-text-eigth">
+												<textarea id="nipt_knowledge" class="form-control whatthe" style="height: 55px!important;color: #FF0000;"></textarea>
+											</div>
+										</div>
+
+									</div>
+									<div class="div_doctorAdviceManager_container2">
+										<div class="left_doctorAdviceManager_content1 td_doctorAdviceManager_size" id="id-NIPT">NIPT</div>
+										<div class="left_doctorAdviceManager_content3">
+
+											<div class="form_doctorAdviceManager_content2" style="border: none;">
+												<!--<div>项目：<span id="nipt_project">胎儿染色体非整倍体（T21、T18、T13)检查</span></div>
+													<div>方法与性能：<span id="methodsandproperties">母体外周血胎儿游离DNA高通量测序分析</span></div>-->
+												<!--<table class="table_doctorAdviceManager_border">
+														<tr class="tr_doctorAdviceManager_border tr_doctorAdviceManager_back">
+															<td class="td_doctorAdviceManager_width3">检测项目</td>
+															<td>三体风险指数</td>
+															<td>参考范围</td>
+															<td>胎儿三体结果</td>
+														</tr>
+														<tr class="tr_doctorAdviceManager_border">
+															<td>21 三体</td>
+															<td id="nipt_t21"></td>
+															<td>[-3, 3）</td>
+															<td id="t21_result"></td>
+														</tr>
+														<tr class="tr_doctorAdviceManager_border">
+															<td>18 三体</td>
+															<td id="nipt_t18"></td>
+															<td>[-3, 3）</td>
+															<td id="t18_result"></td>
+														</tr>
+														<tr class="tr_doctorAdviceManager_border">
+															<td>13 三体 </td>
+															<td id="nipt_t13"></td>
+															<td>[-3, 3）</td>
+															<td id="t13_result"></td>
+														</tr>
+													</table>-->
+											</div>
+
+										</div>
+										<div class="div_doctorAdviceManager_con">
+
+											<div style="margin-left: -50px;">
+												<table class="div_doctorAdviceManager_tab" style="margin-top: 20px;">
+													<tr>
+														<td class="td_doctorAdviceManager_size td_doctorAdviceManager_wdith" style="width: 12%;">结果描述:</td>
+														<td id="nipt_description" style="color: red;"></td>
+													</tr>
+													<tr>
+														<td class="td_doctorAdviceManager_size td_doctorAdviceManager_wdith">特别提示:</td>
+														<td id="nipt_tip"></td>
+													</tr>
+													</tr>
+												</table>
+											</div>
+											<table class="move-right niptimg" id="move-right1">
+												<!--<div class="click-to-see" data-toggle="modal" data-target="#myMo" id="nipt" onclick="showNiptImg()">点击查看原始报告单</div>-->
+											</table>
+										</div>
+									</div>
+								</div>
+
+							</div>
+							<!--<div class="niptimg" style="width: auto;height: auto;border:1px solid red; position: absolute; left: 30%;top: 20%;">
+									<div style="width: 20px;height: 20px;float: right;">
+										<img src="../images/guanbi.png"/>
+									</div>
+									<img src="images/blood_type_screening.jpg" />
+								</div>-->
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--end Tab-Control-->
+
+		</div>
+	</div>
+	<script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="../js/getLogin.js"></script>
+	<script type="text/javascript" src="js/bootstrap-datepicker.js"></script>
+	<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../js/echarts.min.js"></script>
+	<script type="text/javascript" src="../js/doubleCalculateExactly.js"></script>
+	<script type="text/javascript" src="js/firstDiagnose_yet_bookbuilding_info.js"></script>
+	<script type="text/javascript" src="js/basic.js"></script>
+	<script type="text/javascript" src="../utils/js/drag.js"></script>
+	<!--yinzx -->
+	<script type="text/javascript" src="js/check_utils.js"></script>
+	<script type="text/javascript" src="js/hypertension.js"></script>
+	<!--luoyc-->
+	<script type="text/javascript" src="js/sendAdvice_timeArrow.js"></script>
+	<!--雷达需要引入的js-->
+	<script src="../../common/UI_kit/js/bootstrap-table.js"></script>
+	<script src="../../common/UI_kit/js/bootstrap-table-zh-CN.js"></script>
+	<script src="js/hyperRisk.js"></script>
+	<script type="text/javascript" src="../js/Util.js">
+	</script>
+	<!--hongwx-->
+	<script type="text/javascript" src="js/showAllMessage.js"></script>
+	<!--导航路径需要用到的js-->
+	<script type="text/javascript" src="../js/topNavigationSetData.js"></script>
+	<script type="text/javascript" src="../userList/function/js/Anasomething.js"></script>
+	<script type="text/javascript" src="../js/checkEcharts.js"></script>
+	</body>
+
+</html>

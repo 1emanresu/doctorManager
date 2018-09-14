@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.yunji.doctormanager.dao.DiseaseMapper" >
+  <resultMap id="BaseResultMap" type="cn.yunji.doctormanager.entity.Disease" >
+    <id column="diseaseId" property="diseaseid" jdbcType="INTEGER" />
+    <result column="mId" property="mid" jdbcType="CHAR" />
+    <result column="occurDate" property="occurdate" jdbcType="TIMESTAMP" />
+    <result column="describeContent" property="describecontent" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    diseaseId, mId, occurDate, describeContent
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from disease
+    where diseaseId = #{diseaseid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from disease
+    where diseaseId = #{diseaseid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.yunji.doctormanager.entity.Disease" >
+    insert into disease (diseaseId, mId, occurDate, 
+      describeContent)
+    values (#{diseaseid,jdbcType=INTEGER}, #{mid,jdbcType=CHAR}, #{occurdate,jdbcType=TIMESTAMP}, 
+      #{describecontent,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.yunji.doctormanager.entity.Disease" >
+    insert into disease
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="diseaseid != null" >
+        diseaseId,
+      </if>
+      <if test="mid != null" >
+        mId,
+      </if>
+      <if test="occurdate != null" >
+        occurDate,
+      </if>
+      <if test="describecontent != null" >
+        describeContent,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="diseaseid != null" >
+        #{diseaseid,jdbcType=INTEGER},
+      </if>
+      <if test="mid != null" >
+        #{mid,jdbcType=CHAR},
+      </if>
+      <if test="occurdate != null" >
+        #{occurdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="describecontent != null" >
+        #{describecontent,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.yunji.doctormanager.entity.Disease" >
+    update disease
+    <set >
+      <if test="mid != null" >
+        mId = #{mid,jdbcType=CHAR},
+      </if>
+      <if test="occurdate != null" >
+        occurDate = #{occurdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="describecontent != null" >
+        describeContent = #{describecontent,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where diseaseId = #{diseaseid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.yunji.doctormanager.entity.Disease" >
+    update disease
+    set mId = #{mid,jdbcType=CHAR},
+      occurDate = #{occurdate,jdbcType=TIMESTAMP},
+      describeContent = #{describecontent,jdbcType=VARCHAR}
+    where diseaseId = #{diseaseid,jdbcType=INTEGER}
+  </update>
+</mapper>

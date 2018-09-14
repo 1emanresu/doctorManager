@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.yunji.doctormanager.dao.BloodpressureMapper" >
+  <resultMap id="BaseResultMap" type="cn.yunji.doctormanager.entity.Bloodpressure" >
+    <id column="bId" property="bid" jdbcType="INTEGER" />
+    <result column="mId" property="mid" jdbcType="CHAR" />
+    <result column="checkProjectId" property="checkprojectid" jdbcType="INTEGER" />
+    <result column="bDate" property="bdate" jdbcType="TIMESTAMP" />
+    <result column="systolic" property="systolic" jdbcType="CHAR" />
+    <result column="diastolic" property="diastolic" jdbcType="CHAR" />
+    <result column="heartrate" property="heartrate" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    bId, mId, checkProjectId, bDate, systolic, diastolic, heartrate
+  </sql>
+  <select id="find" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from bloodpressure
+    where mId = #{mid,jdbcType=CHAR}
+  
+  </select>
+  <!-- yinzx 根据mid查询指定孕妇最新的血压数据 -->
+   <select id="findNewPressure" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from bloodpressure
+    where mId = #{mid,jdbcType=CHAR}
+    order by bDate desc
+    limit 0,1
+  </select>
+  <!-- luoyc 根据日期范围查询指定孕妇血压数据 -->
+  <select id="findByDateRange" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from bloodpressure
+    where mid=#{0} and bDate between #{1} and #{2}
+  </select>
+  <insert id="insert" parameterType="cn.yunji.doctormanager.entity.Bloodpressure" >
+    insert into bloodpressure ( mId, bDate, 
+      systolic, diastolic,heartrate)
+    values ( #{mid,jdbcType=CHAR}, #{bdate,jdbcType=TIMESTAMP}, 
+      #{systolic,jdbcType=CHAR}, #{diastolic,jdbcType=CHAR}), #{heartrate,jdbcType=CHAR},#{checkprojectid,jdbcType=INTEGER})
+  </insert>
+  <update id="update" parameterType="cn.yunji.doctormanager.entity.Bloodpressure" >
+    update bloodpressure
+    set 
+      systolic = #{systolic,jdbcType=CHAR},
+      diastolic = #{diastolic,jdbcType=CHAR},
+      heartrate = #{diastolic,jdbcType=CHAR},
+      bDate = #{bdate,jdbcType=TIMESTAMP}
+    where bId = #{bid,jdbcType=INTEGER}
+  </update>
+  <select id="findToday" parameterType="cn.yunji.doctormanager.entity.Bloodpressure" resultType="cn.yunji.doctormanager.entity.Bloodpressure">
+		select * from bloodpressure where mId=#{mid,jdbcType=CHAR} and bDate>=#{bdate,jdbcType=TIMESTAMP}
+  </select>
+</mapper>

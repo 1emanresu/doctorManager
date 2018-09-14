@@ -1,0 +1,100 @@
+<!--author luoyc-->
+<!DOCTYPE html>
+<html>
+ 
+	<head>
+		<meta charset="UTF-8">
+		<title>产科电子信息管理平台</title>
+	</head>
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="css/home_page.css" />
+	<style type="text/css">
+		#right_item ul li {
+			float: left;
+			list-style: none;
+			margin-right: 20px;
+			line-height: 80px;
+			color: #0183E1 !important;
+			font-size: 16px;
+		}
+		#top1{
+			height: 80px;
+			border-bottom: gainsboro solid 1px;
+		}
+	</style>
+
+	<body>
+		<div style="width: 100%;height: 100%;min-width: 1024px;">
+		<div id="top1" style="background: white;color: black;">
+			<div style="color: #0183E1;font-size: 20px;line-height: 80px;padding-left: 5%;float: left;">围产健康管理系统</div>
+			<div id="right_item" style="float: right;height: 80px;font-size: 14px;margin-right: 2.1%;">
+				<ul style="margin: 0px;">
+					<li onclick="location.href='../login/home_page.html'"><img src="images/u7.png" width="18px">首页</li>
+					<li><img src="images/u8.png" width="18px"><span id="name">未登录</span></li>
+					<li onclick="location.href='../login/login.html';getOut()"><img src="images/u9.png" width="18px">退出</li>
+				</ul>
+			</div>
+		</div>
+		<div class="home-page-div">
+			<div class="middle-div">
+				<div class="div1" style="background-image: url(images/frist.jpg);background-size:100% 100%;">
+					<div style="width: 50%;height: 100%;float: right;background: white;opacity: 0.5;"></div>
+				</div>
+				<div class="div2 divSkip" onclick="getSrc('../userList/archivesModule/firstDiagnose.html')">
+					<div class="square">
+						<img src="images/u2.png" />
+						<div>建档审核</div>
+					</div>
+				</div>
+				<div class="div3 divSkip" onclick="getSrc('../userList/weeklyModule/pendingWeekly.html')">
+					<div class="square">
+						<img src="images/u1.png" />
+						<div>微报告</div>
+					</div>
+				</div>
+				<!--<div class="div3 divSkip" onclick="getSrc('../userList/firstDiagnose.html')">
+					<div class="square">
+						<img src="images/u2.png" />
+						<div>首诊建档</div>
+					</div>
+				</div>-->
+				<div class="div4 divSkip" onclick="getSrc('../userList/adviceModule/pendingAdvice.html')">
+					<div class="square">
+						<img src="images/u3.png" />
+						<div>医嘱下发</div>
+					</div>
+				</div>
+				<div class="div5 divSkip" onclick="getSrc('../userList/interrogationModule/pendingInquiry.html')">
+					<div class="square">
+						<img src="images/u5.png" />
+						<div>远程问诊</div>
+					</div>
+				</div>
+				
+				<div class="div7 divSkip"  onclick="getSrc('../userList/sendRemind/sendRemind.html')">
+					<div class="square">
+						<img src="images/u10.png" />
+						<div>发送提醒</div>
+					</div>
+				</div>
+				<div class="div9 divSkip" onclick="getSrc('../userList/archivesModule/ArchiveInformationManagement.html')">
+					<div class="square">
+						<img src="images/u2.png" />
+						<div>档案信息管理</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		</div>
+		<script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="../js/getLogin.js"></script>
+		<script type="text/javascript" src="js/home_page.js"></script>
+		<script type="text/javascript">
+			function fun(){
+				sessionStorage.setItem("src","../serviceManage/serviceManage.html");
+				location.href='../nav/index.html';			
+			}
+		</script>
+	</body>
+
+</html>

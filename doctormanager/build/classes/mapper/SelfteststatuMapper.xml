@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.yunji.doctormanager.dao.SelfteststatuMapper" >
+  <resultMap id="BaseResultMap" type="cn.yunji.doctormanager.entity.Selfteststatu" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="cid" property="cid" jdbcType="INTEGER" />
+    <result column="week" property="week" jdbcType="INTEGER" />
+    <result column="BMITop" property="bmitop" jdbcType="DECIMAL" />
+    <result column="BMIBottom" property="bmibottom" jdbcType="DECIMAL" />
+    <result column="cbegin" property="cbegin" jdbcType="DECIMAL" />
+    <result column="cend" property="cend" jdbcType="DECIMAL" />
+    <result column="description" property="description" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, cid, week, BMITop, BMIBottom, cbegin, cend, description
+  </sql>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from selfteststatu
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <!-- luoyc 根据指标编号查询 -->
+  <select id="findByCid" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from selfteststatu
+    where cid=#{0}
+    and
+    #{1} >= cbegin and  #{1} &lt; cend
+  </select>
+  <!-- luoyc 根据孕周查询 -->
+  <select id="findByWeek" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from selfteststatu
+    where week=#{0} and cid=#{1}
+  </select>
+  <!-- luoyc 根据BMI和孕周查询 --> 
+  <select id="findByWeekAndBMI" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from selfteststatu
+    where week=#{0} and cid=#{1}
+    and
+    #{2} between cbegin and cend
+    and 
+    #{3} between BMIBottom and BMITop
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from selfteststatu
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.yunji.doctormanager.entity.Selfteststatu" >
+    insert into selfteststatu (Id, cid, week, 
+      BMITop, BMIBottom, cbegin, 
+      cend, description)
+    values (#{id,jdbcType=INTEGER}, #{cid,jdbcType=INTEGER}, #{week,jdbcType=INTEGER}, 
+      #{bmitop,jdbcType=DECIMAL}, #{bmibottom,jdbcType=DECIMAL}, #{cbegin,jdbcType=DECIMAL}, 
+      #{cend,jdbcType=DECIMAL}, #{description,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.yunji.doctormanager.entity.Selfteststatu" >
+    insert into selfteststatu
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        Id,
+      </if>
+      <if test="cid != null" >
+        cid,
+      </if>
+      <if test="week != null" >
+        week,
+      </if>
+      <if test="bmitop != null" >
+        BMITop,
+      </if>
+      <if test="bmibottom != null" >
+        BMIBottom,
+      </if>
+      <if test="cbegin != null" >
+        cbegin,
+      </if>
+      <if test="cend != null" >
+        cend,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="cid != null" >
+        #{cid,jdbcType=INTEGER},
+      </if>
+      <if test="week != null" >
+        #{week,jdbcType=INTEGER},
+      </if>
+      <if test="bmitop != null" >
+        #{bmitop,jdbcType=DECIMAL},
+      </if>
+      <if test="bmibottom != null" >
+        #{bmibottom,jdbcType=DECIMAL},
+      </if>
+      <if test="cbegin != null" >
+        #{cbegin,jdbcType=DECIMAL},
+      </if>
+      <if test="cend != null" >
+        #{cend,jdbcType=DECIMAL},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.yunji.doctormanager.entity.Selfteststatu" >
+    update selfteststatu
+    <set >
+      <if test="cid != null" >
+        cid = #{cid,jdbcType=INTEGER},
+      </if>
+      <if test="week != null" >
+        week = #{week,jdbcType=INTEGER},
+      </if>
+      <if test="bmitop != null" >
+        BMITop = #{bmitop,jdbcType=DECIMAL},
+      </if>
+      <if test="bmibottom != null" >
+        BMIBottom = #{bmibottom,jdbcType=DECIMAL},
+      </if>
+      <if test="cbegin != null" >
+        cbegin = #{cbegin,jdbcType=DECIMAL},
+      </if>
+      <if test="cend != null" >
+        cend = #{cend,jdbcType=DECIMAL},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=CHAR},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.yunji.doctormanager.entity.Selfteststatu" >
+    update selfteststatu
+    set cid = #{cid,jdbcType=INTEGER},
+      week = #{week,jdbcType=INTEGER},
+      BMITop = #{bmitop,jdbcType=DECIMAL},
+      BMIBottom = #{bmibottom,jdbcType=DECIMAL},
+      cbegin = #{cbegin,jdbcType=DECIMAL},
+      cend = #{cend,jdbcType=DECIMAL},
+      description = #{description,jdbcType=CHAR}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

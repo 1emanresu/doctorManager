@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.yunji.doctormanager.dao.TemplatetitleMapper">
+  <resultMap id="BaseResultMap" type="cn.yunji.doctormanager.entity.Templatetitle">
+    <id column="ttid" jdbcType="INTEGER" property="ttid" />
+    <result column="checkProjectId" jdbcType="INTEGER" property="checkprojectid" />
+    <result column="mId" jdbcType="CHAR" property="mid" />
+     <result column="weeks" jdbcType="INTEGER" property="weeks" />
+    <result column="medicalRecord" jdbcType="CHAR" property="medicalrecord" />
+    <result column="pay" jdbcType="INTEGER" property="pay" />
+    <result column="sampleId" jdbcType="CHAR" property="sampleid" />
+    <result column="barCode" jdbcType="CHAR" property="barcode" />
+    <result column="department" jdbcType="CHAR" property="department" />
+    <result column="sendDoctor" jdbcType="CHAR" property="senddoctor" />
+    <result column="bedNum" jdbcType="CHAR" property="bednum" />
+    <result column="sampleType" jdbcType="CHAR" property="sampletype" />
+    <result column="clinicalDiagnosis" jdbcType="CHAR" property="clinicaldiagnosis" />
+    <result column="reportDate" jdbcType="DATE" property="reportdate" />
+    <result column="checkDate" jdbcType="DATE" property="checkdate" />
+    <result column="examiner" jdbcType="CHAR" property="examiner" />
+    <result column="auditor" jdbcType="CHAR" property="auditor" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ttid, checkProjectId, mId,weeks, medicalRecord, pay, sampleId, barCode, department, sendDoctor, 
+    bedNum, sampleType, clinicalDiagnosis, reportDate, checkDate, examiner, auditor
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from templatetitle
+    where ttid = #{ttid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from templatetitle
+    where ttid = #{ttid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.yunji.doctormanager.entity.Templatetitle">
+    insert into templatetitle (ttid, checkProjectId, mId,weeks 
+      medicalRecord, pay, sampleId, 
+      barCode, department, sendDoctor, 
+      bedNum, sampleType, clinicalDiagnosis, 
+      reportDate, checkDate, examiner, 
+      auditor)
+    values (#{ttid,jdbcType=INTEGER}, #{checkprojectid,jdbcType=INTEGER}, #{mid,jdbcType=CHAR}, #{weeks,jdbcType=INTEGER},
+      #{medicalrecord,jdbcType=CHAR}, #{pay,jdbcType=INTEGER}, #{sampleid,jdbcType=CHAR}, 
+      #{barcode,jdbcType=CHAR}, #{department,jdbcType=CHAR}, #{senddoctor,jdbcType=CHAR}, 
+      #{bednum,jdbcType=CHAR}, #{sampletype,jdbcType=CHAR}, #{clinicaldiagnosis,jdbcType=CHAR}, 
+      #{reportdate,jdbcType=DATE}, #{checkdate,jdbcType=DATE}, #{examiner,jdbcType=CHAR}, 
+      #{auditor,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.yunji.doctormanager.entity.Templatetitle">
+    insert into templatetitle
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ttid != null">
+        ttid,
+      </if>
+      <if test="checkprojectid != null">
+        checkProjectId,
+      </if>
+      <if test="mid != null">
+        mId,
+      </if>
+      <if test="weeks != null">
+        weeks,
+      </if>
+      <if test="medicalrecord != null">
+        medicalRecord,
+      </if>
+      <if test="pay != null">
+        pay,
+      </if>
+      <if test="sampleid != null">
+        sampleId,
+      </if>
+      <if test="barcode != null">
+        barCode,
+      </if>
+      <if test="department != null">
+        department,
+      </if>
+      <if test="senddoctor != null">
+        sendDoctor,
+      </if>
+      <if test="bednum != null">
+        bedNum,
+      </if>
+      <if test="sampletype != null">
+        sampleType,
+      </if>
+      <if test="clinicaldiagnosis != null">
+        clinicalDiagnosis,
+      </if>
+      <if test="reportdate != null">
+        reportDate,
+      </if>
+      <if test="checkdate != null">
+        checkDate,
+      </if>
+      <if test="examiner != null">
+        examiner,
+      </if>
+      <if test="auditor != null">
+        auditor,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ttid != null">
+        #{ttid,jdbcType=INTEGER},
+      </if>
+      <if test="checkprojectid != null">
+        #{checkprojectid,jdbcType=INTEGER},
+      </if>
+      <if test="mid != null">
+        #{mid,jdbcType=CHAR},
+      </if>
+      <if test="weeks != null">
+        #{weeks,jdbcType=INTEGER},
+      </if>
+      <if test="medicalrecord != null">
+        #{medicalrecord,jdbcType=CHAR},
+      </if>
+      <if test="pay != null">
+        #{pay,jdbcType=INTEGER},
+      </if>
+      <if test="sampleid != null">
+        #{sampleid,jdbcType=CHAR},
+      </if>
+      <if test="barcode != null">
+        #{barcode,jdbcType=CHAR},
+      </if>
+      <if test="department != null">
+        #{department,jdbcType=CHAR},
+      </if>
+      <if test="senddoctor != null">
+        #{senddoctor,jdbcType=CHAR},
+      </if>
+      <if test="bednum != null">
+        #{bednum,jdbcType=CHAR},
+      </if>
+      <if test="sampletype != null">
+        #{sampletype,jdbcType=CHAR},
+      </if>
+      <if test="clinicaldiagnosis != null">
+        #{clinicaldiagnosis,jdbcType=CHAR},
+      </if>
+      <if test="reportdate != null">
+        #{reportdate,jdbcType=DATE},
+      </if>
+      <if test="checkdate != null">
+        #{checkdate,jdbcType=DATE},
+      </if>
+      <if test="examiner != null">
+        #{examiner,jdbcType=CHAR},
+      </if>
+      <if test="auditor != null">
+        #{auditor,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <!-- 根据孕周、检查项目、mid 查询检查明细及指标 -->
+  <select id="queryCheckDetail" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM templatetitle
+    WHERE weeks = #{weeks,jdbcType=INTEGER}
+    AND checkProjectId = #{checkProjectId,jdbcType=INTEGER}
+    AND mId = #{mId,jdbcType=CHAR}
+  </select>
+  
+  <!-- 根据检查时间、检查项目、mid 查询检查明细及指标 -->
+  <select id="queryCheckDetailByDate" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM templatetitle
+    WHERE checkDate = #{checkdate,jdbcType=DATE}
+    AND checkProjectId = #{checkProjectId,jdbcType=INTEGER}
+    AND mId = #{mId,jdbcType=CHAR}
+  </select>
+  
+</mapper>

@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="Pragma" content="no-cache">
+		<meta http-equiv="Window-target" content="_top">
+		<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+		<title>产科电子信息管理平台——医嘱管理</title>
+		<link rel="stylesheet" href="../../css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/bootstrap-table.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/comm.css" />
+		<link rel="stylesheet" type="text/css" href="../css/RiskModel-Util.css" />
+	</head>
+	<style type="text/css">
+		#queryInfo,
+		#queryReset {
+			background-color: #76b0ff;
+			border: none;
+			margin: 0;
+		}
+		
+		#queryReset {
+			margin-left: 35px;
+		}
+		
+		.content_search {
+			margin: 20px 0;
+			display: flex;
+			min-width: 80%;
+		}
+	</style>
+
+	<body>
+		<div class="class_main">
+			<div class="top_Nav">
+				<div class="Nav_img"><img src="../../images/header_home.png" /></div>
+				<div class="Nav_content">
+					您当前的位置： <span>档案信息管理</span>
+				</div>
+			</div>
+			<!-- 主要内容 -->
+			<div class="main_content" style="padding-top: 15px;padding-bottom: 15px;">
+				<!--<div class="content_search" style="padding: 0 1%;">
+					<div class="active5">
+						<div class="neiceng">
+							<span>姓 名：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+						</div>
+						<input type="text" class="form-control gname" placeholder="" id="gname">
+					</div>
+					<div class="active5">
+						<div class="neiceng">
+							<span>年 龄：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+						</div>
+						<input type="text" class="form-control g_age" placeholder="" id="g_age">
+					</div>
+					
+					<div class="active5" style="">
+						<div class="neiceng" style="min-width: 80px;">
+							<span>孕 周：</span>
+						</div>
+						<select name="" class="weeks" id="weeksQuery">
+						</select>
+					</div>
+					
+					<div class="active5">
+						<div class="neiceng" style="min-width: 80px;">
+							<span>病历卡号：</span>
+						</div>
+						<input type="text" class="form-control medicalrecordno" placeholder="" id="medicalNo">
+					</div>
+				</div>
+				<div class="content_search" style="padding: 0 1%;">
+					<div class="active5">
+						<div class="neiceng">
+							<span>健康套餐：</span>
+						</div>
+						<select name="" class="vipGrade" id="vipGrade">
+						</select>
+					</div>-->
+					<!--<div class="active5" style="">
+						<div class="neiceng">
+							<span>高危级别：</span>
+						</div>
+						<select name="" id="hiskGrade" class="hiskGrade">
+						</select>
+					</div>
+					<div class="active5">
+						<div class="neiceng">
+							<span>服务内容：</span>
+						</div>
+						<input type="text" class="form-control gname" placeholder="" id="gname">
+					</div>
+					<div class="active5">
+						<div class="neiceng">
+							<span>关键字： &nbsp;&nbsp;&nbsp;</span>
+						</div>
+						<input type="text" class="form-control g_age" style="margin-left: -2px;" placeholder="" id="g_age">
+					</div>-->
+					<div class="content_search" style="padding: 0 0%;">
+					<div class="active5">
+						<div class="neiceng" style="">
+							<span>姓名：</span>
+						</div>
+						<input type="text" class="form-control gname" placeholder="" id="gname">
+					</div>
+					<div class="active5" style="">
+						<div class="neiceng" style="">
+							<span>年龄：</span>
+						</div>
+						<input type="text" class="form-control g_age" placeholder="" id="g_age">
+					</div>
+					<!--孕周-->
+					<div class="active5" style="">
+						<div class="neiceng">
+							<span>孕周：</span>
+						</div>
+						<select name="" class="weeks" id="weeksQuery">
+						</select>
+					</div>
+					<div class="active5">
+						<div class="neiceng" style="">
+							<span>健康套餐：</span>
+						</div>
+						<select name="" class="vipGrade" id="vipGrade">
+						</select>
+					</div>
+					<!--病例-->
+					<div class="active5">
+						<div class="neiceng">
+							<span>病历卡号：</span>
+						</div>
+						<input type="text" class="form-control medicalrecordno" placeholder="" id="medicalNo">
+					</div>
+					<!--button-->
+					<div class="active5" style="margin-left: 1%;">
+						<div class="neiceng" style="margin-left: 22%;">
+							<button id="queryInfo" onclick="searchList()" style="display: inline;margin-right: 3%;" onclick="searchList()" class="btn btn-primary btn-block">查询</button>
+						</div>
+						<div class="neiceng" style="width: 15%">
+							&nbsp;
+						</div>
+						<div class="neiceng">
+							<button id="queryReset" onclick="resetInput()" style="display: inline;" onclick="resetInput()" class="btn btn-primary btn-block">重置</button>
+						</div>
+					</div>
+				</div>
+				</div>
+				<!--<div class="content_search" style="padding: 0 1%;">
+
+					<div class="active5" style=""></div>
+					<div class="active5" style=""></div>
+					<div class="active5" style=""></div>
+					<div class="active5 btn-class">
+						<button id="queryInfo" onclick="searchList()" class="btn btn-primary btn-block">查询</button>
+						<button id="queryReset" onclick="resetInput()" class="btn btn-primary btn-block">重置</button>
+					</div>
+				</div>-->
+
+				<!--begin Tab-Control 选项卡-->
+				<div class="right-Tab-Control" style="width: 93%;margin-left: 3.8%;">
+					<ul class="nav nav-tabs nva-tabs-ul">
+						<li class="active" id="this_advice">
+							<div class="class_li_line"></div>
+							<a data-toggle="tab">孕妇列表</a>
+						</li>
+					</ul>
+					<div class="tab-content contents">
+						<div class="tab-pane active  data-show" id="panel-978065">
+							<!--待处理患者列表-->
+							<div class="toBeTreated">
+								<!--end-->
+								<div class="right_firm_container">
+									<label style="cursor: pointer;">高危分型分级标准?</label>
+									<label style="cursor: pointer;">已购服务类型说明?</label>
+								</div>
+								<div class="treated_list">
+									<table class="treated_table" id="user_list"></table>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--高危信息弹框-->
+			<div id="highRiskData">
+				<div class="close-move">
+					<img src="../../images/guanbi.png" />
+				</div>
+				<label>高危总分：</label><span id="sumCount" class="color_level hScore"></span><br />
+				<label>高危等级：</label><span id="highRiskResultName" class="color_level hType"></span><br />
+				<label>高危详情：</label>
+				<table id="htable"> </table>
+			</div>
+
+		</div>
+
+		<!--点击开通服务类型统计-->
+		<div id="service-count">
+			<div class="close-move">
+				<img src="../../images/guanbi.png" />
+			</div>
+			<div style="display: flex;">
+				<div style="margin-right: 35px;">
+					<div class="echart-top" >服务开通人群分布</div>
+					<div id="servicePie" style="width: 250px;height: 250px;"></div>
+				</div>
+				<div class="serviceV1">
+					<div class="echart-top" >微健康报告已处理情况</div>
+					<div id="weeklyReportEchart" style="width: 250px;height: 250px;"></div>
+				</div>
+				<div class="serviceV2">
+					<div class="echart-top" >医嘱远程问诊服务已处理情况</div>
+					<div id="adviceReportEchart" style="width: 250px;height: 250px;"></div>
+				</div>
+			</div>
+		</div>
+
+		<!--点击套餐弹出框-->
+		<div class="service1">
+			<div class="close-move">
+				<img src="../../images/guanbi.png" />
+			</div>
+			<div class="vip-content">
+				<div>套餐名称：<span class="v-name"></span></div>
+				<div>套餐项目：<span class="vip-itn"></span></div>
+				<div class="vip-box" style="border: #F4EA2A dashed  2px;">
+					<img src="../images/u7593.png" width="26px" /> &nbsp;服务说明：<span class="vip-ill"></span><br />
+					<img src="../images/u7593.png" width="26px" /> &nbsp;<span class="ser-small">微健康报告处理小贴士：</span><span class="vip-small"></span>
+				</div>
+			</div>
+			<div class="vip-date">
+				<div>套餐有效期：<span class="vip-sedate"></span></div>
+				<div class="vip-num1"></div>
+				<div class="vip-num2"></div>
+			</div>
+			<div class="vip-img" style="float: right;">
+				<div class="vip-img1">
+					<img src="../images/u6662.png" alt="" width="110px" />
+					<div class="see-report">查看已发报告</div>
+				</div>
+				<div class="vip-img2">
+					<img src="../images/u11820.png" alt="" width="110px" />
+					<div class="see-advice" style="color: white;">查看问诊记录</div>
+				</div>
+			</div>
+			<div id="ser-b" style="clear: both;margin: 0 auto;width: 60%;display: flex;text-align: center;margin-bottom: 15px;">
+				<div style="width: 50%;cursor: pointer;" class="serviceCount">
+					<img src="../images/u7587.png" width="40px" />
+					<span>开通服务类型统计</span>
+				</div>
+				<div style="width: 50%;cursor: pointer;" class="manual">
+					<img src="../images/u7589.png" width="40px" />
+					<span>操作指南</span>
+				</div>
+			</div>
+		</div>
+		<!--  转高危  -->
+		<div id="trans_high_risk" class="modal fade" tabindex="-1" role="dialog" style="height: auto;">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<!--建议-->
+					<div class="hisk_trans_container">
+						<div id="hisk_trans_close" class="img_close2">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><img src="../../images/guanbi.png"/></button>
+						</div>
+						<div class="div_send_remind_back"></div>
+						<div class="hisk_trans_div">
+							<div class="class_serious_risk_container">
+								<div class="class_serious_risk_div">高危总分：</div>
+								<div id="risk_score" class="class_color">15</div>
+							</div>
+							<div class="class_serious_risk_container">
+								<div class="class_serious_risk_div">高危等级：</div>
+								<div id='risk_type' class="class_color">重度高危</div>
+							</div>
+							<div class="class_serious_risk_container">
+								<div class="class_serious_risk_div">高危详情：</div>
+								<div class="class_serious_risk_table class_table_container">
+									<table id="table_risk_detail">
+										<tr class="tr_width">
+											<td>序号</td>
+											<td>出现时间</td>
+											<td>出现孕周</td>
+											<td>风险因素</td>
+											<td>高危分值</td>
+										</tr>
+									</table>
+									<div class="hint_trans_character">温馨小贴士：本次出现高危总分属<span style="color: red;" class="high_type"></span>，<span style="color: #6fA0E4;" class="high_school"></span></div>
+								</div>
+							</div>
+							<div class="choice_trans_container">
+								<div class="choice_trans_div">
+									<p class="p_trans_size">选择转移</p>
+									<div class="hisk_trans_content">
+										<p>高危类别</p>
+										<div><label><input type="checkbox" id="hideBlood" class="select_risk_type1 select_risk_type" onclick="selectRiskType(1)"/> 妊娠高血压</label></div>
+										<div><label><input type="checkbox" id="diabetes" class="select_risk_type2 select_risk_type" onclick="selectRiskType(2)"/> 妊娠糖尿病</label></div>
+										<div><label><input type="checkbox" id="anemia" class="select_risk_type3 select_risk_type" onclick="selectRiskType(3)"/> 妊娠合并贫血</label></div>
+										<div><label><input type="checkbox" id="fat" class="select_risk_type4 select_risk_type" onclick="selectRiskType(4)"/> 妊娠肥胖</label></div>
+										<div><label><input type="checkbox" id="elseHigh" class="select_risk_type5 select_risk_type" onclick="selectRiskType(5)"/> 其他类型高危</label></div>
+									</div>
+								</div>
+								<div class="choice_trans_div">
+									<p class="p_trans_size">已选择类别</p>
+									<div class="hisk_trans_content">
+										<br />
+										<br />
+										<div id="select_risk_type1" class="risk_type_change">
+											<div class="choice_trans_left">妊娠高血压</div>
+											<div class="choice_trans_right">
+												<img src="../../images/hisk_close.png" onclick="deleteRiskType(1)" />
+											</div>
+										</div>
+										<div id="select_risk_type2" class="risk_type_change">
+											<div class="choice_trans_left">妊娠糖尿病</div>
+											<div class="choice_trans_right">
+												<img src="../../images/hisk_close.png" onclick="deleteRiskType(2)" />
+											</div>
+										</div>
+										<div id="select_risk_type3" class="risk_type_change">
+											<div class="choice_trans_left">妊娠合并贫血</div>
+											<div class="choice_trans_right">
+												<img src="../../images/hisk_close.png" onclick="deleteRiskType(3)" />
+											</div>
+										</div>
+										<div id="select_risk_type4" class="risk_type_change">
+											<div class="choice_trans_left">妊娠肥胖</div>
+											<div class="choice_trans_right">
+												<img src="../../images/hisk_close.png" onclick="deleteRiskType(4)" />
+											</div>
+										</div>
+										<div id="select_risk_type5" class="risk_type_change">
+											<div class="choice_trans_left">其他类型高危</div>
+											<div class="choice_trans_right">
+												<img src="../../images/hisk_close.png" onclick="deleteRiskType(5)" />
+											</div>
+										</div>
+										<div class="div_irstDiagnose_tall"></div>
+									</div>
+								</div>
+							</div>
+							<div class="div_height"></div>
+							<div class="class_send_person">
+								<div class="class_send_remind_div">发送至:</div>
+								<div class="class_send_remind_check">
+									<input type="checkbox" class="sendTo_people1" id="sendPerson1"><span>孕妇本人</span>
+									<input type="checkbox" class="sendTo_people1" id="sendPerson2"><span>丈夫</span>
+									<input type="checkbox" class="sendTo_people1" id="sendPerson3"><span>看护人</span>
+									<input type="checkbox" class="sendTo_people1" id="sendPerson4"><span>其他亲属</span>
+								</div>
+							</div>
+							<div class="class_send_person">
+								<div class="class_send_remind_div">提醒方式:</div>
+								<div class="class_send_remind_check">
+									<input type="checkbox" class="sending_way1" id="messages"><span>短信通知</span>
+									<input type="checkbox" class="sending_way1" id="apps"><span>APP通知</span>
+									<input type="checkbox" class="sending_way1" id="wechats"><span>微信通知</span>
+								</div>
+							</div>
+							<div class="div_height"></div>
+							<div class="div_content_middle">
+								<div class="cancel_btn" onclick="transHighRiskClose()"><button>取消</button></div>
+								<div class="send_btn"><button onclick="sendRiskTypeChange()">确认发送</button></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+
+		<!--检查报告完整度弹框-->
+		<div id="hCheck-box">
+			<div class="close-move" style="top: -13px;">
+				<img src="../../images/guanbi.png" />
+			</div>
+			<div class="selfTest-box-top">
+				<div id="">
+					<div>
+						<span id="gname" class="gname">王方圆</span>孕<span id="gWeek">25</span>周
+						<div class="selfTest-title">
+							报告上传完成情况：
+						</div>
+					</div>
+				</div>
+				<div id="box-top-middle" style="height:190px;">
+					<div id="circleForHCheck" class="box-top-middle" style="margin-top: 15px;"></div>
+					<div id="div-table2" class="box-top-middle">
+						<div id="div-suggestProject2">
+							本孕程建议检查项目：
+							<span id="checkProject">体重、血压、血糖、宫高、腹围、胎心、胎动</span>
+						</div>
+						<table id="selfTestTable2">
+							<tr>
+								<td style="width: 95px;">已上传项目</td>
+								<td id="inCheck">
+									无
+								</td>
+							</tr>
+							<tr>
+								<td style="width: 95px;">未上传项目</td>
+								<td id="notCheck">宫高、腹围、胎动、血糖</td>
+							</tr>
+						</table>
+						<div class="prompt">提示：点击已上传的项目可查看报告结果</div>
+					</div>
+					<div id="check-table">
+						<div>
+							<span id="check-close" class="proName">血压趋势图</span>
+						</div>
+						<div id="check-result">
+
+						</div>
+					</div>
+				</div>
+				<div id="div-weChat-service">
+					<span id="weChat-service2" style="color: #007AFF;cursor: pointer;">
+						微信客服追踪记录
+						<img id="index-top" class="rotate-img" src="../images/index-top.png"/>
+					</span>
+				</div>
+				<div id="weChat-record2">
+
+				</div>
+			</div>
+			<div class="selfTest-box-bottom">
+				<div>
+					<div class="sendAdvice">
+						<div>
+							发送提醒：
+						</div>
+						<div class="adviceDetail sendContent">
+							<span class="gname2">王方圆</span><span class="cont-1">你好，当前孕程你还有</span>
+							<span id="checkProjecButton2">
+								
+							</span> <span class="cont-2">报告未上传，为保证全面了解你当前身体各项指标，请及时上传。</span>
+						</div>
+					</div>
+					<div class="addCheckProject">
+						<div>
+							增加产检报告：<span id="div-button2">
+						</span>
+						</div>
+
+					</div>
+				</div>
+				<div class="positonBlock">
+
+				</div>
+				<div id="sendPeopleAndWay2">
+					<div>
+						发送至：<span id="sendingPeople2">
+							<button data="1"><img src="../../images/gravida1.png"/>孕妇本人</button>
+							<button data="2"><img src="../../images/husband1.png"/>丈夫</button>
+							<button data="3"><img src="../../images/looking1.png"/>看护人</button>
+						</span>
+					</div>
+					<div>
+						提醒方式：<span id="sendingWay2">
+							<button id="shortMessage2" data="1"><img src="../../images/message1.png"/>短信通知</button>
+							<button id="AppComfirm2" data="2"><img src="../../images/app1.png"/>APP通知</button>
+							<button id="weChatComfirm2" data="3"><img src="../../images/wechat1.png"/>微信通知</button>
+						</span>
+					</div>
+					<div id="sendingButton2">
+						<button id="comfirmSending2">确认发送</button><button id="cancel2">取消</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!--发送提醒-->
+		<div id="myModal" class="modal fade" tabindex="-1" role="dialog">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<!--建议-->
+					<div class="content_Notice">
+						<!--存储需要发送的mid-->
+						<input type="text" hidden="hidden" id="send_mid" />
+						<div class="Notice_title">
+							<label>提醒自测内容：</label>
+						</div>
+						<div class="Notice_content">
+							<div style="width: 100%;height: 30px;">
+								<div style="float: left;"><input class="select_bloodsugar" type="checkbox" id="selfTestNotice1" />&nbsp;&nbsp;&nbsp;&nbsp;血糖检测</div>
+								<select id="pressureCont" style="float: left;padding-right: 15px;background-color: white;">
+									<option value="0">每日检查7次（即三餐前30分钟，三餐后2小时和夜间24点血糖检查）</option>
+									<option value="1">连续24小时动态血糖监测，连续监测7日。（即三餐前30分钟，三餐后2小时和夜间24点血糖检查）</option>
+								</select>
+							</div>
+							<input type="checkbox" class="selected_selfTest" id="selfTestNotice2" /> <span class="NoticeItem2">血压检测</span> <span class="NoticeCont2">每日一次定时血压监测</span> <br />
+							<input type="checkbox" class="selected_selfTest" id="selfTestNotice3" /> <span class="NoticeItem3">体重检测</span> <span class="NoticeCont3">每日一次定时体重监测</span> <br />
+							<input type="checkbox" class="selected_selfTest" id="selfTestNotice4" /> <span class="NoticeItem4">尿液检测</span> <span class="NoticeCont4">每日一次定时尿液监测</span> <br />
+							<input type="checkbox" class="selected_selfTest" id="selfTestNotice5" /> <span class="NoticeItem5">胎动检测</span> <span class="NoticeCont5">每日一次定时胎动监测</span> <br />
+							<input type="checkbox" class="selected_selfTest" id="selfTestNotice6" /> <span class="NoticeItem6">胎心检测</span> <span class="NoticeCont6">每日一次定时胎心监测</span> <br />
+
+						</div>
+						<div class="Notice_title2">
+							<label>提醒监测建议：</label>
+						</div>
+						<div class="Notice_content2">
+							<textarea id="thisAdvice_content" name="" placeholder="请输入提醒的内容"></textarea>
+
+						</div>
+						<div class="Notice_send">
+							<div class="send_title">
+								<label>发送至：</label><br />
+								<label>提醒方式：</label>
+							</div>
+							<div class="send_content">
+								<input type="checkbox" class="send_selectAll" onclick="selectAllSend();" name="" /> 全选
+								<br />
+								<input type="checkbox" class="select_gravida sendTo_people" name="" /> <label>孕妇本人</label>
+								<input type="checkbox" class="select_husband sendTo_people" name="" /> <label>丈夫</label>
+								<input type="checkbox" class="select_orderlies sendTo_people" name="" /> <label>看护人</label>
+								<br />
+								<input type="checkbox" id="sms_alerts" class="sending_way" name="" /> <label>短信通知</label>
+								<input type="checkbox" id="app_alerts" class="sending_way" name="" /> <label>app通知</label>
+								<input type="checkbox" id="weChat_alerts" class="sending_way" name="" /> <label>微信通知</label>
+							</div>
+
+						</div>
+						<div class="content_submit">
+							<button id="cancle" onclick="sendNoticeClose()"> 取消 </button>
+							<button id="submit" onclick="send_reminder()"> 确认发送 </button>
+
+						</div>
+
+					</div>
+				</div>
+				<!-- /.modal-content -->
+			</div>
+			<!-- /.modal-dialog -->
+
+		</div>
+		<!--风险因子与高危级别弹出框-->
+		<div id="risk-box">
+			<div class="close-move" style="top: -13px;">
+				<img src="../../images/guanbi.png" />
+			</div>
+			<div class="main_cont">
+				<div class="row">
+					<div id="gravidaList-tips"></div>
+					<table id="gravidaList">
+
+					</table>
+				</div>
+
+				<div class="div_RiskModel">
+					<!--风险模型雷达图-->
+					<div id="div-modelChart">
+
+					</div>
+
+					<!--风险模型结果信息-->
+					<div id="risk_result">
+					</div>
+
+				</div>
+			</div>
+		</div>
+		<!--自测完整度弹出框-->
+		<div id="selfTest-box">
+			<div class="close-move" style="top: -13px;">
+				<img src="../../images/guanbi.png" />
+			</div>
+			<div class="selfTest-box-top">
+				<div id="">
+					<div>
+						<span id="gname" class="gname">王方圆</span>孕<span id="gWeek2">25</span>周
+						<div class="selfTest-title">
+							自测上传完成情况：
+						</div>
+					</div>
+				</div>
+				<div id="box-top-middle">
+					<div id="circleForSelfTest" class="box-top-middle"></div>
+					<div id="div-table" class="box-top-middle">
+						<div id="div-suggestProject">
+							本孕程建议家庭自测项目：
+							<span id="suggestProject">体重、血压、血糖、宫高、腹围、胎心、胎动</span>
+						</div>
+						<table id="selfTestTable">
+							<tr>
+								<td nowrap="nowrap">已上传项目</td>
+								<td id="selfTestDone">
+									<!--<span id="weight" class="showEcharts">体重</span>、
+									<span id="bloodPressure" class="showEcharts">血压</span>、
+									<span id="bloodSugar" class="showEcharts">血糖</span>、
+									<span id="fundalHeight" class="showEcharts">宫高</span>、
+									<span id="abdominal" class="showEcharts">腹围</span>、
+									<span id="featalHeart" class="showEcharts">胎心</span>、
+									<span id="featalMovement" class="showEcharts">胎动</span>-->
+								</td>
+							</tr>
+							<tr>
+								<td nowrap="nowrap">未上传项目</td>
+								<td id="selfTestNotDone"></td>
+							</tr>
+						</table>
+					</div>
+					<div id="div-echarts">
+						<div id="div-echarts-top">
+							<span id="echartClose" class="echartsTitle">
+								<span id="selfTestProject">血压</span>趋势图
+							</span>
+							<select id="echarts-select">
+								<option value="-1" selected="selected">全部</option>
+								<option value="15">最近三个月</option>
+								<option value="4">最近一个月</option>
+								<option value="1">最近一周</option>
+							</select>
+						</div>
+						<div id="echartsContainer">
+							<div id="echarts"></div>
+						</div>
+					</div>
+				</div>
+				<div id="div-weChat-service">
+					<span id="weChat-service">
+						微信客服追踪记录
+						<img id="index-top" class="rotate-img" src="../images/index-top.png"/>
+					</span>
+				</div>
+				<div id="weChat-record">
+
+				</div>
+			</div>
+			<div class="selfTest-box-bottom">
+				<div>
+					<div class="sendAdvice">
+						<div>
+							发送提醒：
+						</div>
+						<div class="adviceDetail">
+							<span class="gname smsContent">王方圆</span><span class="smsContent">你好，为了全面了解你在家中身体的各项指标及健康变化情况，当前孕程建议进行</span>
+							<span class="smsContent" style="display: none;">replaceContent</span>
+							<span id="checkProjecButton">
+								<button>体重<img class="redClose" src="../images/redClose.png"/></button>
+								<button>血糖<img class="redClose" src="../images/redClose.png"/></button>
+								<button>胎动<img class="redClose" src="../images/redClose.png"/></button>
+								<button>血压<img class="redClose" src="../images/redClose.png"/></button>
+								<button>胎心<img class="redClose" src="../images/redClose.png"/></button>
+								<button>宫高<img class="redClose" src="../images/redClose.png"/></button>
+								<button>腹围<img class="redClose" src="../images/redClose.png"/></button>
+							</span>
+							<span class="smsContent">家庭自测项目，请坚持自测并及时上传数据。</span>
+						</div>
+					</div>
+					<div class="addCheckProject">
+						<div>
+							检查项目添加：
+						</div>
+						<div id="div-button">
+							<button>体重<img class="blueAdd" src="../images/blueAdd.png"/></button>
+							<button>血糖<img class="blueAdd" src="../images/blueAdd.png"/></button>
+							<button>胎动<img class="blueAdd" src="../images/blueAdd.png"/></button>
+							<button>血压<img class="blueAdd" src="../images/blueAdd.png"/></button>
+							<button>胎心<img class="blueAdd" src="../images/blueAdd.png"/></button>
+							<button>宫高<img class="blueAdd" src="../images/blueAdd.png"/></button>
+							<button>腹围<img class="blueAdd" src="../images/blueAdd.png"/></button>
+						</div>
+					</div>
+				</div>
+				<div class="positonBlock">
+
+				</div>
+				<div id="sendPeopleAndWay">
+					<div>
+						发送至：<span id="sendingPeople">
+							<button data="1"><img src="../../images/gravida1.png"/>孕妇本人</button>
+							<button data="2"><img src="../../images/husband1.png"/>丈夫</button>
+							<button data="3"><img src="../../images/looking1.png"/>看护人</button>
+						</span>
+					</div>
+					<div>
+						提醒方式：<span id="sendingWay">
+							<button id="shortMessage" data="1"><img src="../../images/message1.png"/>短信通知</button>
+							<button id="AppComfirm" data="2"><img src="../../images/app1.png"/>APP通知</button>
+							<button id="weChatComfirm" data="3"><img src="../../images/wechat1.png"/>微信通知</button>
+						</span>
+					</div>
+					<div id="sendingButton">
+						<button id="comfirmSending">确认发送</button><button id="cancel">取消</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="../../js/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="../../js/getLogin.js"></script>
+		<script type="text/javascript" src="../../js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="../../js/bootstrap-table.js"></script>
+		<script type="text/javascript" src="../../js/bootstrap-table-zh-CN.js"></script>
+		<script type="text/javascript" src="../../utils/js/bootstrapTable.js"></script>
+		<script type="text/javascript" src="../../js/echarts.min.js"></script>
+		<script type="text/javascript" src="../js/echartsForSelfTest.js"></script>
+		<script type="text/javascript" src="../../js/pushMsg.js"></script>
+		<script type="text/javascript" src="../../js/circles.min.js"></script>
+		<script type="text/javascript" src="../js/RiskModel-Util.js"></script>
+		<script type="text/javascript" src="../../js/Util.js"></script>
+		<script type="text/javascript" src="../../utils/js/drag.js"></script>
+		<script type="text/javascript" src="../js/queryList.js"></script>
+		<script type="text/javascript" src="../../utils/js/check_report.js"></script>
+		<script type="text/javascript" src="js/ArchiveInformationManagement.js"></script>
+		<script type="text/javascript" src="../js/listCommon.js"></script>
+		<!--区分导航路径的唯一标识  @Author hongwx-->
+		<script>
+			$(function(){
+				sessionStorage.setItem('only',5);
+			})
+		</script>
+	</body>
+
+</html>

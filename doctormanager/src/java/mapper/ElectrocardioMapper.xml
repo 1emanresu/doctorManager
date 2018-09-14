@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.yunji.doctormanager.dao.ElectrocardioMapper" >
+  <resultMap id="BaseResultMap" type="cn.yunji.doctormanager.entity.Electrocardio" >
+    <id column="elid" property="elid" jdbcType="INTEGER" />
+    <result column="mId" property="mid" jdbcType="CHAR" />
+    <result column="checkProjectId" property="checkprojectid" jdbcType="INTEGER" />
+    <result column="hospitalName" property="hospitalname" jdbcType="CHAR" />
+    <result column="weeks" property="weeks" jdbcType="INTEGER" />
+    <result column="checkDate" property="checkdate" jdbcType="TIMESTAMP" />
+    <result column="bpiclink" property="bpiclink" jdbcType="CHAR" />
+    <result column="HeartRate" property="heartrate" jdbcType="CHAR" />
+    <result column="RoomRate1" property="roomrate1" jdbcType="CHAR" />
+    <result column="RoomRate2" property="roomrate2" jdbcType="CHAR" />
+    <result column="QRS_Ea" property="qrsEa" jdbcType="CHAR" />
+    <result column="QTc" property="qtc" jdbcType="CHAR" />
+    <result column="p" property="p" jdbcType="CHAR" />
+    <result column="p_R" property="pR" jdbcType="CHAR" />
+    <result column="QRS" property="qrs" jdbcType="CHAR" />
+    <result column="RV5_SV1" property="rv5Sv1" jdbcType="CHAR" />
+    <result column="RScount" property="rscount" jdbcType="CHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="tip" property="tip" jdbcType="VARCHAR" />
+    <association property="hospital" column="hospitalId"   javaType="cn.yunji.doctormanager.entity.Hospital" select ="cn.yunji.doctormanager.dao.HospitalMapper.selectByPrimaryKey" ></association>
+  	<association property="doctor" column="doctorId"   javaType="cn.yunji.doctormanager.entity.Doctor" select ="cn.yunji.doctormanager.dao.DoctorMapper.selectByPrimaryKey" ></association>
+  	<association property="gravidaInfo" column="mId"   javaType="cn.yunji.doctormanager.entity.GravidaInfo" select ="cn.yunji.doctormanager.dao.GravidaInfoMapper.selectByPrimaryKey" ></association>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    elid, mId, checkProjectId, hospitalName, weeks, checkDate, bpiclink, HeartRate, RoomRate1, 
+    RoomRate2, QRS_Ea, QTc, p, p_R, QRS, RV5_SV1, RScount, description, tip
+  </sql>
+  
+  <!-- 获取B超描述及提示信息 -->
+  <select id="queryElectrocardioTip" resultType="java.util.HashMap">
+    SELECT description, tip 
+    FROM electrocardio 
+    WHERE weeks = #{weeks,jdbcType=INTEGER}
+  </select>
+  
+  <!-- 以孕妇的id和检查的时间查询 检查心电的结果	ZHANG  -->
+   <select id="queryByMid" resultMap="BaseResultMap" parameterType="cn.yunji.doctormanager.entity.Electrocardio" >
+    select 
+    <include refid="Base_Column_List" />
+    from electrocardio 
+    <where>
+      <if test="mid != null" >
+        and mId = #{mid}
+      </if>
+      <if test="checkDate != null" >
+        and checkDate = #{checkDate}
+      </if>
+    </where>
+  </select>
+  <!-- 根据孕周、mid、 检查项目id查看B超报告 -->
+  <select id="findByMidAndWeeks" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from electrocardio
+    where mId = #{mId,jdbcType=CHAR}
+    and checkProjectId = #{checkProjectId,jdbcType=INTEGER}
+    and weeks = #{weeks,jdbcType=INTEGER}
+  </select>
+   <!-- 根据mid、 检查项目id查看B超报告 按时间升序排序 -->
+  <select id="findByMidAndProject" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from electrocardio
+    where mId = #{mId,jdbcType=CHAR}
+    and checkProjectId = #{checkProjectId,jdbcType=INTEGER}
+    order by checkDate
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from electrocardio
+    where elid = #{elid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from electrocardio
+    where elid = #{elid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.yunji.doctormanager.entity.Electrocardio" >
+    insert into electrocardio (elid, mId, checkProjectId, 
+      hospitalName, weeks, checkDate, 
+      bpiclink, HeartRate, RoomRate1, 
+      RoomRate2, QRS_Ea, QTc, p, 
+      p_R, QRS, RV5_SV1, RScount, description, tip
+      )
+    values (#{elid,jdbcType=INTEGER}, #{mid,jdbcType=CHAR}, #{checkprojectid,jdbcType=INTEGER}, 
+      #{hospitalname,jdbcType=CHAR}, #{weeks,jdbcType=INTEGER}, #{checkdate,jdbcType=TIMESTAMP}, 
+      #{bpiclink,jdbcType=CHAR}, #{heartrate,jdbcType=CHAR}, #{roomrate1,jdbcType=CHAR}, 
+      #{roomrate2,jdbcType=CHAR}, #{qrsEa,jdbcType=CHAR}, #{qtc,jdbcType=CHAR}, #{p,jdbcType=CHAR}, 
+      #{pR,jdbcType=CHAR}, #{qrs,jdbcType=CHAR}, #{rv5Sv1,jdbcType=CHAR}, #{rscount,jdbcType=CHAR}, 
+      #{description,jdbcType=VARCHAR}, #{tip,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.yunji.doctormanager.entity.Electrocardio" >
+    insert into electrocardio
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="elid != null" >
+        elid,
+      </if>
+      <if test="mid != null" >
+        mId,
+      </if>
+      <if test="checkprojectid != null" >
+        checkProjectId,
+      </if>
+      <if test="hospitalname != null" >
+        hospitalName,
+      </if>
+      <if test="weeks != null" >
+        weeks,
+      </if>
+      <if test="checkdate != null" >
+        checkDate,
+      </if>
+      <if test="bpiclink != null" >
+        bpiclink,
+      </if>
+      <if test="heartrate != null" >
+        HeartRate,
+      </if>
+      <if test="roomrate1 != null" >
+        RoomRate1,
+      </if>
+      <if test="roomrate2 != null" >
+        RoomRate2,
+      </if>
+      <if test="qrsEa != null" >
+        QRS_Ea,
+      </if>
+      <if test="qtc != null" >
+        QTc,
+      </if>
+      <if test="p != null" >
+        p,
+      </if>
+      <if test="pR != null" >
+        p_R,
+      </if>
+      <if test="qrs != null" >
+        QRS,
+      </if>
+      <if test="rv5Sv1 != null" >
+        RV5_SV1,
+      </if>
+      <if test="rscount != null" >
+        RScount,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="elid != null" >
+        #{elid,jdbcType=INTEGER},
+      </if>
+      <if test="mid != null" >
+        #{mid,jdbcType=CHAR},
+      </if>
+      <if test="checkprojectid != null" >
+        #{checkprojectid,jdbcType=INTEGER},
+      </if>
+      <if test="hospitalname != null" >
+        #{hospitalname,jdbcType=CHAR},
+      </if>
+      <if test="weeks != null" >
+        #{weeks,jdbcType=INTEGER},
+      </if>
+      <if test="checkdate != null" >
+        #{checkdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bpiclink != null" >
+        #{bpiclink,jdbcType=CHAR},
+      </if>
+      <if test="heartrate != null" >
+        #{heartrate,jdbcType=CHAR},
+      </if>
+      <if test="roomrate1 != null" >
+        #{roomrate1,jdbcType=CHAR},
+      </if>
+      <if test="roomrate2 != null" >
+        #{roomrate2,jdbcType=CHAR},
+      </if>
+      <if test="qrsEa != null" >
+        #{qrsEa,jdbcType=CHAR},
+      </if>
+      <if test="qtc != null" >
+        #{qtc,jdbcType=CHAR},
+      </if>
+      <if test="p != null" >
+        #{p,jdbcType=CHAR},
+      </if>
+      <if test="pR != null" >
+        #{pR,jdbcType=CHAR},
+      </if>
+      <if test="qrs != null" >
+        #{qrs,jdbcType=CHAR},
+      </if>
+      <if test="rv5Sv1 != null" >
+        #{rv5Sv1,jdbcType=CHAR},
+      </if>
+      <if test="rscount != null" >
+        #{rscount,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.yunji.doctormanager.entity.Electrocardio" >
+    update electrocardio
+    <set >
+      <if test="mid != null" >
+        mId = #{mid,jdbcType=CHAR},
+      </if>
+      <if test="checkprojectid != null" >
+        checkProjectId = #{checkprojectid,jdbcType=INTEGER},
+      </if>
+      <if test="hospitalname != null" >
+        hospitalName = #{hospitalname,jdbcType=CHAR},
+      </if>
+      <if test="weeks != null" >
+        weeks = #{weeks,jdbcType=INTEGER},
+      </if>
+      <if test="checkdate != null" >
+        checkDate = #{checkdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bpiclink != null" >
+        bpiclink = #{bpiclink,jdbcType=CHAR},
+      </if>
+      <if test="heartrate != null" >
+        HeartRate = #{heartrate,jdbcType=CHAR},
+      </if>
+      <if test="roomrate1 != null" >
+        RoomRate1 = #{roomrate1,jdbcType=CHAR},
+      </if>
+      <if test="roomrate2 != null" >
+        RoomRate2 = #{roomrate2,jdbcType=CHAR},
+      </if>
+      <if test="qrsEa != null" >
+        QRS_Ea = #{qrsEa,jdbcType=CHAR},
+      </if>
+      <if test="qtc != null" >
+        QTc = #{qtc,jdbcType=CHAR},
+      </if>
+      <if test="p != null" >
+        p = #{p,jdbcType=CHAR},
+      </if>
+      <if test="pR != null" >
+        p_R = #{pR,jdbcType=CHAR},
+      </if>
+      <if test="qrs != null" >
+        QRS = #{qrs,jdbcType=CHAR},
+      </if>
+      <if test="rv5Sv1 != null" >
+        RV5_SV1 = #{rv5Sv1,jdbcType=CHAR},
+      </if>
+      <if test="rscount != null" >
+        RScount = #{rscount,jdbcType=CHAR},
+      </if>
+    </set>
+    where elid = #{elid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.yunji.doctormanager.entity.Electrocardio" >
+    update electrocardio
+    set mId = #{mid,jdbcType=CHAR},
+      checkProjectId = #{checkprojectid,jdbcType=INTEGER},
+      hospitalName = #{hospitalname,jdbcType=CHAR},
+      weeks = #{weeks,jdbcType=INTEGER},
+      checkDate = #{checkdate,jdbcType=TIMESTAMP},
+      bpiclink = #{bpiclink,jdbcType=CHAR},
+      HeartRate = #{heartrate,jdbcType=CHAR},
+      RoomRate1 = #{roomrate1,jdbcType=CHAR},
+      RoomRate2 = #{roomrate2,jdbcType=CHAR},
+      QRS_Ea = #{qrsEa,jdbcType=CHAR},
+      QTc = #{qtc,jdbcType=CHAR},
+      p = #{p,jdbcType=CHAR},
+      p_R = #{pR,jdbcType=CHAR},
+      QRS = #{qrs,jdbcType=CHAR},
+      RV5_SV1 = #{rv5Sv1,jdbcType=CHAR},
+      RScount = #{rscount,jdbcType=CHAR}
+    where elid = #{elid,jdbcType=INTEGER}
+  </update>
+</mapper>

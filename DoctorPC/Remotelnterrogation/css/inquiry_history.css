@@ -1,0 +1,524 @@
+/*历史问诊记录CSS样式 wuwj*/
+.tdCurrencyDate{
+	width:40px;
+	height: 28px;
+	line-height: 28px;
+	font-size: 12px;
+	font-weight: 700;
+	text-align: center;
+	cursor: pointer;
+	background: url(../images/weekly_calendar_icon_small.png) no-repeat bottom center;
+}
+.tdCurrencyDate span{
+	position: relative;
+	top: 3px;
+	color: #FF6464;
+}
+.tableMainInter{
+	width: 760px;
+}
+.tableMainInter tr td{
+	text-align: left;
+}
+.tableMainInter tr .tdContent,.tableMainAdvice tr .tdcontent{
+	width: 150px;
+	height: 30px;
+	line-height: 30px;
+}
+.tableMainInter tr .tdcol6Content,.tableMainAdvice tr .tdcol6Content{
+	width: 150px;
+	height: 30px;
+	vertical-align: top;
+}
+.tableMainInter tr td table tr td{
+	border: 1px solid #E4E4E4;
+	height: 30px;
+	text-align: center;
+}
+.spanOrange{
+	color: #FF6600;
+}
+.swiper-container,.div_interrogation,.div_advice{
+	width: 650px;
+    position: fixed;
+	text-align: left;
+	background: white;
+	border: none;
+	box-shadow: gray;
+	box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.349019);
+	border-radius: 5px;
+	display: none;
+	top: 15%;
+	right: 32%;
+	padding: 10px;
+}
+.div_advice{
+	width: 700;
+	height: auto;
+}
+.div_advice form .tableMainAdvice{
+	width: 660px;
+}
+.div_interrogation,.div_advice{
+	width: 800px;
+	height: auto;
+}
+.divWeekreportDetail{
+	margin-top: 25px;
+	background: #EEF1F7;
+}
+.top_weekReport_info {
+	width: 100%;
+	text-align: center;
+}
+.top_weekReport_img {
+	margin: 19px auto;
+	width: 279px;
+	height: 47px;
+	position: relative;
+	overflow: hidden;
+}
+
+.top_weekReport_img img {
+	width: 100%;
+	height: 100%;
+}
+
+.top_weekReport_char {
+	color: white;
+	position: absolute;
+	top: 9px;
+	left: 73px;
+}
+
+.middle_weekReport_container {
+	width: 85%;
+	margin: 30px auto;
+	height: auto;
+	padding-bottom: 21px;
+	border-left: 3px dashed #797979;
+	border-bottom: 3px dashed #797979;
+}
+
+.number_weekReport_hint {
+	width: 50px;
+	position: relative;
+	color: white;
+	text-align: center;
+	line-height: 35px;
+}
+
+.div_weekReport_serial {
+	position: absolute;
+	top: 0px;
+	left: -19px;
+	width: 290px;
+}
+
+.hint_weekReport_container {
+	float: left;
+	width: 50px;
+}
+
+.div_weekReport_circle {
+	width: 40px;
+	border-radius: 90px;
+	height: 35px;
+	background: #1989C3;
+}
+
+.hint_weekReport_info {
+	float: left;
+	width: 200px;
+	border-radius: 19px;
+	height: 35px;
+	background: #1989C3;
+}
+
+.clear_weekReport_float {
+	height: 45px;
+}
+
+.middle_personage_show {
+	margin: 17px 15px 15px 10%;
+	overflow: hidden;
+}
+
+.img_weekReport_antenatal {
+	float: left;
+	width: 19%;
+}
+
+.div_weekReport_antenatal {
+	overflow: hidden;
+	padding-bottom: 19px;
+}
+
+.content_weekReport_antenatal {
+	float: left;
+	width: 80%;
+	margin-top: -13px;
+}
+
+.font_weekReport_style {
+	font-size: 16px;
+	color: #333333;
+	font-weight: bold;
+}
+
+.click_weekReport_datelis {
+	font-size: 16px;
+	color: #16B0E3;
+	font-weight: bold;
+}
+
+.click_weekReport_datelis img {
+	vertical-align: middle;
+}
+
+.p_weekReport_width {
+	margin-top: -7px;
+}
+
+.middle_weekReport_container2 {
+	width: 85%;
+	margin: -30px auto;
+	height: auto;
+	padding-bottom: 21px;
+	border-right: 3px dashed #797979;
+}
+
+.number_weekReport_hint2 {
+	float: right;
+	position: relative;
+	width: 55px;
+	height: 55px;
+	color: white;
+	text-align: center;
+	line-height: 35px;
+}
+
+.hint_weekReport_info2 {
+	float: left;
+	width: 200px;
+	border-radius: 19px;
+	height: 35px;
+	background: #1989C3;
+}
+
+.div_weekReport_circle2 {
+	width: 40px;
+	border-radius: 90px;
+	height: 35px;
+	background: #1989C3;
+}
+
+.div_weekReport_serial2 {
+	display: flex;
+}
+
+.div_weekReport_serial2 {
+	position: absolute;
+	top: 23px;
+	right: -20px;
+}
+
+.hint_weekReport_container2 {
+	margin-left: 11px;
+}
+
+.hint_weekReport_info2 {
+	width: 200px;
+	border-radius: 19px;
+	height: 35px;
+	background: #1989C3;
+}
+
+.self_weekReport_testing {}
+
+.self_weekReport_detalis {
+	margin-top: 25px;
+}
+
+.self_weekReport_detalis img {
+	vertical-align: middle;
+}
+
+.self_weekReport_detalis span {
+	margin-left: 9px;
+}
+
+.div_weekReport_table {
+	width: 80%;
+	margin-left: 15%;
+	overflow: hidden;
+}
+
+.div_weekReport_table table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.div_weekReport_table table tr td {
+	text-align: center;
+	border: 1px solid #C9C9C9;
+}
+
+.td_weekReport_color {
+	color: #84CC00;
+}
+
+.div_weekReport_left {
+	float: left;
+	width: 48%;
+}
+
+.div_weekReport_right {
+	float: right;
+	width: 27%;
+}
+
+.div_weekReport_suggest table tr td {
+	border: 1px solid #E7EBF3;
+}
+
+.tr_weekReport_color {
+	color: white;
+	background: #FF9900;
+}
+
+.left_weekReport_con {
+	float: left;
+	border-left: 1px solid white;
+	width: 23%;
+}
+
+.middle_weekReport_con {
+	float: left;
+	border-left: 1px solid white;
+	width: 57%;
+}
+
+.right_weekReport_con {
+	float: left;
+	border-left: 1px solid white;
+	width: 5%;
+}
+
+.div_weekReport_width {
+	clear: both;
+	height: 5px;
+}
+
+.div_weekReport_schedule {
+	position: relative;
+	width: 80%;
+	height: 3px;
+	background: #999999;
+	border-radius: 7px;
+}
+
+.div_weekReport_marks {
+	background: #FFCC00;
+	width: 150%;
+	height: 3px;
+}
+
+.div_weekReport_marks img {
+	position: absolute;
+	left: 0px;
+	top: 10px;
+}
+
+.scroll {
+	margin-top: 30px;
+	margin-left: 7px;
+	width: 80%;
+	height: 3px;
+	background: #999999;
+	position: relative;
+}
+
+.bar {
+	width: 10px;
+	height: 10px;
+	border-radius: 90px;
+	background: white;
+	border: 1px solid #FFCC00;
+	position: absolute;
+	top: -4px;
+	left: 115px;
+	cursor: pointer;
+	position: relative;
+}
+
+.mask {
+	position: absolute;
+	left: 0;
+	top: 0;
+	background: #FFCC00;
+	width: 115px;
+	height: 3px;
+}
+
+.positions {
+	position: absolute;
+	top: -19px;
+	left: -3px;
+}
+
+.div_weekReport_midd {
+	display: flex;
+	margin-left: 15%;
+}
+
+.div_weekReport_midd p {
+	width: 55px;
+}
+
+.div_weekReport_symptom {
+	float: left;
+	width: 48%;
+	display: flex;
+}
+
+.div_weekReport_symptom div {
+	text-align: center;
+	width: 95px;
+	height: 21px;
+	line-height: 21px;
+	margin-top: 55px;
+	color: white;
+	box-shadow: 5px 5px 5px #C0C3C8;
+	background: #FFDF25;
+}
+
+.div_weekReport_symptom2 {
+	float: left;
+	width: 50%;
+	display: flex;
+}
+
+.div_weekReport_symptom2 div {
+	margin-left: 5px;
+	text-align: center;
+	width: 105px;
+	height: 25px;
+	line-height: 25px;
+	margin-top: 55px;
+	color: white;
+	box-shadow: 5px 5px 5px #C0C3C8;
+	background: #FFDF25;
+}
+
+.div_weekReport_symptom2 img {
+	margin-top: 15px;
+}
+
+.middle_weekReport_container3 {
+	width: 85%;
+	margin: 27px auto;
+	height: auto;
+	padding-bottom: 21px;
+	border-top: 3px dashed #797979;
+	border-left: 3px dashed #797979;
+}
+
+.number_weekReport_hint3 {
+	width: 50px;
+	position: relative;
+	color: white;
+	text-align: center;
+	line-height: 35px;
+}
+
+.div_weekReport_serial3 {
+	position: absolute;
+	top: 23px;
+	left: -19px;
+	width: 290px;
+}
+
+.clear_weekReport_float3 {
+	height: 75px;
+}
+
+.div_weekReport_disple {}
+
+.distance_weekReport_left {
+	width: 69px;
+	margin-left: 12px;
+	border: 1px solid red;
+	margin-right: 15px;
+}
+
+.font_weekReport_span {
+	color: #333333;
+	font-weight: bold;
+}
+
+.div_weekReport_posi {
+	position: relative;
+}
+
+.middle_personage_show3 {
+	margin: 17px 15px 15px 10%;
+}
+
+.div_weekReport_triangle {
+	position: absolute;
+	top: 4px;
+	left: -23px;
+	width: 0;
+	height: 0;
+	border-top: 5px solid transparent;
+	border-left: 8px solid #666666;
+	border-bottom: 5px solid transparent;
+}
+
+.top_mar {
+	margin-top: 15px;
+}
+
+.middle_weekReport_container4 {
+	width: 85%;
+	margin: -30px auto;
+	height: auto;
+	padding-bottom: 21px;
+	border-top: 3px dashed #797979;
+	border-right: 3px dashed #797979;
+}
+
+.div_weekReport_table4 p {
+	line-height: 22px;
+	margin: 7px auto;
+}
+
+.div_weekReport_tables {
+	margin-top: -17px;
+	margin-left: 45px;
+}
+.iframeReport{
+	margin-top: 10px;
+	width: 98%;
+}
+.divReportCover{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+#tool4{
+	color: white;
+}
+.tdFontSize{
+	font-size: 12px;
+}
+.tdFontSize .spanTitle{
+	margin-top: -10px;
+	color: #169BD5;
+}
+.tableMainAdvice tr .tdFontSize{
+	height: 30px;
+}

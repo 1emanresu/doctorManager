@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="Pragma" content="no-cache">
+		<meta http-equiv="Window-target" content="_top">
+		<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+		<title>产科电子信息管理平台-发送提醒</title>
+		<link rel="stylesheet" href="../../css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/bootstrap-table.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/comm.css" />
+		<link rel="stylesheet" type="text/css" href="../css/RiskModel-Util.css" />
+		<link rel="stylesheet" href="css/sendRemind.css" />
+		<style>
+			.pagination>.active>a,
+			.pagination>.active>a:hover {
+				z-index: 0;
+				background-color: #5794E7;
+				border-color: #5794E7;
+			}
+			.Notice_title,
+			.Notice_title2 {
+				padding-top: 5px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="class_main">
+			<div class="top_Nav">
+				<div class="Nav_img"><img src="../../images/header_home.png" /></div>
+				<div class="Nav_content">
+					您当前的位置：
+					<span id="location">发送提醒</span>
+				</div>
+			</div>
+			<!-- 主要内容 -->
+			<div class="main_content" style="">
+				<div class="content_search" style="padding: 0 0%;">
+					<div class="active5">
+						<div class="neiceng" style="">
+							<span>姓名：</span>
+						</div>
+						<input type="text" class="form-control gname" placeholder="" id="gname">
+					</div>
+					<div class="active5" style="">
+						<div class="neiceng" style="">
+							<span>年龄：</span>
+						</div>
+						<input type="text" class="form-control g_age" placeholder="" id="g_age">
+					</div>
+					<!--孕周-->
+					<div class="active5" style="">
+						<div class="neiceng">
+							<span>孕周：</span>
+						</div>
+						<select name="" class="weeks" id="weeksQuery">
+						</select>
+					</div>
+					<div class="active5">
+						<div class="neiceng" style="">
+							<span>健康套餐：</span>
+						</div>
+						<select name="" class="vipGrade" id="vipGrade">
+						</select>
+					</div>
+					<!--病例-->
+					<div class="active5">
+						<div class="neiceng">
+							<span>病历卡号：</span>
+						</div>
+						<input type="text" class="form-control medicalrecordno" placeholder="" id="medicalNo">
+					</div>
+					<!--button-->
+					<div class="active5">
+						<div class="neiceng">
+							<button id="queryInfo" style="display: inline;margin-right: 3%;" onclick="searchList()" class="btn btn-primary btn-block">查询</button>
+						</div>
+						<div class="neiceng" style="width: 15%">
+							&nbsp;
+						</div>
+						<div class="neiceng">
+							<button id="queryReset" style="display: inline;" onclick="resetInput()" class="btn btn-primary btn-block">重置</button>
+						</div>
+					</div>
+				</div>
+				<div style="width: 100%;height: 30px;" class="button_div">
+					<!--<button type="button" class="btn btn-primary btn-block">全选</button>-->
+					<button type="button" id="remind_manage_btn" class="btn btn-primary btn-block">提醒管理</button>
+					<button type="button" class="btn btn-primary btn-block" onclick="fun(1);">发送提醒</button>
+				</div>
+				<div class="treated_list" style="margin-top: -45px;">
+					<table class="treated_table" id="user_list"></table>
+				</div>
+			</div>
+
+			<div class="remind_manage" style="display: none;">
+				<button id="add" onclick="fun(2);" type="button" class="btn btn-primary btn-block" style="width: 130px;">+ 新增提醒</button>
+				<div class="remind_list">
+					<div class="list_title">
+						<div class="list_name">提醒名称</div>
+						<div class="list_content">提醒内容</div>
+						<div class="list_operation">操作</div>
+					</div>
+					<div class="list_body">
+						<!--<div class="body_content">
+							<div class="list_name">提醒名称</div>
+							<div class="list_content">提醒内容</div>
+							<div class="list_operation">
+								<a>编辑</a> | <a>删除</a>
+							</div>
+						</div>-->
+					</div>
+					<div style="margin-top: 10px;text-align: center;">
+						<button type="button" id="backoff" style="width:100px;height: 30px;border: 1px solid lightgray;border-radius: 5px;background-color: white;color: gray;">返回</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!--高危信息弹框-->
+		<div id="highRiskData">
+			<div class="close-move">
+				<img src="../../images/guanbi.png" />
+			</div>
+			<label>高危总分：</label><span id="sumCount" class="color_level hScore"></span><br />
+			<label>高危等级：</label><span id="highRiskResultName" class="color_level hType"></span><br />
+			<label>高危详情：</label>
+			<table id="htable"> </table>
+		</div>
+
+		<!--点击套餐弹出框-->
+		<div class="service1">
+			<div class="close-move">
+				<img src="../../images/guanbi.png" />
+			</div>
+			<div class="vip-content">
+				<div>套餐名称：<span class="v-name"></span></div>
+				<div>套餐项目：<span class="vip-itn"></span></div>
+				<div class="vip-box"  style="border: #F4EA2A dashed  2px;">
+					<img src="../images/u7593.png" width="26px" /> &nbsp;服务说明：<span class="vip-ill"></span><br />
+					<img src="../images/u7593.png" width="26px" /> &nbsp;<span class="ser-small">微健康报告处理小贴士：</span><span class="vip-small"></span>
+				</div>
+			</div>
+			<div class="vip-date">
+				<div>套餐有效期：<span class="vip-sedate"></span></div>
+				<div class="vip-num1"></div>
+				<div class="vip-num2"></div>
+			</div>
+			<div class="vip-img" style="float: right;">
+				<div class="vip-img1">
+					<img src="../images/u6662.png" alt="" width="110px" />
+					<div class="see-report">查看已发报告</div>
+				</div>
+				<div class="vip-img2">
+					<img src="../images/u11820.png" alt="" width="110px" />
+					<div class="see-advice" style="color: white;">查看问诊记录</div>
+				</div>
+			</div>
+			<div id="ser-b" style="clear: both;margin: 0 auto;width: 60%;display: flex;text-align: center;margin-bottom: 15px;">
+				<div style="width: 50%;cursor: pointer;"  class="serviceCount">
+					<img src="../images/u7587.png" width="40px" />
+					<span>开通服务类型统计</span>
+				</div>
+				<div style="width: 50%;cursor: pointer;"  class="manual">
+					<img src="../images/u7589.png" width="40px" />
+					<span>操作指南</span>
+				</div>
+			</div>
+		</div>
+		
+		<!--点击开通服务类型统计-->
+			<div id="service-count">
+				<div class="close-move">
+					<img src="../../images/guanbi.png" />
+				</div>
+				<div style="display: flex;">
+					<div style="margin-right: 35px;">
+						<div class="echart-top">服务开通人群分布</div>
+						<div id="servicePie" style="width: 250px;height: 250px;"></div>
+					</div>
+					<div class="serviceV1">
+						<div class="echart-top">微健康报告已处理情况</div>
+						<div id="weeklyReportEchart" style="width: 250px;height: 250px;"></div>
+					</div>
+					<div class="serviceV2">
+						<div class="echart-top">医嘱远程问诊服务已处理情况</div>
+						<div id="adviceReportEchart" style="width: 250px;height: 250px;"></div>
+					</div>
+				</div>
+			</div>
+
+		<!--发送提醒-->
+		<!--<div id="myModal" class="modal fade" tabindex="-1" role="dialog">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">-->
+					<!--建议-->
+					<!--<div class="content_Notice">-->
+						<!--存储需要发送的mid-->
+						<!--<input type="text" hidden="hidden" id="send_mid" />
+						<div class="Notice_title">
+							<label>提醒自测内容：</label>
+						</div>
+						<div class="Notice_content">
+							<div style="width: 100%;height: 30px;">
+								<div style="float: left;"><input class="select_bloodsugar" type="checkbox" id="selfTestNotice1" />&nbsp;&nbsp;&nbsp;&nbsp;血糖检测</div>
+								<select id="pressureCont" style="float: left;padding-right: 15px;">
+									<option value="0">每日检查7次（即三餐前30分钟，三餐后2小时和夜间24点血糖检查）</option>
+									<option value="1">连续24小时动态血糖监测，连续监测7日。（即三餐前30分钟，三餐后2小时和夜间24点血糖检查）</option>
+								</select>
+							</div>
+							<input type="checkbox" class="selected_selfTest" id="selfTestNotice2" /> <span class="NoticeItem2">血压检测</span> <span class="NoticeCont2">每日一次定时血压监测</span> <br />
+							<input type="checkbox" class="selected_selfTest" id="selfTestNotice3" /> <span class="NoticeItem3">体重检测</span> <span class="NoticeCont3">每日一次定时体重监测</span> <br />
+							<input type="checkbox" class="selected_selfTest" id="selfTestNotice4" /> <span class="NoticeItem4">尿液检测</span> <span class="NoticeCont4">每日一次定时尿液监测</span> <br />
+							<input type="checkbox" class="selected_selfTest" id="selfTestNotice5" /> <span class="NoticeItem5">胎动检测</span> <span class="NoticeCont5">每日一次定时胎动监测</span> <br />
+							<input type="checkbox" class="selected_selfTest" id="selfTestNotice6" /> <span class="NoticeItem6">胎心检测</span> <span class="NoticeCont6">每日一次定时胎心监测</span> <br />
+
+						</div>
+						<div class="Notice_title2">
+							<label>提醒监测建议：</label>
+						</div>
+						<div class="Notice_content2">
+							<textarea id="thisAdvice_content" name="" placeholder="请输入提醒的内容"></textarea>
+
+						</div>
+						<div class="Notice_send">
+							<div class="send_title">
+								<label>发送至：</label><br />
+								<label>提醒方式：</label>
+							</div>
+							<div class="send_content">
+								<input type="checkbox" class="send_selectAll" onclick="selectAllSend();" name="" /> 全选
+								<br />
+								<input type="checkbox" class="select_gravida sendTo_people" name="" /> <label>孕妇本人</label>
+								<input type="checkbox" class="select_husband sendTo_people" name="" /> <label>丈夫</label>
+								<input type="checkbox" class="select_orderlies sendTo_people" name="" /> <label>看护人</label>
+								<br />
+								<input type="checkbox" id="sms_alerts" class="sending_way" name="" /> <label>短信通知</label>
+								<input type="checkbox" id="app_alerts" class="sending_way" name="" /> <label>app通知</label>
+								<input type="checkbox" id="weChat_alerts" class="sending_way" name="" /> <label>微信通知</label>
+							</div>
+
+						</div>
+						<div class="content_submit">
+							<button id="cancle" onclick="sendNoticeClose()"> 取消 </button>
+							<button id="submit" onclick="send_reminder()"> 确认发送 </button>
+
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>-->
+
+		<!--风险因子与高危级别弹出框-->
+		<div id="risk-box">
+			<div class="close-move" style="top: -13px;">
+				<img src="../../images/guanbi.png" />
+			</div>
+			<div class="main_cont">
+				<div class="row">
+					<div id="gravidaList-tips"></div>
+					<table id="gravidaList">
+
+					</table>
+				</div>
+
+				<div class="div_RiskModel">
+					<!--风险模型雷达图-->
+					<div id="div-modelChart">
+
+					</div>
+
+					<!--风险模型结果信息-->
+					<div id="risk_result">
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+		<!--检查报告完整度弹框-->
+		<div id="hCheck-box">
+			<div class="close-move" style="top: -13px;">
+				<img src="../../images/guanbi.png" />
+			</div>
+			<div class="selfTest-box-top">
+				<div id="">
+					<div>
+						<span id="gname" class="gname">王方圆</span>孕<span id="gWeek">25</span>周
+						<div class="selfTest-title">
+							报告上传完成情况：
+						</div>
+					</div>
+				</div>
+				<div id="box-top-middle" style="height:190px;">
+					<div id="circleForHCheck" class="box-top-middle" style="margin-top: 15px;"></div>
+					<div id="div-table2" class="box-top-middle">
+						<div id="div-suggestProject2">
+							本孕程建议检查项目：
+							<span id="checkProject">体重、血压、血糖、宫高、腹围、胎心、胎动</span>
+						</div>
+						<table id="selfTestTable2">
+							<tr>
+								<td style="width: 95px;">已上传项目</td>
+								<td id="inCheck">
+									无
+								</td>
+							</tr>
+							<tr>
+								<td style="width: 95px;">未上传项目</td>
+								<td id="notCheck">宫高、腹围、胎动、血糖</td>
+							</tr>
+						</table>
+						<div class="prompt">提示：点击已上传的项目可查看报告结果</div>
+					</div>
+					<div id="check-table">
+						<div>
+							<span id="check-close" class="proName">血压趋势图</span>
+						</div>
+						<div id="check-result">
+
+						</div>
+					</div>
+				</div>
+				<div id="div-weChat-service">
+					<span id="weChat-service2" style="color: #007AFF;cursor: pointer;">
+						微信客服追踪记录
+						<img id="index-top" class="rotate-img" src="../images/index-top.png"/>
+					</span>
+				</div>
+				<div id="weChat-record2">
+
+				</div>
+			</div>
+			<div class="selfTest-box-bottom">
+				<div>
+					<div class="sendAdvice">
+						<div>
+							发送提醒：
+						</div>
+						<div class="adviceDetail sendContent">
+							<span class="gname2">王方圆</span><span class="cont-1">你好，当前孕程你还有</span>
+							<span id="checkProjecButton2">
+								
+							</span> <span class="cont-2">报告未上传，为保证全面了解你当前身体各项指标，请及时上传。</span>
+						</div>
+					</div>
+					<div class="addCheckProject">
+						<div>
+							增加产检报告：<span id="div-button2">
+						</span>
+						</div>
+
+					</div>
+				</div>
+				<div class="positonBlock">
+
+				</div>
+				<div id="sendPeopleAndWay2">
+					<div>
+						发送至：<span id="sendingPeople2">
+							<button data="1"><img src="../../images/gravida1.png"/>孕妇本人</button>
+							<button data="2"><img src="../../images/husband1.png"/>丈夫</button>
+							<button data="3"><img src="../../images/looking1.png"/>看护人</button>
+						</span>
+					</div>
+					<div>
+						提醒方式：<span id="sendingWay2">
+							<button id="shortMessage2" data="1"><img src="../../images/message1.png"/>短信通知</button>
+							<button id="AppComfirm2" data="2"><img src="../../images/app1.png"/>APP通知</button>
+							<button id="weChatComfirm2" data="3"><img src="../../images/wechat1.png"/>微信通知</button>
+						</span>
+					</div>
+					<div id="sendingButton2">
+						<button id="comfirmSending2">确认发送</button><button id="cancel2">取消</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!--自测完整度弹框-->
+		<div id="selfTest-box">
+			<div class="close-move" style="top: -13px;">
+				<img src="../../images/guanbi.png" />
+			</div>
+			<div class="selfTest-box-top">
+				<div id="">
+					<div>
+						<span id="gname" class="gname">王方圆</span>孕<span id="gWeek2">25</span>周
+						<div class="selfTest-title">
+							自测上传完成情况：
+						</div>
+					</div>
+				</div>
+				<div id="box-top-middle">
+					<div id="circleForSelfTest" class="box-top-middle"></div>
+					<div id="div-table" class="box-top-middle">
+						<div id="div-suggestProject">
+							本孕程建议家庭自测项目：
+							<span id="suggestProject">体重、血压、血糖、宫高、腹围、胎心、胎动</span>
+						</div>
+						<table id="selfTestTable">
+							<tr>
+								<td nowrap="nowrap">已上传项目</td>
+								<td id="selfTestDone">
+									<!--<span id="weight" class="showEcharts">体重</span>、
+										<span id="bloodPressure" class="showEcharts">血压</span>、
+										<span id="bloodSugar" class="showEcharts">血糖</span>、
+										<span id="fundalHeight" class="showEcharts">宫高</span>、
+										<span id="abdominal" class="showEcharts">腹围</span>、
+										<span id="featalHeart" class="showEcharts">胎心</span>、
+										<span id="featalMovement" class="showEcharts">胎动</span>-->
+								</td>
+							</tr>
+							<tr>
+								<td nowrap="nowrap">未上传项目</td>
+								<td id="selfTestNotDone"></td>
+							</tr>
+						</table>
+					</div>
+					<div id="div-echarts">
+						<div id="div-echarts-top">
+							<span id="echartClose" class="echartsTitle">
+									<span id="selfTestProject">血压</span>趋势图
+							<img class="doubleArrow" src="../images/leftDoubleArrow.png" />
+							</span>
+							<select id="echarts-select">
+								<option value="-1" selected="selected">全部</option>
+								<option value="13">最近三个月</option>
+								<option value="4">最近一个月</option>
+								<option value="1">最近一周</option>
+							</select>
+						</div>
+						<div id="echartsContainer">
+							<div id="echarts"></div>
+						</div>
+					</div>
+				</div>
+				<div id="div-weChat-service">
+					<span id="weChat-service">
+							微信客服追踪记录
+							<img id="index-top" class="rotate-img" src="../images/index-top.png"/>
+						</span>
+				</div>
+				<div id="weChat-record">
+
+				</div>
+			</div>
+			<div class="selfTest-box-bottom">
+				<div>
+					<div class="sendAdvice">
+						<div>
+							发送提醒：
+						</div>
+						<div class="adviceDetail">
+							<span class="gname smsContent">王方圆</span><span class="smsContent">你好，为了全面了解你在家中身体的各项指标及健康变化情况，当前孕程建议进行</span>
+							<span class="smsContent" style="display: none;">replaceContent</span>
+							<span id="checkProjecButton">
+									<button>体重<img class="redClose" src="../images/redClose.png"/></button>
+									<button>血糖<img class="redClose" src="../images/redClose.png"></button>
+									<button>胎动<img class="redClose" src="../images/redClose.png"></button>
+									<button>血压<img class="redClose" src="../images/redClose.png"></button>
+									<button>胎心<img class="redClose" src="../images/redClose.png"></button>
+									<button>宫高<img class="redClose" src="../images/redClose.png"></button>
+									<button>腹围<img class="redClose" src="../images/redClose.png"></button>
+								</span>
+							<span class="smsContent">家庭自测项目，请坚持自测并及时上传数据。</span>
+						</div>
+					</div>
+					<div class="addCheckProject">
+						<div>
+							检查项目添加：
+						</div>
+						<div id="div-button">
+							<button>体重<img class="blueAdd" src="../images/blueAdd.png"/></button>
+							<button>血糖<img class="blueAdd" src="../images/blueAdd.png"/></button>
+							<button>胎动<img class="blueAdd" src="../images/blueAdd.png"/></button>
+							<button>血压<img class="blueAdd" src="../images/blueAdd.png"/></button>
+							<button>胎心<img class="blueAdd" src="../images/blueAdd.png"/></button>
+							<button>宫高<img class="blueAdd" src="../images/blueAdd.png"/></button>
+							<button>腹围<img class="blueAdd" src="../images/blueAdd.png"/></button>
+						</div>
+					</div>
+				</div>
+				<div class="positonBlock">
+
+				</div>
+				<div id="sendPeopleAndWay">
+					<div>
+						发送至：<span id="sendingPeople">
+							<button data="1"><img src="../../images/gravida1.png"/>孕妇本人</button>
+							<button data="2"><img src="../../images/husband1.png"/>丈夫</button>
+							<button data="3"><img src="../../images/looking1.png"/>看护人</button>
+						</span>
+					</div>
+					<div>
+						提醒方式：<span id="sendingWay">
+							<button id="shortMessage" data="1"><img src="../../images/message1.png"/>短信通知</button>
+							<button id="AppComfirm" data="2"><img src="../../images/app1.png"/>APP通知</button>
+							<button id="weChatComfirm" data="3"><img src="../../images/wechat1.png"/>微信通知</button>
+						</span>
+					</div>
+					<div id="sendingButton">
+						<button id="comfirmSending">确认发送</button><button id="cancel">取消</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="alert" class="modal fade" tabindex="-1" role="dialog">
+			<div class="modal-dialog" role="document">
+				<div class="modal_content">
+					<!--退出提示框-->
+					<div class="alert_frame" style="width: 650px;">
+						<div class="title11">
+							<div style="float: left;margin-left: 20px;font-size: 15px;">发送提醒</div>
+							<img id="close" src="images/close.png" width="20px" style="float: right;margin: 10px 15px 0 0;cursor: pointer;">
+						</div>
+						<div class="content11" style="">
+							<div style="width: 200px;padding: 15px 30px 0 25px;font-size: 15px;cursor: pointer;" onclick="hide(1);">
+								按规则提醒
+								<img src="images/down.png" id="down" width="15px" style="margin-top: -4px;margin-left: 10px;"/>
+								<img src="images/up.png" id="up" width="15px" style="display: none;margin-top: -4px;margin-left: 10px;"/>
+							</div>
+							<div class="warning_div">
+								<!--<div class="line">
+										<div class="remind_name" style="">
+											提醒名称：
+											<span>B</span>
+										</div>
+										<div class="remind_rule">
+											<input type="checkbox" />
+											<span>按此规则提醒</span>
+										</div>
+									</div>-->
+							</div>
+							<div style="width: 200px;padding: 15px 30px 0 25px;font-size: 15px;cursor: pointer;" onclick="hide(2);">
+								自定义提醒
+								<img src="images/down.png" id="down2" width="15px" style="margin-top: -4px;margin-left: 10px;"/>
+								<img src="images/up.png" id="up2" width="15px" style="display: none;margin-top: -4px;margin-left: 10px;"/>
+							</div>
+							
+							<div class="content_Notice">
+								<!--存储需要发送的mid-->
+								<input type="text" hidden="hidden" id="send_mid" />
+								<div class="Notice_title">
+									<label>提醒自测内容：</label>
+								</div>
+								<div class="Notice_content">
+									<div style="width: 100%;height: 30px;">
+										<div style="float: left;"><input class="select_bloodsugar" type="checkbox" id="selfTestNotice1" />&nbsp;&nbsp;&nbsp;&nbsp;血糖检测</div>
+										<select id="pressureCont" style="float: left;padding-right: 15px;background-color: white;">
+											<option value="0">每日检查7次（即三餐前30分钟，三餐后2小时和夜间24点血糖检查）</option>
+											<option value="1">连续24小时动态血糖监测，连续监测7日。（即三餐前30分钟，三餐后2小时和夜间24点血糖检查）</option>
+										</select>
+									</div>
+									<input type="checkbox" class="selected_selfTest" id="selfTestNotice2" /> <span class="NoticeItem2">血压检测</span> <span class="NoticeCont2">每日一次定时血压监测</span> <br />
+									<input type="checkbox" class="selected_selfTest" id="selfTestNotice3" /> <span class="NoticeItem3">体重检测</span> <span class="NoticeCont3">每日一次定时体重监测</span> <br />
+									<input type="checkbox" class="selected_selfTest" id="selfTestNotice4" /> <span class="NoticeItem4">尿液检测</span> <span class="NoticeCont4">每日一次定时尿液监测</span> <br />
+									<input type="checkbox" class="selected_selfTest" id="selfTestNotice5" /> <span class="NoticeItem5">胎动检测</span> <span class="NoticeCont5">每日一次定时胎动监测</span> <br />
+									<input type="checkbox" class="selected_selfTest" id="selfTestNotice6" /> <span class="NoticeItem6">胎心检测</span> <span class="NoticeCont6">每日一次定时胎心监测</span> <br />
+	
+								</div>
+								<div class="Notice_title2">
+									<label>提醒监测建议：</label>
+								</div>
+								<div class="Notice_content2">
+									<textarea id="thisAdvice_content" name="" placeholder="请输入提醒的内容"></textarea>
+	
+								</div>
+								<div class="Notice_send">
+									<div class="send_title">
+										<label>发送至：</label><br />
+										<label>提醒方式：</label>
+									</div>
+									<div class="send_content">
+										<input type="checkbox" class="send_selectAll" onclick="selectAllSend();" name="" /> 全选
+										<br/>
+										<input type="checkbox" class="select_gravida sendTo_people" id="sendPerson1" /> <label>孕妇本人</label>
+										<input type="checkbox" class="select_husband sendTo_people" id="sendPerson2" /> <label>丈夫</label>
+										<input type="checkbox" class="select_orderlies sendTo_people" id="sendPerson3" /> <label>看护人</label>
+										<br/>
+										<input type="checkbox" id="sms_alerts" class="sending_way" name="" /> <label>短信通知</label>
+										<input type="checkbox" id="app_alerts" class="sending_way" name="" /> <label>APP通知</label>
+										<input type="checkbox" id="weChat_alerts" class="sending_way" name="" /> <label>微信通知</label>
+									</div>
+	
+								</div>
+								<!--<div class="content_submit">
+									<button id="cancle" onclick="sendNoticeClose()"> 取消 </button>
+									<button id="submit" onclick="send_reminder()"> 确认发送 </button>
+								</div>-->
+	
+							</div>
+							
+							<div class="btn_div" style="padding-bottom: 15px;">
+								<button id="cancel11" style="border: 1px solid lightgray;background-color: white;color: gray;">取消</button>
+								<button id="submit11" style="margin-left: 10px;">确定发送</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--新增提醒弹出框-->
+		<div id="write_remind" class="modal fade" tabindex="-1" role="dialog">
+			<div class="modal-dialog" role="document">
+				<div class="modal_content">
+					<!--退出提示框-->
+					<div class="write_remind_frame" style="width: 650px;">
+						<div class="write_remind_title">
+							<div style="float: left;margin-left: 20px;font-size: 15px;">新增提醒</div>
+							<img id="close2" src="images/close.png" width="20px" style="float: right;margin: 10px 15px 0 0;cursor: pointer;">
+						</div>
+						<div class="write_remind_content" style="">
+							<div class="write_remind_div">
+								<div class="up">
+									<div style="display: flex;width: 100%;height: 40px;">
+										<div style="width: 20%;line-height: 28px;padding-left: 0;font-size: 14px;">提醒名称</div>
+										<div>
+											<input id="remind_name" class="form-control" style="width: 130px;" />
+											<span style="color: lightgray;">最多6个字符（中文或数字）</span>
+										</div>
+									</div>
+									<div style="width: 100%;height: 40px;margin-top: 35px;">
+										<span>设置该提醒一天内提醒的次数</span>
+										<button class="choose" id="one_times" onclick="changeback2(3);" style="margin-left: 10px;border-radius: 5px 0 0 5px;">一天提醒一次</button>
+										<button class="choose" id="two_times" onclick="changeback2(4);" style="margin-left: -4px;margin-right:10px;border-radius: 0 5px 5px 0;">一天早晚提醒两次</button>
+										<input id="remind_times" type="checkbox" />
+										<span>提醒时段设置</span>
+									</div>
+								</div>
+								<div class="middle">
+									<div style="font-size: 14px;">提醒条件设置</div>
+									<div style="padding: 10px 0 10px 60px;">
+										<div class="report" style="margin-bottom: 15px;">
+											<span>报告上传完成度低于</span>
+											<select id="report_degree" style="margin-left: 10px;">
+												<option>10%</option>
+												<option>20%</option>
+												<option>30%</option>
+												<option>40%</option>
+												<option>50%</option>
+												<option>60%</option>
+												<option>70%</option>
+												<option>80%</option>
+												<option>90%</option>
+												<option>100%</option>
+											</select>
+											<input id="report" type="checkbox" style="margin-left: 15px;" />
+											<span>提醒条件设置</span>
+										</div>
+										<div class="self">
+											<span>自测上传完整度低于</span>
+											<select id="self_degree" style="margin-left: 10px;">
+												<option>10%</option>
+												<option>20%</option>
+												<option>30%</option>
+												<option>40%</option>
+												<option>50%</option>
+												<option>60%</option>
+												<option>70%</option>
+												<option>80%</option>
+												<option>90%</option>
+												<option>100%</option>
+											</select>
+											<input id="self" type="checkbox" style="margin-left: 15px;" />
+											<span>提醒条件设置</span>
+										</div>
+									</div>
+								</div>
+								<div class="down">
+									<div style="font-size: 14px;">提醒方式设置</div>
+									<div class="remind_method" style="padding: 10px 0 10px 60px;">
+										<button id="message" onclick="changeback(1);" type="button" style="margin-right: 15px;">短信通知</button>
+										<button id="wechat" onclick="changeback(2);" type="button" style="margin-right: 15px;">微信通知</button>
+										<button id="app" onclick="changeback(3);" type="button">App通知</button>
+									</div>
+								</div>
+							</div>
+							<div class="write_remind_btn">
+								<button id="btn_cancel" style="border: 1px solid lightgray;background-color: white;color: gray;">取消</button>
+								<button id="btn_submit" style="margin-left: 10px;">确定</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!--点击开通服务类型统计-->
+		<div id="service-count">
+			<div class="close-move">
+				<img src="../../images/guanbi.png" />
+			</div>
+			<div style="display: flex;">
+				<div style="margin-right: 35px;">
+					<div class="echart-top">服务开通人群分布</div>
+					<div id="servicePie" style="width: 250px;height: 250px;"></div>
+				</div>
+				<div class="serviceV1">
+					<div class="echart-top">微健康报告已处理情况</div>
+					<div id="weeklyReportEchart" style="width: 250px;height: 250px;"></div>
+				</div>
+				<div class="serviceV2">
+					<div class="echart-top">医嘱远程问诊服务已处理情况</div>
+					<div id="adviceReportEchart" style="width: 250px;height: 250px;"></div>
+				</div>
+			</div>
+		</div>
+
+		<!--编辑提醒弹出框-->
+		<div id="update_remind" class="modal fade" tabindex="-1" role="dialog">
+			<div class="modal-dialog" role="document">
+				<div class="modal_content">
+					<!--退出提示框-->
+					<div class="write_remind_frame" style="width: 650px;">
+						<div class="write_remind_title">
+							<div style="float: left;margin-left: 20px;font-size: 15px;">编辑提醒</div>
+							<img id="close3" src="images/close.png" width="20px" style="float: right;margin: 10px 15px 0 0;cursor: pointer;">
+						</div>
+						<div class="write_remind_content" style="">
+							<div class="write_remind_div">
+								<div class="up">
+									<div style="display: flex;width: 100%;height: 40px;">
+										<div style="width: 20%;line-height: 28px;padding-left: 0;font-size: 14px;">提醒名称</div>
+										<div >
+											<input id="update_name" class="form-control" style="width: 130px;" disabled="disabled" />
+											<span style="color: lightgray;">最多6个字符（中文或数字）</span>
+										</div>
+									</div>
+									<div style="width: 100%;height: 40px;margin-top: 35px;">
+										<span>设置该提醒一天内提醒的次数</span>
+										<button class="choose" id="o_times" onclick="changeback2(1);" style="margin-left: 10px;border-radius: 5px 0 0 5px;">一天提醒一次</button>
+										<button class="choose" id="t_times" onclick="changeback2(2);" style="margin-left: -4px;margin-right:10px;border-radius: 0 5px 5px 0;">一天早晚提醒两次</button>
+										<input id="r_times" type="checkbox" />
+										<span>提醒时段设置</span>
+									</div>
+								</div>
+								<div class="middle">
+									<div style="font-size: 14px;">提醒条件设置</div>
+									<div style="padding: 10px 0 10px 60px;">
+										<div class="report" style="margin-bottom: 15px;">
+											<span>报告上传完成度低于</span>
+											<select id="update_report_degree" style="margin-left: 10px;">
+												<option>10%</option>
+												<option>20%</option>
+												<option>30%</option>
+												<option>40%</option>
+												<option>50%</option>
+												<option>60%</option>
+												<option>70%</option>
+												<option>80%</option>
+												<option>90%</option>
+												<option>100%</option>
+											</select>
+											<input id="update_report" type="checkbox" style="margin-left: 15px;" />
+											<span>提醒条件设置</span>
+										</div>
+										<div class="self">
+											<span>自测上传完整度低于</span>
+											<select id="update_self_degree" style="margin-left: 10px;">
+												<option>10%</option>
+												<option>20%</option>
+												<option>30%</option>
+												<option>40%</option>
+												<option>50%</option>
+												<option>60%</option>
+												<option>70%</option>
+												<option>80%</option>
+												<option>90%</option>
+												<option>100%</option>
+											</select>
+											<input id="update_self" type="checkbox" style="margin-left: 15px;" />
+											<span>提醒条件设置</span>
+										</div>
+									</div>
+								</div>
+								<div class="down">
+									<div style="font-size: 14px;">提醒方式设置</div>
+									<div class="remind_method" style="padding: 10px 0 10px 60px;">
+										<button id="update_message" onclick="changeback(4);" type="button" style="margin-right: 15px;">短信通知</button>
+										<button id="update_wechat" onclick="changeback(5);" type="button" style="margin-right: 15px;">微信通知</button>
+										<button id="update_app" onclick="changeback(6);" type="button">App通知</button>
+									</div>
+								</div>
+							</div>
+							<div class="write_remind_btn">
+								<button id="update_btn_cancel" style="border: 1px solid lightgray;background-color: white;color: gray;">取消</button>
+								<button id="update_btn_submit" style="margin-left: 10px;">确定</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<!-- 确认删除弹出框 -->
+		<div id="delete" class="modal fade" tabindex="-1" role="dialog">
+			<div class="modal-dialog2" role="document">
+				<div class="modal_content2">
+					<div class="delete_frame" style="width: 500px;">
+						<div class="title22">
+							<img id="close4" src="images/close11.png" width="20px" style="float: right;margin: 5px 10px 0 0;cursor: pointer;">
+						</div>
+						<div class="content22" style="">
+							<div class="warning_div2">
+								<img src="images/warning.png" width="50px" />
+								<div style="margin-top: 20px;">提示：确定要删除此提醒吗?</div>
+							</div>
+							<div class="btn_div2">
+								<button id="submit22">确定</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<button id="cancel22">取消</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div id="record" class="modal fade" tabindex="-1" role="dialog">
+			<div class="modal-dialog" role="document">
+				<div class="modal_content">
+					<!--退出提示框-->
+					<div class="alert_frame" style="width: 650px;">
+						<div class="title11">
+							<div style="float: left;margin-left: 20px;font-size: 15px;">发送提醒记录</div>
+							<img id="close5" src="images/close.png" width="20px" style="float: right;margin: 10px 15px 0 0;cursor: pointer;">
+						</div>
+						<div class="content11" style="height: auto;padding-top: 10px;" id="frame1">
+							<div style="padding: 20px 20px;" id="check_record">
+								<div class="col">
+									<div class="col_title">最近发送时间：</div> 
+									<div class="col_content" id="uploadDate"></div>
+								</div>
+								<div class="col">
+									<div class="col_title">发送提醒内容：</div> 
+									<div class="col_content" id="remindcontent"></div>
+								</div>
+								<div class="col">
+									<div class="col_title">自测内容：</div>
+									<div class="col_content" id="selftestdetails">
+										<!--<div class="r_test">
+											<div class="test_title" >体重测量</div>
+											<div class="test_content">每日一次定时体重测量</div>
+										</div>
+										<div class="r_test">
+											<div class="test_title">血压测量</div>
+											<div class="test_content">每日早晚两次定时血压测量</div>
+										</div>-->
+									</div>
+								</div>
+								<div class="col">
+									<div class="col_title">监测建议：</div>
+									<div class="col_content" id="monitoringsuggestion">
+										<!--为了您和胎儿的健康状况，请按时按要求在家进行血糖及血压监测，
+										监测数据请及时上传，以便及时发现潜在风险问题，以及早发现，早干预，早解决。-->
+									</div>
+								</div>
+								<div class="col">
+									<div class="col_title">发送至：</div>
+									<div class="col_content" id="acceptedpeople">
+									</div>
+								</div>
+								<div class="col">
+									<div class="col_title">提醒方式：</div>
+									<div class="col_content" id="sendingways">
+									</div>
+								</div>
+								<div class="button">
+									<button id="send_again">再次提醒</button>
+								</div>
+							</div>
+						</div>
+						<div class="content11" style="display: none;height: 50px;padding-top: 10px;"id="frame2">
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script type="text/javascript" src="../../js/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="../../js/getLogin.js"></script>
+		<script type="text/javascript" src="../../js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="../../js/bootstrap-table.js"></script>
+		<script type="text/javascript" src="../../js/bootstrap-table-zh-CN.js"></script>
+		<script type="text/javascript" src="../../js/circles.min.js"></script>
+		<script type="text/javascript" src="../../utils/js/bootstrapTable.js"></script>
+		<script type="text/javascript" src="../../js/echarts.min.js"></script>
+		<script type="text/javascript" src="../../js/pushMsg.js"></script>
+		<script type="text/javascript" src="../js/echartsForSelfTest.js"></script>
+		<script type="text/javascript" src="../js/RiskModel-Util.js"></script>
+		<script type="text/javascript" src="../../utils/js/drag.js"></script>
+		<script type="text/javascript" src="../../js/Util.js"></script>
+		<script type="text/javascript" src="../js/queryList.js"></script>
+		<script type="text/javascript" src="../../utils/js/check_report.js"></script>
+		<script type="text/javascript" src="js/sendRemindTable.js"></script>
+		<script type="text/javascript" src="../js/listCommon.js"></script>
+		<script type="text/javascript" src="js/sendRemind.js"></script>
+		
+		<!--区分导航路径的唯一标识  @Author hongwx-->
+		<script>
+			$(function(){
+				sessionStorage.setItem('only',12);
+			})
+		</script>
+	</body>
+
+</html>

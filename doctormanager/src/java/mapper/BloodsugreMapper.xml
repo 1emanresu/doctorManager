@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.yunji.doctormanager.dao.BloodsugreMapper" >
+  <resultMap id="BaseResultMap" type="cn.yunji.doctormanager.entity.Bloodsugre" >
+    <id column="wId" property="wid" jdbcType="INTEGER" />
+    <result column="mId" property="mid" jdbcType="CHAR" />
+    <result column="checkProjectId" property="checkprojectid" jdbcType="INTEGER" />
+    <result column="wDate" property="wdate" jdbcType="TIMESTAMP" />
+    <result column="bBreakfast" property="bbreakfast" jdbcType="CHAR" />
+    <result column="afbre" property="afbre" jdbcType="CHAR" />
+    <result column="bflun" property="bflun" jdbcType="CHAR" />
+    <result column="aflun" property="aflun" jdbcType="CHAR" />
+    <result column="bfdin" property="bfdin" jdbcType="CHAR" />
+    <result column="afdin" property="afdin" jdbcType="CHAR" />
+    <result column="bfsle" property="bfsle" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    wId, mId, checkProjectId, wDate, bBreakfast, afbre, bflun, aflun, bfdin, afdin, bfsle
+  </sql>
+  <select id="find" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from bloodsugre
+    where mId = #{mid,jdbcType=CHAR}
+  </select>
+   <!-- luoyc 根据日期范围查询指定孕妇血糖数据 -->
+  <select id="findByDateRange" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from bloodsugre
+    where mid=#{0} and wDate between #{1} and #{2}
+  </select>
+  <insert id="insert" parameterType="cn.yunji.doctormanager.entity.Bloodsugre" >
+    insert into bloodsugre ( mId, wDate, 
+      bBreakfast, afbre, bflun, aflun, 
+      bfdin, afdin, bfsle)
+    values ( #{mid,jdbcType=CHAR}, #{wdate,jdbcType=DATE}, 
+      #{bbreakfast,jdbcType=CHAR}, #{afbre,jdbcType=CHAR}, #{bflun,jdbcType=CHAR}, #{aflun,jdbcType=CHAR}, 
+      #{bfdin,jdbcType=CHAR}, #{afdin,jdbcType=CHAR}, #{bfsle,jdbcType=CHAR},#{checkprojectid,jdbcType=INTEGER})
+  </insert>
+  <update id="update1" parameterType="cn.yunji.doctormanager.entity.Bloodsugre" >
+    update bloodsugre
+    set 
+      bBreakfast = #{bbreakfast,jdbcType=CHAR}
+    where mId = #{mid,jdbcType=CHAR} and  wDate = #{wdate,jdbcType=DATE}
+  </update>
+  <update id="update2" parameterType="cn.yunji.doctormanager.entity.Bloodsugre" >
+    update bloodsugre
+    set 
+     afbre = #{afbre,jdbcType=CHAR}
+    where mId = #{mid,jdbcType=CHAR} and  wDate = #{wdate,jdbcType=DATE}    
+  </update>
+  <update id="update3" parameterType="cn.yunji.doctormanager.entity.Bloodsugre" >
+    update bloodsugre
+    set 
+       bflun = #{bflun,jdbcType=CHAR}
+    where mId = #{mid,jdbcType=CHAR} and  wDate = #{wdate,jdbcType=DATE}    
+  </update>
+  <update id="update4" parameterType="cn.yunji.doctormanager.entity.Bloodsugre" >
+    update bloodsugre
+    set 
+      aflun = #{aflun,jdbcType=CHAR}
+    where mId = #{mid,jdbcType=CHAR} and  wDate = #{wdate,jdbcType=DATE}    
+  </update>
+  <update id="update5" parameterType="cn.yunji.doctormanager.entity.Bloodsugre" >
+    update bloodsugre
+    set 
+      bfdin = #{bfdin,jdbcType=CHAR}
+    where mId = #{mid,jdbcType=CHAR} and  wDate = #{wdate,jdbcType=DATE}    
+  </update>
+  <update id="update6" parameterType="cn.yunji.doctormanager.entity.Bloodsugre" >
+    update bloodsugre
+    set 
+       afdin = #{afdin,jdbcType=CHAR}
+    where mId = #{mid,jdbcType=CHAR} and  wDate = #{wdate,jdbcType=DATE}    
+  </update>
+  <update id="update7" parameterType="cn.yunji.doctormanager.entity.Bloodsugre" >
+    update bloodsugre
+    set 
+       bfsle = #{bfsle,jdbcType=CHAR}
+    where mId = #{mid,jdbcType=CHAR} and  wDate = #{wdate,jdbcType=DATE}    
+  </update>
+  <select id="findToday" parameterType="cn.yunji.doctormanager.entity.Bloodsugre" resultType="cn.yunji.doctormanager.entity.Bloodsugre">
+		select * from bloodsugre where mId=#{mid,jdbcType=CHAR} and wDate=#{wdate,jdbcType=DATE}
+  </select>
+</mapper>

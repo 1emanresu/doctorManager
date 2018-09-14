@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.yunji.doctormanager.dao.MyAdviceMapper" >
+  <resultMap id="BaseResultMap" type="cn.yunji.doctormanager.entity.MyAdvice" >
+    <id column="myAdviceId" property="myadviceid" jdbcType="INTEGER" />
+    <result column="riskfactorid" property="riskfactorid" jdbcType="INTEGER" />
+    <result column="cid" property="cid" jdbcType="INTEGER" />
+    <result column="doctorId" property="doctorid" jdbcType="INTEGER" />
+    <result column="myKnowledge" property="myknowledge" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    myAdviceId, riskfactorid, cid, doctorId, myKnowledge
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from myadvice
+    where myAdviceId = #{myadviceid,jdbcType=INTEGER}
+  </select>
+  <select id="selectByDoctorId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+        myKnowledge
+    from myadvice 
+    where doctorId = #{doctorid,jdbcType=INTEGER} order by myKnowledge desc
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from myadvice
+    where myAdviceId = #{myadviceid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.yunji.doctormanager.entity.MyAdvice" >
+    insert into myadvice (myAdviceId, riskfactorid, cid, 
+      doctorId, myKnowledge)
+    values (#{myadviceid,jdbcType=INTEGER}, #{riskfactorid,jdbcType=INTEGER}, #{cid,jdbcType=INTEGER}, 
+      #{doctorid,jdbcType=INTEGER}, #{myknowledge,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.yunji.doctormanager.entity.MyAdvice" >
+    insert into myadvice
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="myadviceid != null" >
+        myAdviceId,
+      </if>
+      <if test="riskfactorid != null" >
+        riskfactorid,
+      </if>
+      <if test="cid != null" >
+        cid,
+      </if>
+      <if test="doctorid != null" >
+        doctorId,
+      </if>
+      <if test="myknowledge != null" >
+        myKnowledge,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="myadviceid != null" >
+        #{myadviceid,jdbcType=INTEGER},
+      </if>
+      <if test="riskfactorid != null" >
+        #{riskfactorid,jdbcType=INTEGER},
+      </if>
+      <if test="cid != null" >
+        #{cid,jdbcType=INTEGER},
+      </if>
+      <if test="doctorid != null" >
+        #{doctorid,jdbcType=INTEGER},
+      </if>
+      <if test="myknowledge != null" >
+        #{myknowledge,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.yunji.doctormanager.entity.MyAdvice" >
+    update myadvice
+    <set >
+      <if test="riskfactorid != null" >
+        riskfactorid = #{riskfactorid,jdbcType=INTEGER},
+      </if>
+      <if test="cid != null" >
+        cid = #{cid,jdbcType=INTEGER},
+      </if>
+      <if test="doctorid != null" >
+        doctorId = #{doctorid,jdbcType=INTEGER},
+      </if>
+      <if test="myknowledge != null" >
+        myKnowledge = #{myknowledge,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where myAdviceId = #{myadviceid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.yunji.doctormanager.entity.MyAdvice" >
+    update myadvice
+    set riskfactorid = #{riskfactorid,jdbcType=INTEGER},
+      cid = #{cid,jdbcType=INTEGER},
+      doctorId = #{doctorid,jdbcType=INTEGER},
+      myKnowledge = #{myknowledge,jdbcType=VARCHAR}
+    where myAdviceId = #{myadviceid,jdbcType=INTEGER}
+  </update>
+</mapper>

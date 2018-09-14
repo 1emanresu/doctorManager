@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.yunji.doctormanager.dao.FoodproblemMapper" >
+  <resultMap id="BaseResultMap" type="cn.yunji.doctormanager.entity.Foodproblem" >
+    <id column="fpid" property="fpid" jdbcType="INTEGER" />
+    <result column="problem" property="problem" jdbcType="CHAR" />
+    <result column="Answera" property="answera" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    fpid, problem, Answera
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from foodproblem
+    where fpid = #{fpid,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" parameterType="java.util.HashMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from foodproblem
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from foodproblem
+    where fpid = #{fpid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.yunji.doctormanager.entity.Foodproblem" >
+    insert into foodproblem (fpid, problem, Answera
+      )
+    values (#{fpid,jdbcType=INTEGER}, #{problem,jdbcType=CHAR}, #{answera,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.yunji.doctormanager.entity.Foodproblem" >
+    insert into foodproblem
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="fpid != null" >
+        fpid,
+      </if>
+      <if test="problem != null" >
+        problem,
+      </if>
+      <if test="answera != null" >
+        Answera,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="fpid != null" >
+        #{fpid,jdbcType=INTEGER},
+      </if>
+      <if test="problem != null" >
+        #{problem,jdbcType=CHAR},
+      </if>
+      <if test="answera != null" >
+        #{answera,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.yunji.doctormanager.entity.Foodproblem" >
+    update foodproblem
+    <set >
+      <if test="problem != null" >
+        problem = #{problem,jdbcType=CHAR},
+      </if>
+      <if test="answera != null" >
+        Answera = #{answera,jdbcType=CHAR},
+      </if>
+    </set>
+    where fpid = #{fpid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.yunji.doctormanager.entity.Foodproblem" >
+    update foodproblem
+    set problem = #{problem,jdbcType=CHAR},
+      Answera = #{answera,jdbcType=CHAR}
+    where fpid = #{fpid,jdbcType=INTEGER}
+  </update>
+</mapper>

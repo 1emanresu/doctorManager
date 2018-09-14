@@ -1,0 +1,42 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.yunji.doctormanager.dao.ReturnCardMapper" >
+
+    <select    id="findById"  parameterType="int"   resultType="map">
+        select*from 
+        returncard
+        where userid=#{0}  and  eid=#{1}
+        order by eDate desc
+  </select>
+  
+  
+  <!--  跟eircle表关联的-->
+    <select    id="findById1"  parameterType="int"   resultType="map">
+        select*from 
+        returncard
+        where  eid=#{0}  
+        order by eDate desc
+  </select>
+  
+  <delete id="delete"  parameterType="int" >
+     delete  from 
+        returncard
+         where userId=#{0}  and  eid=#{1}
+  </delete>
+  <insert   id="insertreturncard"   parameterType="cn.yunji.doctormanager.entity.ReturnCard" >
+    insert   into  
+     returncard (eId,rcontent,userId,eDate)
+     values(
+       #{eId},
+     #{rcontent}, 
+     #{userId} ,
+      #{eDate}
+      )
+     
+  </insert>
+  
+  
+  
+  
+  
+  
+</mapper>
